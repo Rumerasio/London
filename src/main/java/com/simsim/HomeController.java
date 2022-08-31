@@ -33,4 +33,43 @@ public class HomeController {
 			return "home";
 		}
 		
+		@RequestMapping(value = "/a", method = RequestMethod.GET)
+		public String a(Locale locale, Model model) {
+			return "a";
+		}
+		
+		@RequestMapping(value = "/b", method = RequestMethod.GET)
+		public String b(Locale locale, Model model) {
+			return "b";
+		}
+		
+		@RequestMapping(value = "/c", method = RequestMethod.GET)
+		public String c(Locale locale, Model model) {
+			return "c";
+		}
+		
+		@RequestMapping(value = "/d", method = RequestMethod.GET)
+		public String d(Locale locale, Model model) {
+			return "d";
+		}
+		
+		@RequestMapping(value = "/e", method = RequestMethod.GET)
+		public String e(Locale locale, Model model) {
+			return "e";
+		}
+		
+		@RequestMapping(value = "/SimsimAdminCodegroup", method = RequestMethod.GET)
+		public String SimsimAdminCodegroup(Locale locale, Model model) {
+			return "SimsimAdminCodegroup";
+		}
+		
+		@RequestMapping(value = "/SimsimAdminCode", method = RequestMethod.GET)
+		public String SimsimAdminCode(Locale locale, Model model) {
+			return "SimsimAdminCode";
+		}
+		
+		@RequestMapping(value = "/SimsimMain", method = RequestMethod.GET)
+		public String SimsimMain(Locale locale, Model model) {
+			return "SimsimMain";
+		}
 }
