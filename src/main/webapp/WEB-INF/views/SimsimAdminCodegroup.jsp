@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
 <%@ page session="false" %>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -72,8 +78,8 @@
 				</li>
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
-						<a href="/SimsimAdminCodegroup"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/SimsimAdminCode"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="http://localhost:8080/simsim/AdminCodegroup"><li style="font-weight: normal;">코드그룹 관리</li></a>
+						<a href="http://localhost:8080/simsim/AdminCode"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -145,46 +151,18 @@
 					<th>등록일</th>
 					<th>수정일</th>
 	    		</tr>
+	    		<c:forEach items="${list}" var="list" varStatus="status">
 	    		<tr>
 	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>7</td>
-	    			<td><a href="./ZdminCodegroupMod.html">100</a></td>
-	    			<td><a href="./ZdminCodegroupMod.html">성별</a></td>
-	    			<td><a href="./ZdminCodegroupMod.html">Gender</a></td>
-	    			<td>3</td>
+	    			<td><c:out value="${list.seq }"/></td>
+	    			<td><c:out value="${list.codeGroupCode }"/></td>
+	    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameKor }"/></a></td>
+	    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameEng }"/></a></td>
+	    			<td><c:out value="${list.codeNum }"/></td>
 	    			<td>2018.05.07 11:25:30</td>
 	    			<td>2021.07.02 16:30:58</td>
 	    		</tr>
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>6</td>
-	    			<td>200</td>
-	    			<td>통신사</td>
-	    			<td>Agency</td>
-	    			<td>3</td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>5</td>
-	    			<td>300</td>
-	    			<td>이메일</td>
-	    			<td>Email</td>
-	    			<td>4</td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>4</td>
-	    			<td></td>
-	    			<td></td>
-	    			<td></td>
-	    			<td>4</td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
+	    		</c:forEach>
 	    	</table>
 	    	<br>
 	    	<nav class="nav justify-content-center">

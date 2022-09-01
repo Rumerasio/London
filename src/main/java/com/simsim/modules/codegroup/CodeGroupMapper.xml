@@ -9,9 +9,12 @@
     <resultMap id="resultMapObj" type="com.simsim.modules.codegroup.CodeGroup"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
-		SELECT 
+		SELECT
 			a.*
-		FROM codeGroup a;
+			,count(b.codeGroup_seq) as codeNum
+		FROM codeGroup a
+		inner join code b on b.codeGroup_seq=a.seq
+			group by b.codeGroup_seq
 	</select>
 
-</mapper>	
+</mapper>

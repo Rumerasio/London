@@ -1,36 +1,41 @@
-package com.simsim.modules.codegroup;
+package com.simsim.modules.code;
 
-public class CodeGroup {
-
+public class Code {
 	private String seq;
+	private String codeGroup_seq;
 	private String codeGroupCode;
-	private String codeGroupCodeAnother;
 	private String codeGroupNameKor;
 	private String codeGroupNameEng;
+	private String codeAnother;
+	private String codeNameKor;
+	private String codeNameEng;
 	private int useNy;
 	private int turn;
 	private String content;
-	private int delNy;
 	private String varcharType1;
 	private String varcharType2;
 	private String varcharType3;
 	private int intType1;
 	private int intType2;
 	private int intType3;
-	private String codeNum;
-	//************************
-	public String getCodeNum() {
-		return codeNum;
-	}
-	public void setCodeNum(String codeNum) {
-		this.codeNum = codeNum;
-	}
-	//***********
+	//*-*******************
 	public String getSeq() {
 		return seq;
 	}
+	public String getCodeGroupNameEng() {
+		return codeGroupNameEng;
+	}
+	public void setCodeGroupNameEng(String codeGroupNameEng) {
+		this.codeGroupNameEng = codeGroupNameEng;
+	}
 	public void setSeq(String seq) {
 		this.seq = seq;
+	}
+	public String getCodeGroup_seq() {
+		return codeGroup_seq;
+	}
+	public void setCodeGroup_seq(String codeGroup_seq) {
+		this.codeGroup_seq = codeGroup_seq;
 	}
 	public String getCodeGroupCode() {
 		return codeGroupCode;
@@ -38,23 +43,29 @@ public class CodeGroup {
 	public void setCodeGroupCode(String codeGroupCode) {
 		this.codeGroupCode = codeGroupCode;
 	}
-	public String getCodeGroupCodeAnother() {
-		return codeGroupCodeAnother;
-	}
-	public void setCodeGroupCodeAnother(String codeGroupCodeAnother) {
-		this.codeGroupCodeAnother = codeGroupCodeAnother;
-	}
 	public String getCodeGroupNameKor() {
 		return codeGroupNameKor;
 	}
 	public void setCodeGroupNameKor(String codeGroupNameKor) {
 		this.codeGroupNameKor = codeGroupNameKor;
 	}
-	public String getCodeGroupNameEng() {
-		return codeGroupNameEng;
+	public String getCodeAnother() {
+		return codeAnother;
 	}
-	public void setCodeGroupNameEng(String codeGroupNameEng) {
-		this.codeGroupNameEng = codeGroupNameEng;
+	public void setCodeAnother(String codeAnother) {
+		this.codeAnother = codeAnother;
+	}
+	public String getCodeNameKor() {
+		return codeNameKor;
+	}
+	public void setCodeNameKor(String codeNameKor) {
+		this.codeNameKor = codeNameKor;
+	}
+	public String getCodeNameEng() {
+		return codeNameEng;
+	}
+	public void setCodeNameEng(String codeNameEng) {
+		this.codeNameEng = codeNameEng;
 	}
 	public int getUseNy() {
 		return useNy;
@@ -73,12 +84,6 @@ public class CodeGroup {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public int getDelNy() {
-		return delNy;
-	}
-	public void setDelNy(int delNy) {
-		this.delNy = delNy;
 	}
 	public String getVarcharType1() {
 		return varcharType1;
@@ -116,6 +121,9 @@ public class CodeGroup {
 	public void setIntType3(int intType3) {
 		this.intType3 = intType3;
 	}
+	
+	//********************
+	
 	
 	
 }

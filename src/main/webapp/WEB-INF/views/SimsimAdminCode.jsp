@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE HTML>
 <html>
@@ -72,8 +76,8 @@
 				</li>
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
-						<a href="/SimsimAdminCodegroup"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/SimsimAdminCode"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="http://localhost:8080/simsim/AdminCodegroup"><li style="font-weight: normal;">코드그룹 관리</li></a>
+						<a href="http://localhost:8080/simsim/AdminCode"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -151,90 +155,22 @@
 					<th>등록일</th>
 					<th>수정일</th>
 	    		</tr>
+	    		<c:forEach items="${list}" var="list" varStatus="status">
 	    		<tr>
 	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>12</td>
-	    			<td>100</td>
-	    			<td>성별</td>
-	    			<td><a href="./ZdminCodeMod.html">101</a></td>
-	    			<td></td>
-	    			<td><a href="./ZdminCodeMod.html">성별-남성</a></td>
-	    			<td><a href="./ZdminCodeMod.html">Gender-Male</a></td>
-	    			<td>Y</td>
-	    			<td>1</td>
+	    			<td><c:out value="${list.seq }"/></td>
+	    			<td><c:out value="${list.codeGroupCode }"/></td>
+	    			<td><c:out value="${list.codeGroupNameKor }"/></td>
+	    			<td><a href="./ZdminCodeMod.html"></a></td>
+	    			<td><c:out value="${list.codeAnother }"/></td>
+	    			<td><a href="./ZdminCodeMod.html"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
+	    			<td><a href="./ZdminCodeMod.html"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>
+	    			<td><c:out value="${list.useNy }"/></td>
+	    			<td><c:out value="${list.turn }"/></td>
 	    			<td>2018.05.07 11:25:30</td>
 	    			<td>2021.07.02 16:30:58</td>
 	    		</tr>
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>11</td>
-	    			<td>100</td>
-	    			<td>성별</td>
-	    			<td>102</td>
-	    			<td></td>
-	    			<td>성별-여성</td>
-	    			<td></td>
-	    			<td>Y</td>
-	    			<td>2</td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>10</td>
-	    			<td>100</td>
-	    			<td>성별</td>
-	    			<td>103</td>
-	    			<td></td>
-	    			<td>성별-기타</td>
-	    			<td></td>
-	    			<td>Y</td>
-	    			<td>3</td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>9</td>
-	    			<td>200</td>
-	    			<td>통신사</td>
-	    			<td>201</td>
-	    			<td></td>
-	    			<td>통신사-SKT</td>
-	    			<td></td>
-	    			<td>Y</td>
-	    			<td>1</td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>9</td>
-	    			<td>200</td>
-	    			<td>통신사</td>
-	    			<td>202</td>
-	    			<td></td>
-	    			<td>통신사-KT</td>
-	    			<td></td>
-	    			<td>Y</td>
-	    			<td>2</td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td>8</td>
-	    			<td>200</td>
-	    			<td>통신사</td>
-	    			<td>203</td>
-	    			<td></td>
-	    			<td>통신사-LGU+</td>
-	    			<td></td>
-	    			<td>Y</td>
-	    			<td>3</td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
+	    		</c:forEach>
 	    	</table>
 	    	<br>
 	    	<nav class="nav justify-content-center">
