@@ -112,21 +112,21 @@
 			</div>
 			<br>
 			<div class="mb-5 row">
-				<div class="col-2">
-					<select class="form-select">
-					  <option selected>검색구분</option>
-					  <option value="1">코드그룹 코드</option>
-					  <option value="2">코드그룹 이름(한글)</option>
-					  <option value="3">코드그룹 이름(영문)</option>
-					</select>
-				</div>
-				<div class="col-4" id="search_box" style="height:30px;">
-					<form class="d-flex" role="search">
-				      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" style="margin-right: 5px;">
+				<form class="d-flex" role="search" method="post" action="/codeGroup/AdminCodegroupList">
+					<div class="col-2">
+						<select class="form-select" id ="shOption" name="shOption">
+						  <option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+						  <option value="1"<c:if test="${vo.shOption eq 1 }">selected</c:if>>코드그룹 코드</option>
+						  <option value="2"<c:if test="${vo.shOption eq 2 }">selected</c:if>>코드그룹 이름(한글)</option>
+						  <option value="3"<c:if test="${vo.shOption eq 3 }">selected</c:if>>코드그룹 이름(영문)</option>
+						</select>
+					</div>
+					<div class="col-4" id="search_box" style="height:30px;">
+				      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
 				      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
 				      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
-				    </form>
-			    </div>
+				    </div>
+			    </form>
 		    </div>
 	    </div>
 	    <div class="row mb-3">

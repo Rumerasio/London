@@ -122,21 +122,21 @@
 			</div>
 			<br>
 			<div class="mb-5 row">
-				<div class="col-2">
-					<select class="form-select" aria-label="Default select example">
-					  <option selected>선택</option>
-					  <option value="1">닉네임</option>
-					  <option value="2">이메일</option>
-					  <option value="3">아이디</option>
-					</select>
-				</div>
-				<div class="col-4" id="search_box" style="height:30px;">
-					<form class="d-flex" role="search">
+				<form class="d-flex" role="search" method="post" action="/codeGroup/codeGroupList">
+					<div class="col-2">
+						<select class="form-select" aria-label="Default select example">
+						  <option value="" selected>선택</option>
+						  <option value="1">닉네임</option>
+						  <option value="2">이메일</option>
+						  <option value="3">아이디</option>
+						</select>
+					</div>
+					<div class="col-4" id="search_box" style="height:30px;">
 				      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" style="margin-right: 5px;">
 				      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
 				      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
-				    </form>
-			    </div>
+				    </div>
+			     </form>
 		    </div>
 	    </div>
 	    <div class="row mb-3">

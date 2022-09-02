@@ -14,7 +14,11 @@
 			,count(b.codeGroup_seq) as codeNum
 		FROM codeGroup a
 		inner join code b on b.codeGroup_seq=a.seq
-			group by b.codeGroup_seq
+		WHERE 1=1
+			AND codeGroupNameKor LIKE CONCAT('%',#{shValue},'%')
+			OR codeGroupNameEng LIKE CONCAT('%',#{shValue},'%')
+			OR codeGroupCode LIKE CONCAT('%',#{shValue},'%')
+		group by b.codeGroup_seq
 	</select>
 
 </mapper>
