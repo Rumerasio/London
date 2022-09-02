@@ -151,18 +151,27 @@
 					<th>등록일</th>
 					<th>수정일</th>
 	    		</tr>
-	    		<c:forEach items="${list}" var="list" varStatus="status">
-	    		<tr>
-	    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    			<td><c:out value="${list.seq }"/></td>
-	    			<td><c:out value="${list.codeGroupCode }"/></td>
-	    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameKor }"/></a></td>
-	    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameEng }"/></a></td>
-	    			<td><c:out value="${list.codeNum }"/></td>
-	    			<td>2018.05.07 11:25:30</td>
-	    			<td>2021.07.02 16:30:58</td>
-	    		</tr>
-	    		</c:forEach>
+	    		<c:choose>
+					<c:when test="${fn:length(list) eq 0}">
+						<tr>
+							<td style="text-align:center;" colspan="8">There is no data</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+			    		<c:forEach items="${list}" var="list" varStatus="status">
+			    		<tr>
+			    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
+			    			<td><c:out value="${list.seq }"/></td>
+			    			<td><c:out value="${list.codeGroupCode }"/></td>
+			    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameKor }"/></a></td>
+			    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameEng }"/></a></td>
+			    			<td><c:out value="${list.codeNum }"/></td>
+			    			<td>2018.05.07 11:25:30</td>
+			    			<td>2021.07.02 16:30:58</td>
+			    		</tr>
+			    		</c:forEach>
+			    	</c:otherwise>
+			    </c:choose>
 	    	</table>
 	    	<br>
 	    	<nav class="nav justify-content-center">

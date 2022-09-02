@@ -20,7 +20,7 @@
 		    ,b.useNy
 		    ,b.turn
 		FROM codeGroup a
-		left join code b on b.codeGroup_seq = a.seq
+		inner join code b on b.codeGroup_seq = a.seq AND a.seq =1000
 	</select>
 
 </mapper>

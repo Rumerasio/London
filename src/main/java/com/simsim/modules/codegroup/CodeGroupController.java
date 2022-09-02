@@ -20,6 +20,6 @@ public class CodeGroupController {
 		List<CodeGroup> list = service.selectList();
 		model.addAttribute("list", list);
 		
-		return "SimsimAdminCodegroup";
+		return "commoncode/codegroup/SimsimAdminCodegroup";
 	}
 }
