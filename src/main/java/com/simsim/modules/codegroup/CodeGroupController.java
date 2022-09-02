@@ -8,13 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping (value="/simsim/")
+@RequestMapping (value="/codeGroup/")
 public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
 
-	@RequestMapping(value = "AdminCodegroup")
+	@RequestMapping(value = "AdminCodegroupList")
 	public String codeGroupList(Model model) throws Exception {
 
 		List<CodeGroup> list = service.selectList();

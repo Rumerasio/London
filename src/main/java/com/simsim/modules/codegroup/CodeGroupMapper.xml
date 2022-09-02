@@ -13,7 +13,7 @@
 			a.*
 			,count(b.codeGroup_seq) as codeNum
 		FROM codeGroup a
-		inner join code b on b.codeGroup_seq=a.seq AND b.codeGroup_seq=1000
+		inner join code b on b.codeGroup_seq=a.seq
 			group by b.codeGroup_seq
 	</select>
 

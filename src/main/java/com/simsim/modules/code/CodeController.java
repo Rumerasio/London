@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value ="/simsim/")
+@RequestMapping(value ="/code/")
 public class CodeController {
 
 	@Autowired
 	CodeServiceImpl service;
 	
 
-	@RequestMapping(value = "AdminCode")
+	@RequestMapping(value = "AdminCodeList")
 	public String codeList(Model model) throws Exception {
 
 		List<Code> list = service.selectList();
