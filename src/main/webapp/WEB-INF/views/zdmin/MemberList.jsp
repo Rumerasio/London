@@ -12,6 +12,8 @@
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>AdminMember</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@700&display=swap');
@@ -86,6 +88,7 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>회원관리</b></h5>
 		<div class="mb-3" id="search_tab">
+			<form role="search" method="post" action="/codeGroup/codeGroupList">
 			<div class="my-2 row">
 				<div class="col">
 					<select class="form-select">
@@ -114,30 +117,36 @@
 					</select>
 				</div>
 				<div class="col">
-					<input type="text" class="form-control" placeholder="가입일시작(date 이쁜 양식점)">
+					<select class="form-select">
+						<option selected>날짜</option>
+						<option>가입일</option>
+						<option>최종접속일</option>
+					</select>
 				</div>
 				<div class="col">
-					<input type="text" class="form-control" placeholder="2001.12.31(가입일종료)">
+					<input type="text" class="form-control" placeholder="시작일" id="dateStart" autocomplete="off">
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" placeholder="종료일" id="dateEnd" autocomplete="off">
 				</div>
 			</div>
 			<br>
 			<div class="mb-5 row">
-				<form class="d-flex" role="search" method="post" action="/codeGroup/codeGroupList">
-					<div class="col-2">
-						<select class="form-select" aria-label="Default select example">
-						  <option value="" selected>선택</option>
-						  <option value="1">닉네임</option>
-						  <option value="2">이메일</option>
-						  <option value="3">아이디</option>
-						</select>
-					</div>
-					<div class="col-4" id="search_box" style="height:30px;">
-				      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" style="margin-right: 5px;">
-				      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
-				      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
-				    </div>
-			     </form>
+				<div class="col-2">
+					<select class="form-select" aria-label="Default select example">
+					  <option value="" selected>선택</option>
+					  <option value="1">닉네임</option>
+					  <option value="2">이메일</option>
+					  <option value="3">아이디</option>
+					</select>
+				</div>
+				<div class="col-4 d-flex" id="search_box">
+			      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" style="margin-right: 5px;">
+			      <button class="btn btn-outline-primary" type="submit" style="width: 80px;">검색</button> &nbsp;
+			      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
+			    </div>
 		    </div>
+		     </form>
 	    </div>
 	    <div class="row mb-3">
 	    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:12</div>
@@ -153,7 +162,7 @@
 	    	<table class="table table-striped table-hover">
 	    		<tr id="list_box_th">
 	    			<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>
-					<th>고유번호</th>
+					<th>#</th>
 					<th>닉네임</th>
 					<th>생년월일</th>
 					<th>성별</th>
@@ -161,8 +170,8 @@
 					<th>아이디</th>
 					<th>작성댓글수</th>
 					<th>댓글 좋아요수</th>
-					<th>최종 접속일시</th>
-					<th>가입날짜</th>
+					<th>최종접속일시</th>
+					<th>가입일시</th>
 					<th>삭제여부</th>
 	    		</tr>
 	    		<c:choose>
@@ -287,6 +296,26 @@
 			else $("#ChkA").prop("checked",true);
 		})
 	});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+	$( function() {
+		$( "#dateStart" ).datepicker({
+	    	changeYear: true, 
+	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+	    	yearRange:"1900:2023",
+	    	monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+			dateFormat: "yy.mm.dd"
+		});
+		$( "#dateEnd").datepicker({
+			changeYear: true, 
+	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+	    	yearRange:"1900:2023",
+	    	monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+			dateFormat: "yy.mm.dd"
+		});
+	} );
 </script>
 </body>
 </html>

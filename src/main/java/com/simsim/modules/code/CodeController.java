@@ -16,9 +16,9 @@ public class CodeController {
 	
 
 	@RequestMapping(value = "AdminCodeList")
-	public String codeList(Model model) throws Exception {
+	public String codeList(Model model, CodeVo vo) throws Exception {
 
-		List<Code> list = service.selectList();
+		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "commoncode/code/SimsimAdminCode";

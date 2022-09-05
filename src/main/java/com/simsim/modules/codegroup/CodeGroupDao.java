@@ -12,10 +12,17 @@ import org.springframework.stereotype.Repository;
 public class CodeGroupDao {
 
 	@Inject
-	@Resource(name = "sqlSession")
+	@Resource(name = "sqlSession") //여러개의 DB가 연결될 경우를 위한 이름설정
 	private SqlSession sqlSession;
 	
 	private static String namespace = "com.simsim.modules.codegroup.CodeGroupMapper";
 	
 	public List<CodeGroup> selectList(CodeGroupVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
+	//List Array에 <이 객체를> 넣겠다
+	
+//	public List<CodeGroup> selectList(CodeGroupVo vo) {
+//		List<CodeGroup> list = sqlSession.selectList("com.simsim.modules.codegroup.CodeGroupMapper.selectList",vo); 
+//		return list;
+//	}
+	
 }

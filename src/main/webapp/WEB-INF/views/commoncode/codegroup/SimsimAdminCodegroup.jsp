@@ -15,6 +15,8 @@
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>AdminCodegroup</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@700&display=swap');
@@ -88,31 +90,31 @@
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드그룹 관리</b></h5>
-		<div class="mb-3" id="search_tab">
-			<div class="my-2 row">
-				<div class="col-2">
-					<select class="form-select">
-						<option selected>삭제여부</option>
-						<option>Y</option>
-						<option>N</option>
-					</select>
+		<form role="search" method="post" action="/codeGroup/AdminCodegroupList">
+			<div class="mb-3" id="search_tab">
+				<div class="my-2 row">
+					<div class="col-2">
+						<select class="form-select" id="shdelNy" name="shdelNy">
+							<option value="" <c:if test="${empty vo.shdelNy }">selected</c:if>>삭제여부</option>
+							<option value="1" <c:if test="${vo.shdelNy eq 1 }">selected</c:if>>Y</option>
+							<option value="0" <c:if test="${vo.shdelNy eq 0 }">selected</c:if>>N</option>
+						</select>
+					</div>
+					<div class="col">
+						<select class="form-select">
+							<option selected>수정일</option>
+							<option>등록일</option>
+						</select>
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="시작일" autocomplete="off" id="dateStart">
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="종료일" autocomplete="off" id="dateEnd">
+					</div>
 				</div>
-				<div class="col">
-					<select class="form-select">
-						<option selected>수정일</option>
-						<option>등록일</option>
-					</select>
-				</div>
-				<div class="col">
-					<input type="text" class="form-control" placeholder="시작일">
-				</div>
-				<div class="col">
-					<input type="text" class="form-control" placeholder="종료일">
-				</div>
-			</div>
-			<br>
-			<div class="mb-5 row">
-				<form class="d-flex" role="search" method="post" action="/codeGroup/AdminCodegroupList">
+				<br>
+				<div class="mb-5 row">
 					<div class="col-2">
 						<select class="form-select" id ="shOption" name="shOption">
 						  <option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
@@ -121,14 +123,14 @@
 						  <option value="3"<c:if test="${vo.shOption eq 3 }">selected</c:if>>코드그룹 이름(영문)</option>
 						</select>
 					</div>
-					<div class="col-4" id="search_box" style="height:30px;">
-				      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
-				      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
-				      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
+					<div class="col-4 d-flex" id="search_box">
+						<input class="form-control" type="search" placeholder="검색어" aria-label="Search" autocomplete="off" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
+						<button class="btn btn-outline-primary" type="submit" style="width: 80px;">검색</button> &nbsp;
+						<button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
 				    </div>
-			    </form>
-		    </div>
-	    </div>
+			    </div>
+	   		 </div>
+	     </form>
 	    <div class="row mb-3">
 	    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:7</div>
 	    	<div class="col-1 offset-10">
@@ -148,8 +150,9 @@
 					<th>코드그룹 이름(한글)</th>
 					<th>코드그룹 이름(영문)</th>
 					<th>코드갯수</th>
-					<th>등록일</th>
-					<th>수정일</th>
+					<th>삭제여부</th>
+					<th>등록일시</th>
+					<th>수정일시</th>
 	    		</tr>
 	    		<c:choose>
 					<c:when test="${fn:length(list) eq 0}">
@@ -166,6 +169,7 @@
 			    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameKor }"/></a></td>
 			    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameEng }"/></a></td>
 			    			<td><c:out value="${list.codeNum }"/></td>
+			    			<td><c:out value="${list.delNy }"/></td>
 			    			<td>2018.05.07 11:25:30</td>
 			    			<td>2021.07.02 16:30:58</td>
 			    		</tr>
@@ -249,6 +253,18 @@
 			else $("#ChkA").prop("checked",true);
 		})
 	});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+	$( function() {
+		$( "#dateStart" ).datepicker({
+			dateFormat: "yy.mm.dd"
+		});
+		$( "#dateEnd").datepicker({
+			dateFormat: "yy.mm.dd"
+		});
+	} );
 </script>
 </body>
 </html>

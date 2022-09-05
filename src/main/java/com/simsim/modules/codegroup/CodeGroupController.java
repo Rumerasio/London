@@ -17,11 +17,13 @@ public class CodeGroupController {
 	@RequestMapping(value = "AdminCodegroupList")
 	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception {
 		
+		System.out.println("vo.getShdelNy(): "+vo.getShdelNy());
 		System.out.println("vo.getShValue(): "+vo.getShValue());
 		System.out.println("vo.getShOption(): "+vo.getShOption());
+		
 
 		List<CodeGroup> list = service.selectList(vo);
-		model.addAttribute("list", list);
+		model.addAttribute("list", list); //("jsp에서 쓸 객체이름",현재 여기서 집어넣을 객체이름)
 		
 		return "commoncode/codegroup/SimsimAdminCodegroup";
 	}

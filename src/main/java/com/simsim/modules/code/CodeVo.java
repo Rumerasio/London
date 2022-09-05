@@ -1,17 +1,25 @@
-package com.simsim.modules.codegroup;
+package com.simsim.modules.code;
 
-public class CodeGroupVo {
+public class CodeVo {
 
-	private String ShOption;
-	private String ShValue;
-	private String ShdelNy;
+	private String ShuseNy;
+	private String ShRegiMod;
 	private String ShdateStart;
 	private String ShdateEnd;
-	
-	//*************
-	
-	public String getShOption() {
-		return ShOption;
+	private String ShOption;
+	private String ShValue;
+	//***************************
+	public String getShuseNy() {
+		return ShuseNy;
+	}
+	public void setShuseNy(String shuseNy) {
+		ShuseNy = shuseNy;
+	}
+	public String getShRegiMod() {
+		return ShRegiMod;
+	}
+	public void setShRegiMod(String shRegiMod) {
+		ShRegiMod = shRegiMod;
 	}
 	public String getShdateStart() {
 		return ShdateStart;
@@ -25,11 +33,8 @@ public class CodeGroupVo {
 	public void setShdateEnd(String shdateEnd) {
 		ShdateEnd = shdateEnd;
 	}
-	public String getShdelNy() {
-		return ShdelNy;
-	}
-	public void setShdelNy(String shdelNy) {
-		ShdelNy = shdelNy;
+	public String getShOption() {
+		return ShOption;
 	}
 	public void setShOption(String shOption) {
 		ShOption = shOption;
@@ -40,5 +45,7 @@ public class CodeGroupVo {
 	public void setShValue(String shValue) {
 		ShValue = shValue;
 	}
+	
+	
 	
 }

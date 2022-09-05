@@ -13,6 +13,8 @@
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>AdminCode</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@700&display=swap');
@@ -86,49 +88,50 @@
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드 관리</b></h5>
-		<div class="mb-3" id="search_tab">
-			<div class="my-2 row">
-				<div class="col-2">
-					<select class="form-select">
-						<option selected>삭제여부</option>
-						<option>Y</option>
-						<option>N</option>
-					</select>
+		<form role="search" method="post" action="/code/AdminCodeList">
+			<div class="mb-3" id="search_tab">
+				<div class="my-2 row">
+					<div class="col-2">
+						<select class="form-select" id="shuseNy" name="shuseNy">
+							<option value="" <c:if test="${empty vo.shuseNy }">selected</c:if>>사용여부</option>
+							<option value="1" <c:if test="${vo.shuseNy eq 1 }">selected</c:if>>Y</option>
+							<option value="0" <c:if test="${vo.shuseNy eq 0 }">selected</c:if>>N</option>
+						</select>
+					</div>
+					<div class="col">
+						<select class="form-select" id="shRegiMod" name="shRegiMod">
+							<option value="" <c:if test="${empty vo.shRegiMod }">selected</c:if>>날짜검색</option>
+							<option value="0" <c:if test="${vo.shRegiMod eq 0 }">selected</c:if>>등록일</option>
+							<option value="1" <c:if test="${vo.shRegiMod eq 1 }">selected</c:if>>수정일</option>
+						</select>
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="시작일" autocomplete="off" id="dateStart">
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="종료일" autocomplete="off" id="dateEnd">
+					</div>
 				</div>
-				<div class="col">
-					<select class="form-select">
-						<option selected>수정일</option>
-						<option>등록일</option>
-					</select>
-				</div>
-				<div class="col">
-					<input type="text" class="form-control" placeholder="시작일">
-				</div>
-				<div class="col">
-					<input type="text" class="form-control" placeholder="종료일">
-				</div>
-			</div>
-			<br>
-			<div class="mb-5 row">
-				<div class="col-2">
-					<select class="form-select" aria-label="Default select example">
-					  <option selected>검색구분</option>
-					  <option value="1">코드그룹 코드</option>
-					  <option value="2">코드그룹 이름(한글)</option>
-					  <option value="3">코드 이름(한글)</option>
-					  <option value="4">코드 이름(영문)</option>
-					  <option value="5">사용</option>
-					</select>
-				</div>
-				<div class="col-4" id="search_box" style="height:30px;">
-					<form class="d-flex" role="search">
-				      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" style="margin-right: 5px;">
-				      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
-				      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
-				    </form>
+				<br>
+				<div class="mb-5 row">
+					<div class="col-2">
+						<select class="form-select" id ="shOption" name="shOption">
+						  <option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+						  <option value="1"<c:if test="${vo.shOption eq 1 }">selected</c:if>>코드그룹 코드</option>
+						  <option value="2"<c:if test="${vo.shOption eq 2 }">selected</c:if>>코드그룹 이름(한글)</option>
+						  <option value="3"<c:if test="${vo.shOption eq 3 }">selected</c:if>>코드그룹 이름(영문)</option>
+						  <option value="4"<c:if test="${vo.shOption eq 4 }">selected</c:if>>코드 이름(한글)</option>
+						  <option value="5"<c:if test="${vo.shOption eq 5 }">selected</c:if>>코드 이름(영문)</option>
+						</select>
+					</div>
+					<div class="col-4 d-flex" id="search_box">
+					      <input class="form-control" type="search" placeholder="검색어" autocomplete="off" aria-label="Search" id="shValue" name="shValue" style="margin-right: 5px;">
+					      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
+					      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
+				    </div>
 			    </div>
 		    </div>
-	    </div>
+		</form>
 	    <div class="row mb-3">
 	    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:12</div>
 	    	<div class="col-1 offset-10">
@@ -257,6 +260,26 @@
 			else $("#ChkA").prop("checked",true);
 		})
 	});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+	$( function() {
+		$( "#dateStart" ).datepicker({
+	    	changeYear: true, 
+	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+	    	yearRange:"1900:2023",
+	    	monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+			dateFormat: "yy.mm.dd"
+		});
+		$( "#dateEnd").datepicker({
+			changeYear: true, 
+	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+	    	yearRange:"1900:2023",
+	    	monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+			dateFormat: "yy.mm.dd"
+		});
+	} );
 </script>
 </body>
 </html>

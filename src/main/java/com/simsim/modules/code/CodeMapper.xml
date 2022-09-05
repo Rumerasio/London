@@ -21,6 +21,15 @@
 		    ,b.turn
 		FROM codeGroup a
 		inner join code b on b.codeGroup_seq = a.seq
+		WHERE 1=1
+			<if test="shuseNy != null and !shuseNy.equals('')">AND b.useNy = #{shuseNy}</if>
+			<choose>
+				<when test="shOption ==1">AND codeGroupCode = #{shValue}</when>
+				<when test="shOption ==2">AND codeGroupNameKor LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==3">AND codeGroupNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==4">AND codeNameKor LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==5">AND codeNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
 	</select>
 
 </mapper>

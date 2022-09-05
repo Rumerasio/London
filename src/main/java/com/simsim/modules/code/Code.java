@@ -9,7 +9,7 @@ public class Code {
 	private String codeAnother;
 	private String codeNameKor;
 	private String codeNameEng;
-	private int useNy;
+	private String useNy;
 	private int turn;
 	private String content;
 	private String varcharType1;
@@ -18,6 +18,9 @@ public class Code {
 	private int intType1;
 	private int intType2;
 	private int intType3;
+	private String registerDateTime;
+	private String modifyDateTime;
+	
 	//*-*******************
 	public String getSeq() {
 		return seq;
@@ -67,10 +70,10 @@ public class Code {
 	public void setCodeNameEng(String codeNameEng) {
 		this.codeNameEng = codeNameEng;
 	}
-	public int getUseNy() {
+	public String getUseNy() {
 		return useNy;
 	}
-	public void setUseNy(int useNy) {
+	public void setUseNy(String useNy) {
 		this.useNy = useNy;
 	}
 	public int getTurn() {
@@ -121,7 +124,18 @@ public class Code {
 	public void setIntType3(int intType3) {
 		this.intType3 = intType3;
 	}
-	
+	public String getRegisterDateTime() {
+		return registerDateTime;
+	}
+	public void setRegisterDateTime(String registerDateTime) {
+		this.registerDateTime = registerDateTime;
+	}
+	public String getModifyDateTime() {
+		return modifyDateTime;
+	}
+	public void setModifyDateTime(String modifyDateTime) {
+		this.modifyDateTime = modifyDateTime;
+	}
 	//********************
 	
 	
