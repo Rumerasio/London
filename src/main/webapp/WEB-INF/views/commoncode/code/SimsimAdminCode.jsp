@@ -66,7 +66,7 @@
 			<ul class="list-unstyled">
 				<li class="fw-semibold">회원 관리
 					<ul class="list-unstyled ps-2">
-						<a href="http://localhost:8080/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
+						<a href="/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
 						<a href="./ZdminCommentRecord.html"><li style="font-weight: normal;">댓글관리</li></a>
 					</ul>
 				</li>
@@ -78,8 +78,8 @@
 				</li>
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
-						<a href="http://localhost:8080/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="http://localhost:8080/code/AdminCodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
+						<a href="/code/AdminCodeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -200,7 +200,7 @@
 	    	</div>
 	    	<div class="position-absolute end-0">
 		    	<button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button>
-		    	<a href="./ZdminCodeReg.html"><button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i></button></a>
+		    	<a href="/code/codeForm"><button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i></button></a>
 	    	</div>
 	    	<div class="modal" tabindex="-1" id="state_delete_modal">
 			  <div class="modal-dialog">

@@ -10,8 +10,9 @@
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
-			b.seq,
-			a.codeGroupCode,
+			b.seq
+			,a.seq as codeGroup_seq
+			,a.codeGroupCode,
 		    a.codeGroupNameKor,
 		    a.codeGroupNameEng,
 		    b.codeAnother,
@@ -32,4 +33,45 @@
 			</choose>
 	</select>
 
+	<insert id="insert">
+		INSERT INTO code (
+			codeGroup_seq
+		    ,codeAnother
+		    ,codeNameKor
+		    ,codeNameEng
+		    ,useNy
+		    ,turn
+		    ,content
+		    ,delNy
+		    ,varcharType1
+		    ,varcharType2
+		    ,varcharType3
+		    ,intType1
+		    ,intType2
+		    ,intType3
+		    ,registerDateTime
+		    ,modifyDateTime
+		)
+		values(
+			#{codeGroup_seq}
+			,#{codeAnother}
+			,#{codeNameKor}
+			,#{codeNameEng}
+			,#{useNy}
+			,#{turn}
+			,#{content}
+			,0
+			,#{varcharType1}
+			,#{varcharType2}
+			,#{varcharType3}
+			,#{intType1}
+			,#{intType2}
+			,#{intType3}
+			,#{registerDateTime}
+			,#{modifyDateTime}
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 </mapper>

@@ -13,7 +13,7 @@
 			a.seq
 		    ,a.nickname
 		    ,a.dob
-		    ,a.gender
+		    ,b.codeNameKor
 		    ,a.phoneAgency
 		    ,a.phoneNum
 		    ,a.email
@@ -24,6 +24,7 @@
 		    ,a.datetime
 		    ,a.delNy
 		FROM jsMember a 
+		inner join code b on b.codeAnother = a.gender
 		WHERE 1=1
 	</select>
 

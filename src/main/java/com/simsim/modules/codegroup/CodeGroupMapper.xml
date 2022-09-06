@@ -11,9 +11,10 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
-			,count(b.codeGroup_seq) as codeNum
+			<!-- ,count(b.codeGroup_seq) as codeNum -->
+			,(SELECT count(b.codeGroup_seq) FROM code b WHERE b.codeGroup_seq = a.seq) as codeNum
 		FROM codeGroup a
-		inner join code b on b.codeGroup_seq=a.seq
+		<!-- inner join code b on b.codeGroup_seq=a.seq -->
 		WHERE 1=1
 			<if test="shdelNy != null and !shdelNy.equals('')">AND delNy = #{shdelNy}</if>
 			<choose>
@@ -24,7 +25,58 @@
 			<!-- AND codeGroupNameKor LIKE CONCAT('%',#{shValue},'%')
 			OR codeGroupNameEng LIKE CONCAT('%',#{shValue},'%')
 			OR codeGroupCode LIKE CONCAT('%',#{shValue},'%') -->
-		group by b.codeGroup_seq
+		<!-- group by b.codeGroup_seq -->
 	</select>
+	
+	<select id="selectListSm" resultMap="resultMapObj">
+		SELECT 
+			a.seq
+		    ,a.codeGroupcode
+		    ,a.codeGroupNameKor
+		FROM codeGroup a
+		WHERE 1=1
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO codeGroup(
+		    codeGroupCode,
+		    codeGroupCodeAnother,
+		    codeGroupNameKor
+		    ,codeGroupNameEng
+		    ,useNy
+		    ,turn
+		    ,content
+		    ,delNy
+		    ,varcharType1
+		    ,varcharType2
+		    ,varcharType3
+		    ,intType1
+		    ,intType2
+		    ,intType3
+		    ,registerDateTime
+		    ,modifyDateTime
+		)
+		VALUES (
+			#{codeGroupCode}
+			,#{codeGroupCodeAnother}
+			,#{codeGroupNameKor}
+			,#{codeGroupNameEng}
+			,#{useNy}
+			,#{turn}
+			,#{content}
+			,0
+			,#{varcharType1}
+			,#{varcharType2}
+			,#{varcharType3}
+			,#{intType1}
+			,#{intType2}
+			,#{intType3}
+			,#{registerDateTime}
+			,#{modifyDateTime}
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 
 </mapper>

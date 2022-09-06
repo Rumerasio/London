@@ -27,4 +27,19 @@ public class CodeGroupController {
 		
 		return "commoncode/codegroup/SimsimAdminCodegroup";
 	}
+	
+	@RequestMapping(value = "AdminCodegroupReg")
+	public String codeGroupForm() throws Exception {
+		
+		return "commoncode/codegroup/SimsimAdminCodegroupReg";
+	}
+	
+	@RequestMapping(value = "CodeGroupInst")
+	public String CodeGroupInst(CodeGroup dto) throws Exception {
+		
+		int result =service.insert(dto);
+		System.out.println("Controller result: "+result);
+		
+		return "redirect:/codeGroup/AdminCodegroupList";
+	}
 }

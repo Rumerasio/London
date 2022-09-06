@@ -6,6 +6,7 @@ public class Member {
 	private String nickname;
 	private String dob;
 	private String gender;
+	private String codenameKor;
 	private String phoneAgency;
 	private String phoneNum;
 	private String email;
@@ -18,6 +19,12 @@ public class Member {
 	private Integer commentNum;
 	private Integer commentLikeNum;
 	//****************************
+	public String getCodenameKor() {
+		return codenameKor;
+	}
+	public void setCodenameKor(String codenameKor) {
+		this.codenameKor = codenameKor;
+	}
 	public String getSeq() {
 		return seq;
 	}

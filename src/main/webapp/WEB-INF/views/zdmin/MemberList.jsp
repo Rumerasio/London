@@ -65,7 +65,7 @@
 			<ul class="list-unstyled">
 				<li class="fw-semibold">회원 관리
 					<ul class="list-unstyled ps-2">
-						<a href="http://localhost:8080/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
+						<a href="/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
 						<a href="./ZdminCommentRecord.html"><li style="font-weight: normal;">댓글관리</li></a>
 					</ul>
 				</li>
@@ -77,8 +77,8 @@
 				</li>
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
-						<a href="http://localhost:8080/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="http://localhost:8080/code/AdminCodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
+						<a href="/code/AdminCodeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -187,7 +187,7 @@
 				    			<td><c:out value="${list.seq }"/></td>
 				    			<td><a href="./zdminMemberInfo.html"><c:out value="${list.nickname }"/></td>
 				    			<td><c:out value="${list.dob }"/></td>
-				    			<td><c:out value="${list.gender }"/></td>
+				    			<td><c:out value="${list.codenameKor }"/></td>
 				    			<td><c:out value="${list.email }"/></td>
 				    			<td><c:out value="${list.id }"/></td>
 				    			<td><c:out value="${list.commentNum }"/></td>
