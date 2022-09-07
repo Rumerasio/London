@@ -5,9 +5,8 @@ public class Member {
 	private String seq;
 	private String nickname;
 	private String dob;
-	private String gender;
-	private String codenameKor;
-	private String phoneAgency;
+	private Integer gender;
+	private Integer phoneAgency;
 	private String phoneNum;
 	private String email;
 	private String emailInsert;
@@ -16,15 +15,8 @@ public class Member {
 	private String password;
 	private String datetime;
 	private String delNy;
-	private Integer commentNum;
-	private Integer commentLikeNum;
-	//****************************
-	public String getCodenameKor() {
-		return codenameKor;
-	}
-	public void setCodenameKor(String codenameKor) {
-		this.codenameKor = codenameKor;
-	}
+	private String codeNameKor;
+	//****************
 	public String getSeq() {
 		return seq;
 	}
@@ -43,16 +35,16 @@ public class Member {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
-	public String getGender() {
+	public Integer getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
+	public void setGender(Integer gender) {
 		this.gender = gender;
 	}
-	public String getPhoneAgency() {
+	public Integer getPhoneAgency() {
 		return phoneAgency;
 	}
-	public void setPhoneAgency(String phoneAgency) {
+	public void setPhoneAgency(Integer phoneAgency) {
 		this.phoneAgency = phoneAgency;
 	}
 	public String getPhoneNum() {
@@ -100,22 +92,13 @@ public class Member {
 	public String getDelNy() {
 		return delNy;
 	}
-	public void setDelNy(String delNy) {
+	public void String(String delNy) {
 		this.delNy = delNy;
 	}
-	public Integer getCommentNum() {
-		return commentNum;
+	public String getCodeNameKor() {
+		return codeNameKor;
 	}
-	public void setCommentNum(Integer commentNum) {
-		this.commentNum = commentNum;
+	public void setCodeNameKor(String codeNameKor) {
+		this.codeNameKor = codeNameKor;
 	}
-	public Integer getCommentLikeNum() {
-		return commentLikeNum;
-	}
-	public void setCommentLikeNum(Integer commentLikeNum) {
-		this.commentLikeNum = commentLikeNum;
-	}
-	
-	
-	
 }

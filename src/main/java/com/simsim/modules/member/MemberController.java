@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/member/")
+@RequestMapping(value="/member/")
 public class MemberController {
 
 	@Autowired
@@ -16,9 +16,9 @@ public class MemberController {
 	
 
 	@RequestMapping(value = "memberList")
-	public String memberList(Model model) throws Exception {
+	public String memberList(Model model,MemberVo vo) throws Exception {
 
-		List<Member> list = service.selectList();
+		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "zdmin/MemberList";

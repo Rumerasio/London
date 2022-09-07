@@ -11,21 +11,33 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.seq
-		    ,a.nickname
-		    ,a.dob
-		    ,b.codeNameKor
-		    ,a.phoneAgency
-		    ,a.phoneNum
-		    ,a.email
-		    ,a.emailInsert
-		    ,a.emailDomain
-		    ,a.id
-		    ,a.password
-		    ,a.datetime
-		    ,a.delNy
+			,a.nickname
+			,a.dob
+			,b.codeNameKor
+			,a.phoneAgency
+			,a.phoneNum
+			,a.email
+			,a.emailInsert
+			,a.emailDomain
+			,a.id
+			,a.password
+			,a.datetime
+			,a.delNy
 		FROM jsMember a 
 		inner join code b on b.codeAnother = a.gender
 		WHERE 1=1
+			<if test="shdelNy != null and !shdelNy.equals('')">AND delNy = #{shdelNy}</if>
+			<choose>
+				<when test="shgender ==1">AND gender = 101</when>
+				<when test="shgender ==2">AND gender = 102</when>
+			</choose>
+			<choose>
+				<when test="shOption ==1">AND nickname LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==2">AND email LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==3">AND id LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+		order by
+			a.seq asc
 	</select>
 
 </mapper>

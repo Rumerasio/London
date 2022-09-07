@@ -12,8 +12,6 @@
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>AdminMember</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  	<link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@700&display=swap');
@@ -87,82 +85,77 @@
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>회원관리</b></h5>
-		<div class="mb-3" id="search_tab">
-			<form role="search" method="post" action="/codeGroup/codeGroupList">
-			<div class="my-2 row">
-				<div class="col">
-					<select class="form-select">
-						<option selected>삭제여부</option>
-						<option>Y</option>
-						<option>N</option>
-					</select>
+		<form >
+			<div class="mb-3" id="search_tab">
+				<div class="my-2 row">
+					<div class="col">
+						<select class="form-select">
+							<option selected>삭제여부</option>
+							<option>Y</option>
+							<option>N</option>
+						</select>
+					</div>
+					<div class="col">
+						<select class="form-select">
+							<option selected>성별</option>
+							<option>남성</option>
+							<option>여성</option>
+						</select>
+					</div>
+					<div class="col">
+						<select class="form-select">
+							<option selected>나이</option>
+							<option>10대 미만(~9)</option>
+							<option>10대(10~19)</option>
+							<option>20대(20~29)</option>
+							<option>30대(30~39)</option>
+							<option>40대(40~49)</option>
+							<option>50대(50~59)</option>
+							<option>60대 이상(60~)</option>
+						</select>
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="가입일시작(date 이쁜 양식점)">
+					</div>
+					<div class="col">
+						<input type="text" class="form-control" placeholder="2001.12.31(가입일종료)">
+					</div>
 				</div>
-				<div class="col">
-					<select class="form-select">
-						<option selected>성별</option>
-						<option>남성</option>
-						<option>여성</option>
-					</select>
-				</div>
-				<div class="col">
-					<select class="form-select">
-						<option selected>나이</option>
-						<option>10대 미만(~9)</option>
-						<option>10대(10~19)</option>
-						<option>20대(20~29)</option>
-						<option>30대(30~39)</option>
-						<option>40대(40~49)</option>
-						<option>50대(50~59)</option>
-						<option>60대 이상(60~)</option>
-					</select>
-				</div>
-				<div class="col">
-					<select class="form-select">
-						<option selected>날짜</option>
-						<option>가입일</option>
-						<option>최종접속일</option>
-					</select>
-				</div>
-				<div class="col">
-					<input type="text" class="form-control" placeholder="시작일" id="dateStart" autocomplete="off">
-				</div>
-				<div class="col">
-					<input type="text" class="form-control" placeholder="종료일" id="dateEnd" autocomplete="off">
-				</div>
-			</div>
-			<br>
-			<div class="mb-5 row">
-				<div class="col-2">
-					<select class="form-select" aria-label="Default select example">
-					  <option value="" selected>선택</option>
-					  <option value="1">닉네임</option>
-					  <option value="2">이메일</option>
-					  <option value="3">아이디</option>
-					</select>
-				</div>
-				<div class="col-4 d-flex" id="search_box">
-			      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" style="margin-right: 5px;">
-			      <button class="btn btn-outline-primary" type="submit" style="width: 80px;">검색</button> &nbsp;
-			      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
+				<br>
+				<div class="mb-5 row">
+					<div class="col-2">
+						<select class="form-select" aria-label="Default select example">
+						  <option selected>선택</option>
+						  <option value="1">닉네임</option>
+						  <option value="2">이메일</option>
+						  <option value="3">아이디</option>
+						</select>
+					</div>
+					<div class="col-4" id="search_box" style="height:30px;">
+						<div class="d-flex">
+					      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" style="margin-right: 5px;">
+					      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
+					      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
+					    </div>
+				    </div>
 			    </div>
 		    </div>
-		     </form>
-	    </div>
-	    <div class="row mb-3">
-	    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:12</div>
-	    	<div class="col-1 offset-10">
-			    <select class="form-select">
-			    	<option selected value="1">5</option>
-			    	<option value="2">10</option>
-			    	<option value="3">15</option>
-			    </select>
-			</div>
-	    </div>
+		    <div class="row mb-3">
+		    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:12</div>
+		    	<div class="col-1 offset-10">
+				    <select class="form-select">
+				    	<option selected value="1">5</option>
+				    	<option value="2">10</option>
+				    	<option value="3">15</option>
+				    </select>
+				</div>
+		    </div>
+	    </form>
 	    <div class="mb-3" id="list_box">
 	    	<table class="table table-striped table-hover">
 	    		<tr id="list_box_th">
 	    			<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>
-					<th>#</th>
+					<th>고유번호</th>
 					<th>닉네임</th>
 					<th>생년월일</th>
 					<th>성별</th>
@@ -170,35 +163,35 @@
 					<th>아이디</th>
 					<th>작성댓글수</th>
 					<th>댓글 좋아요수</th>
-					<th>최종접속일시</th>
-					<th>가입일시</th>
+					<th>최종 접속일시</th>
+					<th>가입날짜</th>
 					<th>삭제여부</th>
 	    		</tr>
 	    		<c:choose>
-					<c:when test="${fn:length(list) eq 0}">
-						<tr>
-							<td style="text-align: center;" colspan="12">There is no data</td>
-						</tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${list}" var="list" varStatus="status">	
-							<tr>
-				    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-				    			<td><c:out value="${list.seq }"/></td>
-				    			<td><a href="./zdminMemberInfo.html"><c:out value="${list.nickname }"/></td>
-				    			<td><c:out value="${list.dob }"/></td>
-				    			<td><c:out value="${list.codenameKor }"/></td>
-				    			<td><c:out value="${list.email }"/></td>
-				    			<td><c:out value="${list.id }"/></td>
-				    			<td><c:out value="${list.commentNum }"/></td>
-				    			<td><c:out value="${list.commentLikeNum }"/></td>
-				    			<td><c:out value="${list.datetime }"/></td>
-				    			<td></td>	 
-				    			<td><c:out value="${list.delNy }"/></td>
-				    		</tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+	    			<c:when test="${fn:length(list) eq 0 }">
+	    				<tr>
+	    					<td colspan="12" style="text-align: center;">There is no data</td>
+	    				</tr>
+	    			</c:when>
+	    			<c:otherwise>
+	    				<c:forEach items="${list}" var="list" varStatus="status">
+	    					<tr>
+	    						<td><input type="checkbox" class="form-check-input" name="Chk"></td>
+	    						<td><c:out value="${list.seq }"></c:out></td>
+	    						<td><c:out value="${list.nickname }"></c:out></td>
+	    						<td><c:out value="${list.dob }"></c:out></td>
+	    						<td><c:out value="${list.codeNameKor }"></c:out></td>
+	    						<td><c:out value="${list.email }"></c:out></td>
+	    						<td><c:out value="${list.id }"></c:out></td>
+	    						<td></td>
+	    						<td></td>
+	    						<td></td>
+	    						<td><c:out value="${list.datetime }"></c:out></td>
+	    						<td><c:out value="${list.delNy }"></c:out> </td>
+	    					</tr>
+	    				</c:forEach>
+	    			</c:otherwise>
+	    		</c:choose>
 	    	</table>
 	    	<br>
 	    	<nav class="nav justify-content-center">
@@ -296,26 +289,6 @@
 			else $("#ChkA").prop("checked",true);
 		})
 	});
-</script>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script>
-	$( function() {
-		$( "#dateStart" ).datepicker({
-	    	changeYear: true, 
-	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
-	    	yearRange:"1900:2023",
-	    	monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
-			dateFormat: "yy.mm.dd"
-		});
-		$( "#dateEnd").datepicker({
-			changeYear: true, 
-	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
-	    	yearRange:"1900:2023",
-	    	monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
-			dateFormat: "yy.mm.dd"
-		});
-	} );
 </script>
 </body>
 </html>
