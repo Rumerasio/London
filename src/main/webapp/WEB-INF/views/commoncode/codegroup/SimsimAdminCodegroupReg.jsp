@@ -92,7 +92,7 @@
 		<h5 class="mt-3"><b>코드그룹 관리</b></h5>
 		<h6 style="color:gray;"><b>코드그룹 추가</b></h6>
 		<a href="./ZdminCodegroup.html"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
-		<form method="post" action="/codeGroup/CodeGroupInst">
+		<form method="post" id="codeGroupRegForm" action="/codeGroup/CodeGroupInst">
 			<div class="row justify-content-center py-2">
 				<label for="codeGroupCode" class="col-2 col-form-label">코드그룹 코드</label>
 			    <div class="col-4">
@@ -171,9 +171,18 @@
 			      <input type="text" class="form-control" id="intType3" name="intType3" value="" placeholder="숫자">
 			    </div>
 			</div>
+			<div class="row py-2">
+				<label for="gender" class="col-2 col-form-label">성별(test)</label>
+			    <div class="col-4">
+			      <input type="radio" id="gender1" name="gender" value="1">남성
+			      <input type="radio" id="gender2" name="gender" value="2">여성
+			      <input type="radio" id="gender3" name="gender" value="3">기타
+			    </div>
+			</div>
+			
 			<div class="position-relative">
 		    	<div class="position-absolute end-0">
-			    	<button type="submit" class="btn btn-info">등록하기</button>
+			    	<button type="button" id="btnSave" onclick="test()" class="btn btn-info">등록하기</button>
 		    	</div>
 		    </div>
 		</form>
@@ -200,6 +209,38 @@
 			else $("#ChkA").prop("checked",true);
 		})
 	});
+</script>
+<script type="text/javascript">
+	function test(){
+		
+		if (document.querySelector('input[type=radio][name=gender]:checked') == null) {
+				alert("성별을 선택하세요");
+			} else {
+				alert(document.querySelector('input[name=gender]:checked').value);
+			}
+		
+		if(document.getElementById('codeGroupCode').value == null || document.getElementById('codeGroupCode').value =="") {
+			alert("그룹코드값을 날래날래 입력하라우!");
+			document.getElementById('codeGroupCode').focus();
+			return false;
+		} 
+		
+		if(document.getElementById('codeGroupNameKor').value == null || document.getElementById('codeGroupNameKor').value == "") {
+			alert("코드그룹 이름(한글) 값을 입력해주세요");
+			document.getElementById('codeGroupNameKor').focus();
+			return false;
+		}
+		
+		alert("정보 잘~ 받았습니다");
+/*	
+		alert("useNy");
+		alert(document.getElementById('useNy').value);
+		alert(document.getElementById('useNy').options[document.getElementById('useNy').selectedIndex].value);
+		alert("gender값");
+		alert(document.querySelector("input[name='gender']:checked").value);
+*/
+		document.getElementById('codeGroupRegForm').submit();
+	}
 </script>
 </body>
 </html>

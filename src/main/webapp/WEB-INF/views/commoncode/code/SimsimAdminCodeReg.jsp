@@ -90,7 +90,7 @@
 		<h5 class="mt-3"><b>코드 관리</b></h5>
 		<h6 style="color:gray;"><b>코드 추가</b></h6>
 		<a href="/code/AdminCodeList"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
-		<form method="post" action="/code/codeInst">
+		<form method="post" id="codeRegForm" action="/code/codeInst">
 			<div class="row py-2">
 				<label for="codeGroup_seq" class="col-2 col-form-label">코드그룹 선택</label>
 			    <div class="col-4">
@@ -182,7 +182,7 @@
 			</div>
 			<div class="position-relative">
 		    	<div class="position-absolute end-0">
-			    	<button type="submit" class="btn btn-info">등록하기</button>
+			    	<button type="button" id="btnSave" onclick="checkAndReg()" class="btn btn-info">등록하기</button>
 		    	</div>
 		    </div>
 		</form>
@@ -209,6 +209,32 @@
 			else $("#ChkA").prop("checked",true);
 		})
 	});
+</script>
+<script type="text/javascript">
+	function checkAndReg(){
+		
+		alert("작동여부");
+		
+		if(document.getElementById('codeGroup_seq').value == "" || document.getElementById('codeGroup_seq').value == null) {
+			alert("코드가 종속될 코드그룹을 골라주세요");
+			return false;
+		}
+		
+		if(document.getElementById('codeAnother').value == "" || document.getElementById('codeAnother').value == null) {
+			alert("코드(another) 값을 입력해주세요");
+			document.getElementById('codeAnother').focus();
+			return false;
+		}
+		
+		if(document.getElementById('codeNameKor').value == "" || document.getElementById('codeNameKor').value == null) {
+			alert("코드 이름(한글)을 입력해주세요");
+			document.getElementById('codeNameKor').focus();
+			return false;
+		}
+		
+		document.getElementById('codeRegForm').submit();
+		
+	}
 </script>
 </body>
 </html>
