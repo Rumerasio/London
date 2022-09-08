@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.simsim.modules.survey.SurveyMapper">
+
+    <resultMap id="resultMapObj" type="com.simsim.modules.survey.Survey"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			seq
+			,a.survey,
+		    a.surveyPhrase -- +사진
+		FROM jsSurveyName a
+		WHERE 1=1
+	</select>
+
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			seq
+			,a.survey
+			,a.surveyPhrase
+		FROM jsSurveyname a
+		WHERE 1=1
+			AND a.seq=#{seq}
+	</select>
+	
+</mapper>

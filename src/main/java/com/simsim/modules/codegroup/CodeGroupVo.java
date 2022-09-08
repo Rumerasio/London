@@ -8,8 +8,16 @@ public class CodeGroupVo {
 	private String ShdateStart;
 	private String ShdateEnd;
 	
+	private String seq;
+	
 	//*************
 	
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
 	public String getShOption() {
 		return ShOption;
 	}

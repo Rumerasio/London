@@ -28,6 +28,30 @@
 		<!-- group by b.codeGroup_seq -->
 	</select>
 	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.seq
+			,a.codeGroupCode
+			,a.codeGroupCodeAnother
+			,a.codeGroupNameKor
+			,a.codeGroupNameEng
+			,a.useNy
+			,a.turn
+			,a.content
+			,a.delNy
+			,a.varcharType1
+			,a.varcharType2
+			,a.varcharType3
+			,a.intType1
+			,a.intType2
+			,a.intType3
+			,a.registerDateTime
+			,a.modifyDateTime
+		FROM codeGroup a
+		WHERE 1=1
+			AND a.seq= #{seq}
+	</select>
+	
 	<select id="selectListSm" resultMap="resultMapObj">
 		SELECT 
 			a.seq

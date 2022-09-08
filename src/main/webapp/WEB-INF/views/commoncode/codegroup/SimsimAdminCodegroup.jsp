@@ -69,7 +69,7 @@
 				<li class="fw-semibold">회원 관리
 					<ul class="list-unstyled ps-2">
 						<a href="/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
-						<a href="./ZdminCommentRecord.html"><li style="font-weight: normal;">댓글관리</li></a>
+						<a href=""><li style="font-weight: normal;">이메일 뒷주소</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">컨텐츠 관리
@@ -166,8 +166,8 @@
 			    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
 			    			<td><c:out value="${list.seq }"/></td>
 			    			<td><c:out value="${list.codeGroupCode }"/></td>
-			    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameKor }"/></a></td>
-			    			<td><a href="./ZdminCodegroupMod.html"><c:out value="${list.codeGroupNameEng }"/></a></td>
+			    			<td><a href="/codeGroup/codeGroupViewMod?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameKor }"/></a></td>
+			    			<td><a href="/codeGroup/codeGroupViewMod?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameEng }"/></a></td>
 			    			<td><c:out value="${list.codeNum }"/></td>
 			    			<td><c:out value="${list.delNy }"/></td>
 			    			<td>2018.05.07 11:25:30</td>

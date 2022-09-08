@@ -28,6 +28,13 @@ public class CodeGroupController {
 		return "commoncode/codegroup/SimsimAdminCodegroup";
 	}
 	
+	@RequestMapping(value="codeGroupViewMod")
+	public String codeGroupViewMod(CodeGroupVo vo, Model model) throws Exception {
+		CodeGroup result = service.selectOne(vo);
+		model.addAttribute("item", result);
+		return "commoncode/codegroup/SimsimAdminCodegroupViewMod";
+	}
+	
 	@RequestMapping(value = "AdminCodegroupReg")
 	public String codeGroupForm() throws Exception {
 		

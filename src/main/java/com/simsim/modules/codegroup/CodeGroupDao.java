@@ -25,6 +25,8 @@ public class CodeGroupDao {
 //		return list;
 //	}
 	
+	public CodeGroup selectOne(CodeGroupVo vo) { return sqlSession.selectOne(namespace+ ".selectOne", vo);}
+	
 	public List<CodeGroup> selectList() {
 		List<CodeGroup> list = sqlSession.selectList(namespace+".selectList","");
 		return list; 

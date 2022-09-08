@@ -171,7 +171,7 @@
 			      <input type="text" class="form-control" id="intType3" name="intType3" value="" placeholder="숫자">
 			    </div>
 			</div>
-			<div class="row py-2">
+			<!-- <div class="row py-2">
 				<label for="gender" class="col-2 col-form-label">성별(test)</label>
 			    <div class="col-4">
 			      <input type="radio" id="gender1" name="gender" value="1">남성
@@ -179,7 +179,14 @@
 			      <input type="radio" id="gender3" name="gender" value="3">기타
 			    </div>
 			</div>
-			
+			<div class="row py-2">
+				<label for="hobby" class="col-2 col-form-label">취미(test)</label>
+			    <div class="col-4">
+			      <input type="checkbox" id="hobby1" name="hobby" value="1">수영
+			      <input type="checkbox" id="hobby2" name="hobby" value="2">게임
+			      <input type="checkbox" id="hobby3" name="hobby" value="3">클라리넷
+			    </div>
+			</div>	 -->		
 			<div class="position-relative">
 		    	<div class="position-absolute end-0">
 			    	<button type="button" id="btnSave" onclick="test()" class="btn btn-info">등록하기</button>
@@ -213,12 +220,26 @@
 <script type="text/javascript">
 	function test(){
 		
-		if (document.querySelector('input[type=radio][name=gender]:checked') == null) {
+		
+		/* 
+		// 선택된 목록 가져오기
+		  const selectedEls = document.querySelectorAll('input[name="hobby"]:checked');
+		  
+		  // 선택된 목록에서 value 찾기
+		  var result = '';
+		  selectedEls.forEach((el) => {
+		    result += el.value + ' ';
+		  });
+		  
+		  // 출력
+		  alert(result);
+		   */
+		/* if (document.querySelector('input[type=radio][name=gender]:checked') == null) {
 				alert("성별을 선택하세요");
 			} else {
 				alert(document.querySelector('input[name=gender]:checked').value);
 			}
-		
+		 */
 		if(document.getElementById('codeGroupCode').value == null || document.getElementById('codeGroupCode').value =="") {
 			alert("그룹코드값을 날래날래 입력하라우!");
 			document.getElementById('codeGroupCode').focus();
@@ -239,6 +260,7 @@
 		alert("gender값");
 		alert(document.querySelector("input[name='gender']:checked").value);
 */
+		
 		document.getElementById('codeGroupRegForm').submit();
 	}
 </script>
