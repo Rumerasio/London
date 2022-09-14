@@ -11,10 +11,8 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
-			<!-- ,count(b.codeGroup_seq) as codeNum -->
 			,(SELECT count(b.codeGroup_seq) FROM code b WHERE b.codeGroup_seq = a.seq) as codeNum
 		FROM codeGroup a
-		<!-- inner join code b on b.codeGroup_seq=a.seq -->
 		WHERE 1=1
 			<if test="shdelNy != null and !shdelNy.equals('')">AND delNy = #{shdelNy}</if>
 			<choose>
@@ -102,5 +100,40 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<update id="update">
+		UPDATE codeGroup
+		SET
+		    codeGroupCode = #{codeGroupCode}
+		    ,codeGroupCodeAnother = #{codeGroupCodeAnother}
+		    ,codeGroupNameKor = #{codeGroupNameKor}
+		    ,codeGroupNameEng = #{codeGroupNameEng}
+		    ,useNy = #{useNy}
+		    ,turn = #{turn}
+		    ,content = #{content}
+		    ,delNy = #{delNy} 
+		    ,varcharType1 = #{varcharType1}
+		    ,varcharType2 = #{varcharType2}
+		    ,varcharType3 = #{varcharType3}
+		    ,intType1 = #{intType1}
+		    ,intType2 = #{intType2}
+		    ,intType3 = #{intType3}
+		    ,modifyDateTime = #{modifyDateTime}
+		WHERE
+			codeGroupCode = #{codeGroupCode}
+	</update>
+	
+	<update id="velete">
+		UPDATE codeGroup
+		SET
+			delNy = 1
+		WHERE
+			codeGroupCode = #{codeGroupCode}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM codeGroup WHERE codeGroupCode = #{codeGroupCode}
+	</delete>
+	
 
 </mapper>

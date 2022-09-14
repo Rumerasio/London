@@ -95,9 +95,9 @@
 				<div class="my-2 row">
 					<div class="col-2">
 						<select class="form-select" id="shdelNy" name="shdelNy">
-							<option value="" <c:if test="${empty vo.shdelNy }">selected</c:if>>삭제여부</option>
-							<option value="1" <c:if test="${vo.shdelNy eq 1 }">selected</c:if>>Y</option>
-							<option value="0" <c:if test="${vo.shdelNy eq 0 }">selected</c:if>>N</option>
+							<option value="" <c:if test="${empty vo.shdelNy}">selected</c:if>>삭제여부</option>
+							<option value="1" <c:if test="${vo.shdelNy eq 1}">selected</c:if>>Y</option>
+							<option value="0" <c:if test="${vo.shdelNy eq 0}">selected</c:if>>N</option>
 						</select>
 					</div>
 					<div class="col">
@@ -126,7 +126,7 @@
 					<div class="col-4 d-flex" id="search_box">
 						<input class="form-control" type="search" placeholder="검색어" aria-label="Search" autocomplete="off" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
 						<button class="btn btn-outline-primary" type="submit" style="width: 80px;">검색</button> &nbsp;
-						<button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
+						<button class="btn btn-outline-danger" id="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
 				    </div>
 			    </div>
 	   		 </div>
@@ -265,6 +265,14 @@
 			dateFormat: "yy.mm.dd"
 		});
 	} );
+</script>
+<script type="text/javascript">
+	var goUrlList = "/codeGroup/AdminCodegroupList"; 			/* #-> */
+	var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
+	
+	$("#btnReset").on("click",function(){
+		$(location).attr("href",goUrlList);
+	});
 </script>
 </body>
 </html>

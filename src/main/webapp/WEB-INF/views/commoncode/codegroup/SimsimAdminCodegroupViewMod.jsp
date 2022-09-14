@@ -87,111 +87,112 @@
 		<h5 class="mt-3"><b>코드그룹 관리</b></h5>
 		<h6 style="color:gray;"><b>코드그룹 추가</b></h6>
 		<a href="./ZdminCodegroup.html"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
-		<form>
+		<form method="post" id="myForm" name="myForm">
 			<div class="row justify-content-center py-2">
-				<label for="nickname" class="col-2 col-form-label">코드그룹 코드</label>
+				<label for="codeGroupCode" class="col-2 col-form-label">코드그룹 코드</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codegroup_code" placeholder="영문(대소문자), 숫자" value='<c:out value="${item.codeGroupCode }"></c:out>'>
+			      <input type="text" class="form-control" id="codeGroupCode" name="codeGroupCode" placeholder="영문(대소문자), 숫자" value='<c:out value="${item.codeGroupCode }"></c:out>'>
 			    </div>
-			    <label for="nickname" class="col-2 col-form-label">코드그룹 코드(Another)</label>
+			    <label for="codeGroupCodeAnother" class="col-2 col-form-label">코드그룹 코드(Another)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codegroup_code_another" placeholder="영문(대소문자), 숫자" value="<c:out value="${item.codeGroupCodeAnother }"></c:out>">
+			      <input type="text" class="form-control" id="codeGroupCodeAnother" name="codeGroupCodeAnother" placeholder="영문(대소문자), 숫자" value="<c:out value="${item.codeGroupCodeAnother }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
-				<label for="dob" class="col-2 col-form-label">코드그룹 이름(한글)</label>
+				<label for="codeGroupNameKor" class="col-2 col-form-label">코드그룹 이름(한글)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codegroup_name_kor" value="<c:out value="${item.codeGroupNameKor }"></c:out>">
+			      <input type="text" class="form-control" id="codeGroupNameKor" name="codeGroupNameKor" value="<c:out value="${item.codeGroupNameKor }"></c:out>">
 			    </div>
-			    <label for="dob" class="col-2 col-form-label">코드그룹 이름(영문)</label>
+			    <label for="codeGroupNameEng" class="col-2 col-form-label">코드그룹 이름(영문)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codegroup_name_eng" value="<c:out value="${item.codeGroupNameEng }"></c:out>">
+			      <input type="text" class="form-control" id="codeGroupNameEng" name="codeGroupNameEng" value="<c:out value="${item.codeGroupNameEng }"></c:out>">
 			    </div>
 			</div>
 			<div class="row py-2">
-				<label for="user_gender" class="col-2 col-form-label">사용여부</label>
+				<label for="useNy" class="col-2 col-form-label">사용여부</label>
 			    <div class="col-4">
-			      <select class="form-select col-2" id="user_gender">
-			      	<option selected value = 0>Y</option>
-			      	<option value = 1>N</option>
+			      <select class="form-select col-2" id="useNy" name="useNy">
+			      	<option value = 0 <c:if test="${item.useNy eq 0 }" >selected</c:if>>Y</option>
+			      	<option value = 1 <c:if test="${item.useNy eq 1 }" >selected</c:if>>N</option>
 			      </select>
 			    </div>
-			    <label for="dob" class="col-2 col-form-label">순서</label>
+			    <label for="turn" class="col-2 col-form-label">순서</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="" placeholder="숫자" value="<c:out value="${item.turn }"></c:out>">
+			      <input type="text" class="form-control" id="turn" name="turn" placeholder="숫자" value="<c:out value="${item.turn }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
-				<label for="dob" class="col-2 col-form-label">설명</label>
+				<label for="content" class="col-2 col-form-label">설명</label>
 			    <div class="col-4">
-			      <textarea class="form-control" id="" value="<c:out value="${item.content }"></c:out>"></textarea>
+			      <textarea class="form-control" id="content" name="content" value="<c:out value="${item.content }"></c:out>"></textarea>
 			    </div>
-			    <label for="dob" class="col-2 col-form-label">삭제여부</label>
+			    <label for="delNy" class="col-2 col-form-label">삭제여부</label>
 			    <div class="col-4">
-			      <select class="form-select col-2" id="">
-			      	<option selected value = 0>N</option>
-			      	<option value = 1>Y</option>
+			      <select class="form-select col-2" id="delNy" name="delNy">
+			      	<option value = "0" <c:if test="${item.delNy eq 0 }" >selected</c:if>>N</option>
+			      	<option value = "1" <c:if test="${item.delNy eq 1 }" >selected</c:if>>Y</option>
 			      </select>
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
-				<label for="dob" class="col-2 col-form-label">예비1 (varchar type)</label>
+				<label for="varcharType1" class="col-2 col-form-label">예비1 (varchar type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="" value="<c:out value="${item.varcharType1 }"></c:out>" placeholder="영문(대소문자), 숫자">
+			      <input type="text" class="form-control" id="varcharType1" name="varcharType1" value="<c:out value="${item.varcharType1 }"></c:out>" placeholder="영문(대소문자), 숫자">
 			    </div>
-			    <label for="dob" class="col-2 col-form-label">예비2 (varchar type)</label>
+			    <label for="varcharType2" class="col-2 col-form-label">예비2 (varchar type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="" value="<c:out value="${item.varcharType2 }"></c:out>" placeholder="영문(대소문자), 숫자">
+			      <input type="text" class="form-control" id="varcharType2" name="varcharType2" value="<c:out value="${item.varcharType2 }"></c:out>" placeholder="영문(대소문자), 숫자">
 			    </div>
 			</div>
 			<div class="row py-2">
-				<label for="dob" class="col-2 col-form-label">예비3 (varchar type)</label>
+				<label for="varcharType3" class="col-2 col-form-label">예비3 (varchar type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="" value="<c:out value="${item.varcharType3 }"></c:out>" placeholder="영문(대소문자), 숫자">
+			      <input type="text" class="form-control" id="varcharType3" name="varcharType3" value="<c:out value="${item.varcharType3 }"></c:out>" placeholder="영문(대소문자), 숫자">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
-				<label for="dob" class="col-2 col-form-label">예비1 (int type)</label>
+				<label for="intType1" class="col-2 col-form-label">예비1 (int type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="" value="<c:out value="${item.intType1 }"></c:out>" placeholder="숫자">
+			      <input type="text" class="form-control" id="intType1" name="intType1" value="<c:out value="${item.intType1 }"></c:out>" placeholder="숫자">
 			    </div>
-			    <label for="dob" class="col-2 col-form-label">예비2 (int type)</label>
+			    <label for="intType2" class="col-2 col-form-label">예비2 (int type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="" value="<c:out value="${item.intType2 }"></c:out>" placeholder="숫자">
+			      <input type="text" class="form-control" id="intType2" name="intType2" value="<c:out value="${item.intType2 }"></c:out>" placeholder="숫자">
 			    </div>
 			</div>
 			<div class="row py-2">
-				<label for="dob" class="col-2 col-form-label">예비1 (int type)</label>
+				<label for="intType3" class="col-2 col-form-label">예비3 (int type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="" value="<c:out value="${item.intType3 }"></c:out>" placeholder="숫자">
+			      <input type="text" class="form-control" id="intType3" name="intType3" value="<c:out value="${item.intType3 }"></c:out>" placeholder="숫자">
 			    </div>
 			</div>
-		</form>
-		<div class="position-relative">
-	    	<div class="position-absolute top-0">
-		    	<button type="button" class="btn btn-danger" title="데이터 삭제" data-bs-toggle="modal" data-bs-target="#data_delete_modal">데이터 삭제</button> <!-- <i class="fa-solid fa-skull"></i> -->
-	    	</div>
-	    	<div class="position-absolute end-0">
-		    	<a href="./ZdminCodegroup.html"><button type="button" class="btn btn-info">수정하기</button></a>
-	    	</div>
-			<div class="modal" tabindex="-1" id="data_delete_modal">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">데이터 삭제</h5>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			      </div>
-			      <div class="modal-body">
-			        <p>정말 삭제하시겠습니까?</p>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-			        <button type="button" class="btn btn-danger">삭제</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-	    </div>
+			<div class="position-relative">
+		    	<div class="position-absolute top-0">
+			    	<button type="button" class="btn btn-danger" title="데이터 삭제" data-bs-toggle="modal" data-bs-target="#data_delete_modal">데이터 삭제</button> <!-- <i class="fa-solid fa-skull"></i> -->
+			    	<button type="button" class="btn btn-warning" title="삭제처리" id="btnDel">삭제처리</button>
+		    	</div>
+		    	<div class="position-absolute end-0">
+			    	<button type="button" class="btn btn-info" id="modify" name="modify">수정하기</button>
+		    	</div>
+				<div class="modal" tabindex="-1" id="data_delete_modal">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title">데이터 삭제</h5>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				        <p>정말 삭제하시겠습니까?</p>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        <button type="button" id="btnErase" class="btn btn-danger">삭제</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+		    </div>
+	    </form>
 	</div>
 </div>
 
@@ -214,6 +215,39 @@
 			if(total != checked) $("#ChkA").prop("checked",false);
 			else $("#ChkA").prop("checked",true);
 		})
+	});
+</script>
+<script type="text/javascript">
+	var goUrlList = "/codeGroup/AdminCodegroupList"; 			/* #-> */
+	var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+	var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
+	var goUrlVele = "/codeGroup/codeGroupVele";				/* #-> */
+	var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+	
+	var seq = $("input:hidden[name=seq]");				/* #-> */
+	
+	var form = $("form[name=myForm]");
+	
+	
+	$("#modify").on("click", function(){
+		if (seq.val() == "0" || seq.val() == ""){
+	   		// insert
+	   		/* if (validationInst() == false) return false; */
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		// update
+	   		/* keyName.val(atob(keyName.val())); */
+	   		/* if (validationUpdt() == false) return false; */
+	   		form.attr("action", goUrlUpdt).submit();
+	  	}
+	}); 
+	
+	$("#btnDel").on("click",function(){
+		form.attr("action",goUrlVele).submit();
+	});
+	
+	$("#btnErase").on("click",function(){
+		form.attr("action",goUrlDele).submit();
 	});
 </script>
 </body>

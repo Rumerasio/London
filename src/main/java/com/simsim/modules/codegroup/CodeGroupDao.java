@@ -17,6 +17,7 @@ public class CodeGroupDao {
 	
 	private static String namespace = "com.simsim.modules.codegroup.CodeGroupMapper";
 	
+	
 	public List<CodeGroup> selectList(CodeGroupVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
 	//List Array에 <이 객체를> 넣겠다
 	
@@ -30,7 +31,6 @@ public class CodeGroupDao {
 	public List<CodeGroup> selectList() {
 		List<CodeGroup> list = sqlSession.selectList(namespace+".selectList","");
 		return list; 
-			
 	}
 	
 	public int insert(CodeGroup dto) {
@@ -38,5 +38,11 @@ public class CodeGroupDao {
 		System.out.println("dao result: "+ result);
 		return result;
 	}
+	
+	public int update(CodeGroup dto) {return sqlSession.update(namespace + ".update",dto);}
+	
+	public int velete(CodeGroup dto) {return sqlSession.update(namespace + ".update",dto);}
+	
+	public int delete(CodeGroupVo vo) {return sqlSession.delete(namespace+".delete",vo);}
 	
 }
