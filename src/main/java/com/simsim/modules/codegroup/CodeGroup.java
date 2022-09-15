@@ -20,6 +20,15 @@ public class CodeGroup {
 	private String codeNum;
 	private String registerDateTime;
 	private String modifyDateTime;
+	
+	private Integer count;
+	
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	//************************
 	public String getCodeNum() {
 		return codeNum;

@@ -88,6 +88,7 @@
 		<h6 style="color:gray;"><b>코드그룹 추가</b></h6>
 		<a href="./ZdminCodegroup.html"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
 		<form method="post" id="myForm" name="myForm">
+			<input type="hidden" id="seq" name="seq" value="<c:out value="${item.seq}"></c:out>">
 			<div class="row justify-content-center py-2">
 				<label for="codeGroupCode" class="col-2 col-form-label">코드그룹 코드</label>
 			    <div class="col-4">

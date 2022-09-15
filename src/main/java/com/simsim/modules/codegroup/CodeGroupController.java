@@ -23,12 +23,21 @@ public class CodeGroupController {
 		System.out.println("vo.getShValue(): "+vo.getShValue());
 		System.out.println("vo.getShOption(): "+vo.getShOption());
 		
-
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
 		List<CodeGroup> list = service.selectList(vo);
+		
 		model.addAttribute("list", list); //("jsp에서 쓸 객체이름",현재 여기서 집어넣을 객체이름)
 		
 		return "commoncode/codegroup/SimsimAdminCodegroup";
 	}
+	
+//	@RequestMapping(value="AdminCodegroupList")
+//	public String selectCount(CodeGroupVo vo, Model model) throws Exception {
+//		int result = service.selectOneCount(vo);
+//		model.addAttribute("item", result);
+//		return "commoncode/codegroup/SimsimAdminCodegroup";
+//	}
 	
 	@RequestMapping(value="codeGroupViewMod")
 	public String codeGroupViewMod(CodeGroupVo vo, Model model) throws Exception {

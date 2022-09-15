@@ -220,7 +220,6 @@
 <script type="text/javascript">
 	function test(){
 		
-		
 		/* 
 		// 선택된 목록 가져오기
 		  const selectedEls = document.querySelectorAll('input[name="hobby"]:checked');

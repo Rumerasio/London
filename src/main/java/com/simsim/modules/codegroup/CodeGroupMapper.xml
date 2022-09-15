@@ -7,11 +7,8 @@
 <mapper namespace="com.simsim.modules.codegroup.CodeGroupMapper">
 
     <resultMap id="resultMapObj" type="com.simsim.modules.codegroup.CodeGroup"></resultMap>
-	
-	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			a.*
-			,(SELECT count(b.codeGroup_seq) FROM code b WHERE b.codeGroup_seq = a.seq) as codeNum
+    
+    <sql id ="selectCommon">
 		FROM codeGroup a
 		WHERE 1=1
 			<if test="shdelNy != null and !shdelNy.equals('')">AND delNy = #{shdelNy}</if>
@@ -20,11 +17,24 @@
 				<when test="shOption ==2">AND codeGroupNameKor LIKE CONCAT('%',#{shValue},'%')</when>
 				<when test="shOption ==3">AND codeGroupNameEng LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
-			<!-- AND codeGroupNameKor LIKE CONCAT('%',#{shValue},'%')
-			OR codeGroupNameEng LIKE CONCAT('%',#{shValue},'%')
-			OR codeGroupCode LIKE CONCAT('%',#{shValue},'%') -->
-		<!-- group by b.codeGroup_seq -->
+	</sql>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
 	</select>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.*
+				,(SELECT count(b.codeGroup_seq) FROM code b WHERE b.codeGroup_seq = a.seq) as codeNum
+			<include refid="selectCommon" />
+			ORDER BY a.seq DESC
+			<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
@@ -61,9 +71,9 @@
 	
 	<insert id="insert">
 		INSERT INTO codeGroup(
-		    codeGroupCode,
-		    codeGroupCodeAnother,
-		    codeGroupNameKor
+		    codeGroupCode
+		    ,codeGroupCodeAnother
+		    ,codeGroupNameKor
 		    ,codeGroupNameEng
 		    ,useNy
 		    ,turn
@@ -86,7 +96,7 @@
 			,#{useNy}
 			,#{turn}
 			,#{content}
-			,0
+			,#{delNy}
 			,#{varcharType1}
 			,#{varcharType2}
 			,#{varcharType3}
@@ -132,8 +142,7 @@
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM codeGroup WHERE codeGroupCode = #{codeGroupCode}
+		DELETE FROM codeGroup WHERE seq = #{seq}
 	</delete>
 	
-
 </mapper>

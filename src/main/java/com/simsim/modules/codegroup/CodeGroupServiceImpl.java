@@ -45,6 +45,12 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		CodeGroup result = dao.selectOne(vo);
 		return result;
 	}
+	
+	@Override
+	public int selectOneCount(CodeGroupVo vo) throws Exception {
+		int result = dao.selectOneCount(vo);
+		return result;
+	}
 
 
 	@Override
@@ -64,4 +70,5 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	public int delete(CodeGroupVo vo) throws Exception {
 		return dao.delete(vo);
 	}
+
 }
