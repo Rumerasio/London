@@ -23,6 +23,12 @@ public class CodeServiceImpl implements CodeService{
 		int result= dao.insert(dto);
 		return result;
 	}
+
+	@Override
+	public int selectOneCount(CodeVo vo) throws Exception {
+		int result=dao.selectOneCount(vo);
+		return result;
+	}
 	
 	
 }

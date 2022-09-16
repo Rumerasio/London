@@ -8,18 +8,7 @@
 
     <resultMap id="resultMapObj" type="com.simsim.modules.code.Code"></resultMap>
 	
-	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			b.seq
-			,a.seq as codeGroup_seq
-			,a.codeGroupCode,
-		    a.codeGroupNameKor,
-		    a.codeGroupNameEng,
-		    b.codeAnother,
-		    b.codeNameKor
-		    ,b.codeNameEng
-		    ,b.useNy
-		    ,b.turn
+	<sql id="selectCommon">
 		FROM codeGroup a
 		inner join code b on b.codeGroup_seq = a.seq
 		WHERE 1=1
@@ -31,6 +20,39 @@
 				<when test="shOption ==4">AND codeNameKor LIKE CONCAT('%',#{shValue},'%')</when>
 				<when test="shOption ==5">AND codeNameEng LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
+	</sql>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT
+			count(*)
+		<include refid="selectCommon"></include>
+	</select>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+			SELECT
+				b.seq
+				,a.seq as codeGroup_seq
+				,a.codeGroupCode,
+			    a.codeGroupNameKor,
+			    a.codeGroupNameEng,
+			    b.codeAnother,
+			    b.codeNameKor
+			    ,b.codeNameEng
+			    ,b.useNy
+			    ,b.turn
+			<include refid="selectCommon"></include>
+			ORDER BY b.seq DESC
+			<include refid="Base.orderByLimitForMysql"></include>
+		<include refid="Base.selectListLowerForMysql"></include>
+	</select>
+	
+	<select id="selectOne">
+		SELECT
+			
+		FROM code a
+		WHERE 1=1
+			AND a.seq = #{seq}
 	</select>
 
 	<insert id="insert">
