@@ -11,7 +11,8 @@
     <sql id ="selectCommon">
 		FROM codeGroup a
 		WHERE 1=1
-			<if test="shdelNy != null and !shdelNy.equals('')">AND delNy = #{shdelNy}</if>
+			<if test="shdelNy != 9">AND delNy = #{shdelNy}</if>
+			<!-- <if test="shdelNy != null and !shdelNy.equals('')">AND delNy = #{shdelNy}</if> -->
 			<choose>
 				<when test="shOption ==1">AND codeGroupCode = #{shValue}</when>
 				<when test="shOption ==2">AND codeGroupNameKor LIKE CONCAT('%',#{shValue},'%')</when>

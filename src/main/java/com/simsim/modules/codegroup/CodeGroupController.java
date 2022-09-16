@@ -23,6 +23,11 @@ public class CodeGroupController {
 		System.out.println("vo.getShValue(): "+vo.getShValue());
 		System.out.println("vo.getShOption(): "+vo.getShOption());
 		
+		vo.setShdelNy(vo.getShdelNy() == null ? 0 : vo.getShdelNy());
+		vo.setShOption(vo.getShOption() == null ? 2 : vo.getShOption());
+		vo.setShValue(vo.getShValue() == null ? "" : vo.getShValue());
+//		vo.setShOption(vo.getShOption() == null ? null : );
+		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		List<CodeGroup> list = service.selectList(vo);
@@ -40,30 +45,44 @@ public class CodeGroupController {
 //	}
 	
 	@RequestMapping(value="codeGroupViewMod")
-	public String codeGroupViewMod(CodeGroupVo vo, Model model) throws Exception {
+	public String codeGroupViewMod(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
+		
+		System.out.println("getThisPage():" + vo.getThisPage());
+		System.out.println("getRowNumToShow():" + vo.getRowNumToShow());
+		
 		CodeGroup result = service.selectOne(vo);
 		model.addAttribute("item", result);
+		
+		System.out.println("getThisPage():" + vo.getThisPage());
+		System.out.println("getRowNumToShow():" + vo.getRowNumToShow());
 		return "commoncode/codegroup/SimsimAdminCodegroupViewMod";
 	}
 	
 	@RequestMapping(value = "AdminCodegroupReg")
-	public String codeGroupForm() throws Exception {
+	public String codeGroupForm(@ModelAttribute("vo") CodeGroupVo Vo) throws Exception {
 		
 		return "commoncode/codegroup/SimsimAdminCodegroupReg";
 	}
 	
-	@RequestMapping(value = "CodeGroupInst")
-	public String CodeGroupInst(CodeGroup dto) throws Exception {
+	@RequestMapping(value = "codeGroupInst")
+	public String codeGroupInst(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		int result =service.insert(dto);
+		
 		System.out.println("Controller result: "+result);
 		
-		return "redirect:/codeGroup/AdminCodegroupList";
+		vo.setSeq(dto.getSeq());
+		
+		System.out.println("vo.getSeq(): "+vo.getSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/codeGroup/codeGroupViewMod";
 	}
 	
 	
 	@RequestMapping(value="codeGroupUpdt")
-	public String codeGroupUpdt(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String codeGroupUpdt(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.update(dto);
 		
@@ -73,7 +92,7 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value="codeGroupVele")
-	public String codeGroupVele(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{
+	public String codeGroupVele(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception{
 		
 		service.velete(dto);
 			
@@ -83,7 +102,7 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value="codeGroupDele")
-	public String codeGroupDele(CodeGroupVo vo, RedirectAttributes redirectAttributes) throws Exception{
+	public String codeGroupDele(@ModelAttribute("vo") CodeGroupVo vo, RedirectAttributes redirectAttributes) throws Exception{
 		
 		service.delete(vo);
 		

@@ -88,7 +88,9 @@
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드 관리</b></h5>
-		<form role="search" method="post" action="/code/AdminCodeList">
+		<form role="search" method="post" id="formList" name="formList" autocomplete="off">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 			<div class="mb-3" id="search_tab">
 				<div class="my-2 row">
 					<div class="col-2">
@@ -127,116 +129,112 @@
 					<div class="col-4 d-flex" id="search_box">
 					      <input class="form-control" type="search" placeholder="검색어" autocomplete="off" aria-label="Search" id="shValue" name="shValue" style="margin-right: 5px;">
 					      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
-					      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
+					      <button type="button" class="btn btn-outline-danger" id="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
 				    </div>
 			    </div>
 		    </div>
-		</form>
-	    <div class="row mb-3">
-	    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:12</div>
-	    	<div class="col-1 offset-10">
-			    <select class="form-select">
-			    	<option selected value="1">5</option>
-			    	<option value="2">10</option>
-			    	<option value="3">15</option>
-			    </select>
-			</div>
-	    </div>
-	    <div class="mb-3" id="list_box">
-	    	<table class="table table-striped table-hover">
-	    		<tr id="list_box_th">
-	    			<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>
-					<th>#</th>
-					<th>코드그룹 코드</th>
-					<th>코드그룹 이름(한글)</th>
-					<th>코드</th>
-					<th>대체 코드</th>
-					<th>코드 이름(한글)</th>
-					<th>코드 이름(영문)</th>
-					<th>사용</th>
-					<th>순서</th>
-					<th>등록일</th>
-					<th>수정일</th>
-	    		</tr>
-	    		<c:choose>
-	    			<c:when test="${fn:length(list) eq 0}">
-	    				<tr>
-	    					<td style="text-align: center;" colspan="12">There is no data</td>
-	    				</tr>
-	    			</c:when>
-	    			<c:otherwise>
-			    		<c:forEach items="${list}" var="list" varStatus="status">
-			    		<tr>
-			    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-			    			<td><c:out value="${list.seq }"/></td>
-			    			<td><c:out value="${list.codeGroupCode }"/></td>
-			    			<td><c:out value="${list.codeGroupNameKor }"/></td>
-			    			<td><a href="./ZdminCodeMod.html"></a></td>
-			    			<td><c:out value="${list.codeAnother }"/></td>
-			    			<td><a href="./ZdminCodeMod.html"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
-			    			<td><a href="./ZdminCodeMod.html"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>
-			    			<td><c:out value="${list.useNy }"/></td>
-			    			<td><c:out value="${list.turn }"/></td>
-			    			<td>2018.05.07 11:25:30</td>
-			    			<td>2021.07.02 16:30:58</td>
-			    		</tr>
-			    		</c:forEach>
-			    	</c:otherwise>
-	    		</c:choose>
-	    	</table>
-	    	<br>
-	    	<nav class="nav justify-content-center">
-			  <ul class="pagination">
-			    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			  </ul>
-			</nav>
-	    </div>
-	    <div class="position-relative">
-	    	<div class="position-absolute top-0">
-		    	<button type="button" class="btn btn-warning" title="삭제여부 삭제처리" data-bs-toggle="modal" data-bs-target="#state_delete_modal">삭제 처리</button> <!-- <i class="fa-solid fa-trash-can"></i> -->
-		    	<button type="button" class="btn btn-danger" title="데이터 삭제" data-bs-toggle="modal" data-bs-target="#data_delete_modal">데이터 삭제</button> <!-- <i class="fa-solid fa-skull"></i> -->
-	    	</div>
-	    	<div class="position-absolute end-0">
-		    	<button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button>
-		    	<a href="/code/codeForm"><button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i></button></a>
-	    	</div>
-	    	<div class="modal" tabindex="-1" id="state_delete_modal">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">삭제여부 삭제처리</h5>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			      </div>
-			      <div class="modal-body">
-			        <p>정말 삭제처리하시겠습니까?</p>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-			        <button type="button" class="btn btn-warning">삭제처리</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			<div class="modal" tabindex="-1" id="data_delete_modal">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">데이터 삭제</h5>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			      </div>
-			      <div class="modal-body">
-			        <p>정말 삭제하시겠습니까?</p>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-			        <button type="button" class="btn btn-danger">삭제</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-	    </div>
+		    <div class="row mb-3">
+		    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:<c:out value="${vo.totalRows }"/></div>
+		    	<div class="col-1 offset-10">
+				    <select class="form-select">
+				    	<option selected value="1">5</option>
+				    	<option value="2">10</option>
+				    	<option value="3">15</option>
+				    </select>
+				</div>
+		    </div>
+		    <div class="mb-3" id="list_box">
+		    	<table class="table table-striped table-hover">
+		    		<tr id="list_box_th">
+		    			<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>
+						<th>#</th>
+						<th>코드그룹 코드</th>
+						<th>코드그룹 이름(한글)</th>
+						<th>코드</th>
+						<th>대체 코드</th>
+						<th>코드 이름(한글)</th>
+						<th>코드 이름(영문)</th>
+						<th>사용</th>
+						<th>순서</th>
+						<th>등록일</th>
+						<th>수정일</th>
+		    		</tr>
+		    		<c:choose>
+		    			<c:when test="${fn:length(list) eq 0}">
+		    				<tr>
+		    					<td style="text-align: center;" colspan="12">There is no data</td>
+		    				</tr>
+		    			</c:when>
+		    			<c:otherwise>
+				    		<c:forEach items="${list}" var="list" varStatus="status">
+				    		<tr>
+				    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
+				    			<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
+				    			<td><c:out value="${list.codeGroupCode }"/></td>
+				    			<td><c:out value="${list.codeGroupNameKor }"/></td>
+				    			<td><a href="/code/AdminCodeList?seq=<c:out value="${list.seq }"/>"></a></td>
+				    			<td><c:out value="${list.codeAnother }"/></td>
+				    			<td><a href="/code/AdminCodeList?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
+				    			<td><a href="/code/AdminCodeList?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>
+				    			<td><c:out value="${list.useNy }"/></td>
+				    			<td><c:out value="${list.turn }"/></td>
+				    			<td>2018.05.07 11:25:30</td>
+				    			<td>2021.07.02 16:30:58</td>
+				    		</tr>
+				    		</c:forEach>
+				    	</c:otherwise>
+		    		</c:choose>
+		    	</table>
+		    	<br>
+		    	<!-- pagination s -->
+				<%@include file="../pagination.jsp"%>
+				<!-- pagination e -->
+		    </div>
+		    <div class="position-relative">
+		    	<div class="position-absolute top-0">
+			    	<button type="button" class="btn btn-warning" title="삭제여부 삭제처리" data-bs-toggle="modal" data-bs-target="#state_delete_modal">삭제 처리</button> <!-- <i class="fa-solid fa-trash-can"></i> -->
+			    	<button type="button" class="btn btn-danger" title="데이터 삭제" data-bs-toggle="modal" data-bs-target="#data_delete_modal">데이터 삭제</button> <!-- <i class="fa-solid fa-skull"></i> -->
+		    	</div>
+		    	<div class="position-absolute end-0">
+			    	<button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button>
+			    	<a href="/code/codeForm"><button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i></button></a>
+		    	</div>
+		    	<div class="modal" tabindex="-1" id="state_delete_modal">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title">삭제여부 삭제처리</h5>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				        <p>정말 삭제처리하시겠습니까?</p>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        <button type="button" class="btn btn-warning">삭제처리</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<div class="modal" tabindex="-1" id="data_delete_modal">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title">데이터 삭제</h5>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				        <p>정말 삭제하시겠습니까?</p>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        <button type="button" class="btn btn-danger">삭제</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+		    </div>
+	    </form>
 	</div>
 </div>
 
@@ -280,6 +278,25 @@
 			dateFormat: "yy.mm.dd"
 		});
 	} );
+</script>
+<script type="text/javascript">
+	var goUrlList = "/code/AdminCodeList"; 			/* #-> */
+	var goUrlUpdt = "/code/codeUpdt";				/* #-> */
+	var goUrlVele = "/code/codeVele";				/* #-> */
+	var goUrlDele = "/code/codeDele";				/* #-> */
+	
+	var seq = $("input:hidden[name=seq]");				/* #-> */
+	
+	var form = $("form[name=formList]");
+	
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+	
+	$("#btnReset").on("click",function(){
+		$(location).attr("href",goUrlList);
+	});
 </script>
 </body>
 </html>

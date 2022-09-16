@@ -4,7 +4,7 @@ import com.simsim.common.constants.Constants;
 
 public class CodeGroupVo {
 
-	private String ShOption;
+	private Integer ShOption;
 	private String ShValue;
 	private Integer ShdelNy;
 	private String ShdateStart;
@@ -13,8 +13,9 @@ public class CodeGroupVo {
 	private String seq;
 	private String codeGroupCode;
 	private Integer count;
+	private String MainKey;
 	
-//	paging
+	//	paging
 	private int thisPage = 1;									// 현재 페이지
 	private int rowNumToShow = Constants.ROW_NUM_TO_SHOW;		// 화면에 보여줄 데이터 줄 갯수
 	
@@ -109,10 +110,10 @@ public class CodeGroupVo {
 		this.count = count;
 	}
 	//**********************
-	public String getShOption() {
+	public Integer getShOption() {
 		return ShOption;
 	}
-	public void setShOption(String shOption) {
+	public void setShOption(Integer shOption) {
 		ShOption = shOption;
 	}
 	public String getShValue() {
@@ -151,6 +152,13 @@ public class CodeGroupVo {
 	public void setCodeGroupCode(String codeGroupCode) {
 		this.codeGroupCode = codeGroupCode;
 	}
+	public String getMainKey() {
+		return MainKey;
+	}
+	public void setMainKey(String mainKey) {
+		MainKey = mainKey;
+	}
+
 	
 	//*************
 	

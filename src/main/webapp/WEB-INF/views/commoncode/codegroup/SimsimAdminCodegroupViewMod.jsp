@@ -8,7 +8,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="uTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>AdminCodegroupMod</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -86,8 +86,11 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드그룹 관리</b></h5>
 		<h6 style="color:gray;"><b>코드그룹 추가</b></h6>
-		<a href="./ZdminCodegroup.html"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
 		<form method="post" id="myForm" name="myForm">
+			<!-- *Vo.jsp s -->
+			<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+			<!-- *Vo.jsp e -->
+			<button type="button" id="btnList" name="btnList" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button>
 			<input type="hidden" id="seq" name="seq" value="<c:out value="${item.seq}"></c:out>">
 			<div class="row justify-content-center py-2">
 				<label for="codeGroupCode" class="col-2 col-form-label">코드그룹 코드</label>
@@ -194,6 +197,11 @@
 				</div>
 		    </div>
 	    </form>
+	    <form name="formVo" id="formVo" method="post">
+		<!-- *Vo.jsp s -->
+		<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+		<!-- *Vo.jsp e -->
+		</form>
 	</div>
 </div>
 
@@ -228,7 +236,9 @@
 	var seq = $("input:hidden[name=seq]");				/* #-> */
 	
 	var form = $("form[name=myForm]");
+	var formVo = $("form[name=formVo]");
 	
+	var seq = $("input:hidden[name=seq]");
 	
 	$("#modify").on("click", function(){
 		if (seq.val() == "0" || seq.val() == ""){
@@ -250,6 +260,11 @@
 	$("#btnErase").on("click",function(){
 		form.attr("action",goUrlDele).submit();
 	});
+	
+	$("#btnList").on("click",function(){
+		formVo.attr("action", goUrlList).submit();
+	});
+	
 </script>
 </body>
 </html>

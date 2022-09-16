@@ -11,7 +11,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="uTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>AdminCodegroup</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -90,14 +90,14 @@
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드그룹 관리</b></h5>
-		<form role="search" method="post" id="formList" name="formList">
+		<form role="search" method="post" id="formList" name="formList" autocomplete="off">
 			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 			<div class="mb-3" id="search_tab">
 				<div class="my-2 row">
-					<div class="col-2">
+					<div class="col-3">
 						<select class="form-select" id="shdelNy" name="shdelNy">
-							<option value="" <c:if test="${empty vo.shdelNy}">selected</c:if>>삭제여부</option>
+							<option value="9" <c:if test="${vo.shdelNy eq 9}">selected</c:if>>삭제여부</option>
 							<option value="0" <c:if test="${vo.shdelNy eq 0}">selected</c:if>>N</option>
 							<option value="1" <c:if test="${vo.shdelNy eq 1}">selected</c:if>>Y</option>
 						</select>
@@ -117,7 +117,7 @@
 				</div>
 				<br>
 				<div class="mb-5 row">
-					<div class="col-2">
+					<div class="col-3">
 						<select class="form-select" id ="shOption" name="shOption">
 						  <option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
 						  <option value="1"<c:if test="${vo.shOption eq 1 }">selected</c:if>>코드그룹 코드</option>
@@ -126,7 +126,7 @@
 						</select>
 					</div>
 					<div class="col-4 d-flex" id="search_box">
-						<input class="form-control" type="search" placeholder="검색어" aria-label="Search" autocomplete="off" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
+						<input class="form-control" type="search" placeholder="검색어" aria-label="Search" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
 						<button class="btn btn-outline-primary" type="submit" style="width: 80px;">검색</button> &nbsp;
 						<button type="button" class="btn btn-outline-danger" id="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
 				    </div>
@@ -166,9 +166,9 @@
 				    		<tr>
 				    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
 				    			<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-				    			<td><c:out value="${list.codeGroupCode }"/></td>
-				    			<td><a href="/codeGroup/codeGroupViewMod?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameKor }"/></a></td>
-				    			<td><a href="/codeGroup/codeGroupViewMod?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameEng }"/></a></td>
+				    			<td><c:out value="${list.codeGroupCode }"/><input type="hidden" name="seq" id="seq" value="<c:out value="${list.seq}"/>"></td>
+				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameKor }"/></a></td>
+				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameEng }"/></a></td>
 				    			<td><c:out value="${list.codeNum }"/></td>
 				    			<td><c:out value="${list.delNy }"/></td>
 				    			<td>2018.05.07 11:25:30</td>
@@ -190,7 +190,7 @@
 		    	</div>
 		    	<div class="position-absolute end-0">
 			    	<button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button>
-			    	<a href="/codeGroup/AdminCodegroupReg"><button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i></button></a>
+			    	<button type="button" id="btnForm" name="btnForm" class="btn btn-info"><i class="fa-solid fa-plus"></i></button>
 		    	</div>
 		    	<div class="modal" tabindex="-1" id="state_delete_modal">
 				  <div class="modal-dialog">
@@ -269,15 +269,35 @@
 	var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
 	var goUrlVele = "/codeGroup/codeGroupVele";				/* #-> */
 	var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+	var goUrlForm = "/codeGroup/AdminCodegroupReg";
+	var goUrlView = "/codeGroup/codeGroupViewMod"; 
+
 	
 	var seq = $("input:hidden[name=seq]");				/* #-> */
 	
 	var form = $("form[name=formList]");
 	
+	
+	goForm = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+		form.attr("action", goUrlForm).submit();
+	}
+	
+	goView = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+		form.attr("action", goUrlView).submit();
+	}
+	
 	goList = function(thisPage) {
 		$("input:hidden[name=thisPage]").val(thisPage);
 		form.attr("action", goUrlList).submit();
 	}
+	
+	$('#btnForm').on("click", function() {
+		goForm(0);                
+	});
 	
 	$("#btnReset").on("click",function(){
 		$(location).attr("href",goUrlList);
