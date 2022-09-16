@@ -93,6 +93,7 @@
 		<form role="search" method="post" id="formList" name="formList" autocomplete="off">
 			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+			<input type="hidden" name="seq" id="seq" value="<c:out value="${vo.seq}"/>">
 			<div class="mb-3" id="search_tab">
 				<div class="my-2 row">
 					<div class="col-3">
@@ -166,7 +167,7 @@
 				    		<tr>
 				    			<td><input type="checkbox" class="form-check-input" name="Chk"></td>
 				    			<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-				    			<td><c:out value="${list.codeGroupCode }"/><input type="hidden" name="seq" id="seq" value="<c:out value="${list.seq}"/>"></td>
+				    			<td><c:out value="${list.codeGroupCode }"/></td>
 				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameKor }"/></a></td>
 				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameEng }"/></a></td>
 				    			<td><c:out value="${list.codeNum }"/></td>
