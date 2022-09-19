@@ -26,6 +26,8 @@ public class CodeGroupDao {
 //		return list;
 //	}
 	
+	public List<CodeGroup> selectListSm(CodeGroupVo vo) {return sqlSession.selectList(namespace + ".selectListSm", vo);}
+	
 	public CodeGroup selectOne(CodeGroupVo vo) { return sqlSession.selectOne(namespace+ ".selectOne", vo);}
 	
 	public int selectOneCount(CodeGroupVo vo) { return sqlSession.selectOne(namespace+ ".selectOneCount", vo);}	

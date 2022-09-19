@@ -131,7 +131,7 @@
 		    ,intType3 = #{intType3}
 		    ,modifyDateTime = #{modifyDateTime}
 		WHERE
-			codeGroupCode = #{codeGroupCode}
+			seq = #{seq}
 	</update>
 	
 	<update id="velete">
@@ -139,7 +139,7 @@
 		SET
 			delNy = 1
 		WHERE
-			codeGroupCode = #{codeGroupCode}
+			seq = #{seq}
 	</update>
 	
 	<delete id="delete">

@@ -76,7 +76,7 @@
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
 						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/code/AdminCodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -86,12 +86,12 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드그룹 관리</b></h5>
 		<h6 style="color:gray;"><b>코드그룹 추가</b></h6>
-		<form method="post" id="myForm" name="myForm">
+		<form method="post" id="myForm" name="myForm" autocomplete="off">
 			<!-- *Vo.jsp s -->
 			<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
 			<!-- *Vo.jsp e -->
 			<button type="button" id="btnList" name="btnList" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button>
-			<input type="hidden" id="seq" name="seq" value="<c:out value="${item.seq}"></c:out>">
+			<%-- <input type="hidden" id="seq" name="seq" value="<c:out value="${item.seq}"></c:out>"> --%>
 			<div class="row justify-content-center py-2">
 				<label for="codeGroupCode" class="col-2 col-form-label">코드그룹 코드</label>
 			    <div class="col-4">
@@ -238,7 +238,7 @@
 	var form = $("form[name=myForm]");
 	var formVo = $("form[name=formVo]");
 	
-	var seq = $("input:hidden[name=seq]");
+	/* var seq = $("input:hidden[name=seq]"); */
 	
 	$("#modify").on("click", function(){
 		if (seq.val() == "0" || seq.val() == ""){

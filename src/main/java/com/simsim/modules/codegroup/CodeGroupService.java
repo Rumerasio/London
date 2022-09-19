@@ -6,6 +6,7 @@ public interface CodeGroupService {
 
 	public List<CodeGroup> selectList(CodeGroupVo vo) throws Exception;
 	public List<CodeGroup> selectList() throws Exception;
+	public List<CodeGroup> selectListSm(CodeGroupVo vo) throws Exception;
 	public CodeGroup selectOne(CodeGroupVo vo) throws Exception;
 	public int selectOneCount(CodeGroupVo vo) throws Exception;
 	public int insert(CodeGroup dto) throws Exception;
