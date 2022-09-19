@@ -21,6 +21,8 @@ public class CodeDao {
 	
 	public int selectOneCount(CodeVo vo) {return sqlSession.selectOne(namespace+".selectOneCount", vo);}
 	
+	public Code selectOne(CodeVo vo) {return sqlSession.selectOne(namespace+".selectOne", vo);}
+	
 	public int insert(Code dto) {
 		int result = sqlSession.insert(namespace+".insert", dto);
 		return result;

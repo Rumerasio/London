@@ -79,7 +79,7 @@
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
 						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/code/AdminCodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -89,17 +89,21 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드 관리</b></h5>
 		<h6 style="color:gray;"><b>코드 추가</b></h6>
-		<a href="/code/AdminCodeList"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
+		<a href="/code/CodeList"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
 		<form method="post" id="codeRegForm" action="/code/codeInst">
 			<div class="row py-2">
 				<label for="codeGroup_seq" class="col-2 col-form-label">코드그룹 선택</label>
 			    <div class="col-4">
 			      <select class="form-select col-2" id="codeGroup_seq" name="codeGroup_seq">
 			      	<option selected value = "">선택하세요</option>
-			      	<c:forEach items="${list1}" var="list1" varStatus="status">
-			      		<option value = "<c:out value="${list1.seq }"></c:out>"><c:out value="${list1.codeGroupNameKor }"></c:out></option>
+			      	<c:forEach items="${CGlist}" var="CGlist" varStatus="status">
+			      		<option value = "<c:out value="${CGlist.seq }"></c:out>"><c:out value="${CGlist.codeGroupNameKor }"></c:out></option>
 			      	</c:forEach>
 			      </select>
+			    </div>
+			    <label for="codeGroupcode" class="col-2 col-form-label">코드그룹 코드</label>
+			    <div class="col-4">
+			      <input type="text" disabled class="form-control" id="codeGroupcode" name="codeGroupcode" placeholder="" value="">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
@@ -235,6 +239,8 @@
 		document.getElementById('codeRegForm').submit();
 		
 	}
+	
+	
 </script>
 </body>
 </html>

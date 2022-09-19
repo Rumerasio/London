@@ -79,7 +79,7 @@
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
 						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/code/AdminCodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -172,10 +172,10 @@
 				    			<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 				    			<td><c:out value="${list.codeGroupCode }"/></td>
 				    			<td><c:out value="${list.codeGroupNameKor }"/></td>
-				    			<td><a href="/code/AdminCodeList?seq=<c:out value="${list.seq }"/>"></a></td>
+				    			<td><a href="/code/codeView?seq=<c:out value="${list.seq }"/>"></a></td>
 				    			<td><c:out value="${list.codeAnother }"/></td>
-				    			<td><a href="/code/AdminCodeList?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
-				    			<td><a href="/code/AdminCodeList?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>
+				    			<td><a href="/code/codeView?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
+				    			<td><a href="/code/codeView?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>
 				    			<td><c:out value="${list.useNy }"/></td>
 				    			<td><c:out value="${list.turn }"/></td>
 				    			<td>2018.05.07 11:25:30</td>
@@ -280,7 +280,7 @@
 	} );
 </script>
 <script type="text/javascript">
-	var goUrlList = "/code/AdminCodeList"; 			/* #-> */
+	var goUrlList = "/code/CodeList"; 			/* #-> */
 	var goUrlUpdt = "/code/codeUpdt";				/* #-> */
 	var goUrlVele = "/code/codeVele";				/* #-> */
 	var goUrlDele = "/code/codeDele";				/* #-> */

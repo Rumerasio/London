@@ -64,7 +64,7 @@
 			<ul class="list-unstyled">
 				<li class="fw-semibold">회원 관리
 					<ul class="list-unstyled ps-2">
-						<a href="./ZdminMember.html"><li style="font-weight: normal;">회원관리</li></a>
+						<a href="/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
 						<a href="./ZdminCommentRecord.html"><li style="font-weight: normal;">댓글관리</li></a>
 					</ul>
 				</li>
@@ -76,8 +76,8 @@
 				</li>
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
-						<a href="./ZdminCodegroup.html"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="./ZdminCode.html"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
+						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -88,14 +88,14 @@
 		<h5 class="mt-3"><b>코드 관리</b></h5>
 		<h6 style="color:gray;"><b>코드 추가</b></h6>
 		<a href="./ZdminCodegroup.html"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
-		<form method="post" id="myForm" name="myForm">
+		<form method="post" id="myForm" name="myForm" autocomplete="off">
 			<div class="row py-2">
 				<label for="codeGroup_seq" class="col-2 col-form-label">코드그룹 선택</label>
 			    <div class="col-4">
 			     <select class="form-select col-2" id="codeGroup_seq" name="codeGroup_seq">
 			      	<option selected value = "">선택하세요</option>
-			      	<c:forEach items="${list1}" var="list1" varStatus="status">
-			      		<option value = "<c:out value="${list1.seq }"></c:out>"><c:out value="${list1.codeGroupNameKor }"></c:out></option>
+			      	<c:forEach items="${CGlist}" var="list1" varStatus="status">
+			      		<option value = "<c:out value="${CGlist.seq }"></c:out>"><c:out value="${CGlist.codeGroupNameKor }"></c:out></option>
 			      	</c:forEach>
 			      </select>
 			    </div>
@@ -103,79 +103,79 @@
 			<div class="row justify-content-center py-2">
 				<label for="seq" class="col-2 col-form-label">코드</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" disabled id="seq" name="seq" placeholder="자동생성" value="101">
+			      <input type="text" class="form-control" disabled id="seq" name="seq" placeholder="자동생성" value="<c:out value="${item.seq }"></c:out>">
 			    </div>
 			    <label for="codeAnother" class="col-2 col-form-label">코드(Another)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codeAnother" name="codeAnother" placeholder="" value="">
+			      <input type="text" class="form-control" id="codeAnother" name="codeAnother" placeholder="" value="<c:out value="${item.codeAnother }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
 				<label for="codeNameKor" class="col-2 col-form-label">코드 이름(한글)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codeNameKor" name="codeNameKor" value="남성">
+			      <input type="text" class="form-control" id="codeNameKor" name="codeNameKor" value="<c:out value="${item.codeNameKor }"></c:out>">
 			    </div>
 			    <label for="codeNameEng" class="col-2 col-form-label">코드 이름(영문)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codeNameEng" name="codeNameEng" value="Male">
+			      <input type="text" class="form-control" id="codeNameEng" name="codeNameEng" value="<c:out value="${item.codeNameEng }"></c:out>">
 			    </div>
 			</div>
 			<div class="row py-2">
 				<label for="useNy" class="col-2 col-form-label">사용여부</label>
 			    <div class="col-4">
 			      <select class="form-select col-2" id="useNy" name="useNy">
-			      	<option selected value = 0>Y</option>
-			      	<option value = 1>N</option>
+			      	<option value = 0 <c:if test="${item.useNy eq 0 }" >selected</c:if>>Y</option>
+			      	<option value = 1 <c:if test="${item.useNy eq 1 }" >selected</c:if>>N</option>
 			      </select>
 			    </div>
 			    <label for="turn" class="col-2 col-form-label">순서</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="turn" name="turn" placeholder="숫자" value="1">
+			      <input type="text" class="form-control" id="turn" name="turn" placeholder="숫자" value="<c:out value="${item.turn }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
 				<label for="content" class="col-2 col-form-label">설명</label>
 			    <div class="col-4">
-			      <textarea class="form-control" id="content" name="content" value=""></textarea>
+			      <textarea class="form-control" id="content" name="content" value="<c:out value="${item.content }"></c:out>"></textarea>
 			    </div>
 			    <label for="delNy" class="col-2 col-form-label">삭제여부</label>
 			    <div class="col-4">
 			      <select class="form-select col-2" id="delNy" name="delNy">
-			      	<option selected value = 0>N</option>
-			      	<option value = 1>Y</option>
+			      	<option value = 0 <c:if test="${item.delNy eq 0 }" >selected</c:if>>N</option>
+			      	<option value = 1 <c:if test="${item.delNy eq 1 }" >selected</c:if>>Y</option>
 			      </select>
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
 				<label for="varcharType1" class="col-2 col-form-label">예비1 (varchar type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="varcharType1" name="varcharType1" value="" placeholder="영문(대소문자), 숫자">
+			      <input type="text" class="form-control" id="varcharType1" name="varcharType1" value="<c:out value="${item.varcharType1 }"></c:out>" placeholder="영문(대소문자), 숫자">
 			    </div>
 			    <label for="varcharType2" class="col-2 col-form-label">예비2 (varchar type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="varcharType2" name="varcharType2" value="" placeholder="영문(대소문자), 숫자">
+			      <input type="text" class="form-control" id="varcharType2" name="varcharType2" value="<c:out value="${item.varcharType2 }"></c:out>" placeholder="영문(대소문자), 숫자">
 			    </div>
 			</div>
 			<div class="row py-2">
 				<label for="varcharType3" class="col-2 col-form-label">예비3 (varchar type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="varcharType3" name="varcharType3" value="" placeholder="영문(대소문자), 숫자">
+			      <input type="text" class="form-control" id="varcharType3" name="varcharType3" value="<c:out value="${item.varcharType3 }"></c:out>" placeholder="영문(대소문자), 숫자">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
 				<label for="intType1" class="col-2 col-form-label">예비1 (int type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="intType1" name="intType1" value="" placeholder="숫자">
+			      <input type="text" class="form-control" id="intType1" name="intType1" value="<c:out value="${item.intType1 }"></c:out>" placeholder="숫자">
 			    </div>
 			    <label for="intType2" class="col-2 col-form-label">예비2 (int type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="intType2" name="intType2" value="" placeholder="숫자">
+			      <input type="text" class="form-control" id="intType2" name="intType2" value="<c:out value="${item.intType2 }"></c:out>" placeholder="숫자">
 			    </div>
 			</div>
 			<div class="row py-2">
 				<label for="intType3" class="col-2 col-form-label">예비1 (int type)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="intType3" name="intType3" value="" placeholder="숫자">
+			      <input type="text" class="form-control" id="intType3" name="intType3" value="<c:out value="${item.intType3 }"></c:out>" placeholder="숫자">
 			    </div>
 			</div>
 		

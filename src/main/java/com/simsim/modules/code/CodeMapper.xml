@@ -47,9 +47,25 @@
 		<include refid="Base.selectListLowerForMysql"></include>
 	</select>
 	
-	<select id="selectOne">
+	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			
+			a.codeGroup_seq
+			,a.seq
+		    ,a.codeAnother
+		    ,a.codeNameKor
+		    ,a.codeNameEng
+		    ,a.useNy
+		    ,a.turn
+		    ,a.content
+		    ,a.delNy
+		    ,a.varcharType1
+		    ,a.varcharType2
+		    ,a.varcharType3
+		    ,a.intType1
+		    ,a.intType2
+		    ,a.intType3
+		    ,a.registerDateTime
+		    ,a.modifyDateTime
 		FROM code a
 		WHERE 1=1
 			AND a.seq = #{seq}

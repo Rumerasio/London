@@ -29,6 +29,12 @@ public class CodeServiceImpl implements CodeService{
 		int result=dao.selectOneCount(vo);
 		return result;
 	}
+
+	@Override
+	public Code selectOne(CodeVo vo) throws Exception {
+		Code result = dao.selectOne(vo);
+		return result;
+	}
 	
 	
 }
