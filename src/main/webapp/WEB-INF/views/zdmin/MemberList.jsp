@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.simsim.modules.code.CodeServiceImpl"/>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -78,7 +80,7 @@
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
 						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/code/AdminCodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -87,7 +89,7 @@
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>회원관리</b></h5>
-		<form role="search" method="post" action="/member/memberList">
+		<form role="search" method="post">
 			<div class="mb-3" id="search_tab">
 				<div class="my-2 row">
 					<div class="col">
@@ -142,88 +144,103 @@
 				    </div>
 			    </div>
 		    </div>
-		</form>
-	    <div class="row mb-3">
-	    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:12</div>
-	    	<div class="col-1 offset-10">
-			    <select class="form-select">
-			    	<option selected value="1">5</option>
-			    	<option value="2">10</option>
-			    	<option value="3">15</option>
-			    </select>
-			</div>
-	    </div>
-	    <div class="mb-3" id="list_box">
-	    	<table class="table table-striped table-hover">
-	    		<tr id="list_box_th">
-	    			<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>
-					<th>고유번호</th>
-					<th>닉네임</th>
-					<th>생년월일</th>
-					<th>성별</th>
-					<th>이메일</th>
-					<th>아이디</th>
-					<th>작성댓글수</th>
-					<th>댓글 좋아요수</th>
-					<th>최종 접속일시</th>
-					<th>가입날짜</th>
-					<th>삭제여부</th>
-	    		</tr>
-	    		<c:choose>
-	    			<c:when test="${fn:length(list) eq 0 }">
-	    				<tr>
-	    					<td colspan="12" style="text-align: center;">There is no data</td>
-	    				</tr>
-	    			</c:when>
-	    			<c:otherwise>
-	    				<c:forEach items="${list}" var="list" varStatus="status">
-	    					<tr>
-	    						<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-	    						<td><c:out value="${list.seq }"></c:out></td>
-	    						<td><c:out value="${list.nickname }"></c:out></td>
-	    						<td><c:out value="${list.dob }"></c:out></td>
-	    						<td><c:out value="${list.codeNameKor }"></c:out></td>
-	    						<td><c:out value="${list.email }"></c:out></td>
-	    						<td><c:out value="${list.id }"></c:out></td>
-	    						<td></td>
-	    						<td></td>
-	    						<td></td>
-	    						<td><c:out value="${list.datetime }"></c:out></td>
-	    						<td><c:out value="${list.delNy }"></c:out> </td>
-	    					</tr>
-	    				</c:forEach>
-	    			</c:otherwise>
-	    		</c:choose>
-	    	</table>
-	    	<br>
-	    	<nav class="nav justify-content-center">
-			  <ul class="pagination">
-			  	<li class="page-item">
-			      <a class="page-link" href="#" >
-			        <span><i class="fa-solid fa-backward-step"></i></span>
-			      </a>
-			    </li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span><i class="fa-solid fa-chevron-left"></i></span>
-			      </a>
-			    </li>
-			    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
-			        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-			      </a>
-			    </li>
-			    <li class="page-item">
-			      <a class="page-link" href="#">
-			        <span><i class="fa-solid fa-forward-step"></i></span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav>
-	    </div>
+		    <div class="row mb-3">
+		    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:12</div>
+		    	<div class="col-1 offset-10">
+				    <select class="form-select">
+				    	<option selected value="1">5</option>
+				    	<option value="2">10</option>
+				    	<option value="3">15</option>
+				    </select>
+				</div>
+		    </div>
+		    <div class="mb-3" id="list_box">
+		    	<table class="table table-striped table-hover">
+		    		<tr id="list_box_th">
+		    			<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>
+						<th>고유번호</th>
+						<th>닉네임</th>
+						<th>생년월일</th>
+						<th>성별</th>
+						<th>이메일</th>
+						<th>아이디</th>
+						<th>작성댓글수</th>
+						<th>댓글 좋아요수</th>
+						<th>최종 접속일시</th>
+						<th>가입날짜</th>
+						<th>삭제여부</th>
+		    		</tr>
+		    		<c:choose>
+		    			<c:when test="${fn:length(list) eq 0 }">
+		    				<tr>
+		    					<td colspan="12" style="text-align: center;">There is no data</td>
+		    				</tr>
+		    			</c:when>
+		    			<c:otherwise>
+		    				<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
+		    				<c:set var="listCodePhoneAgency" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
+		    				<c:set var="listCodeEmailDomain" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
+		    				<c:forEach items="${list}" var="list" varStatus="status">
+		    					<tr>
+		    						<td><input type="checkbox" class="form-check-input" name="Chk"></td>
+		    						<td><c:out value="${list.seq }"></c:out></td>
+		    						<td><c:out value="${list.nickname }"></c:out></td>
+		    						<td><c:out value="${list.dob }"></c:out></td>
+		    						<td>
+		    							<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+											<c:if test="${list.gender eq listGender.codeAnother}"><c:out value="${listGender.codeNameKor }"/></c:if>
+										</c:forEach>
+		    						</td>
+		    						<td><c:out value="${list.email }"></c:out></td>
+		    						<td><c:out value="${list.id }"></c:out></td>
+		    						<td>
+		    							<c:forEach items="${listCodePhoneAgency}" var="listPhoneAgency" varStatus="statusPhoneAgency">
+											<c:if test="${list.phoneAgency eq listPhoneAgency.codeAnother}"><c:out value="${listPhoneAgency.codeNameKor }"/></c:if>
+										</c:forEach>
+		    						</td>
+		    						<td>
+		    							<c:forEach items="${listCodeEmailDomain}" var="listEmailDomain" varStatus="statusEmailDomain">
+											<c:if test="${list.emailDomain eq listEmailDomain.codeAnother}"><c:out value="${listEmailDomain.codeNameKor }"/></c:if>
+										</c:forEach>
+		    						</td>
+		    						<td></td>
+		    						<td><c:out value="${list.datetime }"></c:out></td>
+		    						<td><c:out value="${list.delNy }"></c:out> </td>
+		    					</tr>
+		    				</c:forEach>
+		    			</c:otherwise>
+		    		</c:choose>
+		    	</table>
+		    	<br>
+		    	<nav class="nav justify-content-center">
+				  <ul class="pagination">
+				  	<li class="page-item">
+				      <a class="page-link" href="#" >
+				        <span><i class="fa-solid fa-backward-step"></i></span>
+				      </a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Previous">
+				        <span><i class="fa-solid fa-chevron-left"></i></span>
+				      </a>
+				    </li>
+				    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item"><a class="page-link" href="#">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Next">
+				        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+				      </a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" href="#">
+				        <span><i class="fa-solid fa-forward-step"></i></span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
+		    </div>
+	    </form>
 	    <div class="position-relative">
 	    	<div class="position-absolute top-0">
 		    	<button type="button" class="btn btn-warning" title="삭제여부 삭제처리" data-bs-toggle="modal" data-bs-target="#state_delete_modal">삭제처리</button> <!-- <i class="fa-solid fa-trash-can"></i> -->
