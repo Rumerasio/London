@@ -91,6 +91,7 @@
 		<form role="search" method="post" id="formList" name="formList" autocomplete="off">
 			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+			<input type="hidden" name="seq" id="seq" value="<c:out value="${vo.seq}"/>">
 			<div class="mb-3" id="search_tab">
 				<div class="my-2 row">
 					<div class="col-2">
@@ -172,10 +173,10 @@
 				    			<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 				    			<td><c:out value="${list.codeGroupCode }"/></td>
 				    			<td><c:out value="${list.codeGroupNameKor }"/></td>
-				    			<td><a href="/code/codeView?seq=<c:out value="${list.seq }"/>"></a></td>
+				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"></a></td>
 				    			<td><c:out value="${list.codeAnother }"/></td>
-				    			<td><a href="/code/codeView?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
-				    			<td><a href="/code/codeView?seq=<c:out value="${list.seq }"/>"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>
+				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
+				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>
 				    			<td><c:out value="${list.useNy }"/></td>
 				    			<td><c:out value="${list.turn }"/></td>
 				    			<td>2018.05.07 11:25:30</td>
@@ -197,7 +198,7 @@
 		    	</div>
 		    	<div class="position-absolute end-0">
 			    	<button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button>
-			    	<a href="/code/codeForm"><button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i></button></a>
+			    	<button type="button" id="btnForm" class="btn btn-info"><i class="fa-solid fa-plus"></i></button>
 		    	</div>
 		    	<div class="modal" tabindex="-1" id="state_delete_modal">
 				  <div class="modal-dialog">
@@ -284,6 +285,8 @@
 	var goUrlUpdt = "/code/codeUpdt";				/* #-> */
 	var goUrlVele = "/code/codeVele";				/* #-> */
 	var goUrlDele = "/code/codeDele";				/* #-> */
+	var goUrlForm = "/code/codeForm";
+	var goUrlView = "/code/codeView";
 	
 	var seq = $("input:hidden[name=seq]");				/* #-> */
 	
@@ -294,9 +297,27 @@
 		form.attr("action", goUrlList).submit();
 	}
 	
+	goForm = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+		form.attr("action", goUrlForm).submit();
+	}
+	
+	goView = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+		form.attr("action", goUrlView).submit();
+	}
+	
 	$("#btnReset").on("click",function(){
 		$(location).attr("href",goUrlList);
 	});
+	
+	$("#btnForm").on("click",function(){
+		goForm(0);
+	});
+	
+	
 </script>
 </body>
 </html>

@@ -50,6 +50,8 @@
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.codeGroup_seq
+			,b.codeGroupNameKor
+			,b.codeGroupCode
 			,a.seq
 		    ,a.codeAnother
 		    ,a.codeNameKor
@@ -67,6 +69,7 @@
 		    ,a.registerDateTime
 		    ,a.modifyDateTime
 		FROM code a
+		inner join codeGroup b on a.codeGroup_seq = b.seq
 		WHERE 1=1
 			AND a.seq = #{seq}
 	</select>
@@ -112,4 +115,40 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<update id="update">
+		UPDATE code
+		SET
+		    codeAnother = #{codeAnother}
+		    ,codeNameKor = #{codeNameKor}
+		    ,codeNameEng = #{codeNameEng}
+		    ,useNy = #{useNy}
+		    ,turn = #{turn}
+		    ,content = #{content}
+		    ,delNy = #{delNy}
+		    ,varcharType1 = #{varcharType1}
+		    ,varcharType2 = #{varcharType2}
+		    ,varcharType3 = #{varcharType3}
+		    ,intType1 = #{intType1}
+		    ,intType2 = #{intType2}
+		    ,intType3 = #{intType3}
+		    ,registerDateTime = #{registerDateTime}
+		    ,modifyDateTime = #{modifyDateTime}
+		WHERE 1=1
+			AND seq= #{seq}
+	</update>
+	
+	<update id="velete">
+		UPDATE code
+		SET
+			delNy = 1
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM code WHERE seq=#{seq}
+	</delete>
+	
+	
 </mapper>

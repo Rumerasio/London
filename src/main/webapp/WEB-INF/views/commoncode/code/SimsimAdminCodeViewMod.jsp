@@ -87,17 +87,16 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드 관리</b></h5>
 		<h6 style="color:gray;"><b>코드 추가</b></h6>
-		<a href="./ZdminCodegroup.html"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
+		<button type="button" id="btnList" name="btnList" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button>
 		<form method="post" id="myForm" name="myForm" autocomplete="off">
+		<!-- *Vo.jsp s -->
+		<%@include file="codeVo.jsp"%>		<!-- #-> -->
+		<!-- *Vo.jsp e -->
+		<%-- <input type="hidden" name="codeGroup_seq" id="codeGroup_seq" value="<c:out value="${item.codeGroup_seq}"/>"> --%>
 			<div class="row py-2">
-				<label for="codeGroup_seq" class="col-2 col-form-label">코드그룹 선택</label>
+				<label for="codeGroupCode" class="col-2 col-form-label">코드그룹 선택</label>
 			    <div class="col-4">
-			     <select class="form-select col-2" id="codeGroup_seq" name="codeGroup_seq">
-			      	<option selected value = "">선택하세요</option>
-			      	<c:forEach items="${CGlist}" var="list1" varStatus="status">
-			      		<option value = "<c:out value="${CGlist.seq }"></c:out>"><c:out value="${CGlist.codeGroupNameKor }"></c:out></option>
-			      	</c:forEach>
-			      </select>
+			    	<input type="text" class="form-control" disabled id="codeGroup_seq" name="codeGroup_seq" placeholder="" value="<c:out value="${item.codeGroup_seq }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
@@ -124,8 +123,8 @@
 				<label for="useNy" class="col-2 col-form-label">사용여부</label>
 			    <div class="col-4">
 			      <select class="form-select col-2" id="useNy" name="useNy">
-			      	<option value = 0 <c:if test="${item.useNy eq 0 }" >selected</c:if>>Y</option>
-			      	<option value = 1 <c:if test="${item.useNy eq 1 }" >selected</c:if>>N</option>
+			      	<option value = 0 <c:if test="${item.useNy eq 0 }" >selected</c:if>>N</option>
+			      	<option value = 1 <c:if test="${item.useNy eq 1 }" >selected</c:if>>Y</option>
 			      </select>
 			    </div>
 			    <label for="turn" class="col-2 col-form-label">순서</label>
@@ -183,9 +182,10 @@
 		    	<div class="position-relative">
 			    	<div class="position-absolute top-0">
 				    	<button type="button" class="btn btn-danger" title="데이터 삭제" data-bs-toggle="modal" data-bs-target="#data_delete_modal">데이터 삭제</button> <!-- <i class="fa-solid fa-skull"></i> -->
+				    	<button type="button" class="btn btn-warning" title="삭제처리" id="btnVele" name="btnVele">삭제처리</button>
 			    	</div>
 			    	<div class="position-absolute end-0">
-				    	<a href="./ZdminCode.html"><button type="button" class="btn btn-info">수정하기</button></a>
+				    	<button type="button" id="btnUpdt" name="btnUpdt" class="btn btn-info">수정하기</button>
 			    	</div>
 					<div class="modal" tabindex="-1" id="data_delete_modal">
 					  <div class="modal-dialog">
@@ -199,7 +199,7 @@
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-					        <button type="button" class="btn btn-danger">삭제</button>
+					        <button type="button" id="btnDele" name="btnDele" class="btn btn-danger">삭제</button>
 					      </div>
 					    </div>
 					  </div>
@@ -207,6 +207,11 @@
 				</div>
 		    </div>
 	    </form>
+	    <form name="formVo" id="formVo" method="post">
+		<!-- *Vo.jsp s -->
+		<%@include file="codeVo.jsp"%>		<!-- #-> -->
+		<!-- *Vo.jsp e -->
+		</form>
 	</div>
 </div>
 
@@ -231,5 +236,34 @@
 		})
 	});
 </script>
+<script type="text/javascript">
+	var goUrlList = "/code/CodeList"; 			/* #-> */
+	var goUrlUpdt = "/code/codeUpdt";				/* #-> */
+	var goUrlVele = "/code/codeVele";				/* #-> */
+	var goUrlDele = "/code/codeDele";				/* #-> */
+	var goUrlForm = "/code/codeForm";
+	
+	var seq = $("input:hidden[name=seq]");				/* #-> */
+	
+	var form = $("form[name=myForm]");
+	var formVo = $("form[name=formVo]");
+	
+	$("#btnUpdt").on("click",function(){
+		form.attr("action",goUrlUpdt).submit();
+	});
+	
+	$("#btnVele").on("click",function(){
+		form.attr("action",goUrlVele).submit();
+	});
+	
+	$("#btnDele").on("click",function(){
+		form.attr("action",goUrlDele).submit();
+	});
+	
+	$("#btnList").on("click",function(){
+		formVo.attr("action",goUrlList).submit();
+	});
+</script>
+
 </body>
 </html>

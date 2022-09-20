@@ -89,8 +89,11 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드 관리</b></h5>
 		<h6 style="color:gray;"><b>코드 추가</b></h6>
-		<a href="/code/CodeList"><button type="button" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button></a>
-		<form method="post" id="codeRegForm" action="/code/codeInst">
+		<button type="button" id="btnList" name="btnList" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button>
+		<form method="post" id="formList" name="formList">
+		<!-- *Vo.jsp s -->
+		<%@include file="codeVo.jsp"%>		<!-- #-> -->
+		<!-- *Vo.jsp e -->
 			<div class="row py-2">
 				<label for="codeGroup_seq" class="col-2 col-form-label">코드그룹 선택</label>
 			    <div class="col-4">
@@ -186,9 +189,14 @@
 			</div>
 			<div class="position-relative">
 		    	<div class="position-absolute end-0">
-			    	<button type="button" id="btnSave" onclick="checkAndReg()" class="btn btn-info">등록하기</button>
+			    	<button type="button" id="btnSave" name="btnSave" class="btn btn-info">등록하기</button>
 		    	</div>
 		    </div>
+		</form>
+		<form name="formVo" id="formVo" method="post">
+		<!-- *Vo.jsp s -->
+		<%@include file="codeVo.jsp"%>		<!-- #-> -->
+		<!-- *Vo.jsp e -->
 		</form>
 	</div>
 </div>
@@ -240,6 +248,21 @@
 		
 	}
 	
+	var goUrlList = "/code/CodeList"; 			/* #-> */
+	var goUrlInst = "/code/codeInst"; 			/* #-> */
+	
+	var seq = $("input:hidden[name=seq]");				/* #-> */
+	
+	var form = $("form[name=formList]");
+	var formVo = $("form[name=formVo]");
+	
+	$("#btnSave").on("click",function(){
+		form.attr("action",goUrlInst).submit();
+	});
+	
+	$("#btnList").on("click",function(){
+		formVo.attr("action", goUrlList).submit();
+	});
 	
 </script>
 </body>

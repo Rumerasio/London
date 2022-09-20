@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.simsim.modules.codegroup.CodeGroup;
 import com.simsim.modules.codegroup.CodeGroupServiceImpl;
@@ -34,10 +35,12 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value="codeView")
-	public String codeView(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+	public String codeView(@ModelAttribute("vo") CodeVo vo, CodeGroupVo cgvo, Model model, Model cgmodel) throws Exception {
 		
+		List<CodeGroup> cgresult = codeGroupService.selectListSm(cgvo);
 		Code result= service.selectOne(vo);
 		model.addAttribute("item", result);
+		cgmodel.addAttribute("CGlist", cgresult);
 		
 		return "commoncode/code/SimsimAdminCodeViewMod";
 	}
@@ -65,4 +68,24 @@ public class CodeController {
 		return "redirect:/code/CodeList";
 	}
 	
+	@RequestMapping(value="codeUpdt")
+	public String codeUpdt(Code dto,@ModelAttribute("vo") CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		service.update(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/code/CodeList";
+	}	
+	
+	@RequestMapping(value="codeVele")
+	public String codeVele(Code dto,@ModelAttribute("vo") CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		service.velete(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/code/CodeList";
+	}
+	
+	@RequestMapping(value="codeDele")
+	public String codeDele(@ModelAttribute("vo") CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		service.delete(vo);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/code/CodeList";
+	}
 }

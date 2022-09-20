@@ -13,6 +13,7 @@ public class CodeVo {
 	
 	private String seq; 
 	private String codeAnother;
+	private String codeGroup_seq;
 	
 	//	paging
 	private int thisPage = 1;									// 현재 페이지
@@ -147,8 +148,12 @@ public class CodeVo {
 	public void setStartRnumForMysql(int startRnumForMysql) {
 		this.startRnumForMysql = startRnumForMysql;
 	}
-	
-	
+	public String getCodeGroup_seq() {
+		return codeGroup_seq;
+	}
+	public void setCodeGroup_seq(String codeGroup_seq) {
+		this.codeGroup_seq = codeGroup_seq;
+	}
 	public void setParamsPaging(int totalRows) {
 		
 //		setThisPage(3);
