@@ -28,4 +28,6 @@ public class CodeDao {
 	public int velete(Code dto) {return sqlSession.update(namespace+".velete", dto);}
 	public int delete(CodeVo vo) {return sqlSession.delete(namespace+".delete", vo);}
 	
+//	for cache
+	public List<Code> selectListCachedCodeArrayList(){ return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); }
 }

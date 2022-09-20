@@ -69,7 +69,7 @@
 				<li class="fw-semibold">회원 관리
 					<ul class="list-unstyled ps-2">
 						<a href="/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
-						<a href=""><li style="font-weight: normal;">이메일 뒷주소</li></a>
+						<a href=""><li style="font-weight: normal;">댓글 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">컨텐츠 관리

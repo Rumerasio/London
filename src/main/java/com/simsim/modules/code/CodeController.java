@@ -26,6 +26,10 @@ public class CodeController {
 	@RequestMapping(value = "CodeList")
 	public String codeList(Model model, @ModelAttribute("vo") CodeVo vo) throws Exception {
 
+		vo.setShuseNy(vo.getShuseNy() == null ? 1 : vo.getShuseNy());
+		vo.setShOption(vo.getShOption() == null ? "2" : vo.getShOption());
+		vo.setShValue(vo.getShValue() == null ? "" : vo.getShValue());
+		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		List<Code> list = service.selectList(vo);

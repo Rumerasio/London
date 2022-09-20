@@ -1,5 +1,8 @@
 package com.simsim.modules.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 	private String seq;
 	private String codeGroup_seq;
@@ -144,7 +147,8 @@ public class Code {
 		this.intType3 = intType3;
 	}
 	//********************
-	
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
 	
 }

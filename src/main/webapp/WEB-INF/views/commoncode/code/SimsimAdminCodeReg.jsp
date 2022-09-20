@@ -106,7 +106,7 @@
 			    </div>
 			    <label for="codeGroupcode" class="col-2 col-form-label">코드그룹 코드</label>
 			    <div class="col-4">
-			      <input type="text" disabled class="form-control" id="codeGroupcode" name="codeGroupcode" placeholder="" value="">
+			      <input type="text" disabled class="form-control" id="codeGroupcode" name="codeGroupcode" placeholder="" value=""><%-- <c:if test="${codeGroup_seq eq CGlist.seq}"><c:out value="${CGlist.codeGroupcode }"/></c:if> --%>
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">

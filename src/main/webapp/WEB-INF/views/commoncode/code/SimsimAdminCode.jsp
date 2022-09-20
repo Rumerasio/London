@@ -128,7 +128,7 @@
 						</select>
 					</div>
 					<div class="col-4 d-flex" id="search_box">
-					      <input class="form-control" type="search" placeholder="검색어" autocomplete="off" aria-label="Search" id="shValue" name="shValue" style="margin-right: 5px;">
+					      <input class="form-control" type="search" placeholder="검색어" autocomplete="off" aria-label="Search" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
 					      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
 					      <button type="button" class="btn btn-outline-danger" id="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
 				    </div>

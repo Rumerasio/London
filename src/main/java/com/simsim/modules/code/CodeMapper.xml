@@ -150,5 +150,16 @@
 		DELETE FROM code WHERE seq=#{seq}
 	</delete>
 	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			codeAnother
+			, codeNameKor
+			, codeGroup_seq
+		FROM
+			code
+		WHERE 1=1
+			AND delNy = 0
+		    AND useNy = 1
+    </select>
 	
 </mapper>

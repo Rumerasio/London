@@ -92,11 +92,14 @@
 		<!-- *Vo.jsp s -->
 		<%@include file="codeVo.jsp"%>		<!-- #-> -->
 		<!-- *Vo.jsp e -->
-		<%-- <input type="hidden" name="codeGroup_seq" id="codeGroup_seq" value="<c:out value="${item.codeGroup_seq}"/>"> --%>
 			<div class="row py-2">
-				<label for="codeGroupCode" class="col-2 col-form-label">코드그룹 선택</label>
+				<label for="codeGroupNameKor" class="col-2 col-form-label">코드그룹 선택</label>
 			    <div class="col-4">
-			    	<input type="text" class="form-control" disabled id="codeGroup_seq" name="codeGroup_seq" placeholder="" value="<c:out value="${item.codeGroup_seq }"></c:out>">
+			    	<input type="text" class="form-control" disabled id="codeGroupNameKor" name="codeGroupNameKor" placeholder="" value="<c:out value="${item.codeGroupNameKor }"></c:out>">
+			    </div>
+			     <label for="codeGroupCode" class="col-2 col-form-label">코드그룹 코드</label>
+			    <div class="col-4">
+			      <input type="text" disabled class="form-control" id="codeGroupCode" name="codeGroupCode" placeholder="" value="<c:out value="${item.codeGroupCode }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
