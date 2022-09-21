@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <%@ page session="false" %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -79,7 +80,7 @@
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
 						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/code/codeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -89,8 +90,8 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>코드 관리</b></h5>
 		<h6 style="color:gray;"><b>코드 추가</b></h6>
-		<button type="button" id="btnList" name="btnList" class="btn btn-sm mt-2" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button>
-		<form method="post" id="formList" name="formList">
+		<button type="button" class="btn btn-sm mt-2" id="btnList" name="btnList" style="width:60px; font-size:10px; background-color:#fcfcfc;">뒤로가기</button>
+		<form method="post" id="myForm" name="myForm" autocomplete="off">
 		<!-- *Vo.jsp s -->
 		<%@include file="codeVo.jsp"%>		<!-- #-> -->
 		<!-- *Vo.jsp e -->
@@ -222,7 +223,7 @@
 		})
 	});
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function checkAndReg(){
 		
 		alert("작동여부");
@@ -247,13 +248,14 @@
 		document.getElementById('codeRegForm').submit();
 		
 	}
-	
-	var goUrlList = "/code/CodeList"; 			/* #-> */
+</script> -->
+<script type="text/javascript">
+	var goUrlList = "/code/codeList"; 			/* #-> */
 	var goUrlInst = "/code/codeInst"; 			/* #-> */
 	
 	var seq = $("input:hidden[name=seq]");				/* #-> */
 	
-	var form = $("form[name=formList]");
+	var form = $("form[name=myForm]");
 	var formVo = $("form[name=formVo]");
 	
 	$("#btnSave").on("click",function(){
@@ -261,9 +263,10 @@
 	});
 	
 	$("#btnList").on("click",function(){
-		formVo.attr("action", goUrlList).submit();
+		formVo.attr("action",goUrlList).submit();
 	});
 	
 </script>
+
 </body>
 </html>

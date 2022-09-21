@@ -69,7 +69,7 @@
 				<li class="fw-semibold">회원 관리
 					<ul class="list-unstyled ps-2">
 						<a href="/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
-						<a href=""><li style="font-weight: normal;">댓글 관리</li></a>
+						<a href=""><li style="font-weight: normal;">댓글관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">컨텐츠 관리
@@ -81,7 +81,7 @@
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
 						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/code/codeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>

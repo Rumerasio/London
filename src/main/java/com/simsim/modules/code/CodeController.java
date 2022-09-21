@@ -23,7 +23,7 @@ public class CodeController {
 	@Autowired
 	CodeGroupServiceImpl codeGroupService;
 
-	@RequestMapping(value = "CodeList")
+	@RequestMapping(value = "codeList")
 	public String codeList(Model model, @ModelAttribute("vo") CodeVo vo) throws Exception {
 
 		vo.setShuseNy(vo.getShuseNy() == null ? 1 : vo.getShuseNy());
@@ -50,7 +50,7 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeForm(Model model,@ModelAttribute CodeGroupVo vo) throws Exception {
+	public String codeForm(Model model,@ModelAttribute("vo") CodeGroupVo vo) throws Exception {
 		
 		List<CodeGroup> result = codeGroupService.selectListSm(vo);
 		
@@ -69,27 +69,27 @@ public class CodeController {
 	public String codeInst(Code dto) throws Exception {
 		int result = service.insert(dto);
 		System.out.println("Controller result: "+result);
-		return "redirect:/code/CodeList";
+		return "redirect:/code/codeList";
 	}
 	
 	@RequestMapping(value="codeUpdt")
 	public String codeUpdt(Code dto,@ModelAttribute("vo") CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.update(dto);
 		redirectAttributes.addFlashAttribute("vo", vo);
-		return "redirect:/code/CodeList";
+		return "redirect:/code/codeList";
 	}	
 	
 	@RequestMapping(value="codeVele")
 	public String codeVele(Code dto,@ModelAttribute("vo") CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.velete(dto);
 		redirectAttributes.addFlashAttribute("vo", vo);
-		return "redirect:/code/CodeList";
+		return "redirect:/code/codeList";
 	}
 	
 	@RequestMapping(value="codeDele")
 	public String codeDele(@ModelAttribute("vo") CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.delete(vo);
 		redirectAttributes.addFlashAttribute("vo", vo);
-		return "redirect:/code/CodeList";
+		return "redirect:/code/codeList";
 	}
 }

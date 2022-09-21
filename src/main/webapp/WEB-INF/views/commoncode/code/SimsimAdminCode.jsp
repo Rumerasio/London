@@ -79,7 +79,7 @@
 				<li class="fw-semibold">소스관리
 					<ul class="list-unstyled ps-2">
 						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
+						<a href="/code/codeList"><li style="font-weight: normal;">코드 관리</li></a>
 					</ul>
 				</li>
 				<li class="fw-semibold">통계</li>
@@ -96,7 +96,7 @@
 				<div class="my-2 row">
 					<div class="col-2">
 						<select class="form-select" id="shuseNy" name="shuseNy">
-							<option value="" <c:if test="${empty vo.shuseNy }">selected</c:if>>사용여부</option>
+							<option value="9" <c:if test="${vo.shuseNy eq 9 }">selected</c:if>>사용여부</option>
 							<option value="1" <c:if test="${vo.shuseNy eq 1 }">selected</c:if>>Y</option>
 							<option value="0" <c:if test="${vo.shuseNy eq 0 }">selected</c:if>>N</option>
 						</select>
@@ -281,7 +281,7 @@
 	} );
 </script>
 <script type="text/javascript">
-	var goUrlList = "/code/CodeList"; 			/* #-> */
+	var goUrlList = "/code/codeList"; 			/* #-> */
 	var goUrlUpdt = "/code/codeUpdt";				/* #-> */
 	var goUrlVele = "/code/codeVele";				/* #-> */
 	var goUrlDele = "/code/codeDele";				/* #-> */
