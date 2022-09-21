@@ -8,6 +8,27 @@
 
     <resultMap id="resultMapObj" type="com.simsim.modules.member.Member"></resultMap>
 	
+	<sql id="selectCommon">
+		FROM jsMember a 
+		<!-- inner join code b on b.codeAnother = a.gender -->
+		WHERE 1=1
+			<if test="shdelNy != null and !shdelNy.equals('')">AND a.delNy = #{shdelNy}</if>
+			<choose>
+				<when test="shgender ==1">AND gender = 101</when>
+				<when test="shgender ==2">AND gender = 102</when>
+			</choose>
+			<choose>
+				<when test="shOption ==1">AND nickname LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==2">AND email LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==3">AND id LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.seq
@@ -22,23 +43,73 @@
 			,a.emailDomain
 			,a.id
 			,a.password
-			,a.datetime
 			,a.delNy
-		FROM jsMember a 
-		<!-- inner join code b on b.codeAnother = a.gender -->
-		WHERE 1=1
-			<if test="shdelNy != null and !shdelNy.equals('')">AND a.delNy = #{shdelNy}</if>
-			<choose>
-				<when test="shgender ==1">AND gender = 101</when>
-				<when test="shgender ==2">AND gender = 102</when>
-			</choose>
-			<choose>
-				<when test="shOption ==1">AND nickname LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption ==2">AND email LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption ==3">AND id LIKE CONCAT('%',#{shValue},'%')</when>
-			</choose>
+			,a.registerDateTime
+			,a.modifyDateTime
+		<include refid="selectCommon"></include>
 		order by
 			a.seq asc
 	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.seq
+			,a.nickname
+			,a.dob
+			,a.gender
+			,a.email
+			,a.id
+			,a.password
+			,a.delNy
+			,a.registerDateTime
+			,a.modifyDateTime
+		FROM jsMember a
+		WHERE 1=1
+			AND a.seq=#{seq}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO jsMember(
+			a.seq
+			,a.nickname
+			,a.dob
+			,a.gender
+			,a.email
+			,a.id
+			,a.password
+			,a.delNy
+			,a.registerDateTime
+		)
+		VALUES(
+			#{a.seq}
+			,#{a.nickname}
+			,#{a.dob}
+			,#{a.gender}
+			,#{a.email}
+			,#{a.id}
+			,#{a.password}
+			,#{a.delNy}
+			,#{a.registerDateTime}
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE jsMember
+		SET
+			a.seq = #{a.seq}
+			,a.nickname = #{a.nickname}
+			,a.dob = #{a.dob}
+			,a.gender = #{a.gender}
+			,a.email = #{a.email}
+			,a.id = #{a.id}
+			,a.password = #{a.password}
+			,a.delNy = #{a.delNy}
+			,a.registerDateTime = #{a.registerDateTime}
+		WHERE
+			seq=#{seq}
+	</update>
 
 </mapper>

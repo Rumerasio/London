@@ -13,9 +13,11 @@ public class Member {
 	private String emailDomain;
 	private String id;
 	private String password;
-	private String datetime;
 	private String delNy;
 	private String codeNameKor;
+	private String registerDateTime;
+	private String modifyDateTime;
+	
 	//****************
 	public String getSeq() {
 		return seq;
@@ -83,12 +85,6 @@ public class Member {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getDatetime() {
-		return datetime;
-	}
-	public void setDatetime(String datetime) {
-		this.datetime = datetime;
-	}
 	public String getDelNy() {
 		return delNy;
 	}
@@ -101,4 +97,17 @@ public class Member {
 	public void setCodeNameKor(String codeNameKor) {
 		this.codeNameKor = codeNameKor;
 	}
+	public String getRegisterDateTime() {
+		return registerDateTime;
+	}
+	public void setRegisterDateTime(String registerDateTime) {
+		this.registerDateTime = registerDateTime;
+	}
+	public String getModifyDateTime() {
+		return modifyDateTime;
+	}
+	public void setModifyDateTime(String modifyDateTime) {
+		this.modifyDateTime = modifyDateTime;
+	}
+	
 }

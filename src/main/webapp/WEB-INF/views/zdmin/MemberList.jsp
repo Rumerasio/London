@@ -204,7 +204,7 @@
 										</c:forEach>
 		    						</td>
 		    						<td></td>
-		    						<td><c:out value="${list.datetime }"></c:out></td>
+		    						<td><c:out value="${list.registerDateTime }"></c:out></td>
 		    						<td><c:out value="${list.delNy }"></c:out> </td>
 		    					</tr>
 		    				</c:forEach>
