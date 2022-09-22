@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -89,7 +89,10 @@
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>회원관리</b></h5>
-		<form role="search" method="post">
+		<form role="search" method="post" id="formList" name="formList">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+			<input type="hidden" name="seq" id="seq" value="<c:out value="${vo.seq}"/>">
 			<div class="mb-3" id="search_tab">
 				<div class="my-2 row">
 					<div class="col">
@@ -139,13 +142,13 @@
 						<div class="d-flex">
 					      <input class="form-control" type="search" placeholder="검색어" aria-label="Search" autocomplete="off" id="shValue" name="shValue" style="margin-right: 5px;">
 					      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
-					      <button class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
+					      <button type="button" id="btnReset" class="btn btn-outline-danger"><i class="fa-solid fa-rotate-right"></i></button>
 					    </div>
 				    </div>
 			    </div>
 		    </div>
 		    <div class="row mb-3">
-		    	<div class="col-1" style="text-align: center; font-size: 24px;">Total:12</div>
+		    	<div class="col-1" style="text-align: center; font-size: 24px;">Total: <c:out value="${vo.totalRows}"/></div>
 		    	<div class="col-1 offset-10">
 				    <select class="form-select">
 				    	<option selected value="1">5</option>
@@ -183,7 +186,7 @@
 		    				<c:forEach items="${list}" var="list" varStatus="status">
 		    					<tr>
 		    						<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-		    						<td><c:out value="${list.seq }"></c:out></td>
+		    						<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 		    						<td><c:out value="${list.nickname }"></c:out></td>
 		    						<td><c:out value="${list.dob }"></c:out></td>
 		    						<td>
@@ -212,33 +215,9 @@
 		    		</c:choose>
 		    	</table>
 		    	<br>
-		    	<nav class="nav justify-content-center">
-				  <ul class="pagination">
-				  	<li class="page-item">
-				      <a class="page-link" href="#" >
-				        <span><i class="fa-solid fa-backward-step"></i></span>
-				      </a>
-				    </li>
-				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Previous">
-				        <span><i class="fa-solid fa-chevron-left"></i></span>
-				      </a>
-				    </li>
-				    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item">
-				      <a class="page-link" href="#" aria-label="Next">
-				        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-				      </a>
-				    </li>
-				    <li class="page-item">
-				      <a class="page-link" href="#">
-				        <span><i class="fa-solid fa-forward-step"></i></span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
+		    	<!-- pagination s -->
+				<%@include file="../../commoncode/pagination.jsp"%>
+				<!-- pagination e -->
 		    </div>
 	    </form>
 	    <div class="position-relative">
@@ -248,7 +227,7 @@
 	    	</div>
 	    	<div class="position-absolute end-0">
 		    	<button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button>
-		    	<a href="./ZdminMemberAdd.html"><button type="button" class="btn btn-info"><i class="fa-solid fa-plus"></i></button></a>
+		    	<button type="button" id="btnForm" class="btn btn-info"><i class="fa-solid fa-plus"></i></button>
 	    	</div>
 	    	<div class="modal" tabindex="-1" id="state_delete_modal">
 			  <div class="modal-dialog">
@@ -328,6 +307,36 @@
 			dateFormat: "yy.mm.dd"
 		});
 	} );
+</script>
+<script type="text/javascript">
+	var goUrlList = "/member/memberList"; 			/* #-> */
+	var goUrlVele = "/member/codeGroupVele";				/* #-> */
+	var goUrlDele = "/member/codeGroupDele";				/* #-> */
+	var goUrlForm = "/member/AdminCodegroupReg";
+	
+	var seq = $("input:hidden[name=seq]");				/* #-> */
+	
+	var form = $("form[name=formList]");
+	
+	goForm = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+		form.attr("action", goUrlForm).submit();
+	}
+	
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+	
+	$('#btnForm').on("click", function() {
+		goForm(0);                
+	});
+	
+	$("#btnReset").on("click",function(){
+		$(location).attr("href",goUrlList);
+	});
+	
 </script>
 </body>
 </html>

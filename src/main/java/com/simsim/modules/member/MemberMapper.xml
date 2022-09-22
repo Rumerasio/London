@@ -30,25 +30,27 @@
 	</select>
 	
 	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			a.seq
-			,a.nickname
-			,a.dob
-			,a.gender
-			<!-- ,b.codeNameKor -->
-			,a.phoneAgency
-			,a.phoneNum
-			,a.email
-			,a.emailInsert
-			,a.emailDomain
-			,a.id
-			,a.password
-			,a.delNy
-			,a.registerDateTime
-			,a.modifyDateTime
-		<include refid="selectCommon"></include>
-		order by
-			a.seq asc
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.seq
+				,a.nickname
+				,a.dob
+				,a.gender
+				<!-- ,b.codeNameKor -->
+				,a.phoneAgency
+				,a.phoneNum
+				,a.email
+				,a.emailInsert
+				,a.emailDomain
+				,a.id
+				,a.password
+				,a.delNy
+				,a.registerDateTime
+				,a.modifyDateTime
+			<include refid="selectCommon"></include>
+			order by a.seq DESC
+			<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
@@ -111,5 +113,17 @@
 		WHERE
 			seq=#{seq}
 	</update>
+	
+	<update id="velete">
+		UPDATE jsMember
+		SET
+			delNy = 1
+		WHERE
+			seq=#{seq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM jsMember WHERE seq = #{seq}
+	</delete>
 
 </mapper>
