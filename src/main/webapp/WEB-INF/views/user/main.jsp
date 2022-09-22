@@ -288,7 +288,7 @@
 		$("#latitude").val('');
 		$("#longitude").val('');
 	});
-   
+    
 </script>
 </body>
 </html>

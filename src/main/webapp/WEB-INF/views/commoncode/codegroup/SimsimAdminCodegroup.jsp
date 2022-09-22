@@ -303,6 +303,7 @@
 	$("#btnReset").on("click",function(){
 		$(location).attr("href",goUrlList);
 	});
+	
 </script>
 </body>
 </html>
