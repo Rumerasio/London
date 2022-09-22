@@ -167,6 +167,14 @@
 					<input type="text" class="form-control" id="adressDetail" placeholder="상세주소">
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-6">
+					<input type="text" class="form-control" id="latitude" placeholder="위도">
+				</div>
+				<div class="col-6">
+					<input type="text" class="form-control" id="longitude" placeholder="경도">
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -188,6 +196,7 @@
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67fc6337fd44ffa65501244b4df0a284&libraries=services"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -198,7 +207,7 @@
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var addr = ''; // 주소 변수
                 /* var extraAddr = ''; // 참고항목 변수 */
-
+                
                 //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     addr = data.roadAddress;
@@ -227,15 +236,34 @@
                 } else {
                     /* document.getElementById("sample6_extraAddress").value = ''; */
                 }
-
+                
+				
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('adressNum').value = data.zonecode;
                 document.getElementById("adress").value = addr;
+                
+                var geocoder = new daum.maps.services.Geocoder();
+                
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+
+                        var result = results[0]; //첫번째 결과의 값을 활용
+                        
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        
+                        document.getElementById('latitude').value = coords.getLat();
+                        document.getElementById('longitude').value = coords.getLng();
+                    }
+                });
+                
+                		
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("adressDetail").focus();
             }
         }).open();
-        new daum.Postcode({
+        /* new daum.Postcode({
             onclose: function(state) {
                 //state는 우편번호 찾기 화면이 어떻게 닫혔는지에 대한 상태 변수 이며, 상세 설명은 아래 목록에서 확인하실 수 있습니다.
                 if(state === 'FORCE_CLOSE'){
@@ -250,13 +278,15 @@
                     
                 }
             }
-        });
+        }); */
     }
 	
     $("#btnAdrClear").on("click", function(){
 		$("#adressNum").val("");
 		$("#adress").val('');
 		$("#adressDetail").val('');
+		$("#latitude").val('');
+		$("#longitude").val('');
 	});
    
 </script>
