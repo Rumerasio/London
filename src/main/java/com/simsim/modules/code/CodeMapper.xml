@@ -141,7 +141,8 @@
 	<update id="velete">
 		UPDATE code
 		SET
-			delNy = 1
+			useNy = 0
+			,delNy = 1
 		WHERE 1=1
 			AND seq = #{seq}
 	</update>
