@@ -12,7 +12,7 @@
 <head>
 	<meta charset="uTF-8">
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
-	<title>AdminMember</title>
+	<title>MemberList</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
  	<link rel="stylesheet" href="/resources/demos/style.css">
@@ -97,7 +97,7 @@
 				<div class="my-2 row">
 					<div class="col">
 						<select class="form-select" id="shdelNy" name="shdelNy">
-							<option value="" <c:if test="${empty vo.shdelNy}">selected</c:if>>삭제여부</option>
+							<option value="9" <c:if test="${empty vo.shdelNy}">selected</c:if>>삭제여부</option>
 							<option value="1" <c:if test="${vo.shdelNy eq 1 }">selected</c:if>>Y</option>
 							<option value="0" <c:if test="${vo.shdelNy eq 0 }">selected</c:if>>N</option>
 						</select>
@@ -187,7 +187,7 @@
 		    					<tr>
 		    						<td><input type="checkbox" class="form-check-input" name="Chk"></td>
 		    						<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-		    						<td><c:out value="${list.nickname }"></c:out></td>
+		    						<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.nickname }"></c:out></a></td>
 		    						<td><c:out value="${list.dob }"></c:out></td>
 		    						<td>
 		    							<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
@@ -312,7 +312,8 @@
 	var goUrlList = "/member/memberList"; 			/* #-> */
 	var goUrlVele = "/member/codeGroupVele";				/* #-> */
 	var goUrlDele = "/member/codeGroupDele";				/* #-> */
-	var goUrlForm = "/member/AdminCodegroupReg";
+	var goUrlForm = "/member/memberForm";
+	var goUrlView = "/member/memberViewMod";
 	
 	var seq = $("input:hidden[name=seq]");				/* #-> */
 	
@@ -322,6 +323,12 @@
     	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
     	seq.val(keyValue);
 		form.attr("action", goUrlForm).submit();
+	}
+	
+	goView = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+		form.attr("action", goUrlView).submit();
 	}
 	
 	goList = function(thisPage) {

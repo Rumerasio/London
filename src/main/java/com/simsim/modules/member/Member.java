@@ -13,7 +13,7 @@ public class Member {
 	private String emailDomain;
 	private String id;
 	private String password;
-	private String delNy;
+	private Integer delNy;
 	private String codeNameKor;
 	private String registerDateTime;
 	private String modifyDateTime;
@@ -85,10 +85,10 @@ public class Member {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getDelNy() {
+	public Integer getDelNy() {
 		return delNy;
 	}
-	public void String(String delNy) {
+	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
 	}
 	public String getCodeNameKor() {

@@ -4,7 +4,7 @@
 <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 
 <input type="hidden" name="shdelNy" value="<c:out value="${vo.shdelNy}"/>"/>
-<input type="hidden" name="Shgender" value="<c:out value="${vo.Shgender}"/>"/>
+<input type="hidden" name="Shgender" value="<c:out value="${vo.shgender}"/>"/>
 <%-- <input type="hidden" name="Shage" value="<c:out value="${vo.Shage}"/>"/> --%>
 
 <input type="hidden" name="shOption" value="<c:out value="${vo.shOption}"/>"/>
