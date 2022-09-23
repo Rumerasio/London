@@ -61,6 +61,23 @@
 			AND a.seq= #{seq}
 	</select>
 	
+	<!-- 데이터 중복 체크용 -->
+	<select id="selectOneCodeCheck" resultType="Integer">
+		SELECT
+			COUNT(codeGroupCode)
+		FROM codeGroup a
+		WHERE 1=1
+			AND a.codeGroupCode = #{codeGroupCode}
+	</select>
+	
+	<select id="selectOneCodeAnotherCheck" resultType="Integer">
+		SELECT
+			COUNT(codeGroupCodeAnother)
+		FROM codeGroup a
+		WHERE 1=1
+			AND a.codeGroupCodeAnother = #{codeGroupCodeAnother}
+	</select>
+	
 	<select id="selectListSm" resultMap="resultMapObj">
 		SELECT 
 			a.seq

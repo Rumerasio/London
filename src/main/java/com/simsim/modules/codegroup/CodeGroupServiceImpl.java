@@ -26,6 +26,17 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 //	}
 	
 	@Override
+	public int selectOneCodeCheck(CodeGroup dto) throws Exception {
+		int result = dao.selectOneCodeCheck(dto);
+		return result;
+	}
+	
+	@Override
+	public int selectOneCodeAnotherCheck(CodeGroup dto) throws Exception {
+		return dao.selectOneCodeAnotherCheck(dto);
+	}
+	
+	@Override
 	public int insert(CodeGroup dto) throws Exception {
 		int result = dao.insert(dto);
 		System.out.println("service result: "+ result);
@@ -76,5 +87,6 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	public int delete(CodeGroupVo vo) throws Exception {
 		return dao.delete(vo);
 	}
+
 
 }

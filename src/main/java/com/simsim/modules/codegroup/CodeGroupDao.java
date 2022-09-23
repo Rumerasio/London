@@ -48,5 +48,8 @@ public class CodeGroupDao {
 	public int velete(CodeGroup dto) {return sqlSession.update(namespace + ".velete",dto);}
 	
 	public int delete(CodeGroupVo vo) {return sqlSession.delete(namespace + ".delete",vo);}
+
+	public int selectOneCodeCheck(CodeGroup dto) {return sqlSession.selectOne(namespace+".selectOneCodeCheck",dto); }
+	public int selectOneCodeAnotherCheck(CodeGroup dto) {return sqlSession.selectOne(namespace+".selectOneCodeAnotherCheck",dto); }
 	
 }

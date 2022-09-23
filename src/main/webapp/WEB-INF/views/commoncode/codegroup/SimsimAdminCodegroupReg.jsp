@@ -97,13 +97,17 @@
 		<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
 		<!-- *Vo.jsp e -->
 			<div class="row justify-content-center py-2">
+				<input type="hidden" id="codeGroupCodeAllowedNy" name="codeGroupCodeAllowedNy" value="0">
+				<input type="hidden" id="codeGroupCodeAnotherAllowedNy" name="codeGroupCodeAnotherAllowedNy" value="0">
 				<label for="codeGroupCode" class="col-2 col-form-label">코드그룹 코드</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codeGroupCode" name="codeGroupCode" placeholder="영문(대소문자), 숫자" value="">
+			      <input type="text" class="form-control" id="codeGroupCode" name="codeGroupCode" placeholder="숫자" value="">
+			      <div class="invalid-feedback" id="codeGroupCodeFeedback"></div>
 			    </div>
 			    <label for="codeGroupCodeAnother" class="col-2 col-form-label">코드그룹 코드(Another)</label>
 			    <div class="col-4">
-			      <input type="text" class="form-control" id="codeGroupCodeAnother" name="codeGroupCodeAnother" placeholder="영문(대소문자), 숫자" value="">
+			      <input type="text" class="form-control" id="codeGroupCodeAnother" name="codeGroupCodeAnother" placeholder="숫자" value="">
+			      <div class="invalid-feedback" id="codeGroupCodeAnotherFeedback"></div>
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
@@ -272,6 +276,88 @@
 	}
 </script>
 <script type="text/javascript">
+	$("#codeGroupCode").on("focusout", function(){
+//		if(!checkId('ifmmId', 2, 0, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
+//			return false;
+//		} else {
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/codeGroup/checkCode"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "codeGroupCode" : $("#codeGroupCode").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("codeGroupCode").classList.add('is-valid');
+						document.getElementById("codeGroupCode").classList.remove('is-invalid');
+	
+						document.getElementById("codeGroupCodeFeedback").classList.remove('invalid-feedback');
+						document.getElementById("codeGroupCodeFeedback").classList.add('valid-feedback');
+						document.getElementById("codeGroupCodeFeedback").innerText = "사용 가능 합니다.";
+						
+						document.getElementById("codeGroupCodeAllowedNy").value = 1;
+						
+					} else {
+						document.getElementById("codeGroupCode").classList.add('is-invalid');
+						document.getElementById("codeGroupCode").classList.remove('is-valid');
+						
+						document.getElementById("codeGroupCodeFeedback").classList.remove('valid-feedback');
+						document.getElementById("codeGroupCodeFeedback").classList.add('invalid-feedback');
+						document.getElementById("codeGroupCodeFeedback").innerText = "사용 불가능 합니다";
+						
+						document.getElementById("codeGroupCodeAllowedNy").value = 0;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+//		}
+	});
+	
+	$("#codeGroupCodeAnother").on("focusout", function(){
+//		if(!checkId('ifmmId', 2, 0, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
+//			return false;
+//		} else {
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/codeGroup/checkCodeAnother"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "codeGroupCodeAnother" : $("#codeGroupCodeAnother").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("codeGroupCodeAnother").classList.add('is-valid');
+						document.getElementById("codeGroupCodeAnother").classList.remove('is-invalid');
+	
+						document.getElementById("codeGroupCodeAnotherFeedback").classList.remove('invalid-feedback');
+						document.getElementById("codeGroupCodeAnotherFeedback").classList.add('valid-feedback');
+						document.getElementById("codeGroupCodeAnotherFeedback").innerText = "사용 가능 합니다.";
+						
+						document.getElementById("codeGroupCodeAnotherAllowedNy").value = 1;
+						
+					} else {
+						document.getElementById("codeGroupCodeAnother").classList.add('is-invalid');
+						document.getElementById("codeGroupCodeAnother").classList.remove('is-valid');
+						
+						document.getElementById("codeGroupCodeAnotherFeedback").classList.remove('valid-feedback');
+						document.getElementById("codeGroupCodeAnotherFeedback").classList.add('invalid-feedback');
+						document.getElementById("codeGroupCodeAnotherFeedback").innerText = "사용 불가능 합니다";
+						
+						document.getElementById("codeGroupCodeAnotherAllowedNy").value = 0;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+//		}
+	});
+
 	var goUrlList = "/codeGroup/AdminCodegroupList"; 			/* #-> */
 	var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
 	var goUrlVele = "/codeGroup/codeGroupVele";				/* #-> */
