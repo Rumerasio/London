@@ -10,21 +10,107 @@
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
-			seq
+			snSeq
 			,a.survey,
-		    a.surveyPhrase -- +사진
+		    a.surveyPhrase
 		FROM jsSurveyName a
 		WHERE 1=1
 	</select>
 
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			seq
-			,a.survey
-			,a.surveyPhrase
-		FROM jsSurveyname a
+			a.survey,
+		    b.question,
+		    b.questionContent,
+		    c.choice,
+		    c.choiceContent
+		FROM jsSurveyName a
+		inner join jsSurveyQuestion b on b.jsSurveyName_snSeq = a.snSeq
+		inner join jsQuestionChoice c on b.sqSeq = c.jsSurveyQuestion_sqSeq
 		WHERE 1=1
-			AND a.seq=#{seq}
+			AND a.snSeq=#{snSeq}
 	</select>
+	
+	
+	
+	<insert id="insertSurveyName">
+		INSERT INTO jsSurveyName(
+			survey
+			,surveyPhrase
+			,surveyExplain
+			,openNy
+		)
+		VALUES (
+			#{survey}
+			,#{surveyPhrase}
+			,#{surveyExplain}
+			,#{openNy}
+		)
+		<selectKey resultType="String" keyProperty="snSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertSurveyQestion">
+		INSERT INTO jsSurveyQuestion(
+			snSeq
+			,question
+			,questionContent
+		)
+		VALUES(
+			#{snSeq}
+			,#{question}
+			,#{questionContent}
+		)
+		<selectKey resultType="String" keyProperty="sqSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertChoice">
+		INSERT INTO jsQuestionChoice(
+			sqSeq
+			,choice
+			,choiceContent
+			,choiceScore
+		)
+		VALUES(
+			#{sqSeq}
+			,#{choice}
+			,#{choiceContent}
+			,#{choiceScore}
+		)
+		<selectKey resultType="String" keyProperty="sqcSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertResult">
+		INSERT INTO jsSurveyResult(
+			snSeq
+			,resultNum
+			,resultTitle
+			,resultSmTitle
+			,resultContent
+			,scoreRangeStart
+			,scoreRangeEnd
+			,relation1
+			,relation2
+		)
+		VALUES(
+			#{snSeq}
+			,#{resultNum}
+			,#{resultTitle}
+			,#{resultSmTitle}
+			,#{resultContent}
+			,#{scoreRangeStart}
+			,#{scoreRangeEnd}
+			,#{relation1}
+			,#{relation2}
+		)
+		<selectKey resultType="String" keyProperty="srSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 	
 </mapper>

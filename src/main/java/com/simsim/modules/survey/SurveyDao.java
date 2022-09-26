@@ -21,8 +21,14 @@ public class SurveyDao {
 		return sqlSession.selectList(namespace + ".selectList","");
 	}
 	
-	
 	public Survey selectOne(SurveyVo vo){
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
+	
+	public int insertSurveyName(Survey dto) { return sqlSession.insert(namespace+".insertSurveyName",dto);}
+	public int insertSurveyQuestion(Survey dto) { return sqlSession.insert(namespace+".insertSurveyQuestion",dto);}
+	public int insertQuestionChoice(Survey dto) { return sqlSession.insert(namespace+".insertQuestionChoice",dto);}
+	public int insertSurveyResult(Survey dto) { return sqlSession.insert(namespace+".insertSurveyResult",dto);}
+	
+	
 }
