@@ -1,0 +1,159 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="uTF-8">
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+	<title>개인정보 수정</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<style type="text/css">
+	/* 폰트: Edu NSW ACT Foundation, sans-serif, Noto Sans KR */
+	@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Edu+NSW+ACT+Foundation:wght@700&family=Noto+Sans+KR:wght@500&display=swap');
+	body {
+	background-color: rgba(0, 86, 102, 0.07);
+	}
+	#topNav{
+		background-color:white;
+		border-bottom: solid;
+		border-bottom-color: gray;
+		border-bottom-width: thin;
+	}
+	#logo{
+	font-size: 40px;
+	font-family: Edu NSW ACT Foundation;
+	color:rgb(197, 59, 222);
+	}
+	a{
+	text-decoration: none;
+	color:black;
+	}
+</style>
+
+<body>
+<nav class="navbar">
+	<div class="container-fluid" id="topNav">
+		<a class="navbar-brand" id="logo" href="./mainLogedin.html">Simsim</a>
+	</div>
+</nav>
+<div class="container col-7">
+	<div style="text-align:center; position: relative;">
+		<a href="./memberMypage.html"><button type="button" class="btn btn-sm" style="position:absolute; left:120px; width: 80px; background-color:#e6e6e6;">뒤로가기</button></a>
+		<h3 class="my-5">개인정보수정</h3>
+		<form>
+			<div class="row justify-content-center py-2">
+				<label for="nickname" class="col-sm-2 col-form-label">닉네임</label>
+			    <div class="col-sm-6">
+			      <input type="text" class="form-control" id="nickname" value="로제">
+			    </div>
+			</div>
+			<div class="row justify-content-center py-2">
+				<label for="dob" class="col-sm-2 col-form-label">생년월일</label>
+			    <div class="col-sm-6">
+			      <input type="text" class="form-control" id="dob" placeholder="ex)080101" value="890515">
+			    </div>
+			</div>
+			<div class="row py-2">
+				<label for="user_gender" class="col-sm-2 offset-2 col-form-label">성별</label>
+			    <div class="col-sm-2">
+			      <select class="form-select col-2" id="user_gender">
+			      	<option value = 0>성별</option>
+			      	<option value = 1>남성</option>
+			      	<option value = 2 selected>여성</option>
+			      </select>
+			    </div>
+			</div>
+			<div class="row justify-content-center py-2">
+				<label for="user_email" class="col-sm-2 col-form-label">이메일</label>
+				<div class="col-6">
+			      <input type="text" class="form-control" id="user_email" placeholder="" value="rozemari22@gmail.com">
+			    </div>
+			    <!-- 
+			    <div class="col-3">
+			      <input type="text" class="form-control" id="email_id" placeholder="" value="rozemari22">
+			    </div>
+			    <div class="col-3">
+			    	<select class="form-select col-3">
+					 	<option value = 0>메일주소</option>
+					 	<option value = 1>naver.com</option>
+					 	<option value = 2 selected>gmail.com</option>
+					 </select>
+			    </div> 
+			    -->
+			</div>
+			<div class="row justify-content-center py-2">
+				<label for="user_id" class="col-sm-2 col-form-label">아이디</label>
+			    <div class="col-sm-6">
+			      <input type="text" class="form-control" disabled id="user_id" placeholder="" value="escaida15">
+			    </div>
+			</div>
+			<div class="row justify-content-center py-2">
+				<label for="user_password" class="col-sm-2 col-form-label">비밀번호</label>
+			    <div class="col-sm-6">
+			      <input type="password" class="form-control" id="user_password" placeholder="현재 비밀번호">
+			    </div>
+			</div>
+			<div class="row justify-content-center py-2">
+				<label for="user_password_check" class="col-sm-2 col-form-label">비밀번호 확인</label>
+			    <div class="col-sm-6">
+			      <input type="password" class="form-control" id="user_password_check" placeholder="">
+			    </div>
+			</div>
+		</form>
+		<div class="row mt-5" style="position: relative;">
+			<div class="col-8 offset-2">
+				<button type="button" class="btn float-start" style="width: 100px; background-color:rgb(197, 59, 222); color:white;">수정하기</button>
+				<button type="button" class="btn btn-danger float-end" data-bs-toggle="modal" data-bs-target="#member_leave" style="width: 100px;">탈퇴</button>
+				<div style="clear: both;"></div>
+				<p class="float-start mt-1" style="font-size: 12px;">수정되었습니다.</p>
+			</div>
+			
+		</div>
+		<div class="modal fade" tabindex="-1" id="member_leave">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+				    <h5 class="modal-title">회원 탈퇴</h5>
+				    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+				    <p>계정을 다시 복구 할 수 없습니다. <br> 정말 탈퇴하시겠습니까?</p>
+				  </div>
+				  <div class="modal-footer">
+				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#member_leave_alert">탈퇴</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" tabindex="-1" id="member_leave_alert">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+				    <h5 class="modal-title">회원 탈퇴</h5>
+				    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+				    <p>탈퇴되었습니다.</p>
+				  </div>
+				  <div class="modal-footer">
+				    <a href="./main.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button></a>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+</body>
+</html>
