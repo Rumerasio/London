@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<!-- 공통그룹 코드 한글매칭용 -->
 <jsp:useBean id="CodeServiceImpl" class="com.simsim.modules.code.CodeServiceImpl"/>
 
 <!DOCTYPE HTML>
@@ -62,30 +63,9 @@
 			<h6><b>이솔빈</b> 관리자님</h6>
 			<a href="./ZdminLogin.html"><span style="font-size: 10px;">로그아웃</span></a>
 		</div>
-		<div class="mt-3 pt-2 ps-3" style="background-color:rgb(224, 224, 224);">
-			<span style="text-align: center;"><h5>메뉴</h5></span>
-			<ul class="list-unstyled">
-				<li class="fw-semibold">회원 관리
-					<ul class="list-unstyled ps-2">
-						<a href="/member/memberList"><li style="font-weight: normal;">회원관리</li></a>
-						<a href="./ZdminCommentRecord.html"><li style="font-weight: normal;">댓글관리</li></a>
-					</ul>
-				</li>
-				<li class="fw-semibold">컨텐츠 관리
-					<ul class="list-unstyled ps-2">
-						<a href="./ZdminContentRecord.html"><li style="font-weight: normal;">컨텐츠 이용내역</li></a>
-						<a href="./ZdminContentList.html"><li style="font-weight: normal;">컨텐츠 목록</li></a>
-					</ul>
-				</li>
-				<li class="fw-semibold">소스관리
-					<ul class="list-unstyled ps-2">
-						<a href="/codeGroup/AdminCodegroupList"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="/code/CodeList"><li style="font-weight: normal;">코드 관리</li></a>
-					</ul>
-				</li>
-				<li class="fw-semibold">통계</li>
-			</ul>
-		</div>
+		<!-- 메뉴단 s -->
+		<%@include file="../Menu.jsp" %>
+		<!-- 메뉴단 e -->
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>회원관리</b></h5>
@@ -180,9 +160,10 @@
 		    				</tr>
 		    			</c:when>
 		    			<c:otherwise>
+		    				<!-- 공통 코드 내용 표기하기 -->
 		    				<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
-		    				<c:set var="listCodePhoneAgency" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
-		    				<c:set var="listCodeEmailDomain" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
+		    				<%-- <c:set var="listCodePhoneAgency" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
+		    				<c:set var="listCodeEmailDomain" value="${CodeServiceImpl.selectListCachedCode('3')}"/> --%>
 		    				<c:forEach items="${list}" var="list" varStatus="status">
 		    					<tr>
 		    						<td><input type="checkbox" class="form-check-input" name="Chk"></td>
@@ -197,14 +178,15 @@
 		    						<td><c:out value="${list.email }"></c:out></td>
 		    						<td><c:out value="${list.id }"></c:out></td>
 		    						<td>
-		    							<c:forEach items="${listCodePhoneAgency}" var="listPhoneAgency" varStatus="statusPhoneAgency">
+		    							<!-- 공통 코드 내용 표기하기 -->
+		    							<%-- <c:forEach items="${listCodePhoneAgency}" var="listPhoneAgency" varStatus="statusPhoneAgency">
 											<c:if test="${list.phoneAgency eq listPhoneAgency.codeAnother}"><c:out value="${listPhoneAgency.codeNameKor }"/></c:if>
-										</c:forEach>
+										</c:forEach> --%>
 		    						</td>
 		    						<td>
-		    							<c:forEach items="${listCodeEmailDomain}" var="listEmailDomain" varStatus="statusEmailDomain">
+		    							<%-- <c:forEach items="${listCodeEmailDomain}" var="listEmailDomain" varStatus="statusEmailDomain">
 											<c:if test="${list.emailDomain eq listEmailDomain.codeAnother}"><c:out value="${listEmailDomain.codeNameKor }"/></c:if>
-										</c:forEach>
+										</c:forEach> --%>
 		    						</td>
 		    						<td></td>
 		    						<td><c:out value="${list.registerDateTime }"></c:out></td>

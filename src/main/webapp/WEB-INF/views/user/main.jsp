@@ -116,8 +116,8 @@
 				</ul> 
 			</div>
 			<div id ="user_box">
-				<a href="./memberLogin.html"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
-				<a href="./memberRegForm.html"><button type="button" class="btn btn-sm m-1" style="width:120px; background-color:#e6e6e6;">회원가입</button></a>
+				<a href="/login"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
+				<a href="/register"><button type="button" class="btn btn-sm m-1" style="width:120px; background-color:#e6e6e6;">회원가입</button></a>
 			</div>
 		</div>
 		<div class="container mt-5">

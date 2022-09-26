@@ -55,19 +55,19 @@
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			a.seq
-			,a.nickname
-			,a.dob
-			,a.gender
-			,a.email
-			,a.id
-			,a.password
-			,a.delNy
-			,a.registerDateTime
-			,a.modifyDateTime
-		FROM jsMember a
+			seq
+			,nickname
+			,dob
+			,gender
+			,email
+			,id
+			,password
+			,delNy
+			,registerDateTime
+			,modifyDateTime
+		FROM jsMember 
 		WHERE 1=1
-			AND a.seq=#{seq}
+			AND seq=#{seq}
 	</select>
 	
 	<insert id="insert">
@@ -104,11 +104,9 @@
 			,gender = #{gender}
 			,email = #{email}
 			,id = #{id}
-			,password = #{password}
-			,delNy = #{delNy}
-			,registerDateTime = #{registerDateTime}
-		WHERE
-			seq=#{seq}
+			,delNy=#{delNy}
+		WHERE 1=1
+			AND seq = #{seq}
 	</update>
 	
 	<update id="velete">

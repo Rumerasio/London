@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping(value="/member/")
+@RequestMapping
 public class MemberController {
 
 	@Autowired
 	MemberServiceImpl service;
 	
 
-	@RequestMapping(value = "memberList")
+	@RequestMapping(value = "/member/memberList")
 	public String memberList(Model model,@ModelAttribute("vo") MemberVo vo) throws Exception {
 
 		vo.setShdelNy(vo.getShdelNy() == null ? 0 : vo.getShdelNy());
@@ -32,13 +32,33 @@ public class MemberController {
 		return "zdmin/member/MemberList";
 	}
 	
-	@RequestMapping(value="memberForm")
+	@RequestMapping(value="/member/memberForm")
 	public String memberForm(@ModelAttribute("vo") MemberVo vo) throws Exception{
 		
 		return "zdmin/member/MemberReg";
 	}
 	
-	@RequestMapping(value="memberViewMod")
+	// user 사용부분
+	@RequestMapping(value="/login")
+	public String login() throws Exception{
+		
+		return "user/Login";
+	}
+	
+	@RequestMapping(value="/register")
+	public String register() throws Exception{
+		
+		return "user/Register";
+	}
+	
+	@RequestMapping(value="userReg")
+	public String userReg(Member dto) throws Exception{
+		service.insert(dto);
+		return "redirect:/login";
+	}
+	
+	
+	@RequestMapping(value="/member/memberViewMod")
 	public String memberViewMod(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
 		
 		Member result = service.selectOne(vo);
@@ -47,10 +67,18 @@ public class MemberController {
 		return "zdmin/member/MemberViewMod";
 	}
 	
-	@RequestMapping(value="memberInst")
+	@RequestMapping(value="/member/memberContentRecord")
+	public String memberContentRecord() throws Exception{
+		
+		return "zdmin/member/MemberContentRecord";
+	}
+	
+	
+	@RequestMapping(value="/member/memberInst")
 	public String memberInst(@ModelAttribute("vo") MemberVo vo,Member dto, RedirectAttributes redirectAttributes) throws Exception{
 		
 		int result = service.insert(dto); 
+		System.out.println("result: "+result);
 		
 		vo.setSeq(dto.getSeq());
 		
@@ -59,7 +87,7 @@ public class MemberController {
 		return "redirect:/member/memberViewMod";
 	}
 	
-	@RequestMapping(value="memberUpdt")
+	@RequestMapping(value="/member/memberUpdt")
 	public String memberUpdt(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception{
 		
 		service.update(dto);
@@ -69,7 +97,7 @@ public class MemberController {
 		return "redirect:/member/memberList";
 	}
 	
-	@RequestMapping(value="memberDele")
+	@RequestMapping(value="/member/memberDele")
 	public String memberDele(@ModelAttribute("vo") MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.delete(vo);

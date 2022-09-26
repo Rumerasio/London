@@ -54,30 +54,9 @@
 			<h6><b>이솔빈</b> 관리자님</h6>
 			<a href="./ZdminLogin.html"><span style="font-size: 10px;">로그아웃</span></a>
 		</div>
-		<div class="mt-3 pt-2 ps-3" style="background-color:rgb(224, 224, 224);">
-			<span style="text-align: center;"><h5>메뉴</h5></span>
-			<ul class="list-unstyled">
-				<li class="fw-semibold">회원 관리
-					<ul class="list-unstyled ps-2">
-						<a href="./ZdminMember.html"><li style="font-weight: normal;">회원관리</li></a>
-						<a href="./ZdminCommentRecord.html"><li style="font-weight: normal;">댓글관리</li></a>
-					</ul>
-				</li>
-				<li class="fw-semibold">컨텐츠 관리
-					<ul class="list-unstyled ps-2">
-						<a href="./ZdminContentRecord.html"><li style="font-weight: normal;">컨텐츠 이용내역</li></a>
-						<a href="./ZdminContentList.html"><li style="font-weight: normal;">컨텐츠 목록</li></a>
-					</ul>
-				</li>
-				<li class="fw-semibold">소스관리
-					<ul class="list-unstyled ps-2">
-						<a href="./ZdminCodegroup.html"><li style="font-weight: normal;">코드그룹 관리</li></a>
-						<a href="./ZdminCode.html"><li style="font-weight: normal;">코드 관리</li></a>
-					</ul>
-				</li>
-				<li class="fw-semibold">통계</li>
-			</ul>
-		</div>
+		<!-- 메뉴단 s -->
+		<%@include file="../Menu.jsp" %>
+		<!-- 메뉴단 e -->
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>회원관리</b></h5>
@@ -93,19 +72,19 @@
 				<div class="row pt-4 py-2">
 					<label for="nickname" class="col-1 col-form-label">닉네임</label>
 				    <div class="col-4">
-				      <input type="text" class="form-control" id="nickname" value="<c:out value="${item.nickname }"></c:out>">
+				      <input type="text" class="form-control" id="nickname" name="nickname" value="<c:out value="${item.nickname }"></c:out>">
 				    </div>
 				</div>
 				<div class="row py-2">
 					<label for="dob" class="col-1 col-form-label">생년월일</label>
 				    <div class="col-4">
-				      <input type="text" class="form-control" disabled id="dob" placeholder="ex)080101" value="<c:out value="${item.dob }"></c:out>">
+				      <input type="text" class="form-control" id="dob" name="dob" placeholder="ex)080101" value="<c:out value="${item.dob }"></c:out>">
 				    </div>
 				</div>
 				<div class="row py-2">
 					<label for="gender" class="col-1 col-form-label">성별</label>
 				    <div class="col-2">
-				      <select class="form-select" disabled id="gender">
+				      <select class="form-select" id="gender" name="gender">
 				      	<option value ="" <c:if test="${empty item.gender}" >selected</c:if>>성별</option>
 				      	<option value = 1 <c:if test="${item.gender eq 1 }" >selected</c:if>>남성</option>
 				      	<option value = 2 <c:if test="${item.gender eq 2 }" >selected</c:if>>여성</option>
@@ -115,19 +94,19 @@
 				<div class="row py-2">
 					<label for="email" class="col-1 col-form-label">이메일</label>
 					<div class="col-4">
-				      <input type="text" class="form-control" disabled id="email" placeholder="" value="<c:out value="${item.email }"></c:out>">
+				      <input type="text" class="form-control" id="email" name="email" placeholder="" value="<c:out value="${item.email }"></c:out>">
 				    </div>
 				</div>
 				<div class="row py-2">
 					<label for="id" class="col-1 col-form-label">아이디</label>
 				    <div class="col-4">
-				      <input type="text" class="form-control" disabled id="id" placeholder="" value="<c:out value="${item.id }"></c:out>">
+				      <input type="text" class="form-control" id="id" name="id" placeholder="" value="<c:out value="${item.id }"></c:out>">
 				    </div>
 				</div>
 				<div class="row py-2">
 					<label for="dd" class="col-1 col-form-label">가입일시</label>
 				    <div class="col-4">
-				      <input type="text" class="form-control-plaintext" readonly id="dd" placeholder="" value="">
+				      <input type="text" class="form-control-plaintext" readonly id="dd" name="dd" placeholder="" value="">
 				    </div>
 				</div>
 				<div class="row py-2">
