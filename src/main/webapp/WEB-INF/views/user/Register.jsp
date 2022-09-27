@@ -38,7 +38,7 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./mainLogedin.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
 <div class="container col-6 rounded-5" style="background-color:rgba(255, 51, 153, 0.16); text-align: center; position:relative; top:150px;">
@@ -80,7 +80,7 @@
 	</form>
 	<div class="container pb-5" style="font-size:14px;">
 		<p>이미 계정이 있으신가요?</p>
-		<a href="/login"><b>로그인 화면으로</b></a>
+		<a href="/loginPage"><b>로그인 화면으로</b></a>
 	</div>
 </div>
 
