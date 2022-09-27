@@ -44,6 +44,12 @@
 	text-decoration: none;
 	color:black;
 	}
+	#btnLogOut{
+		cursor:pointer;
+	}
+	#btnLogOut:hover{
+		color:blue;
+	}
 	#end{
 		background-color: rgb(224, 224, 224);
 		padding-top: 30px;
@@ -69,7 +75,7 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./main.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
 <div class="container" id="total">
@@ -115,10 +121,35 @@
 					</li>
 				</ul> 
 			</div>
-			<div id ="user_box">
-				<a href="/login"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
+			<c:choose>
+				<c:when test="${sessSeq eq null}">
+					<div id ="user_box">
+						<a href="/loginPage"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
+						<a href="/register"><button type="button" class="btn btn-sm m-1" style="width:120px; background-color:#e6e6e6;">회원가입</button></a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id ="user_box">
+						<b><c:out value="${sessNickname }"/></b> 님<br>
+						<!-- <a href=""><i class="fa-solid fa-heart"></i></a> -->
+						<a href="./memberMypage.html"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
+						<a id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
+						<!-- <button type="button" class="btn" id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></button> -->
+						<!-- <a href=""><i class="fa-solid fa-clock-rotate-left"></i></a> -->
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<!-- <div id ="user_box">
+				<a href="/loginPage"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
 				<a href="/register"><button type="button" class="btn btn-sm m-1" style="width:120px; background-color:#e6e6e6;">회원가입</button></a>
 			</div>
+			<div id ="user_box">
+				<b>로제</b> 님<br>
+				<a href=""><i class="fa-solid fa-heart"></i></a>
+				<a href="./memberMypage.html"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
+				<a href="./main.html"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
+				<a href=""><i class="fa-solid fa-clock-rotate-left"></i></a>
+			</div> -->
 		</div>
 		<div class="container mt-5">
 			<h4>다른 컨텐츠</h4>
@@ -144,6 +175,8 @@
 				</c:choose>
 			</div>
 		</div>
+		sessSeq: <c:out value="${sessSeq }"/><br>
+		sessId: <c:out value="${sessId }"/><br>
 		<div class="row justify-content-center py-2">
 			<label class="col-2 col-form-label">주소</label>
 			<div class="row">
@@ -263,7 +296,8 @@
                 document.getElementById("adressDetail").focus();
             }
         }).open();
-        /* new daum.Postcode({
+        /* 
+        new daum.Postcode({
             onclose: function(state) {
                 //state는 우편번호 찾기 화면이 어떻게 닫혔는지에 대한 상태 변수 이며, 상세 설명은 아래 목록에서 확인하실 수 있습니다.
                 if(state === 'FORCE_CLOSE'){
@@ -278,7 +312,8 @@
                     
                 }
             }
-        }); */
+        });
+         */
     }
 	
     $("#btnAdrClear").on("click", function(){
@@ -288,6 +323,35 @@
 		$("#latitude").val('');
 		$("#longitude").val('');
 	});
+    
+	var goUrlMain = "/"; 			/* #-> */
+	var goUrlLogO = "/logoutProc"; 			/* #-> */
+    
+    $("#btnLogOut").on("click", function(){
+    	$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/logoutProc"
+			/* ,data : $("#formLogin").serialize() */
+			,success: function(response) {
+				if(response.rt == "success") {
+					/* if(response.changePwd == "true") {
+						location.href = URL_CHANGE_PWD_FORM;
+					} else { */
+						$(location).attr("href",goUrlMain);
+					/* } */
+				} else {
+					
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+  
     
 </script>
 </body>

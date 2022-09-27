@@ -14,13 +14,22 @@ public class Member {
 	private String id;
 	private String password;
 	private Integer delNy;
+	private Integer lgResultNy;
+	
 	private String codeNameKor;
 	private String registerDateTime;
 	private String modifyDateTime;
 	
 	//****************
+	
 	public String getSeq() {
 		return seq;
+	}
+	public Integer getLgResultNy() {
+		return lgResultNy;
+	}
+	public void setLgResultNy(Integer lgResultNy) {
+		this.lgResultNy = lgResultNy;
 	}
 	public void setSeq(String seq) {
 		this.seq = seq;

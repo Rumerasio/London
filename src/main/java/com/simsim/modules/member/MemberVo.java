@@ -11,6 +11,11 @@ public class MemberVo {
 	private Integer ShOption;
 	private String ShValue;
 	
+	private String id;
+	private String password;
+	private String nickname;
+	private Integer lgResultNy;
+	
 	private String seq;
 	
 //	paging
@@ -32,8 +37,33 @@ public class MemberVo {
 	
 	
 	//**************
+	
 	public Integer getShdelNy() {
 		return ShdelNy;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public Integer getLgResultNy() {
+		return lgResultNy;
+	}
+	public void setLgResultNy(Integer lgResultNy) {
+		this.lgResultNy = lgResultNy;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public void setShdelNy(Integer shdelNy) {
 		ShdelNy = shdelNy;

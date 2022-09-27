@@ -70,6 +70,26 @@
 			AND seq=#{seq}
 	</select>
 	
+	<select id="selectOneId" resultMap="resultMapObj">
+		SELECT
+			seq
+			,id
+		FROM jsMember
+		WHERE 1=1
+			AND id=#{id}
+	</select>
+	
+	<select id="selectOneLogin" resultMap="resultMapObj">
+		SELECT
+			seq
+			,id
+			,nickname
+		FROM jsMember
+		WHERE 1=1
+			AND id=#{id}
+			AND password = #{password}
+	</select>
+		
 	<insert id="insert">
 		INSERT INTO jsMember(
 			nickname

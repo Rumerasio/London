@@ -32,22 +32,22 @@
 <body>
 
 <div class="container col-6 rounded-5" style="background-color:rgba(255, 51, 153, 0.16); text-align: center; position:relative; top:200px;">
-	<form class="row g-3 p-1">
-		<a class="navbar-brand" id="logo" href="./mainLogedin.html">Simsim</a>
+	<form class="row g-3 p-1" method="post"  id="myForm" name="myForm">
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 		<div class="row justify-content-center pt-5">
 			<div class="form-floating mb-3" style="width:340px;">
-			  <input type="text" class="form-control" id="floatingInput" placeholder="id" value="escaida15">
-			  <label for="floatingInput" style="text-align:left;">아이디</label>
+			  <input type="text" class="form-control" id="id" name="id" placeholder="id" value="escaida15">
+			  <label for="id" style="text-align:left;">아이디</label>
 			</div>
 		</div>
 		<div class="row justify-content-center pb-3">
 			<div class="form-floating" style="width:340px;">
-			  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" value="fhwpvktmxk">
-			  <label for="floatingPassword" style="text-align:left;">비밀번호</label>
+			  <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="1q2w3e4r">
+			  <label for="password" style="text-align:left;">비밀번호</label>
 			</div>
 		</div>
 		<div class="row mb-3">
-			<span><a href="./mainLogedin.html"><input type="button" class="btn" value="로그인" style="background-color:rgb(197, 59, 222); color:white; width:320px;"></a></span>
+			<span><button type="button" class="btn" id="btnLogin" name="btnLogin" style="background-color:rgb(197, 59, 222); color:white; width:320px;">로그인</button></span>
 		</div>
 		<div class="row mb-3">
 			<span><a href="/register"><input type="button" value="회원가입" class="btn btn-secondary" style="width:320px;"></a></span>
@@ -58,5 +58,39 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	var goUrlMain = "/";
+	
+	var form = $("form[name=myForm]");
+
+	$("#btnLogin").on("click", function(){
+/* 			if(validation() == false) return false; */
+			
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/loginProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "id" : $("#id").val(), "password" : $("#password").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						/* if(response.changePwd == "true") {
+							location.href = URL_CHANGE_PWD_FORM;
+						} else { */
+							$(location).attr("href",goUrlMain);
+						/* } */
+					} else {
+						alert("회원없음");
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
+</script>
 </body>
 </html>
