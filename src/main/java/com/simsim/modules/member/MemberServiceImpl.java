@@ -18,6 +18,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectList(vo);
 	}
 
+//	@Override
+//	public List<Member> selectFavorite(Member dto) throws Exception {
+//		return dao.selectFavorite(dto);
+//	}
+	
 	@Override
 	public int selectOneCount(MemberVo vo) throws Exception {
 		return dao.selectOneCount(vo);
@@ -38,6 +43,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int update(Member dto) throws Exception {
+		dto.setPassword(UtilSecurity.encryptSha256(dto.getPassword()));
 		return dao.update(dto);
 	}
 
@@ -62,7 +68,5 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dao.selectOneLogin(dto);
 	}
-	
-	
 	
 }

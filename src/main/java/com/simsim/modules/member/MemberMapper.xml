@@ -69,7 +69,17 @@
 		WHERE 1=1
 			AND seq=#{seq}
 	</select>
-	
+	<!-- 
+	<select id="selectFavorite" resultMap="resultMapObj">
+		SELECT 
+		    b.nickname
+		    ,c.survey
+		FROM jsFavorite a
+		inner join jsSurveyName c on c.snSeq = a.jsSurveyName_snSeq
+		inner join jsMember b  on b.seq = a.jsMember_seq
+		WHERE b.seq =#{seq}
+	</select>
+	 -->
 	<select id="selectOneId" resultMap="resultMapObj">
 		SELECT
 			seq
@@ -77,6 +87,7 @@
 		FROM jsMember
 		WHERE 1=1
 			AND id=#{id}
+			AND delNy=0
 	</select>
 	
 	<select id="selectOneLogin" resultMap="resultMapObj">
@@ -88,6 +99,7 @@
 		WHERE 1=1
 			AND id=#{id}
 			AND password = #{password}
+			AND delNy = 0
 	</select>
 		
 	<insert id="insert">
@@ -108,7 +120,7 @@
 			,#{email}
 			,#{id}
 			,#{password}
-			,#{delNy}
+			,0
 			,#{registerDateTime}
 		)
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
@@ -124,9 +136,9 @@
 			,gender = #{gender}
 			,email = #{email}
 			,id = #{id}
-			,delNy=#{delNy}
-		WHERE 1=1
-			AND seq = #{seq}
+			,delNy = #{delNy}
+		WHERE 
+			seq = #{seq}
 	</update>
 	
 	<update id="velete">
