@@ -61,30 +61,25 @@
 			<h3 class="my-5"style="font-family: sans-serif;"><b><i class="fa-solid fa-heart"></i> 즐겨찾기</b></h3>
 		</div>
 		<div class="row row-cols-3 g-4" style="width:1050px;">
-		  <div class="col">
-		    <div class="card h-100">
-		      <a href="#"><img src="../images/card/ai_card.jpg" class="card-img-top" alt="..."></a>
-		      <div class="card-body">
-		        <a href="#"><h6 class="card-title">나는 뇌를 얼마나 쓰고 있을까?</h6></a>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="col">
-		    <div class="card h-100">
-		      <a href="#"><img src="../images/card/fox_card.jpg" class="card-img-top" alt="..."></a>
-		      <div class="card-body">
-		        <a href="#"><h6 class="card-title">꽃말 테스트</h6></a>
-		      </div>
-		    </div>
-		  </div>
-		  <div class="col">
-		    <div class="card h-100">
-		      <a href="../survey/survey1.html"><img src="../images/card/star_card.jpg" class="card-img-top" alt="..."></a>
-		      <div class="card-body">
-		        <a href="../survey/survey1.html"><h6 class="card-title">별자리 테스트</h6></a>
-		      </div>
-		    </div>
-		  </div>
+		  <c:choose>
+				<c:when test="${fn:length(list) eq 0}">
+					<div class="container">
+						<h2>There is no Survey!!!</h2>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<div class="col">
+						    <div class="card h-100">
+						      <a href="#"><img src="" class="card-img-top" alt="..."></a>
+						      <div class="card-body">
+						        <a href="#"><h6 class="card-title"><c:out value="${list.survey}"></c:out></h6></a>
+						      </div>
+						    </div>
+						  </div>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<nav class="nav justify-content-center mt-4">
@@ -117,5 +112,15 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var sessVal = '<%=(String)session.getAttribute("sessSeq")%>';
+		if(sessVal == '' || sessVal =='null'){
+			alert('세션이 만료되어 로그인 창으로 이동됩니다.');
+			location.href='/loginPage'
+		}
+	});
+</script>
 </body>
 </html>

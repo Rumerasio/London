@@ -19,6 +19,8 @@ public class MemberDao {
 	
 	public List<Member> selectList(MemberVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
 	
+//	public List<Member> selectFavorite(Member dto){ return sqlSession.selectList(namespace +".selectFavorite", dto);}
+	
 	public Member selectOne(MemberVo vo) {return sqlSession.selectOne(namespace+".selectOne", vo);}
 	
 	public Member selectOneId(Member dto) {return sqlSession.selectOne(namespace+".selectOneId", dto);}

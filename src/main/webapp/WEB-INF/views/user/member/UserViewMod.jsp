@@ -39,40 +39,43 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./mainLogedin.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
+sessSeq: <c:out value="${sessSeq }"/><br>
+		sessId: <c:out value="${sessId }"/><br>
 <div class="container col-7">
 	<div style="text-align:center; position: relative;">
-		<a href="./memberMypage.html"><button type="button" class="btn btn-sm" style="position:absolute; left:120px; width: 80px; background-color:#e6e6e6;">뒤로가기</button></a>
+		<button type="button" id="btnMypage" class="btn btn-sm" style="position:absolute; left:120px; width: 80px; background-color:#e6e6e6;">뒤로가기</button>
 		<h3 class="my-5">개인정보수정</h3>
-		<form>
+		<form method="post" id="myForm" name="myForm" autocomplete="off">
+		<input type="hidden" name="seq" value="<c:out value="${item.seq}"/>"/>
 			<div class="row justify-content-center py-2">
 				<label for="nickname" class="col-sm-2 col-form-label">닉네임</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="nickname" value="로제">
+			      <input type="text" class="form-control" id="nickname" name="nickname" value="<c:out value="${item.nickname }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
 				<label for="dob" class="col-sm-2 col-form-label">생년월일</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="dob" placeholder="ex)080101" value="890515">
+			      <input type="text" class="form-control" id="dob" name="dob" placeholder="ex)080101" value="<c:out value="${item.dob }"></c:out>">
 			    </div>
 			</div>
 			<div class="row py-2">
-				<label for="user_gender" class="col-sm-2 offset-2 col-form-label">성별</label>
+				<label for="gender" class="col-sm-2 offset-2 col-form-label">성별</label>
 			    <div class="col-sm-2">
-			      <select class="form-select col-2" id="user_gender">
-			      	<option value = 0>성별</option>
-			      	<option value = 1>남성</option>
-			      	<option value = 2 selected>여성</option>
+			      <select class="form-select col-2" id="gender" name="gender">
+			      	<option value = 103 <c:if test="${item.gender eq 103 }" >selected</c:if>>성별</option>
+			      	<option value = 101 <c:if test="${item.gender eq 101 }" >selected</c:if>>남성</option>
+			      	<option value = 102 <c:if test="${item.gender eq 102 }" >selected</c:if>>여성</option>
 			      </select>
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
-				<label for="user_email" class="col-sm-2 col-form-label">이메일</label>
+				<label for="email" class="col-sm-2 col-form-label">이메일</label>
 				<div class="col-6">
-			      <input type="text" class="form-control" id="user_email" placeholder="" value="rozemari22@gmail.com">
+			      <input type="text" class="form-control" id="email" name="email" placeholder="" value="<c:out value="${item.email }"></c:out>">
 			    </div>
 			    <!-- 
 			    <div class="col-3">
@@ -88,27 +91,27 @@
 			    -->
 			</div>
 			<div class="row justify-content-center py-2">
-				<label for="user_id" class="col-sm-2 col-form-label">아이디</label>
+				<label for="id" class="col-sm-2 col-form-label">아이디</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" disabled id="user_id" placeholder="" value="escaida15">
+			      <input type="text" class="form-control" readonly id="id" name="id" placeholder="" value="<c:out value="${item.id }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
 				<label for="user_password" class="col-sm-2 col-form-label">비밀번호</label>
 			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="user_password" placeholder="현재 비밀번호">
+			      <input type="password" class="form-control" id="" placeholder="현재 비밀번호" value="">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
 				<label for="user_password_check" class="col-sm-2 col-form-label">비밀번호 확인</label>
 			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="user_password_check" placeholder="">
+			      <input type="password" class="form-control" id="" placeholder="">
 			    </div>
 			</div>
 		</form>
 		<div class="row mt-5" style="position: relative;">
 			<div class="col-8 offset-2">
-				<button type="button" class="btn float-start" style="width: 100px; background-color:rgb(197, 59, 222); color:white;">수정하기</button>
+				<button type="button" id="btnMod" class="btn float-start" style="width: 100px; background-color:rgb(197, 59, 222); color:white;">수정하기</button>
 				<button type="button" class="btn btn-danger float-end" data-bs-toggle="modal" data-bs-target="#member_leave" style="width: 100px;">탈퇴</button>
 				<div style="clear: both;"></div>
 				<p class="float-start mt-1" style="font-size: 12px;">수정되었습니다.</p>
@@ -127,7 +130,7 @@
 				  </div>
 				  <div class="modal-footer">
 				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-				    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#member_leave_alert">탈퇴</button>
+				    <button type="button" id="btnQuit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#member_leave_alert">탈퇴</button>
 				  </div>
 				</div>
 			</div>
@@ -155,5 +158,59 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var sessVal = '<%=(String)session.getAttribute("sessSeq")%>';
+		if(sessVal == '' || sessVal =='null'){
+			alert('세션이 만료되어 로그인 창으로 이동됩니다.');
+			location.href='/loginPage'
+		}
+	});
+	
+	var goUrlMypage = "/myPage";
+	var goUrlUpdt = "/myPage/userUpdt";
+	var goUrlVele = "/myPage/userVele";
+	
+	var form = $("form[name=myForm]");
+	
+	$("#btnMypage").on("click", function(){
+		$(location).attr("href",goUrlMypage);
+	});
+	
+	$("#btnMod").on("click", function(){
+		form.attr("action", goUrlUpdt).submit();
+	});
+	
+//	$("#btnQuit").on("click", function(){
+//		form.attr("action", goUrlVele).submit();
+//	});
+
+	$("#btnQuit").on("click", function(){
+    	$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/logoutProc"
+			/* ,data : $("#formLogin").serialize() */
+			,success: function(response) {
+				if(response.rt == "success") {
+					/* if(response.changePwd == "true") {
+						location.href = URL_CHANGE_PWD_FORM;
+					} else { */
+						form.attr("action", goUrlVele).submit();
+					/* } */
+				} else {
+					
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
+</script>
 </body>
 </html>
