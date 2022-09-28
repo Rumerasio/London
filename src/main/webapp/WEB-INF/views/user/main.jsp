@@ -44,10 +44,10 @@
 	text-decoration: none;
 	color:black;
 	}
-	#btnLogOut{
+	#btnLogOut, #btnMypage{
 		cursor:pointer;
 	}
-	#btnLogOut:hover{
+	#btnLogOut:hover, #btnMypage:hover{
 		color:blue;
 	}
 	#end{
@@ -132,7 +132,7 @@
 					<div id ="user_box">
 						<b><c:out value="${sessNickname }"/></b> 님<br>
 						<!-- <a href=""><i class="fa-solid fa-heart"></i></a> -->
-						<a href="./memberMypage.html"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
+						<a id="btnMypage"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
 						<a id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
 						<!-- <button type="button" class="btn" id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></button> -->
 						<!-- <a href=""><i class="fa-solid fa-clock-rotate-left"></i></a> -->
@@ -325,6 +325,7 @@
 	});
     
 	var goUrlMain = "/"; 			/* #-> */
+	var goUrlMypage = "/myPage"; 			/* #-> */
 	var goUrlLogO = "/logoutProc"; 			/* #-> */
     
     $("#btnLogOut").on("click", function(){
@@ -352,6 +353,9 @@
 		});
 	});
   
+    $("#btnMypage").on("click", function(){
+    	$(location).attr("href",goUrlMypage);
+    });
     
 </script>
 </body>

@@ -32,7 +32,7 @@
 	</select>
 	
 	
-	
+	<!-- 테스트 내용 작성 s -->
 	<insert id="insertSurveyName">
 		INSERT INTO jsSurveyName(
 			survey
@@ -112,5 +112,6 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	<!-- 테스트 내용 작성 e -->
 	
 </mapper>
