@@ -51,13 +51,13 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./mainLogedin.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
 <div class="container my-5">
 	<div class="container" style="width:900px;">
 		<div style="text-align:center; position:relative;">
-			<a href="./memberMypage.html"><button type="button" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button></a>
+			<button type="button" id="btnMypage" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button>
 			<h3 class="my-5"style="font-family: sans-serif;"><b><i class="fa-regular fa-comment"></i> 내 댓글</b></h3>
 		</div>
 		<div style="text-align: right; position:relative;">
@@ -68,38 +68,33 @@
 				<input type="radio" name="cp_item" value="좋아요순"><span>좋아요순</span>
 			</label>
 		</div>
-		<div class="container pt-1 my-3" style="background-color: white;">
-			<h6 class="my-1" style="font-size: 10px; display:inline-block;">별자리 테스트</h6>
-			<div class="row py-2">
-				<div class="col-2">
-					<div class="row" style="text-align:center;"><h6 style="font-size: 16px;">로제</h6></div>
-					<div class="row" style="text-align:center;"><h6 style="font-size: 12px;">2022-07-01<br>15:57:12</h6></div> 
+		<c:choose>
+			<c:when test="${fn:length(list) eq 0 }">
+				<tr>
+					<td colspan="4" style="text-align: center;">There is no data</td>
+				</tr>
+			</c:when>
+		<c:otherwise>
+			<c:forEach items="${list}" var="list" varStatus="status">
+				<div class="container pt-1 my-3" style="background-color: white;">
+					<h6 class="my-1" style="font-size: 10px; display:inline-block;"><c:out value="${list.survey }"/></h6>
+					<div class="row py-2">
+						<div class="col-2">
+							<div class="row" style="text-align:center;"><h6 style="font-size: 16px;"><c:out value="${list.nickname }"/></h6></div>
+							<div class="row" style="text-align:center;"><h6 style="font-size: 12px;">2022-07-01<br>15:57:12</h6></div> 
+						</div>
+						<div class="col-8">
+							<p style="font-size: 14px;"><c:out value="${list.commentContent }"/></p>
+						</div>
+						<div class="col-2">
+							<button type="button" class="btn btn-sm btn-primary float-end my-1" style="width: 80px;"><i class="fa-solid fa-thumbs-up"></i>12</button>
+							<button type="button" class="btn btn-sm btn-secondary float-end" style="width: 80px;">삭제</button>
+						</div>
+					</div>
 				</div>
-				<div class="col-8">
-					<p style="font-size: 14px;">내가 왜 전갈자리? 난 원래 양자리인데!</p>
-				</div>
-				<div class="col-2">
-					<button type="button" class="btn btn-sm btn-primary float-end my-1" style="width: 80px;"><i class="fa-solid fa-thumbs-up"></i>12</button>
-					<button type="button" class="btn btn-sm btn-secondary float-end" style="width: 80px;">삭제</button>
-				</div>
-			</div>
-		</div>
-		<div class="container pt-1 my-3" style="background-color: white;">
-			<h6 class="my-1" style="font-size: 10px; display:inline-block;">꽃말 테스트</h6>
-			<div class="row py-2">
-				<div class="col-2">
-					<div class="row" style="text-align:center;"><h6 style="font-size: 16px;">로제</h6></div>
-					<div class="row" style="text-align:center;"><h6 style="font-size: 12px;">2022-06-25<br>19:12:06</h6></div> 
-				</div>
-				<div class="col-8">
-					<p style="font-size: 14px;">문구들이 너무 예쁘다</p>
-				</div>
-				<div class="col-2">
-					<button type="button" class="btn btn-sm btn-primary float-end my-1" style="width: 80px;"><i class="fa-solid fa-thumbs-up"></i>38</button>
-					<button type="button" class="btn btn-sm btn-secondary float-end" style="width: 80px;">삭제</button>
-				</div>
-			</div>
-		</div>
+			</c:forEach>
+		</c:otherwise>
+		</c:choose>
 	</div>
 	<nav class="nav justify-content-center mt-4">
 	  <ul class="pagination pagination-sm">
@@ -141,6 +136,13 @@
 			alert('세션이 만료되어 로그인 창으로 이동됩니다.');
 			location.href='/loginPage'
 		}
+	});
+	
+
+	var goUrlMypage = "/myPage";
+	
+	$("#btnMypage").on("click", function(){
+		$(location).attr("href",goUrlMypage);
 	});
 </script>
 </body>

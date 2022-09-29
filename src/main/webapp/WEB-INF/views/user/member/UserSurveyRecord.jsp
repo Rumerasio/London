@@ -46,12 +46,12 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./mainLogedin.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
 <div class="container my-5">
 	<div style="text-align:center; position:relative;">
-		<a href="./memberMypage.html"><button type="button" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button></a>
+		<button type="button" id="btnMypage" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button>
 		<h3 style="font-family: sans-serif;"><b><i class="fa-solid fa-clock-rotate-left"></i> 참여테스트 기록</b></h3>
 	</div>
 	<table class="table table-striped mt-5">
@@ -61,30 +61,23 @@
 	  	<th>결과</th>
 	  	<th>날짜</th>
 	  </tr>
-	  <tr>
-	  	<td>13</td>
-	  	<td>별자리 테스트</td>
-	  	<td>궁수자리</td>
-	  	<td>2022.07.20 17:16:50</td>
-	  </tr>
-	  <tr>
-	  	<td>12</td>
-	  	<td>꽃말 테스트</td>
-	  	<td>장미</td>
-	  	<td>2022.07.20 17:10:28</td>
-	  </tr>
-	  <tr>
-	  	<td>11</td>
-	  	<td></td>
-	  	<td></td>
-	  	<td></td>
-	  </tr>
-	   <tr>
-	  	<td>10</td>
-	  	<td></td>
-	  	<td></td>
-	  	<td></td>
-	  </tr>
+		<c:choose>
+			<c:when test="${fn:length(list) eq 0 }">
+				<tr>
+					<td colspan="4" style="text-align: center;">There is no data</td>
+				</tr>
+			</c:when>
+		<c:otherwise>
+			<c:forEach items="${list}" var="list" varStatus="status">
+				<tr>
+					<td><c:out value="${list.srcSeq }"/></td>
+					<td><c:out value="${list.survey }"></c:out></td>
+					<td><c:out value="${list.resultTitle }"></c:out></td>
+					<td><c:out value="${list.datetime }"></c:out></td>
+				</tr>
+			</c:forEach>
+		</c:otherwise>
+		</c:choose>
 	</table>
 	<nav class="nav justify-content-center mt-4">
 	  <ul class="pagination pagination-sm">
@@ -126,6 +119,12 @@
 			alert('세션이 만료되어 로그인 창으로 이동됩니다.');
 			location.href='/loginPage'
 		}
+	});
+	
+	var goUrlMypage = "/myPage";
+	
+	$("#btnMypage").on("click", function(){
+		$(location).attr("href",goUrlMypage);
 	});
 </script>
 </body>

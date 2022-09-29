@@ -18,6 +18,18 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
+	public List<Survey> selectUserRecord(Survey dto) throws Exception {
+		List<Survey> list = dao.selectUserRecord(dto);
+		return list;
+	}
+	
+	@Override
+	public List<Survey> selectMyComment(Survey dto) throws Exception {
+		List<Survey> list = dao.selectMyComment(dto);
+		return list;
+	}
+	
+	@Override
 	public Survey selectOne(SurveyVo vo) throws Exception {
 		Survey result = dao.selectOne(vo);
 		return result;

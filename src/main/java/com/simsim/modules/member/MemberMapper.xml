@@ -69,7 +69,7 @@
 		WHERE 1=1
 			AND seq=#{seq}
 	</select>
-	<!-- 
+	
 	<select id="selectFavorite" resultMap="resultMapObj">
 		SELECT 
 		    b.nickname
@@ -79,7 +79,7 @@
 		inner join jsMember b  on b.seq = a.jsMember_seq
 		WHERE b.seq =#{seq}
 	</select>
-	 -->
+	
 	<select id="selectOneId" resultMap="resultMapObj">
 		SELECT
 			seq
@@ -131,13 +131,13 @@
 	<update id="update">
 		UPDATE jsMember
 		SET
-			nickname = #{nickname}
-			,dob = #{dob}
-			,gender = #{gender}
-			,email = #{email}
-			,id = #{id}
-			,delNy = #{delNy}
-		WHERE 
+		    nickname = #{nickname}
+		    ,dob = #{dob}
+		    ,gender = #{gender}
+		    ,email = #{email}
+		    ,id = #{id}
+		    ,delNy = #{delNy} 
+		WHERE
 			seq = #{seq}
 	</update>
 	

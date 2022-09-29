@@ -2,6 +2,8 @@ package com.simsim.modules.survey;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,5 +63,30 @@ public class SurveyController {
 		service.insert(dto);
 		return "redirect:/content/contentList";
 	}
+	
+	//유저 인터페이스 S
+	@RequestMapping(value="/myPage/surveyRecord")
+	public String surveyRecord(Survey dto, Model model, HttpSession httpSession) throws Exception {
+		String rtSeq = (String) httpSession.getAttribute("sessSeq");
+		dto.setSeq(rtSeq);
+		
+		List<Survey> list = service.selectUserRecord(dto);
+		model.addAttribute("list",list);
+		
+		return "user/member/UserSurveyRecord";
+	}
+	
+	@RequestMapping(value="/myPage/myComment")
+	public String myComment(Survey dto, Model model, HttpSession httpSession) throws Exception{
+		String rtSeq = (String) httpSession.getAttribute("sessSeq");
+		dto.setSeq(rtSeq);
+		List<Survey> list = service.selectMyComment(dto);
+		model.addAttribute("list",list);
+		
+		return "user/member/UserComment";
+	}
+	
+	
+	//유저 인터페이스 E
 		
 }

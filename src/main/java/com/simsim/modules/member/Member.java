@@ -20,11 +20,25 @@ public class Member {
 	private String registerDateTime;
 	private String modifyDateTime;
 	
+	private String survey;
+//	private String snSeq;
 	//****************
 	
 	public String getSeq() {
 		return seq;
 	}
+	public String getSurvey() {
+		return survey;
+	}
+	public void setSurvey(String survey) {
+		this.survey = survey;
+	}
+//	public String getSnSeq() {
+//		return snSeq;
+//	}
+//	public void setSnSeq(String snSeq) {
+//		this.snSeq = snSeq;
+//	}
 	public Integer getLgResultNy() {
 		return lgResultNy;
 	}

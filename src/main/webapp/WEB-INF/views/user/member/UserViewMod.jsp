@@ -50,6 +50,7 @@ sessSeq: <c:out value="${sessSeq }"/><br>
 		<h3 class="my-5">개인정보수정</h3>
 		<form method="post" id="myForm" name="myForm" autocomplete="off">
 		<input type="hidden" name="seq" value="<c:out value="${item.seq}"/>"/>
+		<input type="hidden" name="delNy" value= 0 />
 			<div class="row justify-content-center py-2">
 				<label for="nickname" class="col-sm-2 col-form-label">닉네임</label>
 			    <div class="col-sm-6">

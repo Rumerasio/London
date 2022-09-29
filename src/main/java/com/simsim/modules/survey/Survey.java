@@ -31,6 +31,22 @@ public class Survey {
 	private Integer totalScore;
 	private String datetime;
 	
+	private String scSeq;
+	private String nickname;
+	private String commentContent;
+	
+	private String ssSeq;
+	private String ssQuestion;
+	private String ssChoosed;
+	
+	private String seq;
+	
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
 	public String getSnSeq() {
 		return snSeq;
 	}
@@ -180,6 +196,42 @@ public class Survey {
 	}
 	public void setDatetime(String datetime) {
 		this.datetime = datetime;
+	}
+	public String getSsSeq() {
+		return ssSeq;
+	}
+	public void setSsSeq(String ssSeq) {
+		this.ssSeq = ssSeq;
+	}
+	public String getSsQuestion() {
+		return ssQuestion;
+	}
+	public void setSsQuestion(String ssQuestion) {
+		this.ssQuestion = ssQuestion;
+	}
+	public String getSsChoosed() {
+		return ssChoosed;
+	}
+	public void setSsChoosed(String ssChoosed) {
+		this.ssChoosed = ssChoosed;
+	}
+	public String getScSeq() {
+		return scSeq;
+	}
+	public void setScSeq(String scSeq) {
+		this.scSeq = scSeq;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getCommentContent() {
+		return commentContent;
+	}
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
 	}
 	
 	

@@ -175,6 +175,13 @@ public class MemberController {
 			service.insert(dto);
 			return "redirect:/loginPage";
 		}
+		
+		@RequestMapping(value="/findLoginInfo")
+		public String findLoginInfo() throws Exception {
+			
+			return "user/FindLoginInfo";
+		}
+		
 		//myPage 부분 S
 		
 		@RequestMapping(value="/myPage")
@@ -186,14 +193,18 @@ public class MemberController {
 		}
 		
 		@RequestMapping(value="/myPage/userViewMod")
-		public String userViewMod(HttpSession httpSession, MemberVo vo, Model model) throws Exception {
+		public String userViewMod(HttpSession httpSession,@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 			
 			String rtSeq = (String) httpSession.getAttribute("sessSeq");
+			String rtNickname = (String) httpSession.getAttribute("sessNickname");
 			
 			vo.setSeq(rtSeq);
+			vo.setNickname(rtNickname);
 			
 			Member result = service.selectOne(vo);
+			
 			model.addAttribute("item", result);
+			
 			System.out.println(vo.getSeq());
 			System.out.println(vo.getNickname());
 			System.out.println(vo.getId());
@@ -204,9 +215,11 @@ public class MemberController {
 		
 		@RequestMapping(value="/myPage/userUpdt")
 		public String userUpdt(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception{
+			
 			service.update(dto);
 			
 			redirectAttributes.addFlashAttribute("vo", vo);
+			
 			System.out.println(dto.getSeq());
 			System.out.println(dto.getNickname());
 			System.out.println(dto.getDob());
@@ -219,7 +232,7 @@ public class MemberController {
 		}
 		
 		@RequestMapping(value="/myPage/userVele")
-		public String userVele(MemberVo vo, Member dto,  RedirectAttributes redirectAttributes) throws Exception{
+		public String userVele(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception{
 			service.velete(dto);
 			
 			redirectAttributes.addFlashAttribute("vo", vo);
@@ -227,14 +240,18 @@ public class MemberController {
 			return "redirect:/";
 		}
 
-//		@RequestMapping(value="/myPage/favoriteList")
-//		public String favoriteList(Model model, Member dto) throws Exception{
-//			
-//			List<Member> list = service.selectFavorite(dto);
-//			model.addAttribute("list", list);
-//			
-//			return "user/member/UserFavoriteSurvey";
-//		}
+		@RequestMapping(value="/myPage/favoriteList")
+		public String favoriteList(Model model, Member dto, HttpSession httpSession) throws Exception{
+			String rtSeq = (String) httpSession.getAttribute("sessSeq");
+			dto.setSeq(rtSeq);
+			
+			List<Member> list = service.selectFavorite(dto);
+			model.addAttribute("list", list);
+			
+			System.out.println(dto.getId());
+			
+			return "user/member/UserFavoriteSurvey";
+		}
 		
 		//myPage 부분 E
 }

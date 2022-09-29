@@ -51,13 +51,13 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./mainLogedin.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
 <div class="container my-5">
 	<div class="container" style="width:900px;">
 		<div style="text-align:center; position:relative;">
-			<a href="./memberMypage.html"><button type="button" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button></a>
+			<button type="button" id="btnMypage" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button>
 			<h3 class="my-5"style="font-family: sans-serif;"><b><i class="fa-solid fa-heart"></i> 즐겨찾기</b></h3>
 		</div>
 		<div class="row row-cols-3 g-4" style="width:1050px;">
@@ -120,6 +120,12 @@
 			alert('세션이 만료되어 로그인 창으로 이동됩니다.');
 			location.href='/loginPage'
 		}
+	});
+	
+	var goUrlMypage = "/myPage";
+	
+	$("#btnMypage").on("click", function(){
+		$(location).attr("href",goUrlMypage);
 	});
 </script>
 </body>

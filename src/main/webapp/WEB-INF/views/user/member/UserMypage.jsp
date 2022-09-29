@@ -50,8 +50,8 @@
 		<div class="container" style="width: 300px; height: 300px; position: relative; top:150px;">
 			<a href="/myPage/userViewMod"><button type="button" class="btn" style="font-family: 'Noto Sans KR';font-size:20px; background-image: url('/resources/images/antic.jpg'); width:190px;height:45px; position: absolute; top:-45px;left:0px;"><b>개인정보 수정</b></button></a>
 			<a href="/myPage/favoriteList"><img alt="favoriteTest_btn" src="/resources/images/favorite.jpg" style="position: absolute; top:150px;left:-223px;"></a>
-			<a href="./memberMyTestRecord.html"><img alt="testRecord_btn" src="/resources/images/test_record.jpg" style="position: absolute; top:21px;right:-224px;"></a>
-			<a href="./memberMyComment.html"><img alt="Comment_btn" src="/resources/images/myComment.jpg" style="position: absolute; bottom:-108px;right:0px;"></a>
+			<a href="/myPage/surveyRecord"><img alt="testRecord_btn" src="/resources/images/test_record.jpg" style="position: absolute; top:21px;right:-224px;"></a>
+			<a href="/myPage/myComment"><img alt="Comment_btn" src="/resources/images/myComment.jpg" style="position: absolute; bottom:-108px;right:0px;"></a>
 		</div>
 	</div>
 </div>

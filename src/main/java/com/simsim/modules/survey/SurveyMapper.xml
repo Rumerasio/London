@@ -30,8 +30,51 @@
 		WHERE 1=1
 			AND a.snSeq=#{snSeq}
 	</select>
+
+
+	<!-- 유저 인터페이스 s-->
+	<select id="selectUserRecord" resultMap="resultMapObj">
+<!-- 		SELECT 
+		a.srcSeq,
+	    d.survey,
+	    b.nickname,
+	    c.resultTitle,
+	    a.datetime
+	FROM jsSurveyRecord a
+	inner join jsMember b on b.seq = a.jsMember_seq 
+	<![CDATA[
+	inner join jsSurveyResult c on c.scoreRangeStart <= a.totalScore AND c.scoreRangeEnd >= a.totalScore
+	]]>
+	inner join jsSurveyName d on d.snSeq = a.jsSurveyName_snSeq
+		AND b.seq = #{seq} -->
+		SELECT 
+			a.srcSeq
+		    ,(SELECT survey FROM jsSurveyName d WHERE d.snSeq = a.jsSurveyName_snSeq) as survey
+		    ,nickname
+		    <![CDATA[
+		    ,(SELECT resultTitle FROM jsSurveyResult c WHERE c.scoreRangeStart <= a.totalScore AND c.scoreRangeEnd >= a.totalScore) as resultTitle
+		    ]]>
+		    ,a.datetime
+		FROM jsSurveyRecord a
+		inner join jsMember b on b.seq = a.jsMember_seq 
+			AND b.seq = #{seq}
+	</select>
 	
+	<select id="selectMyComment" resultMap="resultMapObj">
+		SELECT
+			a.scSeq,
+		    c.survey,
+		    a.nickname,
+		    a.commentContent,
+		    a.datetime
+		FROM jsSurveyComment a
+		inner join jsMember b on b.seq = a.jsSurveyName_snSeq
+		inner join jsSurveyName c on c.snSeq = a.jsSurveyName_snSeq
+		WHERE 1=1
+			AND a.jsMember_seq =#{seq}
+	</select>
 	
+	<!-- 유저 인터페이스 e-->
 	<!-- 테스트 내용 작성 s -->
 	<insert id="insertSurveyName">
 		INSERT INTO jsSurveyName(
