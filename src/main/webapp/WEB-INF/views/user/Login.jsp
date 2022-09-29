@@ -27,6 +27,12 @@
 	text-decoration: none;
 	color:black;
 	}
+	#btnFindId, #btnFindPassword{
+		cursor:pointer;
+	}
+	#btnFindId:hover, #btnFindPassword:hover{
+		color:blue;
+	}
 </style>
 
 <body>
@@ -53,7 +59,7 @@
 			<span><a href="/register"><input type="button" value="회원가입" class="btn btn-secondary" style="width:320px;"></a></span>
 		</div>
 	</form>
-	<div class="container pb-5" style="font-size:14px;"><a href="./memberFind.html">아이디</a> / <a href="./memberFind.html" #find_password>비밀번호 찾기</a></div>
+	<div class="container pb-5" style="font-size:14px;"><a id="btnFindId">아이디</a> / <a id="btnFindPassword">비밀번호 찾기</a></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -61,6 +67,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	var goUrlMain = "/";
+	var goUrlFind = "/findLoginInfo";
 	
 	var form = $("form[name=myForm]");
 
@@ -91,6 +98,14 @@
 				}
 			});
 		});
+	
+	$("#btnFindId").on("click", function(){
+    	$(location).attr("href",goUrlFind);
+    });
+	
+	$("#btnFindPassword").on("click", function(){
+    	$(location).attr("href",goUrlFind);
+    });
 </script>
 </body>
 </html>

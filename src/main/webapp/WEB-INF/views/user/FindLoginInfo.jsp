@@ -33,12 +33,15 @@
 	text-decoration: none;
 	color:black;
 	}
+	a[name=BtnToLogin] {
+		cursor:pointer;
+	}
 </style>
 
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./main.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
 <div class="container" style="background-color:white; text-align: center; position:relative; top:200px; width: 600px; padding-left:0px;padding-right: 0px;">
@@ -56,22 +59,22 @@
 		<div class="tab-pane fade show active" id="find_ID" role="tabpanel">
 			<div class="row p-1 mt-5">
 				<div class="my-3 row justify-content-center">
-				  <label for="find_ID_dob" class="col-2 col-form-label">생년월일</label>
+				  <label for="dob" class="col-2 col-form-label">생년월일</label>
 				  <div class="col-6">
-				    <input type="text" class="form-control" id="find_ID_dob" placeholder="ex)220101">
+				    <input type="text" class="form-control" id="dob" placeholder="ex)220101">
 				  </div>
 				</div>
 				<div class="my-2 row justify-content-center">
-				  <label for="find_ID_email" class="col-2 col-form-label">이메일</label>
+				  <label for="email" class="col-2 col-form-label">이메일</label>
 				  <div class="col-6">
-				    <input type="text" class="form-control" id="find_ID_email">
+				    <input type="text" class="form-control" id="email">
 				  </div>
 				</div>
 				<div class="row mt-5 justify-content-center">
 					<input type="button" class="btn" value="확인" data-bs-toggle="modal" data-bs-target="#find_ID_ID" style="background-color:#0072b3; color:white; width:180px;">
 				</div>
 				<div class="container pt-3 pb-5" style="font-size:14px;">
-					<a href="./memberLogin.html"><b>로그인 화면으로</b></a>
+					<a name="BtnToLogin" onclick="toLoginPage()"><b>로그인 화면으로</b></a>
 				</div>
 				<div class="modal fade" id="find_ID_ID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-centered">
@@ -90,28 +93,28 @@
 		<div class="tab-pane fade" id="find_password" role="tabpanel">
 			<div class="row p-1 mt-5">
 				<div class="my-3 row justify-content-center">
-				  <label for="find_password_ID" class="col-2 col-form-label">아이디</label>
+				  <label for="id" class="col-2 col-form-label">아이디</label>
 				  <div class="col-6">
-				    <input type="text" class="form-control" id="find_password_ID">
+				    <input type="text" class="form-control" id="id">
 				  </div>
 				</div>
 				<div class="my-3 row justify-content-center">
-				  <label for="find_password_dob" class="col-2 col-form-label">생년월일</label>
+				  <label for="dob" class="col-2 col-form-label">생년월일</label>
 				  <div class="col-6">
-				    <input type="text" class="form-control" id="find_password_dob" placeholder="ex)220101">
+				    <input type="text" class="form-control" id="dob" placeholder="ex)220101">
 				  </div>
 				</div>
 				<div class="my-2 row justify-content-center">
-				  <label for="find_password_email" class="col-2 col-form-label">이메일</label>
+				  <label for="email" class="col-2 col-form-label">이메일</label>
 				  <div class="col-6">
-				    <input type="text" class="form-control" id="find_password_email">
+				    <input type="text" class="form-control" id="email">
 				  </div>
 				</div>
 				<div class="row mt-5 justify-content-center">
 					<input type="button" class="btn" value="확인"  data-bs-toggle="modal" data-bs-target="#find_password_initialize" style="background-color:#0072b3; color:white; width:180px;">
 				</div>
 				<div class="container pt-3 pb-5" style="font-size:14px;">
-					<a href="./memberLogin.html"><b>로그인 화면으로</b></a>
+					<a name="BtnToLogin" onclick="toLoginPage()"><b>로그인 화면으로</b></a>
 				</div>
 				<div class="modal fade" id="find_password_initialize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-centered">
@@ -121,9 +124,9 @@
 				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				      </div>
 				      <div class="modal-body mb-3 row">
-					    <label for="inputPassword" class="col-4 col-form-label my-1">비밀번호</label>
+					    <label for="newPassword" class="col-4 col-form-label my-1">비밀번호</label>
 					    <div class="col-8">
-					      <input type="password" class="form-control" id="inputPassword">
+					      <input type="password" class="form-control" id="newPassword">
 					    </div>
 					    <label for="inputPasswordCheck" class="col-4 col-form-label my-1">비밀번호 확인</label>
 					    <div class="col-8">
@@ -155,5 +158,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	function toLoginPage(){
+		$(location).attr("href","/loginPage");
+	}
+</script>
 </body>
 </html>
