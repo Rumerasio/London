@@ -33,6 +33,7 @@
 			<exclude-mapping path="/register" />
 			<exclude-mapping path="/myPage/userVele" />
 			<exclude-mapping path="/userReg" />
+			<exclude-mapping path="/findLoginInfo" />
 			<beans:bean id="checkLoginSessionInterception" class="com.simsim.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	
