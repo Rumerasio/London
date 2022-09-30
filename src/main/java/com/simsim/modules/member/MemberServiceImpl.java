@@ -35,6 +35,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public Member selectId(Member dto) throws Exception {
+		return dao.selectId(dto);
+	}
+	
+	@Override
+	public Member selectPassword(Member dto) throws Exception {
+		return dao.selectPassword(dto);
+	}
+
+	@Override
+	public int changePassword(Member dto) throws Exception {
+		dto.setPassword(UtilSecurity.encryptSha256(dto.getPassword()));
+		return dao.changePassword(dto);
+	}
+	
+	@Override
 	public int insert(Member dto) throws Exception {
 		dto.setPassword(UtilSecurity.encryptSha256(dto.getPassword()));
     	
@@ -68,5 +84,5 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dao.selectOneLogin(dto);
 	}
-	
+
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -95,6 +96,12 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping(value="/member/memberComment")
+	public String commentRecord() throws Exception {
+		
+		return "zdmin/CommentRecord";
+	}
+	
 	// 사용자 사용부분
 		@RequestMapping(value="/loginPage")
 		public String loginPage() throws Exception{
@@ -180,6 +187,43 @@ public class MemberController {
 		public String findLoginInfo() throws Exception {
 			
 			return "user/FindLoginInfo";
+		}
+		
+		@ResponseBody
+		@RequestMapping(value="/findLoginInfo/findId")
+		public Map<String, Object> findId(Member dto, Model model) throws Exception {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			Member result = service.selectId(dto);
+			
+			if (result == null) {
+				returnMap.put("rt", "fail");
+			} else {
+				returnMap.put("rt", "success");
+				returnMap.put("id", result.getId());
+			}
+			
+			return returnMap;
+		}
+		
+		@ResponseBody
+		@RequestMapping(value="/findLoginInfo/findPassword")
+		public Map<String, Object> findPassword(Member dto, Model model) throws Exception {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			Member result = service.selectPassword(dto);
+			
+			if (result == null) {
+				returnMap.put("rt", "fail");
+			} else {
+				returnMap.put("rt", "success");
+			}
+			
+			return returnMap;
+		}
+		
+		@RequestMapping(value="/findLoginInfo/changePassword")
+		public String changePassword(Member dto) throws Exception {
+			service.changePassword(dto);
+			return "/findLoginInfo";
 		}
 		
 		//myPage 부분 S

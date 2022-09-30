@@ -16,6 +16,10 @@ public class Member {
 	private Integer delNy;
 	private Integer lgResultNy;
 	
+	private String idp;
+	private String emailp;
+	private String dobp;
+	
 	private String codeNameKor;
 	private String registerDateTime;
 	private String modifyDateTime;
@@ -131,6 +135,24 @@ public class Member {
 	}
 	public void setModifyDateTime(String modifyDateTime) {
 		this.modifyDateTime = modifyDateTime;
+	}
+	public String getIdp() {
+		return idp;
+	}
+	public void setIdp(String idp) {
+		this.idp = idp;
+	}
+	public String getEmailp() {
+		return emailp;
+	}
+	public void setEmailp(String emailp) {
+		this.emailp = emailp;
+	}
+	public String getDobp() {
+		return dobp;
+	}
+	public void setDobp(String dobp) {
+		this.dobp = dobp;
 	}
 	
 }

@@ -70,6 +70,35 @@
 			AND seq=#{seq}
 	</select>
 	
+	<select id="selectId" resultMap="resultMapObj">
+		SELECT
+			id
+		FROM jsMember
+		WHERE 1=1
+			AND dob = #{dob}
+			AND email=#{email}
+			And delNy = 0
+	</select>
+	
+	<select id="selectPassword" resultMap="resultMapObj">
+		SELECT
+			seq
+		FROM jsMember
+		WHERE 1=1
+			AND id = #{id}
+			AND dob = #{dob}
+			AND email = #{email}
+			AND delNy = 0
+	</select>
+	
+	<update id="changePassword" >
+		UPDATE jsMember
+		SET
+		    password = #{password}
+		WHERE 1=1
+			seq = #{seq}
+	</update>
+	
 	<select id="selectFavorite" resultMap="resultMapObj">
 		SELECT 
 		    b.nickname

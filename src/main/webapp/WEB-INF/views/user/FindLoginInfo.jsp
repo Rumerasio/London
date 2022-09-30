@@ -58,30 +58,30 @@
 	<div class="tab-content">
 		<div class="tab-pane fade show active" id="find_ID" role="tabpanel">
 			<div class="row p-1 mt-5">
-				<div class="my-3 row justify-content-center">
-				  <label for="dob" class="col-2 col-form-label">생년월일</label>
-				  <div class="col-6">
-				    <input type="text" class="form-control" id="dob" placeholder="ex)220101">
-				  </div>
-				</div>
-				<div class="my-2 row justify-content-center">
-				  <label for="email" class="col-2 col-form-label">이메일</label>
-				  <div class="col-6">
-				    <input type="text" class="form-control" id="email">
-				  </div>
-				</div>
+				<form method="post" id="myForm" name="myForm">
+					<div class="my-3 row justify-content-center">
+					  <label for="dob" class="col-2 col-form-label">생년월일</label>
+					  <div class="col-6">
+					    <input type="text" class="form-control" id="dob" placeholder="ex)220101">
+					  </div>
+					</div>
+					<div class="my-2 row justify-content-center">
+					  <label for="email" class="col-2 col-form-label">이메일</label>
+					  <div class="col-6">
+					    <input type="text" class="form-control" id="email">
+					  </div>
+					</div>
+				</form>
 				<div class="row mt-5 justify-content-center">
-					<input type="button" class="btn" value="확인" data-bs-toggle="modal" data-bs-target="#find_ID_ID" style="background-color:#0072b3; color:white; width:180px;">
+					<button type="button" class="btn" id="btnFindId" data-bs-toggle="modal" data-bs-target="#find_ID_ID" style="background-color:#0072b3; color:white; width:180px;">확인</button>
 				</div>
 				<div class="container pt-3 pb-5" style="font-size:14px;">
 					<a name="BtnToLogin" onclick="toLoginPage()"><b>로그인 화면으로</b></a>
 				</div>
-				<div class="modal fade" id="find_ID_ID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="find_ID_ID" tabindex="-1" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-centered">
 				    <div class="modal-content">
-				      <div class="modal-body">
-				        아이디는 'escaida15'입니다.
-				      </div>
+					  <div class="modal-body" id="findIdFeedbackText"></div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-primary col-8 mx-auto" data-bs-dismiss="modal">확인</button>
 				      </div>
@@ -92,65 +92,68 @@
 		</div>
 		<div class="tab-pane fade" id="find_password" role="tabpanel">
 			<div class="row p-1 mt-5">
-				<div class="my-3 row justify-content-center">
-				  <label for="id" class="col-2 col-form-label">아이디</label>
-				  <div class="col-6">
-				    <input type="text" class="form-control" id="id">
-				  </div>
-				</div>
-				<div class="my-3 row justify-content-center">
-				  <label for="dob" class="col-2 col-form-label">생년월일</label>
-				  <div class="col-6">
-				    <input type="text" class="form-control" id="dob" placeholder="ex)220101">
-				  </div>
-				</div>
-				<div class="my-2 row justify-content-center">
-				  <label for="email" class="col-2 col-form-label">이메일</label>
-				  <div class="col-6">
-				    <input type="text" class="form-control" id="email">
-				  </div>
-				</div>
-				<div class="row mt-5 justify-content-center">
-					<input type="button" class="btn" value="확인"  data-bs-toggle="modal" data-bs-target="#find_password_initialize" style="background-color:#0072b3; color:white; width:180px;">
-				</div>
-				<div class="container pt-3 pb-5" style="font-size:14px;">
-					<a name="BtnToLogin" onclick="toLoginPage()"><b>로그인 화면으로</b></a>
-				</div>
-				<div class="modal fade" id="find_password_initialize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				  <div class="modal-dialog modal-dialog-centered">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalLabel">비밀번호 재설정</h5>
-				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				      </div>
-				      <div class="modal-body mb-3 row">
-					    <label for="newPassword" class="col-4 col-form-label my-1">비밀번호</label>
-					    <div class="col-8">
-					      <input type="password" class="form-control" id="newPassword">
-					    </div>
-					    <label for="inputPasswordCheck" class="col-4 col-form-label my-1">비밀번호 확인</label>
-					    <div class="col-8">
-					      <input type="password" class="form-control" id="inputPasswordCheck">
+				<form method="post" id="myForm2" name="myForm2">
+					<div class="my-3 row justify-content-center">
+					  <label for="idp" class="col-2 col-form-label">아이디</label>
+					  <div class="col-6">
+					    <input type="text" class="form-control" id="idp">
+					  </div>
+					</div>
+					<div class="my-3 row justify-content-center">
+					  <label for="dobp" class="col-2 col-form-label">생년월일</label>
+					  <div class="col-6">
+					    <input type="text" class="form-control" id="dobp" placeholder="ex)220101">
+					  </div>
+					</div>
+					<div class="my-2 row justify-content-center">
+					  <label for="emailp" class="col-2 col-form-label">이메일</label>
+					  <div class="col-6">
+					    <input type="text" class="form-control" id="emailp">
+					  </div>
+					</div>
+					<div class="row mt-5 justify-content-center">
+						<button type="button" id="btnFindPassword" class="btn" data-bs-toggle="modal" data-bs-target="#find_password_initialize" style="background-color:#0072b3; color:white; width:180px;">확인</button>
+					</div>
+					<div class="container pt-3 pb-5" style="font-size:14px;">
+						<a name="BtnToLogin" onclick="toLoginPage()"><b>로그인 화면으로</b></a>
+					</div>
+					<div class="modal fade" id="find_password_initialize" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content">
+					    	<div id="findPasswordFeedbackText"></div>
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">비밀번호 재설정</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body mb-3 row">
+						    <label for="newPassword" class="col-4 col-form-label my-1">비밀번호</label>
+						    <div class="col-8">
+						      <input type="password" class="form-control" id="newPassword">
+						    </div>
+						    <label for="inputPasswordCheck" class="col-4 col-form-label my-1">비밀번호 확인</label>
+						    <div class="col-8">
+						      <input type="password" class="form-control" id="inputPasswordCheck">
+						    </div>
+						  </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-primary col-8 mx-auto" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#find_password_initialize_alert">재설정</button>
+					      </div>
 					    </div>
 					  </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary col-8 mx-auto" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#find_password_initialize_alert">재설정</button>
-				      </div>
-				    </div>
-				  </div>
-				</div>
-				<div class="modal fade" id="find_password_initialize_alert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				  <div class="modal-dialog modal-dialog-centered">
-				    <div class="modal-content">
-				      <div class="modal-body">
-				        비밀번호가 재설정되었습니다.
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary col-8 mx-auto" data-bs-dismiss="modal">확인</button>
-				      </div>
-				    </div>
-				  </div>
-				</div>
+					</div>
+					<div class="modal fade" id="find_password_initialize_alert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content">
+					      <div class="modal-body">
+					        비밀번호가 재설정되었습니다.
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-primary col-8 mx-auto" data-bs-dismiss="modal">확인</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -163,6 +166,61 @@
 	function toLoginPage(){
 		$(location).attr("href","/loginPage");
 	}
+	
+	var goUrlFindId = "/findLoginInfo/findId";
+	var goUrlFind = "/findLoginInfo;"
+	var goUrlChangePassword = "/findLoginInfo/changePassword";
+	
+	var form = $("form[name=myForm]");
+	var form2 = $("form[name=myForm2]");
+	
+	$("#btnFindId").on("click", function(){
+    	$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/findLoginInfo/findId"
+				,data : { "dob" : $("#dob").val(),"email" : $("#email").val() }
+			/* ,data : $("#formLogin").serialize() */
+			,success: function(response) {
+				if(response.rt == "success") {
+/* 					alert('아이디는 '+response.id+' 입니다'); */
+					document.getElementById("findIdFeedbackText").innerText = "아이디는 "+response.id+" 입니다";
+				} else {
+/* 					alert('해당하는 정보의 아이디가 존재하지 않습니다.'); */
+					document.getElementById("findIdFeedbackText").innerText = "해당하는 정보의 아이디가 존재하지 않습니다.";
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
+	$("#btnFindPassword").on("click", function(){
+    	$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/findLoginInfo/findPassword"
+				,data : { "id" : $("#idp").val() ,"dob" : $("#dobp").val(),"email" : $("#emailp").val() }
+			/* ,data : $("#formLogin").serialize() */
+			,success: function(response) {
+				if(response.rt == "success") {
+/* 					alert('아이디는 '+response.id+' 입니다'); */
+					form2.attr("action",goUrlChangePassword).submit();
+				} else {
+/* 					alert('해당하는 정보의 아이디가 존재하지 않습니다.'); */
+					document.getElementById("findPasswordFeedbackText").innerText = "해당하는 정보의 아이디가 존재하지 않습니다.";
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
 </script>
 </body>
 </html>
