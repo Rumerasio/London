@@ -27,6 +27,18 @@ public class SurveyController {
 		return "user/main";
 	}
 	
+	@RequestMapping(value="/zdminMain")
+	public String zdminMain() throws Exception{
+		
+		return "zdmin/zdminMain";
+	}
+	
+	@RequestMapping(value="/zdminLogin")
+	public String zdminLogin() throws Exception{
+		
+		return "zdmin/zdminLogin";
+	}
+	
 	@RequestMapping(value="/content/contentViewMod")
 	public String contentViewMod(SurveyVo vo,Model model) throws Exception {
 		Survey result = service.selectOne(vo);
@@ -46,6 +58,12 @@ public class SurveyController {
 	public String contentReg() throws Exception {
 		
 		return "zdmin/content/ContentReg";
+	}
+	
+	@RequestMapping(value="/content/contentRecord")
+	public String contentRecord() throws Exception {
+		
+		return "zdmin/content/ContentRecord";
 	}
 	
 	@RequestMapping(value="/content/contentInst")
