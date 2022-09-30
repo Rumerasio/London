@@ -15,6 +15,8 @@ public class CodeGroupVo {
 	private Integer count;
 	private String MainKey;
 	
+	private Integer ShuseNy;
+	
 	//	paging
 	private int thisPage = 1;									// 현재 페이지
 	private int rowNumToShow = Constants.ROW_NUM_TO_SHOW;		// 화면에 보여줄 데이터 줄 갯수
@@ -162,6 +164,12 @@ public class CodeGroupVo {
 	
 	//*************
 	
+	public Integer getShuseNy() {
+		return ShuseNy;
+	}
+	public void setShuseNy(Integer shuseNy) {
+		ShuseNy = shuseNy;
+	}
 	public void setParamsPaging(int totalRows) {
 			
 	//		setThisPage(3);
