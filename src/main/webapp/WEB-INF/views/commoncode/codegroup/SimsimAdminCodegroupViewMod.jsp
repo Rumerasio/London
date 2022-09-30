@@ -44,20 +44,17 @@
 </style>
 
 <body>
-<nav class="navbar">
-	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./ZdminMain.html" style="display: inline-block;">S</a>
-	</div>
-</nav>
+<!-- 로고단 s -->
+<%@include file="../../zdmin/Logo.jsp" %>
+<!-- 로고단 e -->
 <div class="container" style="text-align: center;">
 	<h4 style="position: relative; bottom: 50px;">관리자 페이지</h4>
 </div>
 <div class="row" style="width:1400px">
 	<div class="col-2">
-		<div class="pt-2" style="background-color: white; text-align: center;">
-			<h6><b>이솔빈</b> 관리자님</h6>
-			<a href="./ZdminLogin.html"><span style="font-size: 10px;">로그아웃</span></a>
-		</div>
+		<!-- 로그인정보태그단 s -->
+		<%@include file="../../zdmin/zdminTag.jsp" %>
+		<!-- 로그인정보태그단 e -->
 		<!-- 메뉴단 s -->
 		<%@include file="../../zdmin/Menu.jsp" %>
 		<!-- 메뉴단 e -->

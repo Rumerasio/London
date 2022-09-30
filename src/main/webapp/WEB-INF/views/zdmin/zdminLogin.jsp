@@ -38,7 +38,7 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="./ZdminLogin.html" style="display: inline-block;">S</a>
+		<a class="navbar-brand" id="logo" href="/zdminLogin" style="display: inline-block;">S</a>
 	</div>
 </nav>
 <div class="container" style="text-align: center;">
@@ -62,7 +62,7 @@
 		</div>
 	</div>
 	<div class="pt-2 pb-4">
-		<a href="./ZdminMain.html"><button type="button" class="btn btn-secondary" style="width: 60px; font-size: 11px;">로그인</button></a>
+		<a href="/zdminMain"><button type="button" class="btn btn-secondary" style="width: 60px; font-size: 11px;">로그인</button></a>
 	</div>
 </div>
 
