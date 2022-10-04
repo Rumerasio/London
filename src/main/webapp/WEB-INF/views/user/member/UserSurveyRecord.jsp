@@ -64,7 +64,7 @@
 		<c:choose>
 			<c:when test="${fn:length(list) eq 0 }">
 				<tr>
-					<td colspan="4" style="text-align: center;">There is no data</td>
+					<td colspan="4" style="text-align: center;">테스트 기록이 없습니다.</td>
 				</tr>
 			</c:when>
 		<c:otherwise>

@@ -64,7 +64,7 @@
 		  <c:choose>
 				<c:when test="${fn:length(list) eq 0}">
 					<div class="container">
-						<h2>There is no Survey!!!</h2>
+						<h2>좋아요를 표시한 테스트가 없습니다.</h2>
 					</div>
 				</c:when>
 				<c:otherwise>
