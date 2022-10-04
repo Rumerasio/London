@@ -99,7 +99,7 @@
 			<div class="p-5 mb-5" style="background-color: white; position:relative;">
 				<div class="my-3 pt-3 float-start" id="contentMainDisplay"><h6 style="display: inline-block;"><b>컨텐츠 메인화면</b></h6></div>
 				<div class="form-check form-switch float-end my-3 pt-3" style="display: inline-block;">
-				  <input class="form-check-input" type="checkbox" role="switch" id="openNy">
+				  <input class="form-check-input" type="checkbox" role="switch" name="openNy" id="openNy">
 				  <label class="form-check-label" for="openNy">컨텐츠 공개</label>
 				</div>
 				<div style="clear:both;"></div>
@@ -172,10 +172,10 @@
 				</div>
 				<div id="contentTotal">
 					<div class="my-3 pt-3 mr-2" id="contentPageRegistration" style="display:inline-block; ;"><h6 style="display: inline;"><b>컨텐츠 페이지 작성</b></h6></div>
-					<button class="btn btn-success btn-sm" id="btnPageAdd" onclick="createDiv()" style="border:none;"><i class="fa-solid fa-plus"></i></button>
-					<div class="container" id="contentPage" style="margin-left:0px; margin-bottom:20px; border:solid; border-width:2px; width:100%;">
+					<button type="button" class="btn btn-success btn-sm" id="btnPageAdd" style="border:none;"><i class="fa-solid fa-plus"></i></button>
+					<div class="container questionCon" id="contentPage" style="margin-left:0px; margin-bottom:20px; border:solid; border-width:2px; width:100%;">
 						<div class="float-start my-3" style="display: inline-block;"><h5 style="display: inline-block;">Page 1</h5></div>
-						<button class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button>
+						<button type="button" id="btnPageDel" class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button>
 						<div style="clear:both;"></div>
 						<div class="mb-3">
 						  <input type="text" class="form-control form-control-sm" id="" name="questionContent" placeholder="질문">
@@ -247,294 +247,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- <div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 2</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 3</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 4</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 5</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div> -->
 				<!-- 임시 E -->
 				<!-- 
 				<div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
@@ -890,27 +602,39 @@ function readURL8(input) {
 	$("#btnSave").on("click",function(){
 		form.attr("action",goUrlInst).submit();
 	});
-	
-	$("#btnPageAdd").on("click",function(){
-		const newDiv = document.createElement('div');
-		var test = document.getElementById('contentPage');
-		
-		const newText = test.cloneNode(true);
-		
-		newDiv.appendChild(newText);
-		document.body.appendChild(newDiv);
-		/* var test1 = test.cloneNode(true); */
-		
-		/* test1.insertAfter("#contentPageRegistration"); */
+	 
+//	$("#btnPageAdd").on("click",function(){
+//		const newDiv = document.createElement('div');
+//		var test = document.getElementById('contentPage');
+//		
+//		const newText = test.cloneNode(true);
+//		
+//		newDiv.appendChild(newText);
+//		document.body.appendChild(newDiv);
+//		/* var test1 = test.cloneNode(true); */
+//		
+//		/* test1.insertAfter("#contentPageRegistration"); */
+//	});
+
+	$(document).ready(function() {
+		   
+		$("#btnPageAdd").click(function(){
+		  $("#contentPage").clone().appendTo("#contentTotal");
+		});
 	});
 	
 	$(document).ready(function() {
-		   
-	      $("#btnPageAdd").click(function(){
-	        $("#contentPage").clone().appendTo("#contentTotal");
-	      });
-	   
+		$("#btnPageDel").click(function(){
+		  $("#contentPage").remove();
+		});
 	});
+	
+	if($("#openNy").is(":checked")){
+		$("#openNy").val(1);
+	} else {
+		$("#openNy").val(0);
+	}
+	
 </script>
 </body>
 </html>
