@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -111,7 +110,7 @@ public class MemberController {
 		
 		//로그인 관련 S
 		@ResponseBody
-		@RequestMapping(value = "loginProc")
+		@RequestMapping(value = "/loginProc")
 		public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 
@@ -161,7 +160,7 @@ public class MemberController {
 		}
 		
 		@ResponseBody
-		@RequestMapping(value = "logoutProc")
+		@RequestMapping(value = "/logoutProc")
 		public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 //			UtilCookie.deleteCookie();
