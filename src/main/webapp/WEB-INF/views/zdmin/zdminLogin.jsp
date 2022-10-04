@@ -38,7 +38,7 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="/zdminLogin" style="display: inline-block;">S</a>
+		<a class="navbar-brand" id="logo" href="zdmin/zdminLogin" style="display: inline-block;">S</a>
 	</div>
 </nav>
 <div class="container" style="text-align: center;">
