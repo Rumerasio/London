@@ -35,38 +35,38 @@ public class SurveyServiceImpl implements SurveyService {
 		return result;
 	}
 
-	@Override
-	public int insert(Survey dto) throws Exception {
-		dao.insertSurveyName(dto);
-		
-		//질문, 선택지
-//		var questionContent = document.getElementsByName('questionConetent')[0].className;
-		if(dto.getQuestionContent() != null ) {
-			for(int i=0;i<=5;i++) {
-				dao.insertSurveyQuestion(dto);
-				for(int j=0;j<=6;j++) {
-					dao.insertQuestionChoice(dto);
-				}
-			}
-		}
-		//결과
-//		for(int i =0;i<=3;i++) {
-//			dao.insertSurveyResult(dto);
+//	@Override
+//	public int insert(Survey dto) throws Exception {
+//		dao.insertSurveyName(dto);
+//		
+//		//질문, 선택지
+////		var questionContent = document.getElementsByName('questionConetent')[0].className;
+//		if(dto.getQuestionContent() != null ) {
+//			for(int i=0;i<=5;i++) {
+//				dao.insertSurveyQuestion(dto);
+//				for(int j=0;j<=6;j++) {
+//					dao.insertQuestionChoice(dto);
+//				}
+//			}
 //		}
-		return dao.insertSurveyName(dto);
-	}
+//		//결과
+////		for(int i =0;i<=3;i++) {
+////			dao.insertSurveyResult(dto);
+////		}
+//		return dao.insertSurveyName(dto);
+//	}
 
-//	@Override
-//	public int insertSurveyName(Survey dto) throws Exception { return dao.insertSurveyName(dto);}
-//
-//	@Override
-//	public int insertSurveyQuestion(Survey dto) throws Exception { return dao.insertSurveyQuestion(dto);}
-//
-//	@Override
-//	public int insertQuestionChoice(Survey dto) throws Exception { return dao.insertQuestionChoice(dto);}
-//
-//	@Override
-//	public int insertSurveyResult(Survey dto) throws Exception { return dao.insertSurveyResult(dto);}
+	@Override
+	public int insertSurveyName(Survey dto) throws Exception { return dao.insertSurveyName(dto);}
+
+	@Override
+	public int insertSurveyQuestion(Survey dto) throws Exception { return dao.insertSurveyQuestion(dto);}
+
+	@Override
+	public int insertQuestionChoice(Survey dto) throws Exception { return dao.insertQuestionChoice(dto);}
+
+	@Override
+	public int insertSurveyResult(Survey dto) throws Exception { return dao.insertSurveyResult(dto);}
 	
 
 }

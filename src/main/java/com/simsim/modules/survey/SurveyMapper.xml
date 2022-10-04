@@ -19,14 +19,16 @@
 
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			a.survey,
-		    b.question,
+			a.survey
+			,a.surveyPhrase
+			,a.surveyExplain
+		   <!--  b.question,
 		    b.questionContent,
 		    c.choice,
-		    c.choiceContent
+		    c.choiceContent -->
 		FROM jsSurveyName a
-		inner join jsSurveyQuestion b on b.jsSurveyName_snSeq = a.snSeq
-		inner join jsQuestionChoice c on b.sqSeq = c.jsSurveyQuestion_sqSeq
+		<!-- inner join jsSurveyQuestion b on b.jsSurveyName_snSeq = a.snSeq
+		inner join jsQuestionChoice c on b.sqSeq = c.jsSurveyQuestion_sqSeq -->
 		WHERE 1=1
 			AND a.snSeq=#{snSeq}
 	</select>
@@ -52,7 +54,7 @@
 		    ,(SELECT survey FROM jsSurveyName d WHERE d.snSeq = a.jsSurveyName_snSeq) as survey
 		    ,nickname
 		    <![CDATA[
-		    ,(SELECT resultTitle FROM jsSurveyResult c WHERE c.scoreRangeStart <= a.totalScore AND c.scoreRangeEnd >= a.totalScore) as resultTitle
+		    ,(SELECT resultTitle FROM jsSurveyResult c WHERE c.scoreRangeStart <= a.totalScore AND c.scoreRangeEnd >= a.totalScore AND a.jsSurveyName_snSeq = c.jsSurveyName_snSeq) as resultTitle
 		    ]]>
 		    ,a.datetime
 		FROM jsSurveyRecord a

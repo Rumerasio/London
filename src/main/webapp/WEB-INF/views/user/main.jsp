@@ -81,101 +81,104 @@
 <div class="container" id="total">
 	<div class="container" style="position: relative;top:-8px;">
 		<div class="row" style="width: 1200px;position: relative;">
-			<div class="main_top" style="display: inline-block;"> 
-				<ul class="main_top_list"> 
-					<li class="main_top_item mti_1"> 
-						<div class="thumb" style="background-image:url('/resources/images/stars_hugeBanner.jpg')"></div> 
-						<a href="" title="별자리 테스트"> 
+			<form method="post" name=formList id="formList">
+				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
+				<div class="main_top" style="display: inline-block;"> 
+					<ul class="main_top_list"> 
+						<li class="main_top_item mti_1"> 
+							<div class="thumb" style="background-image:url('/resources/images/stars_hugeBanner.jpg')"></div> 
+							<a href="#" title="별자리 테스트"> 
+								<p> 
+									<span class="subject font-serif">별자리요</span> 
+									<span class="description">궁금하지않으신가?</span> 
+								</p> 
+							</a> 
+						</li> 
+						<li class="main_top_item mti_2">
+							<div class="thumb" style="background-image:url('/resources/images/fox.jpg')"></div>
+							<a href="" title="꽃말 테스트"> 
+								<p> 
+									<span class="subject font-serif">꽃말 테스트</span> 
+									<span class="description">당신을 위한 꽃말은?</span>
+								</p> 
+							</a> 
+						</li> 
+						<li class="main_top_item mti_3"> 
+							<div class="thumb" style="background-image:url('/resources/images/watermelon.jpg')"></div> 
+							<a href=" " title="여행지 테스트"> 
+								<p> 
+									<span class="subject font-serif">여행지 테스트</span> 
+									<span class="description">올 여름 어디로 여행을 갈까!?</span> 
+								</p> 
+							</a> 
+						</li> 
+						<li class="main_top_item mti_4">
+						<div class="thumb" style="background-image:url('/resources/images/ai.jpg')"></div> 
+						<a href=" " title="물고기 테스트"> 
 							<p> 
-								<span class="subject font-serif"><c:out value="${item.survey}"></c:out></span> 
-								<span class="description"><c:out value="${item.surveyPhrase}"></c:out></span> 
+								<span class="subject font-serif">나는 뇌를 얼마나 쓰고 있을까?</span> 
+								<span class="description">퀴즈로 알아보는 뇌사용률!</span> 
 							</p> 
 						</a> 
-					</li> 
-					<li class="main_top_item mti_2">
-						<div class="thumb" style="background-image:url('/resources/images/fox.jpg')"></div>
-						<a href="" title="꽃말 테스트"> 
-							<p> 
-								<span class="subject font-serif">꽃말 테스트</span> 
-								<span class="description">당신을 위한 꽃말은?</span>
-							</p> 
-						</a> 
-					</li> 
-					<li class="main_top_item mti_3"> 
-						<div class="thumb" style="background-image:url('/resources/images/watermelon.jpg')"></div> 
-						<a href=" " title="여행지 테스트"> 
-							<p> 
-								<span class="subject font-serif">여행지 테스트</span> 
-								<span class="description">올 여름 어디로 여행을 갈까!?</span> 
-							</p> 
-						</a> 
-					</li> 
-					<li class="main_top_item mti_4">
-					<div class="thumb" style="background-image:url('/resources/images/ai.jpg')"></div> 
-					<a href=" " title="물고기 테스트"> 
-						<p> 
-							<span class="subject font-serif">나는 뇌를 얼마나 쓰고 있을까?</span> 
-							<span class="description">퀴즈로 알아보는 뇌사용률!</span> 
-						</p> 
-					</a> 
-					</li>
-				</ul> 
-			</div>
-			<c:choose>
-				<c:when test="${sessSeq eq null}">
-					<div id ="user_box">
-						<a href="/loginPage"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
-						<a href="/register"><button type="button" class="btn btn-sm m-1" style="width:120px; background-color:#e6e6e6;">회원가입</button></a>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div id ="user_box">
-						<b><c:out value="${sessNickname }"/></b> 님<br>
-						<!-- <a href=""><i class="fa-solid fa-heart"></i></a> -->
-						<a id="btnMypage"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
-						<a id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
-						<!-- <button type="button" class="btn" id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></button> -->
-						<!-- <a href=""><i class="fa-solid fa-clock-rotate-left"></i></a> -->
-					</div>
-				</c:otherwise>
-			</c:choose>
-			<!-- <div id ="user_box">
-				<a href="/loginPage"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
-				<a href="/register"><button type="button" class="btn btn-sm m-1" style="width:120px; background-color:#e6e6e6;">회원가입</button></a>
-			</div>
-			<div id ="user_box">
-				<b>로제</b> 님<br>
-				<a href=""><i class="fa-solid fa-heart"></i></a>
-				<a href="./memberMypage.html"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
-				<a href="./main.html"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
-				<a href=""><i class="fa-solid fa-clock-rotate-left"></i></a>
-			</div> -->
-		</div>
-		<div class="container mt-5">
-			<h4>다른 컨텐츠</h4>
-			<div class="row row-cols-3 g-4" style="width:1050px;">
+						</li>
+					</ul> 
+				</div>
 				<c:choose>
-					<c:when test="${fn:length(list) eq 0}">
-						<div class="container">
-							<h2>There is no Survey!!!</h2>
+					<c:when test="${sessSeq eq null}">
+						<div id ="user_box">
+							<a href="/loginPage"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
+							<a href="/register"><button type="button" class="btn btn-sm m-1" style="width:120px; background-color:#e6e6e6;">회원가입</button></a>
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${list}" var="list" varStatus="status">
-							<div class="col">
-							    <div class="card h-100">
-							      <a href="#"><img src="" class="card-img-top" alt="..."></a>
-							      <div class="card-body">
-							        <a href="#"><h6 class="card-title"><c:out value="${list.survey}"></c:out></h6></a>
-							      </div>
-							    </div>
-							  </div>
-						</c:forEach>
+						<div id ="user_box">
+							<b><c:out value="${sessNickname }"/></b> 님<br>
+							<!-- <a href=""><i class="fa-solid fa-heart"></i></a> -->
+							<a id="btnMypage"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
+							<a id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
+							<!-- <button type="button" class="btn" id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></button> -->
+							<!-- <a href=""><i class="fa-solid fa-clock-rotate-left"></i></a> -->
+						</div>
 					</c:otherwise>
 				</c:choose>
+				<!-- <div id ="user_box">
+					<a href="/loginPage"><button type="button" class="btn btn-sm m-1" style="width:120px; color:white; background-color:rgba(197, 59, 222, 0.54)">로그인</button></a>
+					<a href="/register"><button type="button" class="btn btn-sm m-1" style="width:120px; background-color:#e6e6e6;">회원가입</button></a>
+				</div>
+				<div id ="user_box">
+					<b>로제</b> 님<br>
+					<a href=""><i class="fa-solid fa-heart"></i></a>
+					<a href="./memberMypage.html"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
+					<a href="./main.html"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
+					<a href=""><i class="fa-solid fa-clock-rotate-left"></i></a>
+				</div> -->
 			</div>
-		</div>
-		sessSeq: <c:out value="${sessSeq }"/><br>
+			<div class="container mt-5">
+				<h4>다른 컨텐츠</h4>
+				<div class="row row-cols-3 g-4" style="width:1050px;">
+					<c:choose>
+						<c:when test="${fn:length(list) eq 0}">
+							<div class="container">
+								<h2>There is no Survey!!!</h2>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list}" var="list" varStatus="status">
+								<div class="col">
+								    <div class="card h-100">
+								      <a href="javascript:goSurvey(<c:out value="${list.snSeq }"/>)"><img src="" class="card-img-top" alt="..."></a>
+								      <div class="card-body">
+								        <a href="javascript:goSurvey(<c:out value="${list.snSeq }"/>)"><h6 class="card-title"><c:out value="${list.survey}"></c:out></h6></a>
+								      </div>
+								    </div>
+								  </div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</form>
+		<%-- sessSeq: <c:out value="${sessSeq }"/><br>
 		sessId: <c:out value="${sessId }"/><br>
 		<div class="row justify-content-center py-2">
 			<label class="col-2 col-form-label">주소</label>
@@ -208,7 +211,7 @@
 					<input type="text" class="form-control" id="longitude" placeholder="경도">
 				</div>
 			</div>
-		</div>
+		</div> --%>
 	</div>
 </div>
 <nav class="container-fluid" id="end">
@@ -327,7 +330,12 @@
 	var goUrlMain = "/"; 			/* #-> */
 	var goUrlMypage = "/myPage"; 			/* #-> */
 	var goUrlLogO = "/logoutProc"; 			/* #-> */
+	var goUrlSurvey = "/survey";
     
+	var seq = $("input:hidden[name=snSeq]");
+	
+	var form = $("form[name=formList]");
+	
     $("#btnLogOut").on("click", function(){
     	$.ajax({
 			async: true 
@@ -356,6 +364,12 @@
     $("#btnMypage").on("click", function(){
     	$(location).attr("href",goUrlMypage);
     });
+    
+    goSurvey = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	seq.val(keyValue);
+		form.attr("action", goUrlSurvey).submit();
+	}
     
 </script>
 </body>

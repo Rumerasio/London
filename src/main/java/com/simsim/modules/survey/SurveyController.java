@@ -68,17 +68,21 @@ public class SurveyController {
 	
 	@RequestMapping(value="/content/contentInst")
 	public String contentInst(Survey dto, RedirectAttributes redirectAttributes) throws Exception {
-//		int result1 = service.insertSurveyName(dto);
-//		int result2 = service.insertSurveyQuestion(dto);
-//		int result3 = service.insertQuestionChoice(dto);
-//		int result4 = service.insertSurveyResult(dto);
-//		
-//		System.out.println("result1: "+result1);
-//		System.out.println("result2: "+result2);
-//		System.out.println("result3: "+result3);
-//		System.out.println("result4: "+result4);
+		int result1 = service.insertSurveyName(dto);
+		int result2 = service.insertSurveyQuestion(dto);
+		int result3 = service.insertQuestionChoice(dto);
+		int result4 = service.insertSurveyResult(dto);
 		
-		service.insert(dto);
+//		dto.setSnSeq(dto.getSnSeq());
+		
+		System.out.println("result1: "+result1);
+		System.out.println("result2: "+result2);
+		System.out.println("result3: "+result3);
+		System.out.println("result4: "+result4);
+		
+		
+//		service.insert(dto);
+		
 		return "redirect:/content/contentList";
 	}
 	
@@ -106,5 +110,14 @@ public class SurveyController {
 	
 	
 	//유저 인터페이스 E
+	
+	@RequestMapping(value="/survey")
+	public String survey1(@ModelAttribute SurveyVo vo, Model model) throws Exception {
+		
+		Survey result = service.selectOne(vo);
+		model.addAttribute("item", result);
+		
+		return "user/Survey/Survey";
+	}
 		
 }

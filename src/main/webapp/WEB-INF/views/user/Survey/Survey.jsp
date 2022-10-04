@@ -74,14 +74,14 @@
 	<div class="container" style="position: relative;top:-8px;">
 		<div class="clearfix" style="width: 1000px; line-height:3;">
 			<img alt="" src="../images/lighthouse_mainbanner.jpg" style="width: 1000px; padding-bottom: 20px;">
-			<h2 style="display: inline-block"><b>별자리 테스트</b></h2>
+			<h2 style="display: inline-block"><b><c:out value="${item.survey }"/></b></h2>
 			<div class="float-md-end">
 				<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
 				<label class="btn" for="btn-check"><i class="fa-solid fa-heart float-me-end"></i> 60</label>
 				<a href="./survey1Content.html"><button type="button" class="btn" style="background-color:rgb(197, 59, 222); color:white; width:300px;">시작하기</button></a>
 			</div>
-			<h4 style="font-style: italic; margin-top: 20px;">나는 무슨 별자리일까?</h4>
-			<p class="mt-3" style="font-size: 18px;">&nbsp;&nbsp;&nbsp;도시에선 보기 힘든 밤하늘의 아름다운 별! <br>나를 뜻하는 별자리가 무엇일지 궁금하지 않으세요?</p>
+			<h4 style="font-style: italic; margin-top: 20px;"><c:out value="${item.surveyPhrase }"/></h4>
+			<p class="mt-3" style="font-size: 18px;"><c:out value="${item.surveyExplain }"/></p>
 		</div>
 	</div>
 	<div id="comment_box">
