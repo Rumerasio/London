@@ -83,20 +83,21 @@
 		<div class="row" style="width: 1200px;position: relative;">
 			<form method="post" name=formList id="formList">
 				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
+				<input type="hidden" name="seq" id="seq" value="<c:out value="${sessSeq }"/>">
 				<div class="main_top" style="display: inline-block;"> 
 					<ul class="main_top_list"> 
 						<li class="main_top_item mti_1"> 
 							<div class="thumb" style="background-image:url('/resources/images/stars_hugeBanner.jpg')"></div> 
-							<a href="#" title="별자리 테스트"> 
+							<a href="javascript:goSurvey(5)" title="별자리 테스트"> 
 								<p> 
-									<span class="subject font-serif">별자리요</span> 
-									<span class="description">궁금하지않으신가?</span> 
+									<span class="subject font-serif">별자리 테스트</span> 
+									<span class="description">나는 무슨 별자리일까?</span> 
 								</p> 
 							</a> 
 						</li> 
 						<li class="main_top_item mti_2">
 							<div class="thumb" style="background-image:url('/resources/images/fox.jpg')"></div>
-							<a href="" title="꽃말 테스트"> 
+							<a href="javascript:goSurvey(3)" title="꽃말 테스트"> 
 								<p> 
 									<span class="subject font-serif">꽃말 테스트</span> 
 									<span class="description">당신을 위한 꽃말은?</span>
@@ -105,7 +106,7 @@
 						</li> 
 						<li class="main_top_item mti_3"> 
 							<div class="thumb" style="background-image:url('/resources/images/watermelon.jpg')"></div> 
-							<a href=" " title="여행지 테스트"> 
+							<a href="javascript:goSurvey(4)" title="여행지 테스트"> 
 								<p> 
 									<span class="subject font-serif">여행지 테스트</span> 
 									<span class="description">올 여름 어디로 여행을 갈까!?</span> 
@@ -114,7 +115,7 @@
 						</li> 
 						<li class="main_top_item mti_4">
 						<div class="thumb" style="background-image:url('/resources/images/ai.jpg')"></div> 
-						<a href=" " title="물고기 테스트"> 
+						<a href="javascript:goSurvey(2)" title=""> 
 							<p> 
 								<span class="subject font-serif">나는 뇌를 얼마나 쓰고 있을까?</span> 
 								<span class="description">퀴즈로 알아보는 뇌사용률!</span> 
@@ -332,7 +333,7 @@
 	var goUrlLogO = "/logoutProc"; 			/* #-> */
 	var goUrlSurvey = "/survey";
     
-	var seq = $("input:hidden[name=snSeq]");
+	var snSeq = $("input:hidden[name=snSeq]");
 	
 	var form = $("form[name=formList]");
 	
@@ -367,7 +368,7 @@
     
     goSurvey = function(keyValue) {
     	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
-    	seq.val(keyValue);
+    	snSeq.val(keyValue);
 		form.attr("action", goUrlSurvey).submit();
 	}
     
