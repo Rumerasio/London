@@ -30,6 +30,32 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 	
 	@Override
+	public List<Survey> selectSurveyCommentList(SurveyVo vo) throws Exception {
+		List<Survey> list = dao.selectSurveyCommentList(vo);
+		return list;
+	}
+	
+	@Override
+	public int selectSurveyCommentCount(SurveyVo vo) throws Exception {
+		return dao.selectSurveyCommentCount(vo);
+	}
+	
+	@Override
+	public int CommentInst(Survey dto) throws Exception {
+		return dao.CommentInst(dto);
+	}
+	
+	@Override
+	public int CommentVele(Survey dto) throws Exception {
+		return dao.CommentVele(dto);
+	}
+	
+	@Override
+	public int CommentUpdt(Survey dto) throws Exception {
+		return dao.CommentUpdt(dto);
+	}
+	
+	@Override
 	public Survey selectOne(SurveyVo vo) throws Exception {
 		Survey result = dao.selectOne(vo);
 		return result;
@@ -67,6 +93,8 @@ public class SurveyServiceImpl implements SurveyService {
 
 	@Override
 	public int insertSurveyResult(Survey dto) throws Exception { return dao.insertSurveyResult(dto);}
+
 	
+
 
 }

@@ -112,12 +112,49 @@ public class SurveyController {
 	//유저 인터페이스 E
 	
 	@RequestMapping(value="/survey")
-	public String survey1(@ModelAttribute SurveyVo vo, Model model) throws Exception {
+	public String survey(@ModelAttribute("vo") SurveyVo vo, Model model, HttpSession httpSession) throws Exception {
 		
 		Survey result = service.selectOne(vo);
 		model.addAttribute("item", result);
 		
+		List<Survey> result2 = service.selectSurveyCommentList(vo);
+		model.addAttribute("list", result2);
+		
+		int result3 = service.selectSurveyCommentCount(vo);
+		model.addAttribute("Num", result3);
+		
+		
 		return "user/Survey/Survey";
 	}
+	
+	@RequestMapping(value="/survey/commentInst")
+	public String commentInst(@ModelAttribute("vo") SurveyVo vo,Survey dto, RedirectAttributes redirectAttributes) throws Exception {
+		service.CommentInst(dto);
 		
+		vo.setSeq(dto.getSeq());
+		vo.setSnSeq(dto.getSnSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/survey";
+	}
+	
+	@RequestMapping(value="/survey/commentVele")
+	public String commentVele(@ModelAttribute("vo") SurveyVo vo,Survey dto, RedirectAttributes redirectAttributes) throws Exception {
+		service.CommentVele(dto);
+		vo.setScSeq(dto.getScSeq());
+		vo.setSeq(dto.getSeq());
+		vo.setSnSeq(dto.getSnSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/survey";
+	}
+	
+//	@RequestMapping(value="/surveyCommentList")
+//	public String surveyCommentList(@ModelAttribute SurveyVo vo, Model model) throws Exception {
+//		List<Survey> result = service.selectSurveyCommentList(vo);
+//		model.addAttribute("list", result);
+//		return "user/Survey/Survey";
+//	}
 }

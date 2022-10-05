@@ -44,15 +44,21 @@
 	text-decoration: none;
 	color:black;
 	}
-	#comment_btn{
+	#btnComment{
 		--bs-btn-font-size: 14px;
 		width: 70px;
 		height: 70px;
 		background-color: rgb(190, 190, 190);
 	}
-	.like_btn, .report_btn, #comment_delete_btn{
+	.like_btn, .report_btn, #btnToVele {
 		color:white;
 		font-size: 12px;
+		width: 70px;
+		height:33px;
+	}
+	.modify_btn {
+		color:white;
+		font-size: 11px;
 		width: 70px;
 		height:33px;
 	}
@@ -67,13 +73,13 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="../member/mainLogedin.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
 <div class="container" id="total">
 	<div class="container" style="position: relative;top:-8px;">
 		<div class="clearfix" style="width: 1000px; line-height:3;">
-			<img alt="" src="../images/lighthouse_mainbanner.jpg" style="width: 1000px; padding-bottom: 20px;">
+			<img alt="" src="/resources/images/lighthouse_mainbanner.jpg" style="width: 1000px; padding-bottom: 20px;">
 			<h2 style="display: inline-block"><b><c:out value="${item.survey }"/></b></h2>
 			<div class="float-md-end">
 				<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
@@ -85,61 +91,73 @@
 		</div>
 	</div>
 	<div id="comment_box">
-		<h6><b>댓글창(30)</b></h6	>
+		<h6><b>댓글창(<c:out value="${Num}"/>)</b></h6	>
 		<div class="p-4" style="background-color: rgb(224, 224, 224); width: 1000px;">
-			<div class="input-group row">
-				<div class="col-2">
-					<input type="text" class="form-control col-1 mt-3" placeholder="닉네임" value="로제">
+			<form method="post" id="myForm" name="myForm" autocomplete="off">
+				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
+				<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
+				<div class="input-group row">
+					<div class="col-2">
+						<input type="text" class="form-control col-1 mt-3" placeholder="닉네임" id="nickname" name="nickname" value="<c:out value="${sessNickname }"/>">
+					</div>
+					<div class="col-9">
+						<textarea class="form-control m-3" placeholder="내용을 입력해주세요" id="commentContent" name="commentContent" style="width:95%; height: 4.25em; border:none; resize: none; display: inline;"></textarea>
+					</div>
+					<div class="col-1">
+						<button type="button" class="btn mt-3" id="btnComment">등록</button>
+					</div>
 				</div>
-				<div class="col-9">
-					<textarea class="form-control m-3" placeholder="내용을 입력해주세요" style="width:95%; height: 4.25em; border:none; resize: none; display: inline;"></textarea>
-				</div>
-				<div class="col-1">
-					<button type="button" class="btn mt-3" id="comment_btn">등록</button>
-				</div>
-			</div>
-			
-			<div class="input-group row mt-3" style="background-color:rgba(39, 174, 96, 0.11);">
-				<div class="col-2" style="align-content: center;">
-					<input type="text" readonly class="form-control-plaintext" id="comment_writer" value="사람4" style="text-align: center;">
-					<input type="text" readonly class="form-control-plaintext" id="comment_writer_datetime" value="2022-07-03 09:23:15" style="font-size: 10px; text-align: center;">
-				</div>
-				<div class="col-9">
-					<input type="text" readonly class="form-control-plaintext" id="comment_content" value="내용은 차차하고 일단 배경이 너무 예뻐서 좋았습니다. 사수자리 나왔네요">
-				</div>
-				<div class="col-1" ">
-					<button type="button" class="btn like_btn"><i class="fa-solid fa-thumbs-up"></i> 0</button>
-					<button type="button" class="btn report_btn">신고</button>
-				</div>
-			</div>
-			
-			<div class="input-group row mt-3" style="background-color:rgba(39, 174, 96, 0.11);">
-				<div class="col-2" style="align-content: center;">
-					<input type="text" readonly class="form-control-plaintext" id="comment_writer" value="로제" style="text-align: center;">
-					<input type="text" readonly class="form-control-plaintext" id="comment_writer_datetime" value="2022-07-01 15:57:12" style="font-size: 10px; text-align: center;">
-				</div>
-				<div class="col-9">
-					<input type="text" readonly class="form-control-plaintext" id="comment_content" value="내가 왜 전갈자리? 난 원래 양자리인데!">
-				</div>
-				<div class="col-1" ">
-					<button type="button" class="btn like_btn"><i class="fa-solid fa-thumbs-up"></i> 12</button>
-					<button type="button" class="btn btn-secondary" id="comment_delete_btn">삭제</button>
-				</div>
-			</div>
-			
-			<div class="input-group row mt-3" style="background-color:rgba(39, 174, 96, 0.11);">
-				<div class="col-2" style="align-content: center;">
-					<input type="text" readonly class="form-control-plaintext" id="comment_writer" value="사람4" style="text-align: center;">
-					<input type="text" readonly class="form-control-plaintext" id="comment_writer_datetime" value="2022-07-03 09:23:15" style="font-size: 10px; text-align: center;">
-				</div>
-				<div class="col-9">
-					<input type="text" readonly class="form-control-plaintext" id="comment_content" value="내용은 차차하고 일단 배경이 너무 예뻐서 좋았습니다. 사수자리 나왔네요">
-				</div>
-				<div class="col-1" ">
-					<button type="button" class="btn like_btn"><i class="fa-solid fa-thumbs-up"></i> 0</button>
-					<button type="button" class="btn report_btn">신고</button>
-				</div>
-			</div>
+			</form>
+			<c:choose>
+				<c:when test="${fn:length(list) eq 0}">
+					<div class="row mt-3"><p class="text-center">작성된 댓글이 없습니다! 댓글을 작성해주세요</p></div>
+				</c:when>
+				<c:otherwise>
+		    		<c:forEach items="${list}" var="list" varStatus="status">
+		    			<form method="post" name="commentForm">
+			    			<div class="input-group row mt-3" style="background-color:rgba(39, 174, 96, 0.11);">
+								<div class="col-2" style="align-content: center;">
+									<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.nickname }"/>" style="text-align: center;">
+									<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.datetime }"/>" style="font-size: 10px; text-align: center;">
+								</div>
+								<div class="col-9">
+									<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.commentContent }"/>">
+								</div>
+								<div class="col-1" ">
+									<c:choose>
+										<c:when test="${list.seq eq vo.seq}">
+											<input type="hidden" name="scSeq" id="scSeq" value="<c:out value="${vo.scSeq}"/>">
+											<button type="button" class="btn modify_btn">수정하기</button>
+											<button type="button" class="btn btn-secondary" data-bs-toggle="modal" id="btnToVele" data-bs-target="#Velete_check">삭제</button>
+											<div class="modal" tabindex="-1" id="Velete_check">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h5 class="modal-title">코멘트 삭제</h5>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body">
+											        <p>정말 삭제하시겠습니까?</p>
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+											        <button type="button" id="btnVele" class="btn btn-danger">삭제</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="btn like_btn"><i class="fa-solid fa-thumbs-up"></i> 0</button>
+											<button type="button" class="btn report_btn">신고</button>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</div>
+						</form>
+		    		</c:forEach>
+		    	</c:otherwise>
+		    </c:choose>
 			<nav class="nav justify-content-center mt-4">
 			  <ul class="pagination pagination-sm">
 			  	<li class="page-item">
@@ -174,5 +192,27 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	var goUrlInst = "/survey/commentInst";
+	var goUrlVele = "/survey/commentVele";
+	var goUrlUpdt = "/survey/commentUpdt";
+	
+	var form = $("form[name=myForm]");
+	var form2 = $("form[name=commentForm]");
+
+	$("#btnComment").on("click",function(){
+		form.attr("action",goUrlInst).submit();
+	});
+	
+//	 getscSeq = function(keyValue) {
+//	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+//	    	scSeq.val(keyValue);
+//	 }
+
+	$("#btnVele").on("click",function(){
+		form2.attr("action",goUrlVele).submit();
+	});
+</script>
 </body>
 </html>

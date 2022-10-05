@@ -2,6 +2,7 @@ package com.simsim.modules.survey;
 
 public class Survey {
 	private String snSeq;
+	private String jsSurveyName_snSeq;
 	private String survey;
 	private String surveyPhrase;
 	private String surveyExplain;
@@ -40,6 +41,7 @@ public class Survey {
 	private String ssChoosed;
 	
 	private String seq;
+	private String jsMember_seq;
 	
 	public String getSeq() {
 		return seq;
@@ -232,6 +234,18 @@ public class Survey {
 	}
 	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
+	}
+	public String getJsSurveyName_snSeq() {
+		return jsSurveyName_snSeq;
+	}
+	public void setJsSurveyName_snSeq(String jsSurveyName_snSeq) {
+		this.jsSurveyName_snSeq = jsSurveyName_snSeq;
+	}
+	public String getJsMember_seq() {
+		return jsMember_seq;
+	}
+	public void setJsMember_seq(String jsMember_seq) {
+		this.jsMember_seq = jsMember_seq;
 	}
 	
 	

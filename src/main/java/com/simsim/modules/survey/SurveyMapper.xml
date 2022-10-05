@@ -32,7 +32,66 @@
 		WHERE 1=1
 			AND a.snSeq=#{snSeq}
 	</select>
-
+	
+	<select id="selectSurveyCommentCount" resultType="Integer">
+		SELECT COUNT(*)
+		From jsSurveyComment
+		WHERE 1=1
+			AND snSeq = #{snSeq}
+			AND delNy = 0
+	</select>
+	
+	<select id="selectSurveyCommentList" resultMap="resultMapObj">
+	SELECT
+		nickname
+		,seq
+		,commentContent
+		,datetime
+	FROM jsSurveyComment
+	WHERE 1=1 
+		AND snSeq = #{snSeq}
+		AND delNy = 0
+	</select>
+	
+	<insert id="CommentInst">
+		INSERT INTO jsSurveyComment(
+			seq
+			,snSeq
+			,nickname
+			,commentContent
+			,delNy
+		)
+		VALUES(
+			#{seq}
+			,#{snSeq}
+			,#{nickname}
+			,#{commentContent}
+			,0
+		)
+		<selectKey resultType="String" keyProperty="scSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<update id="CommentUpdt">
+		UPDATE jsSurveyComment
+		SET
+			seq = #{seq}
+			,snSeq = #{snSeq}
+			,nickname =#{nickname}
+			,commentContent =#{commentContent}
+			,delNy =#{delNy}
+		WHERE 1=1
+			AND scSeq = #{scSeq}
+	</update>
+	
+	<update id="CommentVele">
+		Update jsSurveyComment
+		SET
+			delNy = 1
+		WHERE
+			scSeq = #{scSeq}
+	</update>
 
 	<!-- 유저 인터페이스 s-->
 	<select id="selectUserRecord" resultMap="resultMapObj">
@@ -70,10 +129,11 @@
 		    a.commentContent,
 		    a.datetime
 		FROM jsSurveyComment a
-		inner join jsMember b on b.seq = a.jsSurveyName_snSeq
-		inner join jsSurveyName c on c.snSeq = a.jsSurveyName_snSeq
+		inner join jsMember b on b.seq = a.snSeq
+		inner join jsSurveyName c on c.snSeq = a.snSeq
 		WHERE 1=1
-			AND a.jsMember_seq =#{seq}
+			AND a.seq =#{seq}
+			AND a.delNy = 0
 	</select>
 	
 	<!-- 유저 인터페이스 e-->
