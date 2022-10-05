@@ -190,7 +190,7 @@ public class MemberController {
 		
 		@ResponseBody
 		@RequestMapping(value="/findLoginInfo/findId")
-		public Map<String, Object> findId(Member dto, Model model) throws Exception {
+		public Map<String, Object> findId(Member dto) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 			Member result = service.selectId(dto);
 			
