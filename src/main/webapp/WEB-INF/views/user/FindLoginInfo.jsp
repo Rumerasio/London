@@ -181,7 +181,7 @@
 			,type: "post"
 			/* ,dataType:"json" */
 			,url: "/findLoginInfo/findId"
-				,data : { "dob" : $("#dob").val(),"email" : $("#email").val() }
+			,data : { "dob" : $("#dob").val(),"email" : $("#email").val() }
 			/* ,data : $("#formLogin").serialize() */
 			,success: function(response) {
 				if(response.rt == "success") {
