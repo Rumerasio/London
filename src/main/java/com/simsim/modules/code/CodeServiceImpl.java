@@ -95,6 +95,12 @@ public class CodeServiceImpl implements CodeService{
 	public static void clear() throws Exception {
 		Code.cachedCodeArrayList.clear();
 	}
+
+	@Override
+	public int selectOneCodeCheck(Code dto) throws Exception {
+		int result = dao.selectOneCodeCheck(dto);
+		return result;
+	}
 	
 	
 }

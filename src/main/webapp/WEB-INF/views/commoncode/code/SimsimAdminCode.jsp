@@ -148,7 +148,7 @@
 				    			<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 				    			<td><c:out value="${list.codeGroupCode }"/></td>
 				    			<td><c:out value="${list.codeGroupNameKor }"/></td>
-				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"></a></td>
+				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.seq}"/></a></td>
 				    			<td><c:out value="${list.codeAnother }"/></td>
 				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
 				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>

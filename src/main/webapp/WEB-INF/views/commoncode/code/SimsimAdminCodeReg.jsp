@@ -71,6 +71,7 @@
 		<%@include file="codeVo.jsp"%>		<!-- #-> -->
 		<!-- *Vo.jsp e -->
 			<div class="row py-2">
+				<input type="hidden" id="codeAnotherAllowedNy" name="codeAnotherAllowedNy" value="0">
 				<label for="codeGroup_seq" class="col-2 col-form-label">코드그룹 선택</label>
 			    <div class="col-4">
 			      <select class="form-select col-2" id="codeGroup_seq" name="codeGroup_seq">
@@ -79,6 +80,7 @@
 			      		<option value = "<c:out value="${CGlist.seq }"></c:out>"><c:out value="${CGlist.codeGroupNameKor }"></c:out></option>
 			      	</c:forEach>
 			      </select>
+			      <div class="invalid-feedback" id="codeGroup_seqFeedback"></div>
 			    </div>
 			    <label for="codeGroupcode" class="col-2 col-form-label">코드그룹 코드</label>
 			    <div class="col-4">
@@ -93,16 +95,19 @@
 			    <label for="codeAnother" class="col-2 col-form-label">코드(Another)</label>
 			    <div class="col-4">
 			      <input type="text" class="form-control" id="codeAnother" name="codeAnother" placeholder="" value="">
+			      <div class="invalid-feedback" id="codeAnotherFeedback"></div>
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">
 				<label for="codeNameKor" class="col-2 col-form-label">코드 이름(한글)</label>
 			    <div class="col-4">
 			      <input type="text" class="form-control" id="codeNameKor" name="codeNameKor" value="">
+			      <div class="invalid-feedback" id="codeNameKorFeedback"></div>
 			    </div>
 			    <label for="codeNameEng" class="col-2 col-form-label">코드 이름(영문)</label>
 			    <div class="col-4">
 			      <input type="text" class="form-control" id="codeNameEng" name="codeNameEng" value="">
+			      <div class="invalid-feedback" id="codeNameEngFeedback"></div>
 			    </div>
 			</div>
 			<div class="row py-2">
@@ -182,6 +187,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="/resources/zdmin/js/validationZdmin.js"></script>
 <script>
 	$(document).ready(function(){
 		$("#ChkA").click(function(){
@@ -224,6 +230,59 @@
 		
 	}
 </script> -->
+<!-- validation -->
+<script type="text/javascript">
+	$("#codeNameKor").on("focusout", function(){
+		if(!checkOnlyKorean('codeNameKor', 2, 1, "코드 이름(한글)은 공백없이 한글만 입력해 주세요")) {
+			return false;
+		} 
+	});
+	$("#codeNameEng").on("focusout", function(){
+		if(!checkOnlyEnglish('codeNameEng', 2, 1, "코드 이름(영어)은 공백없이 영어만 입력해 주세요")) {
+			return false;
+		} 
+	});
+	$("#codeAnother").on("focusout", function(){
+		if(!checkOnlyNumber('codeAnother', 2, 1, 0, 0, 0, "코드(Anotehr)는 숫자만 입력해 주세요")) {
+			return false;
+		} else {
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/code/checkCode"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "codeAnother" : $("#codeAnother").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("codeAnother").classList.add('is-valid');
+						document.getElementById("codeAnother").classList.remove('is-invalid');
+	
+						document.getElementById("codeAnotherFeedback").classList.remove('invalid-feedback');
+						document.getElementById("codeAnotherFeedback").classList.add('valid-feedback');
+						document.getElementById("codeAnotherFeedback").innerText = "사용 가능 합니다.";
+						
+						document.getElementById("codeAnotherAllowedNy").value = 1;
+						
+					} else {
+						document.getElementById("codeAnother").classList.add('is-invalid');
+						document.getElementById("codeAnother").classList.remove('is-valid');
+						
+						document.getElementById("codeAnotherFeedback").classList.remove('valid-feedback');
+						document.getElementById("codeAnotherFeedback").classList.add('invalid-feedback');
+						document.getElementById("codeAnotherFeedback").innerText = "사용 불가능 합니다";
+						
+						document.getElementById("codeAnotherAllowedNy").value = 0;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+	});
+</script>
 <script type="text/javascript">
 	var goUrlList = "/code/codeList"; 			/* #-> */
 	var goUrlInst = "/code/codeInst"; 			/* #-> */
@@ -234,13 +293,30 @@
 	var formVo = $("form[name=formVo]");
 	
 	$("#btnSave").on("click",function(){
-		form.attr("action",goUrlInst).submit();
+		if (seq.val() == "0" || seq.val() == ""){
+	   		// insert
+	   		if (validationInst() == false) return false;
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		if (validationUpdt() == false) return false;
+	   	}
 	});
 	
 	$("#btnList").on("click",function(){
 		formVo.attr("action",goUrlList).submit();
 	});
 	
+	validationInst = function() {
+		if(!checkSelectNull('codeGroup_seq', 2, "코드그룹 값을 선택해 주세요.")) return false;
+		if(!checkOnlyNumber('codeAnother', 2, 0, 0, 0, 0, "코드(Another)를 입력해 주세요")) return false;
+		if(!checkOnlyKorean('codeNameKor', 2, 0, "코드 이름(한글)을 입력해주세요")) return false;
+		if(!checkOnlyEnglish('codeNameEng', 2, 0, "코드 이름(영어)을 입력해 주세요")) return false;
+		if(validationUpdt() == false) return false;
+	}
+	
+	validationUpdt = function() {
+		
+	}
 </script>
 
 </body>

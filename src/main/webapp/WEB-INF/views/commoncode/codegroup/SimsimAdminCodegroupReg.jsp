@@ -88,10 +88,12 @@
 				<label for="codeGroupNameKor" class="col-2 col-form-label">코드그룹 이름(한글)</label>
 			    <div class="col-4">
 			      <input type="text" class="form-control" id="codeGroupNameKor" name="codeGroupNameKor" value="">
+			      <div class="invalid-feedback" id="codeGroupNameKorFeedback"></div>
 			    </div>
 			    <label for="codeGroupNameEng" class="col-2 col-form-label">코드그룹 이름(영문)</label>
 			    <div class="col-4">
 			      <input type="text" class="form-control" id="codeGroupNameEng" name="codeGroupNameEng" value="">
+			      <div class="invalid-feedback" id="codeGroupNameEngFeedback"></div>
 			    </div>
 			</div>
 			<div class="row py-2">
@@ -187,6 +189,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="/resources/zdmin/js/validationZdmin.js"></script>
 <script>
 	$(document).ready(function(){
 		$("#ChkA").click(function(){
@@ -225,11 +228,88 @@
 				alert(document.querySelector('input[name=gender]:checked').value);
 			}
 		 */
+		/* function checkOnlyNumber (objName, pattern, nullAllowedNy, minMaxCheckNy, min, max, message) {
+		// checkOnlyNumber = function(obj, value, message) {
+			var obj = document.getElementById(objName);
+			var objValue = document.getElementById(objName).value.trim();
+			var objFeedback = document.getElementById(objName+"Feedback");
+		    var regExp = /^[0-9]+$/;
+			
+			if(minMaxCheckNy == 1) {
+				if(objValue >= min && objValue <= max) {
+			    	return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+				} else {
+					checkLogicExpression (obj, objFeedback, pattern, message);
+					return fasle;
+				}
+			} else {
+				return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+			}
+		}
+		function checkLogic (objName, pattern, nullAllowedNy, message, regExp) {
+		// checkLogic = function (obj, value, pattern, message, regExp) {
+			
+			var obj = document.getElementById(objName);
+			var objValue = document.getElementById(objName).value.trim();
+			var objFeedback = document.getElementById(objName+"Feedback");
+			
+			if(nullAllowedNy == 0) {
+				if(regExp.test(objValue)){
+					// obj.removeClass("is-invalid");
+					obj.classList.remove('is-invalid');
+					return true;
+				} else {
+					checkLogicExpression (obj, objFeedback, pattern, message);
+					return false;
+				}
+			} else if (nullAllowedNy == 1) {
+				if(objValue != "" && objValue != null) {
+					if(regExp.test(objValue)) {
+						// obj.removeClass("is-invalid");
+						obj.classList.remove('is-invalid');
+						return true;
+					} else {
+						checkLogicExpression (obj, objFeedback, pattern, message);
+						return false;
+					}			
+				} else {
+					obj.classList.remove('is-invalid');
+					return true;
+				}
+			} else {
+				alert("error: param nullAllowedNy in checkLogic");
+				return false;
+			}
+		}
+		function checkLogicExpression (obj, objFeedback, pattern, message) {
+			switch(pattern) {
+			case 1:	
+			// alert
+				alert(message);
+				obj.focus();
+				break;
+			case 2:
+			// bootstrap validation
+				//obj.addClass("is-invalid");
+				obj.classList.add('is-invalid');
+				objFeedback.innerText = message;
+				obj.focus();
+				break;
+			case 3:
+			// bootstrap modal
+				break;
+			}
+		} */
+		
 		if(document.getElementById('codeGroupCode').value == null || document.getElementById('codeGroupCode').value =="") {
 			alert("그룹코드값을 날래날래 입력하라우!");
 			document.getElementById('codeGroupCode').focus();
 			return false;
 		} 
+//		validationInst = function(){
+//			if(!checkOnlyNumber('codeGroupCode', 2, 1, 0, 0, 0, "코드는 숫자만 입력해 주세요")) return false;)
+//			
+//		}
 		
 		if(document.getElementById('codeGroupNameKor').value == null || document.getElementById('codeGroupNameKor').value == "") {
 			alert("코드그룹 이름(한글) 값을 입력해주세요");
@@ -248,12 +328,13 @@
 		
 		/* document.getElementById('codeGroupRegForm').submit(); */
 	}
+		 
 </script>
 <script type="text/javascript">
 	$("#codeGroupCode").on("focusout", function(){
-//		if(!checkId('ifmmId', 2, 0, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
-//			return false;
-//		} else {
+		if(!checkOnlyNumber('codeGroupCode', 2, 1, 0, 0, 0, "코드그룹 코드는 숫자만 입력해 주세요")) {
+			return false;
+		} else {
 			$.ajax({
 				async: true 
 				,cache: false
@@ -288,13 +369,13 @@
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
-//		}
+		}
 	});
 	
 	$("#codeGroupCodeAnother").on("focusout", function(){
-//		if(!checkId('ifmmId', 2, 0, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
-//			return false;
-//		} else {
+		if(!checkOnlyNumber('codeGroupCodeAnother', 2, 1, 0, 0, 0, "코드그룹(Another)는 숫자만 입력해 주세요")) {
+			return false;
+		} else {
 			$.ajax({
 				async: true 
 				,cache: false
@@ -329,9 +410,21 @@
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
-//		}
+		}
 	});
 
+	$("#codeGroupNameKor").on("focusout", function(){
+		if(!checkOnlyKorean('codeGroupNameKor', 2, 1, "코드그룹 이름(한글)은 한글만 입력해 주세요")) {
+			return false;
+		} 
+	});
+	$("#codeGroupNameEng").on("focusout", function(){
+		if(!checkOnlyEnglish('codeGroupNameEng', 2, 1, "코드그룹 이름(영어)은 영어만 입력해 주세요")) {
+			return false;
+		} 
+	});
+	
+	
 	var goUrlList = "/codeGroup/AdminCodegroupList"; 			/* #-> */
 	var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
 	var goUrlVele = "/codeGroup/codeGroupVele";				/* #-> */
@@ -344,7 +437,18 @@
 	var formVo = $("form[name=formVo]");
 	
 	$("#btnSave").on("click",function(){
-		form.attr("action",goUrlInst).submit();
+		if (seq.val() == "0" || seq.val() == ""){
+	   		// insert
+	   		if (validationInst() == false) return false;
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		// update
+	   		/* keyName.val(atob(keyName.val())); */
+	   		// seq.remove();	html 에서 seq 보여지지 않으면 이 구문은 필요치 않다.
+	   		if (validationUpdt() == false) return false;
+	   		form.attr("action", goUrlUpdt).submit();
+	   	}
+		/* form.attr("action",goUrlInst).submit(); */
 	});
 	
 	$("#btnList").on("click", function(){

@@ -74,6 +74,15 @@
 			AND a.seq = #{seq}
 	</select>
 
+	<!-- 데이터 중복 체크용 S -->
+	<select id="selectOneCodeCheck" resultType="Integer">
+		SELECT
+			COUNT(codeAnother)
+		FROM code a
+		WHERE 1=1
+			AND a.codeAnother = #{codeAnother}
+	</select>
+	<!-- 데이터 중복 체크용 E -->
 	<insert id="insert">
 		INSERT INTO code (
 			codeGroup_seq

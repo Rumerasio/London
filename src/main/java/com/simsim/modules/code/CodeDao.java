@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.simsim.modules.codegroup.CodeGroup;
+
 @Repository
 public class CodeDao {
 
@@ -27,6 +29,8 @@ public class CodeDao {
 	public int update(Code dto) {return sqlSession.update(namespace+".update", dto);}
 	public int velete(Code dto) {return sqlSession.update(namespace+".velete", dto);}
 	public int delete(CodeVo vo) {return sqlSession.delete(namespace+".delete", vo);}
+	
+	public int selectOneCodeCheck(Code dto) {return sqlSession.selectOne(namespace+".selectOneCodeCheck",dto); }
 	
 //	for cache
 	public List<Code> selectListCachedCodeArrayList(){ return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); }
