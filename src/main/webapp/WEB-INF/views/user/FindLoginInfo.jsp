@@ -193,7 +193,8 @@
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				document.getElementById("findIdFeedbackText").innerText = "올바른 형식의 값을 입력해주세요.";
+//				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
 		});
 	});
