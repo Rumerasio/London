@@ -8,7 +8,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="uTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>LoginPage</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -56,7 +56,7 @@
 			<span><button type="button" class="btn" id="btnLogin" name="btnLogin" style="background-color:rgb(197, 59, 222); color:white; width:320px;">로그인</button></span>
 		</div>
 		<div class="row mb-3">
-			<span><a href="/register"><input type="button" value="회원가입" class="btn btn-secondary" style="width:320px;"></a></span>
+			<span><a href="/register"><input type="button" id="btnForm" class="btn btn-secondary" value="회원가입" style="width:320px;"></a></span>
 		</div>
 	</form>
 	<div class="container pb-5" style="font-size:14px;"><a id="btnFindId">아이디</a> / <a id="btnFindPassword">비밀번호 찾기</a></div>
@@ -69,8 +69,6 @@
 	var goUrlMain = "/";
 	var goUrlFind = "/findLoginInfo";
 	
-	var form = $("form[name=myForm]");
-
 	$("#btnLogin").on("click", function(){
 /* 			if(validation() == false) return false; */
 			
@@ -106,6 +104,7 @@
 	$("#btnFindPassword").on("click", function(){
     	$(location).attr("href",goUrlFind);
     });
+	
 </script>
 </body>
 </html>

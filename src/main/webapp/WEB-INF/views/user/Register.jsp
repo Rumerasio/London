@@ -43,14 +43,19 @@
 </nav>
 <div class="container col-6 rounded-5" style="background-color:rgba(255, 51, 153, 0.16); text-align: center; position:relative; top:150px;">
 	<form class="g-3 p-1" method="post" id="myForm" name="myForm" autocomplete="off">
+		<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
+		<input type="hidden" id="emailAllowedNy" name="emailAllowedNy" value="0">
+		<input type="hidden" name="seq" id="seq" value="0">
 		<input type="hidden" name="delNy" id="delNy" value=0>
 		<h4 class="pt-4">회원가입</h4>
 		<div class="row justify-content-center mt-5">
 			<div class="col-7 mb-3">
 			  <input type="text" class="form-control" placeholder="닉네임" id="nickname" name="nickname">
+			  <div class="invalid-feedback" id="nicknameFeedback"></div>
 			</div>
 			<div class="col-7 mb-3">
 			  <input type="text" class="form-control" placeholder="생년월일 ex)891114" id="dob" name="dob">
+			  <div class="invalid-feedback" id="dobFeedback"></div>
 			</div>
 			<div class="col-7 mb-3">
 			  <select class="form-select" id="gender" name="gender">
@@ -58,19 +63,23 @@
 			  	<option value="101">남성</option>
 			  	<option value="102">여성</option>
 			  </select>
+			  <div class="invalid-feedback" id="genderFeedback"></div>
 			</div>
 			<div class="col-7 mb-3">
 			  <input type="text" class="form-control" placeholder="이메일" id="email" name="email">
+			  <div class="invalid-feedback" id="emailFeedback"></div>
 			  <!-- 뒷부분 SELECT로 받고 @ 기점으로 분리할 것 -->
 			</div>
 			<div class="col-7 mb-3">
 			  <input type="text" class="form-control" placeholder="아이디" id="id" name="id">
+			  <div class="invalid-feedback" id="idFeedback"></div>
 			</div>
 			<div class="col-7 mb-3">
 			  <input type="password" class="form-control" placeholder="비밀번호" id="password" name="password">
 			</div>
 			<div class="col-7 mb-3">
 			  <input type="password" class="form-control" placeholder="비밀번호 확인">
+			  <div class="invalid-feedback" id="passwordFeedback"></div>
 			  <input type="text" class="form-control-plaintext" value="비밀번호가 일치합니다" style="font-size: 10px;">
 			</div>
 		</div>
@@ -87,15 +96,97 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="/resources/zdmin/js/validationZdmin.js"></script>
 <script type="text/javascript">
-	var goUrlInst = "/userReg";				/* #-> */
+<!-- validation -->
+	var goUrlInst = "/userReg";		
 	
 	var form = $("form[name=myForm]");
 	
 	$("#btnReg").on("click",function(){
-		form.attr("action",goUrlInst).submit();
+		if (seq == "0" || seq == ""){
+	   		// insert
+	   		if (validationInst() == false) return false;
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		if (validationUpdt() == false) return false;
+	   	}
 	});
 	
+	validationInst = function() {
+		if(!checkOnlyKoreanEnglishNumber('nickname', 2, 1, "닉네임을 입력해 주세요")) return false;
+		if(!checkSelectNull('gender', 2, "성별을 선택해 주세요.")) return false;
+		if(!checkEmail('email', 2, 1, "이메일 주소를 입력해 주세요")) return false;
+		if(!checkId('id', 2, 1, "ID를 입력해 주세요")) return false;
+		if(validationUpdt() == false) return false;
+	}
+	
+	validationUpdt = function() {}
+	$("#nickname").on("focusout", function(){
+		if(!checkOnlyKoreanEnglishNumber('nickname', 2, 1, "닉네임은 특수문자, 공백없이 입력해 주세요")) {
+			return false;
+		} 
+	});
+	$("#dob").on("focusout", function(){
+		if(!checkOnlyNumber('dob', 2, 1,0,0,0, "생년월일을 양식에 맞게 입력해주세요. ex) 891114")) {
+			return false;
+		} 
+	});
+	$("#gender").on("focusout", function(){
+		if(!checkSelectNull('gender', 2, "성별을 선택해 주세요.")) {
+			return false;
+		} 
+	});
+	$("#email").on("focusout", function(){
+		if(!checkEmail('email', 2, 1, "이메일 주소를 올바르게 입력해 주세요")) {
+			return false;
+		} 
+	});
+//	$("#id").on("focusout", function(){
+//		if(!checkId('id', 2, 1, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
+//			return false;
+//		} 
+//	});
+	$("#id").on("focusout", function(){
+		if(!checkId('id', 2, 1, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
+			return false;
+		} else {
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/checkId"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "id" : $("#id").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("id").classList.add('is-valid');
+						document.getElementById("id").classList.remove('is-invalid');
+	
+						document.getElementById("idFeedback").classList.remove('invalid-feedback');
+						document.getElementById("idFeedback").classList.add('valid-feedback');
+						document.getElementById("idFeedback").innerText = "사용 가능 합니다.";
+						
+						document.getElementById("idAllowedNy").value = 1;
+						
+					} else {
+						document.getElementById("id").classList.add('is-invalid');
+						document.getElementById("id").classList.remove('is-valid');
+						
+						document.getElementById("idFeedback").classList.remove('valid-feedback');
+						document.getElementById("idFeedback").classList.add('invalid-feedback');
+						document.getElementById("idFeedback").innerText = "사용 불가능 합니다";
+						
+						document.getElementById("idAllowedNy").value = 0;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+	});
 </script>
 </body>
 </html>
