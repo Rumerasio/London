@@ -130,6 +130,22 @@
 			AND password = #{password}
 			AND delNy = 0
 	</select>
+	
+	<select id="selectOneIdCheck" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM jsMember
+		WHERE 1=1
+			AND id=#{id}
+	</select>
+	
+	<select id="selectOneEmailCheck" resultType="Integer">
+		SELECT
+			COUNT(email)
+		FROM jsMember
+		WHERE 1=1
+			AND email=#{email}
+	</select>
 		
 	<insert id="insert">
 		INSERT INTO jsMember(

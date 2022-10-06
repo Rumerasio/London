@@ -10,6 +10,8 @@ public interface MemberService {
 	public Member selectOne(MemberVo vo) throws Exception;
 	public Member selectId(Member dto) throws Exception;
 	public Member selectPassword(Member dto) throws Exception;
+	public int selectOneIdCheck(Member dto) throws Exception;
+	public int selectOneEmailCheck(Member dto) throws Exception;
 	public int changePassword(Member dto) throws Exception;
 	public Member selectOneId(Member dto) throws Exception;
 	public Member selectOneLogin(Member dto) throws Exception;

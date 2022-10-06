@@ -182,6 +182,48 @@ public class MemberController {
 			return "redirect:/loginPage";
 		}
 		
+		@ResponseBody
+		@RequestMapping(value="/checkId")
+		public Map<String, Object> checkId(Member dto) throws Exception{
+			
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			int result = service.selectOneIdCheck(dto);
+			
+			System.out.println("result: "+result);
+			
+			if (result > 0) {
+				returnMap.put("rt", "fail");
+			} else {
+				returnMap.put("rt", "success");
+			}
+			
+			System.out.println(returnMap);
+			
+			return returnMap;
+		}
+		
+		@ResponseBody
+		@RequestMapping(value="/checkEmail")
+		public Map<String, Object> checkEmail(Member dto) throws Exception{
+			
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			int result = service.selectOneEmailCheck(dto);
+			
+			System.out.println("result: "+result);
+			
+			if (result > 0) {
+				returnMap.put("rt", "fail");
+			} else {
+				returnMap.put("rt", "success");
+			}
+			
+			System.out.println(returnMap);
+			
+			return returnMap;
+		}
+		
 		@RequestMapping(value="/findLoginInfo")
 		public String findLoginInfo() throws Exception {
 			

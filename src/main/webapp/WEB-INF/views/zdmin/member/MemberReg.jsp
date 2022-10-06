@@ -41,6 +41,20 @@
 		padding-top:5px;
 		padding-bottom:5px;
 	}
+	.addScroll{
+		overflow-y:auto;
+		height: 200px;
+		background-color:#E9ECEF;
+		padding-top:5px; 
+		padding-left:5px;
+	}
+	.input-file-button{
+		padding: 4px 25px;
+		background-color:#FF6600;
+		border-radius: 4px;
+		color: white;
+		cursor: pointer;
+	}
 </style>
 
 <body>
@@ -70,6 +84,16 @@
 			<%@include file="MemberVo.jsp"%>		<!-- #-> -->
 			<!-- *Vo.jsp e -->
 			<div class="p-5" style="background-color: white;">
+				<div class="row pt-4 py-2">
+					<div class="col-5">
+						<div class="row justify-content-center">
+							<img class="img-thumbnail" alt="" id="preview" style="width:160px; height:144px;">
+						</div>
+						<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>대형배너(385 x 515)</h6>
+						<label class="btn btn-sm mb-4" id="input-file-button" for="input-file" style="width:100px; background-color:#525252">첨부파일</label>
+						<input type="file" id="input-file" style="display:none;">
+					</div>
+				</div>
 				<div class="row pt-4 py-2">
 					<label for="nickname" class="col-1 col-form-label">닉네임</label>
 				    <div class="col-4">
@@ -117,6 +141,18 @@
 				      <input type="text" class="form-control-plaintext" value="비밀번호가 일치합니다" style="font-size: 10px;">
 				    </div>
 				</div>
+				<div class="row mt-sm-4">
+			        <div class="col-sm-6 mt-3 mt-sm-0">
+			            <label for="ifmmUploadedImage" class="form-label input-file-button">이미지첨부</label>
+			 			<input class="form-control form-control-sm" id="ifmmUploadedImage" name="ifmmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
+			 			<div class="addScroll">
+							<div style="display: inline-block; height: 95px;">
+								<!-- <img src="/resources/images/antic.jpg" class="rounded" width= "85px" height="85px"> -->
+								<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>
+							</div>
+			 			</div>
+			        </div>
+			    </div>
 				<div class="row mb-3">
 					<span class="col-2 offset-4"><button type="button" class="btn btn-sm" id="btnSave" name="btnSave" style="background-color:rgb(197, 59, 222); color:white;">계정생성</button></span>
 				</div>
@@ -173,6 +209,13 @@
 		form.attr("action",goUrlInst).submit();
 	});
 	
-	</script>
+</script>
+<script type="text/javascript">
+	function checkOnlyKoreanEnglishNumber (objName, pattern, nullAllowedNy, message) {
+	// checkOnlyKoreanEnglishNumber = function(obj, value, message) {
+	    var regExp = /^[ㄱ-ㅎ가-힣A-Za-z0-9]+$/;
+	    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);
+	}
+</script>
 </body>
 </html>

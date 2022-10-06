@@ -23,6 +23,9 @@ public class MemberDao {
 	
 	public Member selectOne(MemberVo vo) {return sqlSession.selectOne(namespace+".selectOne", vo);}
 	
+	public int selectOneIdCheck(Member dto) {return sqlSession.selectOne(namespace+".selectOneIdCheck", dto);}
+	public int selectOneEmailCheck(Member dto) {return sqlSession.selectOne(namespace+".selectOneEmailCheck", dto);}
+	
 	public Member selectId(Member dto) {return sqlSession.selectOne(namespace+".selectId",dto);}
 	
 	public Member selectPassword(Member dto) {return sqlSession.selectOne(namespace+".selectPassword", dto);}
