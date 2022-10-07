@@ -79,7 +79,7 @@
 		</c:otherwise>
 		</c:choose>
 	</table>
-	<nav class="nav justify-content-center mt-4">
+	<!-- <nav class="nav justify-content-center mt-4">
 	  <ul class="pagination pagination-sm">
 	  	<li class="page-item">
 	      <a class="page-link" href="#" style="background-color:#c6c6c6;">
@@ -105,7 +105,7 @@
 	      </a>
 	    </li>
 	  </ul>
-	</nav>
+	</nav> -->
 </div>
 	
 

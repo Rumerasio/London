@@ -60,16 +60,16 @@
 			<button type="button" id="btnMypage" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button>
 			<h3 class="my-5"style="font-family: sans-serif;"><b><i class="fa-solid fa-heart"></i> 즐겨찾기</b></h3>
 		</div>
-		<div class="row row-cols-3 g-4" style="width:1050px;">
-		  <c:choose>
-				<c:when test="${fn:length(list) eq 0}">
-					<div class="container">
-						<h2>좋아요를 표시한 테스트가 없습니다.</h2>
-					</div>
-				</c:when>
-				<c:otherwise>
+		<c:choose>
+			<c:when test="${fn:length(list) eq 0}">
+				<div class="container">
+					<h4>좋아요를 표시한 테스트가 없습니다.</h4>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="row row-cols-4 g-4" style="width:1050px;">
 					<c:forEach items="${list}" var="list" varStatus="status">
-						<div class="col">
+						<div class="col-4">
 						    <div class="card h-100">
 						      <a href="#"><img src="" class="card-img-top" alt="..."></a>
 						      <div class="card-body">
@@ -78,11 +78,11 @@
 						    </div>
 						  </div>
 					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-		</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
-	<nav class="nav justify-content-center mt-4">
+	<!-- <nav class="nav justify-content-center mt-4">
 	  <ul class="pagination pagination-sm">
 	  	<li class="page-item">
 	      <a class="page-link" href="#"">
@@ -106,7 +106,7 @@
 	      </a>
 	    </li>
 	  </ul>
-	</nav>
+	</nav> -->
 </div>
 	
 

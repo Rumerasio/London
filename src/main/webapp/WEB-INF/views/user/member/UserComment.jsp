@@ -70,9 +70,9 @@
 		</div>
 		<c:choose>
 			<c:when test="${fn:length(list) eq 0 }">
-				<tr>
-					<td colspan="4" style="text-align: center;">작성한 댓글이 없습니다.</td>
-				</tr>
+				<div style="text-align: center;">
+					작성한 댓글이 없습니다.
+				</div>
 			</c:when>
 		<c:otherwise>
 			<c:forEach items="${list}" var="list" varStatus="status">
@@ -96,7 +96,7 @@
 		</c:otherwise>
 		</c:choose>
 	</div>
-	<nav class="nav justify-content-center mt-4">
+	<!-- <nav class="nav justify-content-center mt-4">
 	  <ul class="pagination pagination-sm">
 	  	<li class="page-item">
 	      <a class="page-link" href="#"">
@@ -122,7 +122,7 @@
 	      </a>
 	    </li>
 	  </ul>
-	</nav>
+	</nav> -->
 </div>
 	
 
