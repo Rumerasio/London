@@ -56,7 +56,7 @@
 			<span><button type="button" class="btn" id="btnLogin" name="btnLogin" style="background-color:rgb(197, 59, 222); color:white; width:320px;">로그인</button></span>
 		</div>
 		<div class="row mb-3">
-			<span><a href="/register"><input type="button" id="btnForm" class="btn btn-secondary" value="회원가입" style="width:320px;"></a></span>
+			<span><button type="button" id="btnForm" class="btn btn-secondary" style="width:320px;">회원가입</button></span>
 		</div>
 	</form>
 	<div class="container pb-5" style="font-size:14px;"><a id="btnFindId">아이디</a> / <a id="btnFindPassword">비밀번호 찾기</a></div>
@@ -68,6 +68,7 @@
 <script type="text/javascript">
 	var goUrlMain = "/";
 	var goUrlFind = "/findLoginInfo";
+	var goUrlRegist = "/register";
 	
 	$("#btnLogin").on("click", function(){
 /* 			if(validation() == false) return false; */
@@ -105,6 +106,9 @@
     	$(location).attr("href",goUrlFind);
     });
 	
+	$("#btnForm").on("click", function(){
+    	$(location).attr("href",goUrlRegist);
+    });
 </script>
 </body>
 </html>
