@@ -172,7 +172,7 @@
 				</div>
 				<div id="contentTotal">
 					<div class="my-3 pt-3 mr-2" id="contentPageRegistration" style="display:inline-block; ;"><h6 style="display: inline;"><b>컨텐츠 페이지 작성</b></h6></div>
-					<button type="button" class="btn btn-success btn-sm" id="btnPageAdd" style="border:none;"><i class="fa-solid fa-plus"></i></button>
+					<button type="button" class="btn btn-success btn-sm" id="btnPageAdd" onclick="PageAdd('btnPageAdd')" style="border:none;"><i class="fa-solid fa-plus"></i></button>
 					<div class="container questionCon" id="contentPage" style="margin-left:0px; margin-bottom:20px; border:solid; border-width:2px; width:100%;">
 						<div class="float-start my-3" style="display: inline-block;"><h5 style="display: inline-block;">Page 1</h5></div>
 						<button type="button" id="btnPageDel" class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button>
@@ -616,13 +616,172 @@ function readURL8(input) {
 //		/* test1.insertAfter("#contentPageRegistration"); */
 //	});
 
-	$(document).ready(function() {
-		   
-		$("#btnPageAdd").click(function(){
-		  $("#contentPage").clone().appendTo("#contentTotal");
-		});
-	});
+	PageAdd = function(objName) {
+		
+//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//		contentPage: 1
+		
+		var obj = $("#" + objName +"")[0].files;
+		var objCount = obj.length;
+		
+		for (var i =0;i<objCount; i++) {
+			var divContentPage ="";
+			divContentPage +='<div class="container questionCon" id="contentPage" style="margin-left:0px; margin-bottom:20px; border:solid; border-width:2px; width:100%;">';
+			divContentPage +='	<div class="float-start my-3" style="display: inline-block;"><h5 style="display: inline-block;">Page '+i+'</h5></div>';
+			divContentPage +='	<button type="button" id="btnPageDel" class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button>';
+			divContentPage +='	<div style="clear:both;"></div>';
+			divContentPage +='	<div class="mb-3">';
+			divContentPage +='	  <input type="text" class="form-control form-control-sm" id="" name="questionContent" placeholder="질문">';
+			divContentPage +='	</div>';
+			divContentPage +='	<div class="my-3 row">';
+			divContentPage +='		<h6 class="col-2"><b>선택지</b></h6>';
+			divContentPage +='		<div class="form-check form-switch col-2">';
+			divContentPage +='		  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">';
+			divContentPage +='		  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>';
+			divContentPage +='		</div>';
+			divContentPage +='	</div>';
+			divContentPage +='	<div class="mb-3 row">';
+			divContentPage +='		<div class="col-10">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm" id="choiceContent" name="choiceContent" placeholder="선택지1 내용">';
+			divContentPage +='		</div>';
+			divContentPage +='		<div class="col-1">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="choiceScore" name="choiceScore" placeholder="배점">';
+			divContentPage +='		</div>';
+			divContentPage +='	</div>';
+			divContentPage +='	<div class="mb-3 row">';
+			divContentPage +='		<div class="col-10">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지2 내용">';
+			divContentPage +='		</div>';
+			divContentPage +='		<div class="col-1">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+			divContentPage +='		</div>';
+			divContentPage +='	</div>';
+			divContentPage +='	<div class="mb-3 row">';
+			divContentPage +='		<div class="col-10">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지3 내용">';
+			divContentPage +='		</div>';
+			divContentPage +='		<div class="col-1">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+			divContentPage +='		</div>';
+			divContentPage +='	</div>';
+			divContentPage +='	<div class="mb-3 row">';
+			divContentPage +='		<div class="col-10">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지4 내용">';
+			divContentPage +='		</div>';
+			divContentPage +='		<div class="col-1">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+			divContentPage +='		</div>';
+			divContentPage +='	</div>';
+			divContentPage +='	<div class="mb-3 row">';
+			divContentPage +='		<div class="col-10">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지5 내용">';
+			divContentPage +='		</div>';
+			divContentPage +='		<div class="col-1">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+			divContentPage +='		</div>';
+			divContentPage +='	</div>';
+			divContentPage +='	<div class="mb-3 row">';
+			divContentPage +='		<div class="col-10">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지6 내용">';
+			divContentPage +='		</div>';
+			divContentPage +='		<div class="col-1">';
+			divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+			divContentPage +='		</div>';
+			divContentPage +='		<div class="col-12 mt-3">';
+			divContentPage +='			<div class="row justify-content-center">';
+			divContentPage +='				<div class="row justify-content-center">';
+			divContentPage +='					<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">';
+			divContentPage +='				</div>';
+			divContentPage +='				<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>';
+			divContentPage +='				<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>';
+			divContentPage +='				<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">';
+			divContentPage +='			</div>';
+			divContentPage +='		</div>';
+			divContentPage +='	</div>';
+			divContentPage +='</div>';
+			$("#contentPage").after(divContentPage);
+		}
+	}
 	
+	/* 
+		$("#btnPageAdd").click(function(){
+		var divContentPage ="";
+		divContentPage +='<div class="container questionCon" id="contentPage" style="margin-left:0px; margin-bottom:20px; border:solid; border-width:2px; width:100%;">';
+		divContentPage +='	<div class="float-start my-3" style="display: inline-block;"><h5 style="display: inline-block;">Page 1</h5></div>';
+		divContentPage +='	<button type="button" id="btnPageDel" class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button>';
+		divContentPage +='	<div style="clear:both;"></div>';
+		divContentPage +='	<div class="mb-3">';
+		divContentPage +='	  <input type="text" class="form-control form-control-sm" id="" name="questionContent" placeholder="질문">';
+		divContentPage +='	</div>';
+		divContentPage +='	<div class="my-3 row">';
+		divContentPage +='		<h6 class="col-2"><b>선택지</b></h6>';
+		divContentPage +='		<div class="form-check form-switch col-2">';
+		divContentPage +='		  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">';
+		divContentPage +='		  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>';
+		divContentPage +='		</div>';
+		divContentPage +='	</div>';
+		divContentPage +='	<div class="mb-3 row">';
+		divContentPage +='		<div class="col-10">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm" id="choiceContent" name="choiceContent" placeholder="선택지1 내용">';
+		divContentPage +='		</div>';
+		divContentPage +='		<div class="col-1">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="choiceScore" name="choiceScore" placeholder="배점">';
+		divContentPage +='		</div>';
+		divContentPage +='	</div>';
+		divContentPage +='	<div class="mb-3 row">';
+		divContentPage +='		<div class="col-10">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지2 내용">';
+		divContentPage +='		</div>';
+		divContentPage +='		<div class="col-1">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+		divContentPage +='		</div>';
+		divContentPage +='	</div>';
+		divContentPage +='	<div class="mb-3 row">';
+		divContentPage +='		<div class="col-10">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지3 내용">';
+		divContentPage +='		</div>';
+		divContentPage +='		<div class="col-1">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+		divContentPage +='		</div>';
+		divContentPage +='	</div>';
+		divContentPage +='	<div class="mb-3 row">';
+		divContentPage +='		<div class="col-10">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지4 내용">';
+		divContentPage +='		</div>';
+		divContentPage +='		<div class="col-1">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+		divContentPage +='		</div>';
+		divContentPage +='	</div>';
+		divContentPage +='	<div class="mb-3 row">';
+		divContentPage +='		<div class="col-10">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지5 내용">';
+		divContentPage +='		</div>';
+		divContentPage +='		<div class="col-1">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+		divContentPage +='		</div>';
+		divContentPage +='	</div>';
+		divContentPage +='	<div class="mb-3 row">';
+		divContentPage +='		<div class="col-10">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm" id="" name="choiceContent" placeholder="선택지6 내용">';
+		divContentPage +='		</div>';
+		divContentPage +='		<div class="col-1">';
+		divContentPage +='			<input type="text" class="form-control form-control-sm col-1" id="" name="choiceScore" placeholder="배점">';
+		divContentPage +='		</div>';
+		divContentPage +='		<div class="col-12 mt-3">';
+		divContentPage +='			<div class="row justify-content-center">';
+		divContentPage +='				<div class="row justify-content-center">';
+		divContentPage +='					<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">';
+		divContentPage +='				</div>';
+		divContentPage +='				<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>';
+		divContentPage +='				<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>';
+		divContentPage +='				<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">';
+		divContentPage +='			</div>';
+		divContentPage +='		</div>';
+		divContentPage +='	</div>';
+		divContentPage +='</div>';
+		$("#contentPage").after(divContentPage);
+	});
+	 */
 	$(document).ready(function() {
 		$("#btnPageDel").click(function(){
 		  $("#contentPage").remove();
