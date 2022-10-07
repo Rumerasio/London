@@ -83,8 +83,8 @@
 				    <div class="col-2">
 				      <select class="form-select" id="gender" name="gender">
 				      	<option value ="" <c:if test="${empty item.gender}" >selected</c:if>>성별</option>
-				      	<option value = 1 <c:if test="${item.gender eq 1 }" >selected</c:if>>남성</option>
-				      	<option value = 2 <c:if test="${item.gender eq 2 }" >selected</c:if>>여성</option>
+				      	<option value = 101 <c:if test="${item.gender eq 101 }" >selected</c:if>>남성</option>
+				      	<option value = 102 <c:if test="${item.gender eq 102 }" >selected</c:if>>여성</option>
 				      </select>
 				    </div>
 				</div>
@@ -110,8 +110,8 @@
 					<label for="dd" class="col-1 col-form-label">삭제여부</label>
 				   <div class="col-2">
 				      <select class="form-select col-2" id="delNy" name="delNy">
-				      	<option value = 0 <c:if test="${item.delNy eq 0 }" >selected</c:if>>N</option>
-				      	<option value = 1 <c:if test="${item.delNy eq 1 }" >selected</c:if>>Y</option>
+				      	<option value=0 <c:if test="${item.delNy eq 0 }" >selected</c:if>>N</option>
+				      	<option value=1 <c:if test="${item.delNy eq 1 }" >selected</c:if>>Y</option>
 				      </select>
 				    </div>
 				</div>
