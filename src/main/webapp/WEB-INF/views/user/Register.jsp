@@ -59,9 +59,9 @@
 			</div>
 			<div class="col-7 mb-3">
 			  <select class="form-select" id="gender" name="gender">
-			  	<option selected>성별</option>
-			  	<option value="101">남성</option>
-			  	<option value="102">여성</option>
+			  	<option value="" selected>성별</option>
+			  	<option value=101>남성</option>
+			  	<option value=102>여성</option>
 			  </select>
 			  <div class="invalid-feedback" id="genderFeedback"></div>
 			</div>
@@ -76,11 +76,11 @@
 			</div>
 			<div class="col-7 mb-3">
 			  <input type="password" class="form-control" placeholder="비밀번호" id="password" name="password">
+			  <div class="invalid-feedback" id="passwordFeedback"></div>
 			</div>
 			<div class="col-7 mb-3">
 			  <input type="password" class="form-control" placeholder="비밀번호 확인">
-			  <div class="invalid-feedback" id="passwordFeedback"></div>
-			  <input type="text" class="form-control-plaintext" value="비밀번호가 일치합니다" style="font-size: 10px;">
+			  <!-- <input type="text" class="form-control-plaintext" value="비밀번호가 일치합니다" style="font-size: 10px;"> -->
 			</div>
 		</div>
 		<div class="row mb-3">
@@ -104,51 +104,59 @@
 	var form = $("form[name=myForm]");
 	
 	$("#btnReg").on("click",function(){
-		if (seq == "0" || seq == ""){
-	   		// insert
-	   		if (validationInst() == false) return false;
-	   		form.attr("action", goUrlInst).submit();
-	   	} else {
-	   		if (validationUpdt() == false) return false;
-	   	}
+	   		if (validationInst() == false){
+	   			return false;
+	   		} else {
+	   			form.attr("action", goUrlInst).submit();
+	   		}
 	});
 	
 	validationInst = function() {
-		if(!checkOnlyKoreanEnglishNumber('nickname', 2, 1, "닉네임을 입력해 주세요")) return false;
-		if(!checkSelectNull('gender', 2, "성별을 선택해 주세요.")) return false;
-		if(!checkEmail('email', 2, 1, "이메일 주소를 입력해 주세요")) return false;
-		if(!checkId('id', 2, 1, "ID를 입력해 주세요")) return false;
-		if(validationUpdt() == false) return false;
+		if(!checkOnlyKoreanEnglishNumber('nickname',2,0,"닉네임을 입력해 주세요")) return false;
+		if(!checkOnlyNumber('dob',2,0,0,0,0,"생일을 입력해주세요"))
+		if(!checkSelectNull('gender',2 ,"성별을 선택해 주세요.")) return false;
+		if(!checkEmail('email',2,0,"이메일 주소를 입력해 주세요")) return false;
+		if(!checkId('id',2,0,"ID를 입력해 주세요")) return false;
+		if(!checkSelectNull('password',2 ,"패스워드를 설정해 주세요.")) return false;
+		/* if(validationUpdt() == false) return false; */
 	}
 	
 	validationUpdt = function() {}
+	
 	$("#nickname").on("focusout", function(){
 		if(!checkOnlyKoreanEnglishNumber('nickname', 2, 1, "닉네임은 특수문자, 공백없이 입력해 주세요")) {
 			return false;
 		} 
 	});
 	$("#dob").on("focusout", function(){
-		if(!checkOnlyNumber('dob', 2, 1,0,0,0, "생년월일을 양식에 맞게 입력해주세요. ex) 891114")) {
+		if(!checkOnlyNumber('dob',2,0,0,0,0, "생년월일을 양식에 맞게 입력해주세요. ex) 891114")) {
 			return false;
 		} 
 	});
 	$("#gender").on("focusout", function(){
-		if(!checkSelectNull('gender', 2, "성별을 선택해 주세요.")) {
+		if(!checkSelectNull('gender',2 ,"성별을 선택해 주세요.")) {
 			return false;
 		} 
 	});
 	$("#email").on("focusout", function(){
-		if(!checkEmail('email', 2, 1, "이메일 주소를 올바르게 입력해 주세요")) {
+		if(!checkEmail('email',2,1,"이메일 주소를 올바르게 입력해 주세요")) {
 			return false;
 		} 
 	});
-//	$("#id").on("focusout", function(){
-//		if(!checkId('id', 2, 1, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
-//			return false;
-//		} 
-//	});
 	$("#id").on("focusout", function(){
 		if(!checkId('id', 2, 1, "영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
+			return false;
+		} 
+	});
+	$("#password").on("focusout", function(){
+		if(!checkSelectNull('password',2 ,"패스워드를 설정해 주세요.")) {
+			return false;
+		} 
+	});
+	$("#id").on("focusout", function(){
+		if(!checkId('id',2,0,"영대소문자,숫자,특수문자(-_.),4~20자리만 입력 가능합니다")) {
+			document.getElementById("idFeedback").classList.remove('valid-feedback');
+			document.getElementById("idFeedback").classList.add('invalid-feedback');
 			return false;
 		} else {
 			$.ajax({
