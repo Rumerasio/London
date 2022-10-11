@@ -81,7 +81,7 @@
 					<div class="row py-2">
 						<div class="col-2">
 							<div class="row" style="text-align:center;"><h6 style="font-size: 16px;"><c:out value="${list.nickname }"/></h6></div>
-							<div class="row" style="text-align:center;"><h6 style="font-size: 12px;">2022-07-01<br>15:57:12</h6></div> 
+							<div class="row" style="text-align:center;"><h6 style="font-size: 12px;"><c:out value="${list.datetime }"/></h6></div> 
 						</div>
 						<div class="col-8">
 							<p style="font-size: 14px;"><c:out value="${list.commentContent }"/></p>
