@@ -1,6 +1,8 @@
 package com.simsim.modules.survey;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -108,6 +111,28 @@ public class SurveyController {
 		return "user/member/UserComment";
 	}
 	
+	@RequestMapping(value="/survey/content")
+	public String surveyContent(@ModelAttribute("vo") SurveyVo vo,Model model) throws Exception {
+		Survey result = service.selectOne(vo);
+		model.addAttribute("item", result);
+		vo.setSnSeq(vo.getSnSeq());
+		System.out.println("aaaaaaaa");
+		
+		List<Survey> list = service.selectSurveyContentQuestion(vo);
+		System.out.println("bbbbbbbbbb");
+		model.addAttribute("list", list);
+		System.out.println("cccccccccc");
+		
+		vo.setSqSeq(vo.getSqSeq());
+		System.out.println(vo.getSqSeq());
+		List<Survey> list2 = service.selectSurveyContentChoice(vo);
+		System.out.println("addddddddddd");
+		model.addAttribute("list2", list2);
+		System.out.println("eeeeeeeeeee");
+		
+		return "user/Survey/SurveyContent";
+	}
+	
 	
 	//유저 인터페이스 E
 	
@@ -139,16 +164,23 @@ public class SurveyController {
 		return "redirect:/survey";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/survey/commentVele")
-	public String commentVele(@ModelAttribute("vo") SurveyVo vo,Survey dto, RedirectAttributes redirectAttributes) throws Exception {
+	public Map<String, Object> commentVele(@ModelAttribute("vo") SurveyVo vo,Survey dto,Model model,RedirectAttributes redirectAttributes) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		service.CommentVele(dto);
+		
+		
+		int result3 = service.selectSurveyCommentCount(vo);
+		model.addAttribute("Num", result3);
+		
 		vo.setScSeq(dto.getScSeq());
 		vo.setSeq(dto.getSeq());
 		vo.setSnSeq(dto.getSnSeq());
+		returnMap.put("rt","success");
 		
-		redirectAttributes.addFlashAttribute("vo", vo);
-		
-		return "redirect:/survey";
+		return returnMap;
 	}
 	
 //	@RequestMapping(value="/surveyCommentList")

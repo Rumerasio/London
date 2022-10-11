@@ -94,6 +94,16 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public int insertSurveyResult(Survey dto) throws Exception { return dao.insertSurveyResult(dto);}
 
+	@Override
+	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) throws Exception {
+		return dao.selectSurveyContentQuestion(vo);
+	}
+
+	@Override
+	public List<Survey> selectSurveyContentChoice(SurveyVo vo) throws Exception {
+		return dao.selectSurveyContentChoice(vo);
+	}
+
 	
 
 

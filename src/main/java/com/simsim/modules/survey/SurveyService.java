@@ -8,6 +8,8 @@ public interface SurveyService {
 	public List<Survey> selectUserRecord(Survey dto) throws Exception;
 	public List<Survey> selectMyComment(Survey dto) throws Exception;
 	public List<Survey> selectSurveyCommentList(SurveyVo vo) throws Exception;
+	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) throws Exception;
+	public List<Survey> selectSurveyContentChoice(SurveyVo vo) throws Exception;
 	public int selectSurveyCommentCount(SurveyVo vo) throws Exception;
 	public int CommentInst(Survey dto) throws Exception;
 	public int CommentVele(Survey dto) throws Exception;

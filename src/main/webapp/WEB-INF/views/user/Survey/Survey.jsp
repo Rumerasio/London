@@ -84,7 +84,10 @@
 			<div class="float-md-end">
 				<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
 				<label class="btn" for="btn-check"><i class="fa-solid fa-heart float-me-end"></i> 60</label>
-				<a href="./survey1Content.html"><button type="button" class="btn" style="background-color:rgb(197, 59, 222); color:white; width:300px;">시작하기</button></a>
+				<form method="post" name="snForm">
+					<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
+					<button type="button" class="btn" id="btnContent" style="background-color:rgb(197, 59, 222); color:white; width:300px;">시작하기</button>
+				</form>
 			</div>
 			<h4 style="font-style: italic; margin-top: 20px;"><c:out value="${item.surveyPhrase }"/></h4>
 			<p class="mt-3" style="font-size: 18px;"><c:out value="${item.surveyExplain }"/></p>
@@ -115,50 +118,118 @@
 				<c:otherwise>
 		    		<c:forEach items="${list}" var="list" varStatus="status">
 		    			<form method="post" name="commentForm">
-			    			<div class="input-group row mt-3" style="background-color:rgba(39, 174, 96, 0.11);">
-								<div class="col-2" style="align-content: center;">
-									<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.nickname }"/>" style="text-align: center;">
-									<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.datetime }"/>" style="font-size: 10px; text-align: center;">
-								</div>
-								<div class="col-9">
-									<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.commentContent }"/>">
-								</div>
-								<div class="col-1" ">
-									<c:choose>
-										<c:when test="${list.seq eq vo.seq}">
-											<input type="hidden" name="scSeq" id="scSeq" value="<c:out value="${vo.scSeq}"/>">
-											<button type="button" class="btn modify_btn">수정하기</button>
-											<button type="button" class="btn btn-secondary" data-bs-toggle="modal" id="btnToVele" data-bs-target="#Velete_check">삭제</button>
-											<div class="modal" tabindex="-1" id="Velete_check">
-											  <div class="modal-dialog">
+		    				<c:choose>
+		    					<c:when test="${list.seq eq vo.seq}">
+				    				<input type="hidden" name="scSeq" id="scSeq" value="<c:out value="${vo.scSeq}"/>">
+						    			<div class="input-group row mt-3" id="commentBox_<c:out value="${list.scSeq}"/>" style="background-color:rgba(39, 174, 96, 0.11);">
+											<div class="col-2" style="align-content: center;">
+												<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.nickname }"/>" style="text-align: center;">
+												<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.datetime }"/>" style="font-size: 10px; text-align: center;">
+											</div>
+											<div class="col-9">
+												<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.commentContent }"/>">
+											</div>
+											<div class="col-1">
+												<button type="button" class="btn modify_btn">수정하기</button>
+												<button type="button" class="btn btn-secondary" data-bs-toggle="modal" id="btnToVele" data-bs-target="#Velete_check_<c:out value="${list.scSeq}"/>">삭제</button>
+												<div class="modal" tabindex="-1" id="Velete_check_<c:out value="${list.scSeq}"/>">
+												  <div class="modal-dialog">
+												    <div class="modal-content">
+												      <div class="modal-header">
+												        <h5 class="modal-title">코멘트 삭제</h5>
+												        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												      </div>
+												      <div class="modal-body">
+												        <p>정말 삭제하시겠습니까?</p>
+												      </div>
+												      <div class="modal-footer">
+												        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+												        <button type="button" id="btnVele" class="btn btn-danger" onclick="veleComment(<c:out value="${list.scSeq}"/>)" data-bs-dismiss="modal">삭제</button>
+												      </div>
+												    </div>
+												  </div>
+												</div>
+											</div>
+										</div>
+								</c:when>
+								<c:otherwise>
+									<div class="input-group row mt-3" style="background-color:rgba(39, 174, 96, 0.11);">
+										<div class="col-2" style="align-content: center;">
+											<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.nickname }"/>" style="text-align: center;">
+											<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.datetime }"/>" style="font-size: 10px; text-align: center;">
+										</div>
+										<div class="col-9">
+											<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.commentContent }"/>">
+										</div>
+										<div class="col-1">
+											<button type="button" class="btn like_btn"><i class="fa-solid fa-thumbs-up"></i> 0</button>
+											<button type="button" class="btn report_btn" data-bs-toggle="modal" data-bs-target="#Report_check">신고</button>
+											<div class="modal fade" id="Report_check" aria-hidden="true" tabindex="-1">
+											  <div class="modal-dialog modal-dialog-centered">
 											    <div class="modal-content">
 											      <div class="modal-header">
-											        <h5 class="modal-title">코멘트 삭제</h5>
+											        <h1 class="modal-title fs-5">코멘트 신고</h1>
 											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 											      </div>
 											      <div class="modal-body">
-											        <p>정말 삭제하시겠습니까?</p>
+											        정말 신고하시겠습니까?
 											      </div>
 											      <div class="modal-footer">
-											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-											        <button type="button" id="btnVele" class="btn btn-danger">삭제</button>
+											      	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+											        <button type="button" class="btn btn-primary" data-bs-target="#report_done" data-bs-toggle="modal">신고하기</button>
 											      </div>
 											    </div>
 											  </div>
 											</div>
-										</c:when>
-										<c:otherwise>
-											<button type="button" class="btn like_btn"><i class="fa-solid fa-thumbs-up"></i> 0</button>
-											<button type="button" class="btn report_btn">신고</button>
-										</c:otherwise>
-									</c:choose>
+											<div class="modal fade" id="report_done" aria-hidden="true" tabindex="-1">
+											  <div class="modal-dialog modal-dialog-centered">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body">
+											        신고가 완료되었습니다.
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+											<!-- <div class="modal fade" tabindex="-1" id="Report_check">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h5 class="modal-title">코멘트 신고</h5>
+											        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											      </div>
+											      <div class="modal-body">
+											        <p>정말 신고하시겠습니까?</p>
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+											        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Report_done">신고</button>
+											      </div>
+											    </div>
+											  </div>
+											</div> -->
+										</div>
+									</div>
+								</c:otherwise>
+							</c:choose>
+								<div class="modal fade" aria-hidden="true" tabindex="-1" id="Report_done">
+									<div class="modal-body">
+										<p>신고가 완료되었습니다.</p>
+									</div>
+								    <div class="modal-footer">
+								  		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+									</div>
 								</div>
-							</div>
 						</form>
 		    		</c:forEach>
 		    	</c:otherwise>
 		    </c:choose>
-			<nav class="nav justify-content-center mt-4">
+			<!-- <nav class="nav justify-content-center mt-4">
 			  <ul class="pagination pagination-sm">
 			  	<li class="page-item">
 			      <a class="page-link" href="#" style="background-color:#c6c6c6;">
@@ -184,7 +255,7 @@
 			      </a>
 			    </li>
 			  </ul>
-			</nav>
+			</nav> -->
 		</div>
 	</div>
 </div>
@@ -197,22 +268,51 @@
 	var goUrlInst = "/survey/commentInst";
 	var goUrlVele = "/survey/commentVele";
 	var goUrlUpdt = "/survey/commentUpdt";
+	var goUrlCont = "/survey/content";
+	
+	var scSeq = $("input:hidden[name=scSeq]");
 	
 	var form = $("form[name=myForm]");
 	var form2 = $("form[name=commentForm]");
+	var form3 = $("form[name=snForm]");
 
 	$("#btnComment").on("click",function(){
 		form.attr("action",goUrlInst).submit();
 	});
 	
+	$("#btnContent").on("click",function(){
+		form3.attr("action",goUrlCont).submit();
+	});
 //	 getscSeq = function(keyValue) {
 //	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 //	    	scSeq.val(keyValue);
 //	 }
 
-	$("#btnVele").on("click",function(){
+
+	veleComment = function(keyValue) {
+		var num = keyValue;
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/survey/commentVele"
+			/* ,data : $("#formLogin").serialize() */
+			,data : {"scSeq": keyValue }
+			,success: function(aa) {
+				document.getElementById("commentBox_"+num).remove();
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+//		scSeq.val(keyValue);
+//		form2.attr("action",goUrlVele).submit();
+	}
+	
+	/* $("#btnVele_"+seq).on("click",function(){
 		form2.attr("action",goUrlVele).submit();
-	});
+	}); */
 </script>
 </body>
 </html>

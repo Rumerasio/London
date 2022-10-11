@@ -21,9 +21,12 @@ public class SurveyDao {
 		return sqlSession.selectList(namespace + ".selectList","");
 	}
 	public List<Survey> selectSurveyCommentList(SurveyVo vo){return sqlSession.selectList(namespace+".selectSurveyCommentList",vo);}
+	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentQuestion",vo);}
+	public List<Survey> selectSurveyContentChoice(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentChoice",vo);}
+	
 	public int selectSurveyCommentCount(SurveyVo vo) {return sqlSession.selectOne(namespace+".selectSurveyCommentCount", vo);}
 	public int CommentInst(Survey dto) {return sqlSession.insert(namespace+".CommentInst", dto);}
-	public int CommentVele(Survey dto) {return sqlSession.update(namespace=".CommentVele",dto);}
+	public int CommentVele(Survey dto) {return sqlSession.update(namespace+".CommentVele", dto);}
 	public int CommentUpdt(Survey dto) {return sqlSession.update(namespace+".CommentUpdt", dto);}
 	public Survey selectOne(SurveyVo vo){
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
