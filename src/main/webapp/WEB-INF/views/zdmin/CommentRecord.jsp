@@ -70,8 +70,17 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>회원관리</b></h5>
 		<h6 style="color:gray;"><b>회원 작성 댓글</b></h6>
-		<div class="p-5" style="background-color: white;">
-			<div class="mt-3 pt-3"><h6><b>회원 작성 댓글 목록</b></h6></div>
+		<div class="row mb-3">
+	    	<div class="col-1" style="text-align: center; font-size: 24px;">Total: <c:out value="${vo.totalRows}"/></div>
+	    	<div class="col-1 offset-10">
+			    <select class="form-select">
+			    	<option selected value="1">5</option>
+			    	<option value="2">10</option>
+			    	<option value="3">15</option>
+			    </select>
+			</div>
+	    </div>
+		<div>
 			<table class="table table-striped mt-3">
 			  <tr>
 			  	<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>

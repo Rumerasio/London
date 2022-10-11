@@ -58,9 +58,9 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>컨텐츠 관리</b></h5>
 		<h6 style="color:gray;"><b>컨텐츠 이용내역</b></h6>
-		<div class="p-5" style="background-color: white;">
+		<div>
 			<div class="mt-3 pt-3"><h6><b>전체 컨텐츠 이용내역</b></h6></div>
-			<table class="table table-info table-striped mt-3">
+			<table class="table table-striped table-hover mt-3">
 			  <tr>
 			  	<th style="width: 50px;">번호</th>
 			  	<th>닉네임</th>
