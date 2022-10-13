@@ -160,6 +160,41 @@
 		inner join jsQuestionChoice c on c.jsSurveyQuestion_sqSeq = b.sqSeq
 	</select>
 	
+	<insert id="insertSelected">
+		INSERT INTO jsSurveySelected(
+			jsSurveyRecord_srcSeq
+			,ssQuestion
+			,ssChoosed
+		)
+		VALUES (
+			#{srcSeq}
+			,#{ssQuestion
+			,#{ssChoosed}
+		)
+		<selectKey resultType="String" keyProperty="ssSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertSurveyRecord">
+		INSERT INTO jsSurveyRecord(
+			jsMember_seq
+			,jsSurveyName_snSeq
+			,totalScore
+			,jsSurveyResult_srSeq
+		)
+		VALUES (
+			#{seq}
+			,#{snSeq}
+			,0
+			,#{srSeq}
+		)
+		<selectKey resultType="String" keyProperty="srcSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	
 	<!-- 유저 인터페이스 e-->
 	<!-- 테스트 내용 작성 s -->
 	<insert id="insertSurveyName">
