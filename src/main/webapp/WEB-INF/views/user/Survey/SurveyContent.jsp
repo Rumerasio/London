@@ -69,6 +69,8 @@
 		padding-top:2px;
 		padding-bottom:2px;
 		margin-left: 12px;
+		position: absolute;
+		bottom:-22px;
 	}
 </style>
 
@@ -79,7 +81,10 @@
 	</div>
 </nav>
 <div class="container" id="total">
-	<div style="width:1000px; background-color: white; margin-left: 12px;">
+	<div style="width:1000px; background-color: white; margin-left: 12px; position: relative;">
+		<div class="progress">
+		  <div class="progress-bar" role="progressbar" style="width: 25%; background-color:#a5d610;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
 		<h6 class="pt-2" style="color:gray;"><c:out value="${item.survey }"/></h6><hr>
 		<c:choose>
 			<c:when test="${fn:length(list) eq 0}">
@@ -87,48 +92,86 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list}" var="list" varStatus="status">
-					<div class="container content_page_<c:out value="${list.question}"/>">
-						<div>
-							<h5><c:out value="${list.questionContent }"/></h5>
-							<c:out value="${list.question}"/>
-						</div>
-						<div class="row choice_box my-5	">
-							<c:forEach items="${list2}" var="list2" varStatus="status">
-								<c:choose>
-									<c:when test="${list2.sqSeq eq list.sqSeq }">
-										<div class="col-6 my-3">
-											<c:out value="${list2.choice}"/>
-											<button type="button" class="btn btn-outline-secondary" onclick="submitAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>" style="width:226px; font-size: 13px;"><c:out value="${list2.choiceContent }"/></button>
-										</div>
-									</c:when>
-									<c:otherwise></c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</div>
-					</div>
+					<c:choose>
+						<c:when test="${list.question eq 1}">
+							<div class="container" id="content_page_<c:out value="${list.question}"/>">
+								<div>
+									<h5><c:out value="${list.questionContent }"/></h5>
+									<c:out value="${list.question}"/>문제 번호
+								</div>
+								<div class="row choice_box my-5	">
+									<c:forEach items="${list2}" var="list2" varStatus="status">
+										<c:choose>
+											<c:when test="${list2.sqSeq eq list.sqSeq }">
+												<div class="col-6 my-3">
+													<c:out value="${list2.choice}"/>선택지 번호
+													<input type="radio" class="btn-check" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
+													<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
+												</div>
+											</c:when>
+											<c:otherwise></c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</div>
+							</div>
+							<button type="button" class="btn btn-secondary survey_back" id="btnBack_<c:out value="${list.question}"/>">이전으로</button>
+						</c:when>
+						<c:otherwise>
+							<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
+								<div>
+									<h5><c:out value="${list.questionContent }"/></h5>
+									<c:out value="${list.question}"/>문제 번호
+								</div>
+								<div class="row choice_box my-5	">
+									<c:forEach items="${list2}" var="list2" varStatus="status">
+										<c:choose>
+											<c:when test="${list2.sqSeq eq list.sqSeq }">
+												<div class="col-6 my-3">
+													<c:out value="${list2.choice}"/>선택지 번호
+													<input type="radio" class="btn-check" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
+													<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
+												</div>
+											</c:when>
+											<c:otherwise></c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</div>
+							</div>
+							<button type="button" class="btn btn-secondary survey_back visually-hidden" id="btnBack_<c:out value="${list.question}"/>" onclick="back(<c:out value="${list.question}"/>)">이전으로</button>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-		<div class="progress">
-		  <div class="progress-bar" role="progressbar" style="width: 25%; background-color:#a5d610;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-		</div>
 	</div>
-	<button type="button" class="btn btn-secondary survey_back">이전으로</button>
+	<!-- <button type="button" class="btn btn-secondary survey_back">이전으로</button> -->
 	<div class="container">
-		<img alt="" src="../images/lighthouse_mainbanner.jpg" style="width: 1000px;">
+		<img alt="" src="/resources/images/lighthouse_mainbanner.jpg" style="width: 1000px;">
 	</div>
 </div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
-	submitAndHide = function(keyValue) {
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	selectAndHide = function(keyValue) {
 		var num = keyValue;
-//		document.getElementByClass("content_page_"+num).classList.remove('visually-hidden');
-		document.getElementsByClassName("content_page_"+num).classList.add('visually-hidden');
+		document.getElementById("content_page_"+num).classList.add('visually-hidden');
+		document.getElementById("content_page_"+(num+1)).classList.remove('visually-hidden');
+		
+		document.getElementById("btnBack_"+num).classList.add('visually-hidden');
+		document.getElementById("btnBack_"+(num+1)).classList.remove('visually-hidden');
 	}
 	
+	back = function(keyValue) {
+		var num = keyValue;
+		document.getElementById("content_page_"+num).classList.add('visually-hidden');
+		document.getElementById("content_page_"+(num-1)).classList.remove('visually-hidden');
+		
+		document.getElementById("btnBack_"+num).classList.add('visually-hidden');
+		document.getElementById("btnBack_"+(num-1)).classList.remove('visually-hidden');
+	}
 </script>
 </body>
 </html>
