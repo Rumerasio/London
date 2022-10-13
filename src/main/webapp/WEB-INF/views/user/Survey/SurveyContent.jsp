@@ -86,63 +86,89 @@
 		  <div class="progress-bar" role="progressbar" style="width: 25%; background-color:#a5d610;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 		</div>
 		<h6 class="pt-2" style="color:gray;"><c:out value="${item.survey }"/></h6><hr>
-		<c:choose>
-			<c:when test="${fn:length(list) eq 0}">
-				<div><p class="text-center">질문, 선택지가 없어요</p></div>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${list}" var="list" varStatus="status">
-					<c:choose>
-						<c:when test="${list.question eq 1}">
-							<div class="container" id="content_page_<c:out value="${list.question}"/>">
-								<div>
-									<h5><c:out value="${list.questionContent }"/></h5>
-									<c:out value="${list.question}"/>문제 번호
+		<form method="post" name="myForm">
+			<c:choose>
+				<c:when test="${fn:length(list) eq 0}">
+					<div><p class="text-center">질문, 선택지가 없어요</p></div>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<c:choose>
+							<c:when test="${list.question eq 1}">
+								<div class="container" id="content_page_<c:out value="${list.question}"/>">
+									<div>
+										<h5><c:out value="${list.questionContent }"/></h5>
+										<c:out value="${list.question}"/>문제 번호
+									</div>
+									<div class="row choice_box my-5	">
+										<c:forEach items="${list2}" var="list2" varStatus="status">
+											<c:choose>
+												<c:when test="${list2.sqSeq eq list.sqSeq }">
+													<div class="col-6 my-3">
+														<c:out value="${list2.choice}"/>선택지 번호
+														<input type="radio" class="btn-check" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
+														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
+													</div>
+												</c:when>
+												<c:otherwise></c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
 								</div>
-								<div class="row choice_box my-5	">
-									<c:forEach items="${list2}" var="list2" varStatus="status">
-										<c:choose>
-											<c:when test="${list2.sqSeq eq list.sqSeq }">
-												<div class="col-6 my-3">
-													<c:out value="${list2.choice}"/>선택지 번호
-													<input type="radio" class="btn-check" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
-													<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
-												</div>
-											</c:when>
-											<c:otherwise></c:otherwise>
-										</c:choose>
-									</c:forEach>
+								<button type="button" class="btn btn-secondary survey_back" id="btnBack_<c:out value="${list.question}"/>">이전으로</button>
+							</c:when>
+							<!-- 마지막 질문 -->
+							<c:when test="${list.question eq fn:length(list)}">
+								<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
+									<div>
+										<h5><c:out value="${list.questionContent }"/></h5>
+										<c:out value="${list.question}"/>문제 번호
+									</div>
+									<div class="row choice_box my-5	">
+										<c:forEach items="${list2}" var="list2" varStatus="status">
+											<c:choose>
+												<c:when test="${list2.sqSeq eq list.sqSeq }">
+													<div class="col-6 my-3">
+														<c:out value="${list2.choice}"/>선택지 번호
+														<input type="radio" class="btn-check" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="sendChoice(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
+														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
+													</div>
+												</c:when>
+												<c:otherwise></c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
 								</div>
-							</div>
-							<button type="button" class="btn btn-secondary survey_back" id="btnBack_<c:out value="${list.question}"/>">이전으로</button>
-						</c:when>
-						<c:otherwise>
-							<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
-								<div>
-									<h5><c:out value="${list.questionContent }"/></h5>
-									<c:out value="${list.question}"/>문제 번호
+								<button type="button" class="btn btn-secondary survey_back visually-hidden" id="btnBack_<c:out value="${list.question}"/>" onclick="back(<c:out value="${list.question}"/>)">이전으로</button>
+							</c:when>
+							<c:otherwise>
+								<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
+									<div>
+										<h5><c:out value="${list.questionContent }"/></h5>
+										<c:out value="${list.question}"/>문제 번호
+									</div>
+									<div class="row choice_box my-5	">
+										<c:forEach items="${list2}" var="list2" varStatus="status">
+											<c:choose>
+												<c:when test="${list2.sqSeq eq list.sqSeq }">
+													<div class="col-6 my-3">
+														<c:out value="${list2.choice}"/>선택지 번호
+														<input type="radio" class="btn-check" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
+														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
+													</div>
+												</c:when>
+												<c:otherwise></c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
 								</div>
-								<div class="row choice_box my-5	">
-									<c:forEach items="${list2}" var="list2" varStatus="status">
-										<c:choose>
-											<c:when test="${list2.sqSeq eq list.sqSeq }">
-												<div class="col-6 my-3">
-													<c:out value="${list2.choice}"/>선택지 번호
-													<input type="radio" class="btn-check" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
-													<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
-												</div>
-											</c:when>
-											<c:otherwise></c:otherwise>
-										</c:choose>
-									</c:forEach>
-								</div>
-							</div>
-							<button type="button" class="btn btn-secondary survey_back visually-hidden" id="btnBack_<c:out value="${list.question}"/>" onclick="back(<c:out value="${list.question}"/>)">이전으로</button>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
+								<button type="button" class="btn btn-secondary survey_back visually-hidden" id="btnBack_<c:out value="${list.question}"/>" onclick="back(<c:out value="${list.question}"/>)">이전으로</button>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		</form>
 	</div>
 	<!-- <button type="button" class="btn btn-secondary survey_back">이전으로</button> -->
 	<div class="container">
@@ -171,6 +197,17 @@
 		
 		document.getElementById("btnBack_"+num).classList.add('visually-hidden');
 		document.getElementById("btnBack_"+(num-1)).classList.remove('visually-hidden');
+	}
+	
+	var form = $("form[name=myForm]");
+	
+	// survey 값 제출 및 결과페이지로 Ing 
+	sendChoice = function(keyValue) {
+		var num = keyValue;
+		for(var i = 0; i<num;i++){
+			
+		}
+		
 	}
 </script>
 </body>
