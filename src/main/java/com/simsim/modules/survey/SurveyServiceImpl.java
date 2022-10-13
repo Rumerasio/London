@@ -66,7 +66,7 @@ public class SurveyServiceImpl implements SurveyService {
 //		dao.insertSurveyName(dto);
 //		
 //		//질문, 선택지
-////		var questionContent = document.getElementsByName('questionConetent')[0].className;
+////		var questionContent = document.getElementsByName('questionContent')[0].className;
 //		if(dto.getQuestionContent() != null ) {
 //			for(int i=0;i<=5;i++) {
 //				dao.insertSurveyQuestion(dto);
