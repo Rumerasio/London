@@ -37,6 +37,8 @@ public class Survey {
 	private String commentContent;
 	
 	private String ssSeq;
+	private String[] ssQuestionGroup;
+	private String[] ssChoosedGroup;
 	private String ssQuestion;
 	private String ssChoosed;
 	
@@ -204,6 +206,18 @@ public class Survey {
 	}
 	public void setSsSeq(String ssSeq) {
 		this.ssSeq = ssSeq;
+	}
+	public String[] getSsQuestionGroup() {
+		return ssQuestionGroup;
+	}
+	public void setSsQuestionGroup(String[] ssQuestionGroup) {
+		this.ssQuestionGroup = ssQuestionGroup;
+	}
+	public String[] getSsChoosedGroup() {
+		return ssChoosedGroup;
+	}
+	public void setSsChoosedGroup(String[] ssChoosedGroup) {
+		this.ssChoosedGroup = ssChoosedGroup;
 	}
 	public String getSsQuestion() {
 		return ssQuestion;
