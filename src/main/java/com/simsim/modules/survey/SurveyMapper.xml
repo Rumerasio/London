@@ -158,9 +158,10 @@
 		FROM jsSurveyName a
 		inner join jsSurveyQuestion b on b.jsSurveyName_snSeq = a.snSeq
 		inner join jsQuestionChoice c on c.jsSurveyQuestion_sqSeq = b.sqSeq
+		AND snSeq=#{snSeq}
 	</select>
 	
-	<insert id="insertSelected">
+	<insert id="insertSurveySelected">
 		INSERT INTO jsSurveySelected(
 			jsSurveyRecord_srcSeq
 			,ssQuestion
@@ -168,7 +169,7 @@
 		)
 		VALUES (
 			#{srcSeq}
-			,#{ssQuestion
+			,#{ssQuestion}
 			,#{ssChoosed}
 		)
 		<selectKey resultType="String" keyProperty="ssSeq" order="AFTER">
@@ -187,7 +188,7 @@
 			#{seq}
 			,#{snSeq}
 			,0
-			,#{srSeq}
+			,0
 		)
 		<selectKey resultType="String" keyProperty="srcSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -277,5 +278,6 @@
 		</selectKey>
 	</insert>
 	<!-- 테스트 내용 작성 e -->
+	
 	
 </mapper>

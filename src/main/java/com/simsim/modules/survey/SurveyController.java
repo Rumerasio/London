@@ -133,6 +133,26 @@ public class SurveyController {
 		return "user/Survey/SurveyContent";
 	}
 	
+	@RequestMapping(value="/survey/surveyChoosedInst")
+	public String surveyChoosedInst(Survey dto) throws Exception {
+		service.insertSurveyRecord(dto);
+		System.out.println(dto.getSrcSeq());
+		System.out.println(dto.getSsQuestionGroup()[0]);
+		System.out.println(dto.getSsChoosedGroup()[0]);
+		System.out.println(dto.getSsQuestionGroup()[1]);
+		System.out.println(dto.getSsChoosedGroup()[1]);
+		System.out.println(dto.getSsQuestionGroup()[2]);
+		System.out.println(dto.getSsChoosedGroup()[2]);
+		
+		for(int i=0; i<dto.getSsQuestionGroup().length; i++) {
+			dto.setSrcSeq(dto.getSrcSeq());
+			dto.setSsQuestion(dto.getSsQuestionGroup()[i]);
+			dto.setSsChoosed(dto.getSsChoosedGroup()[i]);
+			service.insertSurveySelected(dto);
+		}
+		
+		return "user/Survey/SurveyResult";
+	}
 	
 	//유저 인터페이스 E
 	

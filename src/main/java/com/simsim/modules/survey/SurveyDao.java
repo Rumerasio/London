@@ -24,6 +24,9 @@ public class SurveyDao {
 	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentQuestion",vo);}
 	public List<Survey> selectSurveyContentChoice(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentChoice",vo);}
 	
+	public int insertSurveyRecord(Survey dto) {return sqlSession.insert(namespace+".insertSurveyRecord", dto);}
+	public int insertSurveySelected(Survey dto) {return sqlSession.insert(namespace+".insertSurveySelected", dto);}
+	
 	public int selectSurveyCommentCount(SurveyVo vo) {return sqlSession.selectOne(namespace+".selectSurveyCommentCount", vo);}
 	public int CommentInst(Survey dto) {return sqlSession.insert(namespace+".CommentInst", dto);}
 	public int CommentVele(Survey dto) {return sqlSession.update(namespace+".CommentVele", dto);}

@@ -10,6 +10,10 @@ public interface SurveyService {
 	public List<Survey> selectSurveyCommentList(SurveyVo vo) throws Exception;
 	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) throws Exception;
 	public List<Survey> selectSurveyContentChoice(SurveyVo vo) throws Exception;
+	
+	public int insertSurveyRecord(Survey dto) throws Exception;
+	public int insertSurveySelected(Survey dto) throws Exception;
+	
 	public int selectSurveyCommentCount(SurveyVo vo) throws Exception;
 	public int CommentInst(Survey dto) throws Exception;
 	public int CommentVele(Survey dto) throws Exception;
