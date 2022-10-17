@@ -119,7 +119,7 @@
 										</c:forEach>
 									</div>
 								</div>
-								<button type="button" class="btn btn-secondary survey_back" id="btnBack_<c:out value="${list.question}"/>">이전으로</button>
+								<a href="javascript:goSurvey(<c:out value="${vo.snSeq}"/>)"><button type="button" class="btn btn-secondary survey_back" id="btnBack_<c:out value="${list.question}"/>">이전으로</button></a>
 							</c:when>
 							<c:when test="${status.last}">
 								<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
@@ -172,6 +172,10 @@
 				</c:otherwise>
 			</c:choose>
 		</form>
+		<form method="post" name="formVo">
+			<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
+			<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
+		</form>
 	</div>
 	<!-- <button type="button" class="btn btn-secondary survey_back">이전으로</button> -->
 	<div class="container">
@@ -203,8 +207,12 @@
 	}
 	
 	var goUrlSsInst = "/survey/surveyChoosedInst";
+	var goUrlSurvey = "/survey";
+	
+	var snSeq = $("input:hidden[name=snSeq]");
 	
 	var form = $("form[name=myForm]");
+	var formVo = $("form[name=formVo]");
 	
 	// survey 값 제출 및 결과페이지로 Ing 
 	var ssQuestion = [];
@@ -224,6 +232,12 @@
 		$("#ssQuestionGroup").val(ssQuestion);
 		$("#ssChoosedGroup").val(ssChoosed);
 			form.attr("action",goUrlSsInst).submit();
+	}
+	
+	goSurvey = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	snSeq.val(keyValue);
+		formVo.attr("action", goUrlSurvey).submit();
 	}
 </script>
 </body>

@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<% pageContext.setAttribute("replaceChar", "\n"); %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -52,12 +54,86 @@
 <body>
 <nav class="navbar">
 	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="../member/mainLogedin.html">Simsim</a>
+		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
 <div id="total">
 	<div style="width:100%; background-color:#162C43; position:relative; top: -8px; ">
-		<div class="container pt-5" style="text-align: center;">
+		<c:choose>
+			<c:when test="${fn:length(list) eq 0}">
+				<div><p>결과내용이 없어요!</p></div>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${list}" var="list" varStatus="status">
+					<c:choose>
+						<c:when test="${list.srSeq eq 3}">
+							<div class="container pt-5" style="text-align: center;">
+								<img class="result_img" alt="..." src="../images/stars_test/Sagittarius.jpg" id="Sagittarius" style="width: 200px; margin-top:200px;">
+								<div class="mt-4 result_title" style="text-align: center;">
+									<h4 style="color:white; font-size: 22px; width: 220px; display: inline-block;"><b><c:out value="${list.resultTitle }"/></b></h4>
+								</div>
+								<div class="result_content mx-auto" style="width: 368px; color:white; text-align:left; font-size: 16px;">
+									<div style="white-space:pre-line;"><c:out value="${list.resultContent }"/></div>
+									<%-- <div class="clearfix row" style="position: relative;">
+										<div class="col-6">
+											<a class="nav-link" href="#Capricornus"><img class="result_img float-start" alt="..." src="../images/stars_test/Capricornus.jpg" style="width: 180px;"></a>
+										</div>
+										<div class="col-6">
+											<h4 class="mt-4" style="color:skyblue; text-align: center; font-size: 16px;"><i class="fa-solid fa-heart"></i> 잘 맞는 궁합</h4>
+											<h4 class="mx-4" style="color:white; font-size: 14px; text-align: center;"><c:out value="${list.relation1 }"/></h4>
+											<div class="vertical_line" style="border-left: 2px solid skyblue; height: 100px; position: absolute; left: 50%; margin-left:-6px; top: 25px;"></div>
+										</div>
+									</div>
+									<div class="clearfix row" style="position: relative;">
+										<div class="col-6">
+											<a class="nav-link" href="#Taurus"><img class="result_img float-start" alt="..." src="../images/stars_test/Taurus.jpg" style="width: 180px;"></a>
+										</div>
+										<div class="col-6">
+											<h4 class="mt-4" style="color:skyblue; text-align: center; font-size: 16px;"><i class="fa-solid fa-heart"></i> 안 맞는 궁합</h4>
+											<h4 class="mx-4" style="color:white; font-size: 14px; text-align: center;"><c:out value="${list.relation2 }"/></h4>
+											<div class="vertical_line" style="border-left: 2px solid skyblue; height: 100px; position: absolute; left: 50%; margin-left:-6px; top: 25px;"></div>
+										</div>
+									</div> --%>
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+						<div>없음</div>
+						</c:otherwise>
+					</c:choose>
+					<%-- <div class="container pt-5" style="text-align: center;">
+						<img class="result_img" alt="..." src="../images/stars_test/Sagittarius.jpg" id="Sagittarius" style="width: 200px; margin-top:200px;">
+						<div class="mt-4 result_title" style="text-align: center;">
+							<h4 style="color:white; font-size: 22px; width: 220px; display: inline-block;"><b><c:out value="${list.resultTitle }"/></b></h4>
+						</div>
+						<div class="result_content mx-auto" style="width: 368px; color:white; text-align:left; font-size: 16px;">
+							<div style="white-space:pre-line;"><c:out value="${list.resultContent }"/></div>
+							<div class="clearfix row" style="position: relative;">
+								<div class="col-6">
+									<a class="nav-link" href="#Capricornus"><img class="result_img float-start" alt="..." src="../images/stars_test/Capricornus.jpg" style="width: 180px;"></a>
+								</div>
+								<div class="col-6">
+									<h4 class="mt-4" style="color:skyblue; text-align: center; font-size: 16px;"><i class="fa-solid fa-heart"></i> 잘 맞는 궁합</h4>
+									<h4 class="mx-4" style="color:white; font-size: 14px; text-align: center;"><c:out value="${list.relation1 }"/></h4>
+									<div class="vertical_line" style="border-left: 2px solid skyblue; height: 100px; position: absolute; left: 50%; margin-left:-6px; top: 25px;"></div>
+								</div>
+							</div>
+							<div class="clearfix row" style="position: relative;">
+								<div class="col-6">
+									<a class="nav-link" href="#Taurus"><img class="result_img float-start" alt="..." src="../images/stars_test/Taurus.jpg" style="width: 180px;"></a>
+								</div>
+								<div class="col-6">
+									<h4 class="mt-4" style="color:skyblue; text-align: center; font-size: 16px;"><i class="fa-solid fa-heart"></i> 안 맞는 궁합</h4>
+									<h4 class="mx-4" style="color:white; font-size: 14px; text-align: center;"><c:out value="${list.relation2 }"/></h4>
+									<div class="vertical_line" style="border-left: 2px solid skyblue; height: 100px; position: absolute; left: 50%; margin-left:-6px; top: 25px;"></div>
+								</div>
+							</div>
+						</div>
+					</div> --%>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		<!-- <div class="container pt-5" style="text-align: center;">
 			<img class="result_img" alt="..." src="../images/stars_test/Sagittarius.jpg" id="Sagittarius" style="width: 200px; margin-top:200px;">
 			<div class="mt-4 result_title" style="text-align: center;">
 				<h4 style="color:white; font-size: 22px; width: 220px; display: inline-block;"><b>열정적으로 늘 새로운 가능성을 찾는 궁수 자리</b></h4>
@@ -183,7 +259,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="result_End_Part mt-5" style="color: white; text-align: center;">
 			<h6><b>친구에게 결과 공유하기</b></h6>
 			<div class="row my-3" style="width: 368px; margin: auto; font-size: 40px;">
@@ -212,5 +288,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+</script>
 </body>
 </html>

@@ -19,7 +19,7 @@ public class SurveyVo {
 	private String choiceContent;
 	private Integer choiceScore;
 
-	private String srSeq;
+	private Integer srSeq;
 	private Integer resultNum;
 	private String resultTitle;
 	private String resultSmTitle;
@@ -137,11 +137,11 @@ public class SurveyVo {
 		this.choiceScore = choiceScore;
 	}
 
-	public String getSrSeq() {
+	public Integer getSrSeq() {
 		return srSeq;
 	}
 
-	public void setSrSeq(String srSeq) {
+	public void setSrSeq(Integer srSeq) {
 		this.srSeq = srSeq;
 	}
 

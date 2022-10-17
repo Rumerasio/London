@@ -23,8 +23,13 @@ public class SurveyDao {
 	public List<Survey> selectSurveyCommentList(SurveyVo vo){return sqlSession.selectList(namespace+".selectSurveyCommentList",vo);}
 	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentQuestion",vo);}
 	public List<Survey> selectSurveyContentChoice(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentChoice",vo);}
+	public List<Survey> selectResultList(SurveyVo vo) {return sqlSession.selectList(namespace+".selectResultList", vo);}
 	
 	public int insertSurveyRecord(Survey dto) {return sqlSession.insert(namespace+".insertSurveyRecord", dto);}
+	public int getTotalScore(SurveyVo vo) {return sqlSession.selectOne(namespace+".getTotalScore",vo);}
+	public int getsrSeq(SurveyVo vo) {return sqlSession.selectOne(namespace+".getsrSeq", vo);}
+	public int totalScoreUpdt(Survey dto) {return sqlSession.update(namespace+".totalScoreUpdt", dto);}
+	public int srSeqUpdt(Survey dto) {return sqlSession.update(namespace+".srSeqUpdt", dto);}
 	public int insertSurveySelected(Survey dto) {return sqlSession.insert(namespace+".insertSurveySelected", dto);}
 	
 	public int selectSurveyCommentCount(SurveyVo vo) {return sqlSession.selectOne(namespace+".selectSurveyCommentCount", vo);}

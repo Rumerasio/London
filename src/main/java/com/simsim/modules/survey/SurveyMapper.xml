@@ -195,6 +195,62 @@
 		</selectKey>
 	</insert>
 	
+	<select id="getTotalScore" resultType="Integer">
+		SELECT 
+			sum(a.choiceScore) 
+		FROM jsQuestionChoice a 
+		inner join jsSurveyRecord c on srcSeq = #{srcSeq}
+		inner join jsSurveySelected b on  c.srcSeq = b.jsSurveyRecord_srcSeq
+		inner join jsSurveyQuestion d on b.ssQuestion = d.question
+		WHERE 1=1 
+		AND c.jsSurveyName_snSeq = d.jsSurveyName_snSeq 
+		AND d.sqSeq = a.jsSurveyQuestion_sqSeq 
+		AND a.choice = b.ssChoosed 
+	</select>
+	
+	<select id="getsrSeq" resultType="Integer">
+		SELECT 
+			sum(srSeq)
+		FROM jsSurveyResult c
+		<![CDATA[ 
+		inner join jsSurveyRecord a on c.scoreRangeStart <= a.totalScore AND c.scoreRangeEnd >= a.totalScore
+		]]>
+		WHERE 1=1 
+		AND a.jsSurveyName_snSeq = c.jsSurveyName_snSeq 
+		AND a.srcSeq = #{srcSeq}
+	</select>
+	
+	<update id="totalScoreUpdt">
+		UPDATE jsSurveyRecord
+		SET
+			totalScore = #{totalScore}
+		WHERE 1=1
+			AND srcSeq=#{srcSeq}
+	</update>
+	
+	<update id="srSeqUpdt">
+		UPDATE jsSurveyRecord
+		SET
+			jsSurveyResult_srSeq = #{srSeq}
+		WHERE 1=1
+			AND srcSeq=#{srcSeq}
+	</update>
+	
+	<select id="selectResultList" resultMap="resultMapObj">
+	SELECT
+		srSeq
+		,jsSurveyName_snSeq
+		,resultNum
+		,resultTitle
+		,resultSmTitle
+		,resultContent
+		,relation1
+		,relation2
+	FROM jsSurveyResult 
+	WHERE 1=1
+	AND jsSurveyname_snSeq = #{snSeq}
+	</select>
+	
 	
 	<!-- 유저 인터페이스 e-->
 	<!-- 테스트 내용 작성 s -->

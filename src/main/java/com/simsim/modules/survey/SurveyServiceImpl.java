@@ -114,6 +114,31 @@ public class SurveyServiceImpl implements SurveyService {
 		return dao.insertSurveySelected(dto);
 	}
 
+	@Override
+	public int getTotalScore(SurveyVo vo) throws Exception {
+		return dao.getTotalScore(vo);
+	}
+
+	@Override
+	public int totalScoreUpdt(Survey dto) throws Exception {
+		return dao.totalScoreUpdt(dto);
+	}
+
+	@Override
+	public int getsrSeq(SurveyVo vo) throws Exception {
+		return dao.getsrSeq(vo);
+	}
+
+	@Override
+	public int srSeqUpdt(Survey dto) throws Exception {
+		return dao.srSeqUpdt(dto);
+	}
+
+	@Override
+	public List<Survey> selectResultList(SurveyVo vo) throws Exception {
+		return dao.selectResultList(vo);
+	}
+
 	
 
 
