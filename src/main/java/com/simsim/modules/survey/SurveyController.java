@@ -21,6 +21,13 @@ public class SurveyController {
 	@Autowired
 	SurveyServiceImpl service;
 	
+	@RequestMapping(value="/start")
+	public String start() throws Exception{
+		
+		return "user/Start";
+	}
+	
+	
 	@RequestMapping(value="/")
 	public String Survey(Model model) throws Exception {
 		
@@ -132,6 +139,7 @@ public class SurveyController {
 	public String surveyChoosedInst(Survey dto,@ModelAttribute("vo") SurveyVo vo, Model model) throws Exception {
 		service.insertSurveyRecord(dto);
 		System.out.println(dto.getSrcSeq());
+		
 		vo.setSrcSeq(dto.getSrcSeq());
 		System.out.println(vo.getSrcSeq());
 		
@@ -149,6 +157,8 @@ public class SurveyController {
 		dto.setSrSeq(value2);
 		
 		service.srSeqUpdt(dto);
+		Survey result2 = service.selectCurrentRecord(vo);
+		model.addAttribute("item",result2);
 		
 		List<Survey> result = service.selectResultList(vo);
 		model.addAttribute("list", result);
