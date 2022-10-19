@@ -66,7 +66,7 @@
 			<c:otherwise>
 				<c:forEach items="${list}" var="list" varStatus="status">
 					<c:choose>
-						<c:when test="${list.srSeq eq 3}">
+						<c:when test="${list.srSeq eq item.srSeq}">
 							<div class="container pt-5" style="text-align: center;">
 								<img class="result_img" alt="..." src="../images/stars_test/Sagittarius.jpg" id="Sagittarius" style="width: 200px; margin-top:200px;">
 								<div class="mt-4 result_title" style="text-align: center;">
@@ -98,7 +98,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-						<div>없음</div>
+						<div>일치하는 결과가 없습니다.</div>
 						</c:otherwise>
 					</c:choose>
 					<%-- <div class="container pt-5" style="text-align: center;">
@@ -273,14 +273,18 @@
 					<i class="fa-brands fa-facebook-f"></i>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-2 offset-4">
-					<a href="./survey1.html"><button type="button" class="btn btn-warning" style="color:white; width:180px; font-size: 14px;">테스트 다시하기</button></a>
+			<form method="post" name="formVo">
+				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
+				<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
+				<div class="row">
+					<div class="col-2 offset-4">
+						<a href="javascript:goSurvey(<c:out value="${vo.snSeq}"/>)"><button type="button" class="btn btn-warning" style="color:white; width:180px; font-size: 14px;">테스트 다시하기</button></a>
+					</div>
+					<div class="col-2">
+						<a href="/"><button type="button" class="btn btn-danger" style="width: 180px; font-size: 14px;">다른 테스트 하러가기</button></a>
+					</div>
 				</div>
-				<div class="col-2">
-					<a href="../member/main.html"><button type="button" class="btn btn-danger" style="width: 180px; font-size: 14px;">다른 테스트 하러가기</button></a>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -290,6 +294,17 @@
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+	var goUrlSurvey = "/survey";
+	
+	var snSeq = $("input:hidden[name=snSeq]");
+
+	var formVo = $("form[name=formVo]");
+
+	goSurvey = function(keyValue) {
+		/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+		snSeq.val(keyValue);
+		formVo.attr("action", goUrlSurvey).submit();
+	}
 </script>
 </body>
 </html>

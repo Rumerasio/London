@@ -39,6 +39,7 @@ public class SurveyDao {
 	public Survey selectOne(SurveyVo vo){
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
+	public Survey selectCurrentRecord(SurveyVo vo) {return sqlSession.selectOne(namespace+".selectCurrentRecord", vo);}
 	public List<Survey> selectMyComment(Survey dto){return sqlSession.selectList(namespace+".selectMyComment", dto);}
 	
 	public List<Survey> selectUserRecord(Survey dto){return sqlSession.selectList(namespace+".selectUserRecord", dto );}

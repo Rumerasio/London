@@ -139,6 +139,11 @@ public class SurveyServiceImpl implements SurveyService {
 		return dao.selectResultList(vo);
 	}
 
+	@Override
+	public Survey selectCurrentRecord(SurveyVo vo) throws Exception {
+		return dao.selectCurrentRecord(vo);
+	}
+
 	
 
 

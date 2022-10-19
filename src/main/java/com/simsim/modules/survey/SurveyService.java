@@ -24,6 +24,7 @@ public interface SurveyService {
 	public int CommentVele(Survey dto) throws Exception;
 	public int CommentUpdt(Survey dto) throws Exception;
 	public Survey selectOne(SurveyVo vo) throws Exception;
+	public Survey selectCurrentRecord(SurveyVo vo) throws Exception;
 	
 //	public int insert (Survey dto) throws Exception;
 	public int insertSurveyName(Survey dto) throws Exception;
