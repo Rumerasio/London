@@ -98,7 +98,14 @@
 		<div class="p-4" style="background-color: rgb(224, 224, 224); width: 1000px;">
 			<form method="post" id="myForm" name="myForm" autocomplete="off">
 				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
-				<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
+				<c:choose>
+					<c:when test="${empty sessSeq }">
+						<input type="hidden" name="Seq" id="Seq" value=1>
+					</c:when>
+					<c:otherwise>
+						<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
+					</c:otherwise>
+				</c:choose>
 				<div class="input-group row">
 					<div class="col-2">
 						<input type="text" class="form-control col-1 mt-3" placeholder="닉네임" id="nickname" name="nickname" value="<c:out value="${sessNickname }"/>">
@@ -278,6 +285,12 @@
 
 	$("#btnComment").on("click",function(){
 		form.attr("action",goUrlInst).submit();
+		/* if (seq == 1){
+			alert("비로그인 상태입니다.");
+   			return false;
+   		} else {
+   			form.attr("action",goUrlInst).submit();
+   		} */
 	});
 	
 	$("#btnContent").on("click",function(){
@@ -287,7 +300,6 @@
 //	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 //	    	scSeq.val(keyValue);
 //	 }
-
 
 	veleComment = function(keyValue) {
 		var num = keyValue;

@@ -88,7 +88,14 @@
 		<h6 class="pt-2" style="color:gray;"><c:out value="${item.survey }"/></h6><hr>
 		<form method="post" name="myForm">
 			<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
-			<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
+			<c:choose>
+				<c:when test="${empty sessSeq }">
+					<input type="hidden" name="Seq" id="Seq" value=1>
+				</c:when>
+				<c:otherwise>
+					<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
+				</c:otherwise>
+			</c:choose>
 			<input type="hidden" name="ssQuestionGroup" id="ssQuestionGroup" value="">
 			<input type="hidden" name="ssChoosedGroup" id="ssChoosedGroup" value="">
 			<c:choose>
