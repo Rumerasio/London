@@ -113,7 +113,7 @@
 	
 	validationInst = function() {
 		if(!checkOnlyKoreanEnglishNumber('nickname',2,0,"닉네임을 입력해 주세요")) return false;
-		if(!checkOnlyNumber('dob',2,0,0,0,0,"생일을 입력해주세요"))
+		if(!checkOnlyNumber('dob',2,0,0,0,0,"생일을 입력해주세요")) return false;
 		if(!checkSelectNull('gender',2 ,"성별을 선택해 주세요.")) return false;
 		if(!checkEmail('email',2,0,"이메일 주소를 입력해 주세요")) return false;
 		if(!checkId('id',2,0,"ID를 입력해 주세요")) return false;
