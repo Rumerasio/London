@@ -28,6 +28,7 @@
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/" />
+			<exclude-mapping path="/start" />
 			<exclude-mapping path="/loginPage" />
 			<exclude-mapping path="/loginProc" />
 			<exclude-mapping path="/register" />
