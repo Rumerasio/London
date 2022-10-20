@@ -77,21 +77,21 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/content/contentInst")
-	public String contentInst(Survey dto, RedirectAttributes redirectAttributes) throws Exception {
-		int result1 = service.insertSurveyName(dto);
-		int result2 = service.insertSurveyQuestion(dto);
-		int result3 = service.insertQuestionChoice(dto);
-		int result4 = service.insertSurveyResult(dto);
+	public String contentInst(@ModelAttribute("vo") SurveyVo vo,Survey dto, RedirectAttributes redirectAttributes) throws Exception {
 		
-//		dto.setSnSeq(dto.getSnSeq());
-		
-		System.out.println("result1: "+result1);
-		System.out.println("result2: "+result2);
-		System.out.println("result3: "+result3);
-		System.out.println("result4: "+result4);
-		
-		
-//		service.insert(dto);
+		service.insertSurveyName(dto);
+		dto.setSnSeq(dto.getSnSeq());
+		System.out.println("dto.SnSeq:"+dto.getSnSeq());
+		for(int i=0;i<dto.getQuestionGroup().length;i++) {
+			dto.setQuestion(dto.getQuestionGroup()[i]);
+			dto.setQuestionContent(dto.getQuestionContentGroup()[i]);
+			service.insertSurveyQuestion(dto);
+			for(int j=0; j<3; j++) {
+				
+				
+//				service.insertQuestionChoice(dto);
+			}
+		}
 		
 		return "redirect:/content/contentList";
 	}

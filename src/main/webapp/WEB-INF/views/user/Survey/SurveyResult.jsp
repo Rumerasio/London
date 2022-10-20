@@ -97,9 +97,7 @@
 								</div>
 							</div>
 						</c:when>
-						<c:otherwise>
-						<div>일치하는 결과가 없습니다.</div>
-						</c:otherwise>
+						<c:otherwise></c:otherwise>
 					</c:choose>
 					<%-- <div class="container pt-5" style="text-align: center;">
 						<img class="result_img" alt="..." src="../images/stars_test/Sagittarius.jpg" id="Sagittarius" style="width: 200px; margin-top:200px;">

@@ -109,14 +109,12 @@
 								<div class="container" id="content_page_<c:out value="${list.question}"/>">
 									<div>
 										<h5><c:out value="${list.questionContent }"/></h5>
-										<c:out value="${list.question}"/>문제 번호
 									</div>
 									<div class="row choice_box my-5	">
 										<c:forEach items="${list2}" var="list2" varStatus="status">
 											<c:choose>
 												<c:when test="${list2.sqSeq eq list.sqSeq }">
 													<div class="col-6 my-3">
-														<c:out value="${list2.choice}"/>선택지 번호
 														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
 														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
 													</div>
@@ -132,14 +130,12 @@
 								<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
 									<div>
 										<h5><c:out value="${list.questionContent }"/></h5>
-										<c:out value="${list.question}"/>문제 번호(마지막)
 									</div>
 									<div class="row choice_box my-5	">
 										<c:forEach items="${list2}" var="list2" varStatus="status">
 											<c:choose>
 												<c:when test="${list2.sqSeq eq list.sqSeq }">
 													<div class="col-6 my-3">
-														<c:out value="${list2.choice}"/>선택지 번호
 														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="sendChoice(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
 														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
 													</div>
@@ -155,14 +151,12 @@
 								<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
 									<div>
 										<h5><c:out value="${list.questionContent }"/></h5>
-										<c:out value="${list.question}"/>문제 번호
 									</div>
 									<div class="row choice_box my-5	">
 										<c:forEach items="${list2}" var="list2" varStatus="status">
 											<c:choose>
 												<c:when test="${list2.sqSeq eq list.sqSeq }">
 													<div class="col-6 my-3">
-														<c:out value="${list2.choice}"/>선택지 번호
 														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
 														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
 													</div>

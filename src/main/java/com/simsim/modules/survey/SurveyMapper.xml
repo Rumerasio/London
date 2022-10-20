@@ -285,9 +285,9 @@
 		</selectKey>
 	</insert>
 	
-	<insert id="insertSurveyQestion">
+	<insert id="insertSurveyQuestion">
 		INSERT INTO jsSurveyQuestion(
-			snSeq
+			jsSurveyname_snSeq
 			,question
 			,questionContent
 		)
