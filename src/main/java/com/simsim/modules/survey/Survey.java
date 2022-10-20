@@ -9,8 +9,10 @@ public class Survey {
 	private Integer openNy;
 	
 	private String sqSeq;
-	private Integer question; //질문 번호
+	private String question; //질문 번호
 	private String questionContent; //질문 내용
+	private String[] questionGroup;
+	private String[] questionContentGroup;
 	
 	private String sqcSeq;
 	private Integer multiChoiceNy;
@@ -87,10 +89,10 @@ public class Survey {
 	public void setSqSeq(String sqSeq) {
 		this.sqSeq = sqSeq;
 	}
-	public Integer getQuestion() {
+	public String getQuestion() {
 		return question;
 	}
-	public void setQuestion(Integer question) {
+	public void setQuestion(String question) {
 		this.question = question;
 	}
 	public String getQuestionContent() {
@@ -260,6 +262,18 @@ public class Survey {
 	}
 	public void setJsMember_seq(String jsMember_seq) {
 		this.jsMember_seq = jsMember_seq;
+	}
+	public String[] getQuestionContentGroup() {
+		return questionContentGroup;
+	}
+	public void setQuestionContentGroup(String[] questionContentGroup) {
+		this.questionContentGroup = questionContentGroup;
+	}
+	public String[] getQuestionGroup() {
+		return questionGroup;
+	}
+	public void setQuestionGroup(String[] questionGroup) {
+		this.questionGroup = questionGroup;
 	}
 	
 	
