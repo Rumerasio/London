@@ -89,7 +89,7 @@ public class SurveyServiceImpl implements SurveyService {
 	public int insertSurveyQuestion(Survey dto) throws Exception { return dao.insertSurveyQuestion(dto);}
 
 	@Override
-	public int insertQuestionChoice(Survey dto) throws Exception { return dao.insertQuestionChoice(dto);}
+	public int insertChoice(Survey dto) throws Exception { return dao.insertChoice(dto);}
 
 	@Override
 	public int insertSurveyResult(Survey dto) throws Exception { return dao.insertSurveyResult(dto);}

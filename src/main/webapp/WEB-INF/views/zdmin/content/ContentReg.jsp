@@ -172,6 +172,10 @@
 				</div>
 				<input type="hidden" name="questionContentGroup" id="questionContentGroup" value="">
 				<input type="hidden" name="questionGroup" id="questionGroup" value="">
+				<input type="hidden" name="choiceNumPerQuestion" id="choiceNumPerQuestion" value="">
+				<input type="hidden" name="choiceGroup" id="choiceGroup" value="">
+				<input type="hidden" name="choiceContentGroup" id="choiceContentGroup" value="">
+				<input type="hidden" name="choiceScoreGroup" id="choiceScoreGroup" value="">
 				<div id="contentTotal">
 					<div class="my-3 pt-3 mr-2" id="contentPageRegistration" style="display:inline-block; ;"><h6 style="display: inline;"><b>컨텐츠 페이지 작성</b></h6></div>
 					<button type="button" class="btn btn-success btn-sm" id="btnPageAdd" onclick="PageAdd('questionForm')" style="border:none;"><i class="fa-solid fa-plus"></i></button>
@@ -577,25 +581,53 @@ function readURL8(input) {
 	surveyReg = function() {
 		var div = $("div[name=questionForm]");
 		var num = div.length;
+//		alert("받은 문제 갯수:"+num);
 		
 		var QContentGroup =[];
 		var QGroup =[];
 		
+		var CNPQ =[];
+		
+		var CGroup =[];
+		var CContentGroup =[];
+		var CScoreGroup =[];
 		
 		for(var i=1; i<=num; i++){
 			QGroup.push(i);
 			QContentGroup.push($("#question_"+i+"").val());
 			
-			var cho = $("input[type=text][name=choice_"+i+"]").val();
+			var cho = $("input[type=text][name=choice_"+i+"]");
 			var num2 = cho.length;
+//			alert(i+"번 문제의 선택지 갯수:"+num2);
+			CNPQ.push(num2);
 			
 			for(var j=1; j<=num2; j++){
-				
+				CGroup.push(j);
+				CContentGroup.push($("#choice_"+i+"_"+j+"").val());
+				CScoreGroup.push($("#choiceScore_"+i+"_"+j+"").val());
 			}
 		}
+//		alert("최종");
+//		alert(CGroup);
+//		alert(CContentGroup);
+//		alert(CScoreGroup);
 		
 		$("#questionGroup").val(QGroup);
 		$("#questionContentGroup").val(QContentGroup);
+		
+		$("#choiceNumPerQuestion").val(CNPQ);
+		
+		$("#choiceGroup").val(CGroup);
+		$("#choiceContentGroup").val(CContentGroup);
+		$("#choiceScoreGroup").val(CScoreGroup);
+		
+		alert("dto에 넣은 값 확인");
+		alert($("#questionGroup").val());
+		alert($("#questionContentGroup").val());
+		alert("문제당 선택지 갯수: "+$("#choiceNumPerQuestion").val());
+		alert($("#choiceGroup").val());
+		alert($("#choiceContentGroup").val());
+		alert($("#choiceScoreGroup").val());
 		
 		form.attr("action",goUrlInst).submit();
 	}

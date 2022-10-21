@@ -303,7 +303,7 @@
 	
 	<insert id="insertChoice">
 		INSERT INTO jsQuestionChoice(
-			sqSeq
+			jsSurveyQuestion_sqSeq
 			,choice
 			,choiceContent
 			,choiceScore

@@ -23,27 +23,21 @@
 
 <body>
 
-<img alt="fox" width="200px" height="200px" src="resources/images/fox.jpg">
-<table style="height:100%;">
-	<tr>
-		<td class="align-middle">
-			<div class="mx-auto row">
-				<div class="card text-bg col-4 offset-1 position-relative">
-				  <img src="resources/images/adminPage.png" class="card-img" alt="...">
-				  <div class="card-img-overlay">
-				    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">관리자 페이지</h2>
-				  </div>
-				</div>
-				<div class="card text-bg col-4 offset-2 position-relative">
-				  <img src="resources/images/userPage.png" class="card-img" alt="...">
-				  <div class="card-img-overlay">
-				    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">Simsim 홈페이지</h2>
-				  </div>
-				</div>
-			</div>
-		</td>
-	</tr>
-</table>
+<img alt="fox" width="200px" height="200px" src="/resources/images/fox.jpg">
+	<div class="mx-auto row">
+		<div class="card text-bg col-4 offset-1 position-relative">
+		  <img src="/resources/images/adminPage.png" class="card-img" alt="...">
+		  <div class="card-img-overlay">
+		    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">관리자 페이지</h2>
+		  </div>
+		</div>
+		<div class="card text-bg col-4 offset-2 position-relative">
+		  <img src="/resources/images/userPage.png" class="card-img" alt="...">
+		  <div class="card-img-overlay">
+		    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">Simsim 홈페이지</h2>
+		  </div>
+		</div>
+	</div>
 <div class="table mx-auto row">
 	<div class="card text-bg col-4 offset-1 position-relative">
 	  <img src="resources/images/adminPage.jpg" class="card-img" alt="...">

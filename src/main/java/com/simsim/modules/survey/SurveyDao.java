@@ -46,7 +46,7 @@ public class SurveyDao {
 	
 	public int insertSurveyName(Survey dto) { return sqlSession.insert(namespace+".insertSurveyName",dto);}
 	public int insertSurveyQuestion(Survey dto) { return sqlSession.insert(namespace+".insertSurveyQuestion",dto);}
-	public int insertQuestionChoice(Survey dto) { return sqlSession.insert(namespace+".insertQuestionChoice",dto);}
+	public int insertChoice(Survey dto) { return sqlSession.insert(namespace+".insertChoice",dto);}
 	public int insertSurveyResult(Survey dto) { return sqlSession.insert(namespace+".insertSurveyResult",dto);}
 	
 	

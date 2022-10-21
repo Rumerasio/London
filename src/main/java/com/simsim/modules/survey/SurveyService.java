@@ -29,7 +29,7 @@ public interface SurveyService {
 //	public int insert (Survey dto) throws Exception;
 	public int insertSurveyName(Survey dto) throws Exception;
 	public int insertSurveyQuestion(Survey dto) throws Exception;
-	public int insertQuestionChoice(Survey dto) throws Exception;
+	public int insertChoice(Survey dto) throws Exception;
 	public int insertSurveyResult(Survey dto) throws Exception;
 	
 }

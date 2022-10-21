@@ -82,15 +82,25 @@ public class SurveyController {
 		service.insertSurveyName(dto);
 		dto.setSnSeq(dto.getSnSeq());
 		System.out.println("dto.SnSeq:"+dto.getSnSeq());
-		for(int i=0;i<dto.getQuestionGroup().length;i++) {
+		int y=0;
+		int z=0;
+		for(int i=0; i<dto.getQuestionGroup().length; i++) {
 			dto.setQuestion(dto.getQuestionGroup()[i]);
+			System.out.println("문제 question 값: "+dto.getQuestion());
 			dto.setQuestionContent(dto.getQuestionContentGroup()[i]);
 			service.insertSurveyQuestion(dto);
-			for(int j=0; j<3; j++) {
-				
-				
-//				service.insertQuestionChoice(dto);
+			
+			dto.setSqSeq(dto.getSqSeq());
+			System.out.println("sqSeq 값: "+dto.getSqSeq());
+			z += dto.getChoiceNumPerQuestion()[i];
+			for(int j=y; j<z; j++) {
+				System.out.println("index 값: "+j);
+				dto.setChoice(dto.getChoiceGroup()[j]);
+				dto.setChoiceContent(dto.getChoiceContentGroup()[j]);
+				dto.setChoiceScore(dto.getChoiceScoreGroup()[j]);
+				service.insertChoice(dto);
 			}
+			y +=dto.getChoiceNumPerQuestion()[i];
 		}
 		
 		return "redirect:/content/contentList";

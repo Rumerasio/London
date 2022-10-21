@@ -19,6 +19,10 @@ public class Survey {
 	private Integer choice;
 	private String choiceContent;
 	private Integer choiceScore;
+	private Integer[] choiceGroup;
+	private String[] choiceContentGroup;
+	private Integer[] choiceScoreGroup;
+	private Integer[] choiceNumPerQuestion;
 	
 	private Integer srSeq;
 	private Integer resultNum;
@@ -274,6 +278,30 @@ public class Survey {
 	}
 	public void setQuestionGroup(String[] questionGroup) {
 		this.questionGroup = questionGroup;
+	}
+	public Integer[] getChoiceGroup() {
+		return choiceGroup;
+	}
+	public void setChoiceGroup(Integer[] choiceGroup) {
+		this.choiceGroup = choiceGroup;
+	}
+	public String[] getChoiceContentGroup() {
+		return choiceContentGroup;
+	}
+	public void setChoiceContentGroup(String[] choiceContentGroup) {
+		this.choiceContentGroup = choiceContentGroup;
+	}
+	public Integer[] getChoiceScoreGroup() {
+		return choiceScoreGroup;
+	}
+	public void setChoiceScoreGroup(Integer[] choiceScoreGroup) {
+		this.choiceScoreGroup = choiceScoreGroup;
+	}
+	public Integer[] getChoiceNumPerQuestion() {
+		return choiceNumPerQuestion;
+	}
+	public void setChoiceNumPerQuestion(Integer[] choiceNumPerQuestion) {
+		this.choiceNumPerQuestion = choiceNumPerQuestion;
 	}
 	
 	
