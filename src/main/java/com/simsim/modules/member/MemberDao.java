@@ -21,6 +21,8 @@ public class MemberDao {
 	
 	public List<Member> selectFavorite(Member dto){ return sqlSession.selectList(namespace +".selectFavorite", dto);}
 	
+	public List<Member> getIdList() {return sqlSession.selectList(namespace+".getIdList","");}
+	
 	public Member selectOne(MemberVo vo) {return sqlSession.selectOne(namespace+".selectOne", vo);}
 	
 	public int selectOneIdCheck(Member dto) {return sqlSession.selectOne(namespace+".selectOneIdCheck", dto);}

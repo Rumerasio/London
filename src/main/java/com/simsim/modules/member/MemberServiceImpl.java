@@ -95,4 +95,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectOneEmailCheck(dto);
 	}
 
+	@Override
+	public List<Member> getIdList() throws Exception {
+		return dao.getIdList();
+	}
+
 }

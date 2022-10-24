@@ -66,41 +66,30 @@
 			  	<th>닉네임</th>
 			  	<th>UserId</th>
 			  	<th>테스트이름</th>
+			  	<th>점수</th>
 			  	<th>결과</th>
 			  	<th>일시</th>
 			  </tr>
-			  <tr>
-			  	<td>1025</td>
-			  	<td>로제</td>
-			  	<td>escaida15</td>
-			  	<td>별자리 테스트</td>
-			  	<td>궁수자리</td>
-			  	<td>2022.07.20 17:16:50</td>
-			  </tr>
-			  <tr>
-			  	<td>1024</td>
-			  	<td>네모네모</td>
-			  	<td>lksndf</td>
-			  	<td>꽃말 테스트</td>
-			  	<td>장미</td>
-			  	<td>2022.07.20 17:10:28</td>
-			  </tr>
-			  <tr>
-			  	<td>1023</td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  </tr>
-			   <tr>
-			  	<td>1022</td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  </tr>
+			  <c:choose>
+			  	<c:when test="${fn:length(list) eq 0}">
+			  		<tr>
+			  			<td colspan="6"> There is no date</td>
+			  		</tr>
+			  	</c:when>
+			  	<c:otherwise>
+			  		<c:forEach items="${list}" var="list" varStatus="status">
+			  			<tr>
+						  	<td><c:out value="${list.srcSeq }"/></td>
+						  	<td><c:out value="${list.nickname }"/></td>
+						  	<td><c:out value="${list.id }"/></td>
+						  	<td class="comment_SurveyName"><c:out value="${list.survey }"/></td>
+						  	<td><c:out value="${list.totalScore }"/></td>
+						  	<td class="comment_content"><c:out value="${list.resultTitle }"/></td>
+						  	<td><c:out value="${list.datetime }"/></td>
+						  </tr>
+			  		</c:forEach>
+			  	</c:otherwise>
+			  </c:choose>
 			</table>	
 		</div>	
 	</div>

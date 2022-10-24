@@ -49,6 +49,11 @@
 		text-overflow:ellipsis;
 		white-space:nowrap;
 	}
+	.comment_SurveyName{
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+	}
 </style>
 
 <body>
@@ -94,54 +99,47 @@
 			  	<th>등록일시</th>
 			  	<th>삭제여부</th>
 			  </tr>
-			  <tr>
-			  	<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-			  	<td>1002</td>
-			  	<td>로제</td>
-			  	<td>escaida15</td>
-			  	<td>별자리 테스트</td>
-			  	<td class="comment_content">내가 왜 전갈자리? 난 원래 양자리인데</td>
-			  	<td>12</td>
-			  	<td>0</td>
-			  	<td>2022.07.01 15:57:12</td>
-			  	<td>N</td>
-			  </tr>
-			  <tr>
-			  	<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-			  	<td>1024</td>
-			  	<td>네모네모</td>
-			  	<td>lksndf</td>
-			  	<td>꽃말 테스트</td>
-			  	<td class="comment_content">이 집 꽃말 풀이 잘하네. 그냥 꽃말 찾아봤을때는 뭔가 좋은말만 가득, 이쁘게 말하려고 온갖 포장을 해서 재미없었는데</td>
-			  	<td>3</td>
-			  	<td>0</td>
-			  	<td>2022.07.05 17:10:28</td>
-			  	<td>N</td>
-			  </tr>
-			  <tr>
-			  	<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-			  	<td>1023</td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td class="comment_content"></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  </tr>
-			   <tr>
-			   	<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-			  	<td>1022</td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td class="comment_content"></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  	<td></td>
-			  </tr>
+			  <c:choose>
+			  	<c:when test="${fn:length(list) eq 0}">
+			  		<tr>
+			  			<td colspan="10"> There is no date</td>
+			  		</tr>
+			  	</c:when>
+			  	<c:otherwise>
+			  		<c:forEach items="${list}" var="list" varStatus="status">
+			  			<tr>
+						  	<td><input type="checkbox" class="form-check-input" name="Chk"></td>
+						  	<td><c:out value="${list.scSeq }"/></td>
+						  	<td><c:out value="${list.nickname }"/></td>
+						  	<td>
+						  		<c:forEach items="${list3}" var="list3" varStatus="status">
+						  			<c:choose>
+						  				<c:when test="${list.seq eq list3.seq}">
+								  			<c:out value="${list3.id }"/>
+								  		</c:when>
+								  		<c:otherwise></c:otherwise> 
+						  			</c:choose>
+						  		</c:forEach>
+						  	</td>
+						  	<td class="comment_SurveyName">
+						  		<c:forEach items="${list2}" var="list2" varStatus="status">
+						  			<c:choose>
+							  			<c:when test="${list.snSeq eq list2.snSeq}">
+								  			<c:out value="${list2.survey }"/>
+								  		</c:when>
+								  		<c:otherwise></c:otherwise>  
+							  		</c:choose>
+						  		</c:forEach>
+						  	</td>
+						  	<td class="comment_content"><c:out value="${list.commentContent }"/></td>
+						  	<td></td>
+						  	<td></td>
+						  	<td><c:out value="${list.datetime }"/></td>
+						  	<td><c:out value="${list.delNy }"/></td>
+						  </tr>
+			  		</c:forEach>
+			  	</c:otherwise>
+			  </c:choose>
 			</table>
 			 <div class="position-relative my-5">
 		    	<div class="position-absolute top-0">

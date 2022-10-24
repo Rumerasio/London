@@ -53,6 +53,16 @@
 		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
+	<select id="getIdList" resultMap="resultMapObj">
+		SELECT
+			seq
+			,nickname
+			,id
+			,delNy
+		FROM jsMember
+		WHERE 1=1
+	</select>
+	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			seq

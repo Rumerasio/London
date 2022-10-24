@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.simsim.common.constants.Constants;
+import com.simsim.modules.survey.Survey;
+import com.simsim.modules.survey.SurveyServiceImpl;
 
 @Controller
 @RequestMapping
@@ -22,6 +24,9 @@ public class MemberController {
 
 	@Autowired
 	MemberServiceImpl service;
+	
+	@Autowired
+	SurveyServiceImpl service2;
 	
 	@RequestMapping(value = "/member/memberList")
 	public String memberList(Model model,@ModelAttribute("vo") MemberVo vo) throws Exception {
@@ -96,7 +101,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/memberComment")
-	public String commentRecord() throws Exception {
+	public String commentRecord(Model model,@ModelAttribute("vo") MemberVo vo) throws Exception {
+		List<Survey> list = service2.selectCommentList();
+		model.addAttribute("list", list);
+		List<Survey> list2 = service2.selectList();
+		model.addAttribute("list2",list2);
+		List<Member> list3 = service.getIdList();
+		model.addAttribute("list3", list3);
 		
 		return "zdmin/CommentRecord";
 	}
