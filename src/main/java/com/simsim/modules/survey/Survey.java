@@ -24,7 +24,7 @@ public class Survey {
 	private Integer[] choiceScoreGroup;
 	private Integer[] choiceNumPerQuestion;
 	
-	private Integer srSeq;
+	private String srSeq;
 	private Integer resultNum;
 	private String resultTitle;
 	private String resultSmTitle;
@@ -33,6 +33,13 @@ public class Survey {
 	private Integer scoreRangeEnd;
 	private Integer relation1;
 	private Integer relation2;
+	private Integer[] resultNumGroup;
+	private String[] resultTitleGroup;
+	private String[] resultContentGroup;
+	private Integer[] scoreRangeStartGroup;
+	private Integer[] scoreRangeEndGroup;
+	private Integer[] relation1Group;
+	private Integer[] relation2Group;
 	
 	private String srcSeq;
 	private Integer totalScore;
@@ -41,6 +48,7 @@ public class Survey {
 	private String scSeq;
 	private String nickname;
 	private String commentContent;
+	private String delNy;
 	
 	private String ssSeq;
 	private String[] ssQuestionGroup;
@@ -50,6 +58,7 @@ public class Survey {
 	
 	private String seq;
 	private String jsMember_seq;
+	private String id;
 	
 	public String getSeq() {
 		return seq;
@@ -135,10 +144,10 @@ public class Survey {
 	public void setChoiceScore(Integer choiceScore) {
 		this.choiceScore = choiceScore;
 	}
-	public Integer getSrSeq() {
+	public String getSrSeq() {
 		return srSeq;
 	}
-	public void setSrSeq(Integer srSeq) {
+	public void setSrSeq(String srSeq) {
 		this.srSeq = srSeq;
 	}
 	public Integer getResultNum() {
@@ -303,7 +312,60 @@ public class Survey {
 	public void setChoiceNumPerQuestion(Integer[] choiceNumPerQuestion) {
 		this.choiceNumPerQuestion = choiceNumPerQuestion;
 	}
-	
+	public Integer[] getResultNumGroup() {
+		return resultNumGroup;
+	}
+	public void setResultNumGroup(Integer[] resultNumGroup) {
+		this.resultNumGroup = resultNumGroup;
+	}
+	public String[] getResultTitleGroup() {
+		return resultTitleGroup;
+	}
+	public void setResultTitleGroup(String[] resultTitleGroup) {
+		this.resultTitleGroup = resultTitleGroup;
+	}
+	public String[] getResultContentGroup() {
+		return resultContentGroup;
+	}
+	public void setResultContentGroup(String[] resultContentGroup) {
+		this.resultContentGroup = resultContentGroup;
+	}
+	public Integer[] getScoreRangeStartGroup() {
+		return scoreRangeStartGroup;
+	}
+	public void setScoreRangeStartGroup(Integer[] scoreRangeStartGroup) {
+		this.scoreRangeStartGroup = scoreRangeStartGroup;
+	}
+	public Integer[] getScoreRangeEndGroup() {
+		return scoreRangeEndGroup;
+	}
+	public void setScoreRangeEndGroup(Integer[] scoreRangeEndGroup) {
+		this.scoreRangeEndGroup = scoreRangeEndGroup;
+	}
+	public Integer[] getRelation1Group() {
+		return relation1Group;
+	}
+	public void setRelation1Group(Integer[] relation1Group) {
+		this.relation1Group = relation1Group;
+	}
+	public Integer[] getRelation2Group() {
+		return relation2Group;
+	}
+	public void setRelation2Group(Integer[] relation2Group) {
+		this.relation2Group = relation2Group;
+	}
+	public String getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(String delNy) {
+		this.delNy = delNy;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	
 	
 	//*********************

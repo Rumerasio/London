@@ -11,9 +11,9 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			snSeq
-			,a.survey,
-		    a.surveyPhrase
-		FROM jsSurveyName a
+			,survey
+		    ,surveyPhrase
+		FROM jsSurveyName
 		WHERE 1=1
 	</select>
 
@@ -52,6 +52,34 @@
 	WHERE 1=1 
 		AND snSeq = #{snSeq}
 		AND delNy = 0
+	</select>
+	
+	<select id="selectCommentList" resultMap="resultMapObj">
+	SELECT
+		scSeq
+		,snSeq
+		,nickname
+		,seq
+		,commentContent
+		,datetime
+		,delNy
+	FROM jsSurveyComment
+	WHERE 1=1
+	order by scSeq DESC
+	</select>
+	
+	<select id="selectContentRecordList" resultMap="resultMapObj">
+	SELECT
+		srcSeq
+		,(SELECT nickname FROM jsMember c WHERE c.seq = a.jsMember_seq) as nickname
+		,(SELECT id FROM jsMember c WHERE c.seq = a.jsMember_seq) as id
+		,(SELECT survey FROM jsSurveyName b WHERE b.snSeq = a.jsSurveyName_snSeq) as survey
+		,totalScore
+		,(SELECT resultTitle From jsSurveyResult d WHERE d.srSeq = a.jsSurveyResult_srSeq) as resultTitle
+		,datetime
+	FROM jsSurveyRecord a
+	WHERE 1=1
+	order by srcSeq DESC
 	</select>
 	
 	<insert id="CommentInst">
@@ -321,10 +349,9 @@
 	
 	<insert id="insertResult">
 		INSERT INTO jsSurveyResult(
-			snSeq
+			jsSurveyName_snSeq
 			,resultNum
 			,resultTitle
-			,resultSmTitle
 			,resultContent
 			,scoreRangeStart
 			,scoreRangeEnd
@@ -335,7 +362,6 @@
 			#{snSeq}
 			,#{resultNum}
 			,#{resultTitle}
-			,#{resultSmTitle}
 			,#{resultContent}
 			,#{scoreRangeStart}
 			,#{scoreRangeEnd}

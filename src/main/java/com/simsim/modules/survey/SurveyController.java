@@ -71,7 +71,9 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/content/contentRecord")
-	public String contentRecord() throws Exception {
+	public String contentRecord(Model model) throws Exception {
+		List<Survey> list = service.selectContentRecordList();
+		model.addAttribute("list",list);
 		
 		return "zdmin/content/ContentRecord";
 	}
@@ -101,6 +103,17 @@ public class SurveyController {
 				service.insertChoice(dto);
 			}
 			y +=dto.getChoiceNumPerQuestion()[i];
+		}
+		
+		for(int i =0;i<3;i++) {
+			dto.setResultNum(dto.getResultNumGroup()[i]);
+			dto.setResultTitle(dto.getResultTitleGroup()[i]);
+			dto.setResultContent(dto.getResultContentGroup()[i]);
+			dto.setScoreRangeStart(dto.getScoreRangeStartGroup()[i]);
+			dto.setScoreRangeEnd(dto.getScoreRangeEndGroup()[i]);
+			dto.setRelation1(dto.getRelation1Group()[i]);
+			dto.setRelation2(dto.getRelation2Group()[i]);
+			service.insertResult(dto);
 		}
 		
 		return "redirect:/content/contentList";
@@ -164,9 +177,12 @@ public class SurveyController {
 		service.totalScoreUpdt(dto);
 		
 		int value2 = service.getsrSeq(vo);
-		dto.setSrSeq(value2);
+		System.out.println(value2);
+		dto.setSrSeq(Integer.toString(value2));
+		System.out.println(dto.getSrSeq());
 		
 		service.srSeqUpdt(dto);
+		
 		Survey result2 = service.selectCurrentRecord(vo);
 		model.addAttribute("item",result2);
 		

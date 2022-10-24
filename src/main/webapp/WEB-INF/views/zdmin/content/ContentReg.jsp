@@ -170,12 +170,23 @@
 						</div>
 					</div>
 				</div>
-				<input type="hidden" name="questionContentGroup" id="questionContentGroup" value="">
+				<%@include file="ContentDto.jsp"%>		<!-- #-> -->
+				<!-- <input type="hidden" name="questionContentGroup" id="questionContentGroup" value="">
 				<input type="hidden" name="questionGroup" id="questionGroup" value="">
+				
 				<input type="hidden" name="choiceNumPerQuestion" id="choiceNumPerQuestion" value="">
 				<input type="hidden" name="choiceGroup" id="choiceGroup" value="">
 				<input type="hidden" name="choiceContentGroup" id="choiceContentGroup" value="">
 				<input type="hidden" name="choiceScoreGroup" id="choiceScoreGroup" value="">
+				
+				<input type="hidden" name="resultNumGroup" id="resultNumGroup" value="">
+				<input type="hidden" name="resultTitleGroup" id="resultTitleGroup" value="">
+				<input type="hidden" name="resultContentGroup" id="resultContentGroup" value="">
+				<input type="hidden" name="scoreRangeStartGroup" id="scoreRangeStartGroup" value="">
+				<input type="hidden" name="scoreRangeEndGroup" id="scoreRangeEndGroup" value="">
+				<input type="hidden" name="relation1Group" id="relation1Group" value="">
+				<input type="hidden" name="relation2Group" id="relation2Group" value=""> -->
+				
 				<div id="contentTotal">
 					<div class="my-3 pt-3 mr-2" id="contentPageRegistration" style="display:inline-block; ;"><h6 style="display: inline;"><b>컨텐츠 페이지 작성</b></h6></div>
 					<button type="button" class="btn btn-success btn-sm" id="btnPageAdd" onclick="PageAdd('questionForm')" style="border:none;"><i class="fa-solid fa-plus"></i></button>
@@ -226,66 +237,13 @@
 					</div>
 				</div>
 				<!-- 임시 E -->
-				<!-- 
-				<div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 2</h5></div>
-					<div class="float-end my-3">
-						<button class="btn btn-light btn-sm" style="border:none;"><i class="fa-solid fa-plus"></i></button>
-						<button class="btn btn-secondary btn-sm" style="border:none;"><i class="fa-solid fa-minus"></i></button>
-					</div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="questionContent" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multichoiceNy">
-						  <label class="form-check-label" for="multichoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="choice1" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choice1score" placeholder="배점">
-						</div>
-						<div class="col-1">
-						  <button class="btn btn-light btn-sm" style="border:none;"><i class="fa-solid fa-plus"></i></button>
-						  <button class="btn btn-secondary btn-sm" style="border:none;"><i class="fa-solid fa-minus"></i></button>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="choice2" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choice2score" placeholder="배점">
-						</div>
-						<div class="col-1">
-						  <button class="btn btn-light btn-sm" style="border:none;"><i class="fa-solid fa-plus"></i></button>
-						  <button class="btn btn-light btn-sm" style="border:none;"><i class="fa-solid fa-minus"></i></button>
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview6" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file6" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL6(this);" id="input-file6" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
-				 -->
+				
 				<div class="my-3 pt-3" id="contentResultRegistration"><h6><b>결과 페이지 작성</b></h6></div>
 				<div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
 					<div class="float-start my-3"><h5>#1</h5></div>
 					<div style="clear:both;"></div>
 					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="resultTitle" placeholder="결과 제목">
+					  <input type="text" class="form-control form-control-sm" id="resultTitle_1" placeholder="결과 제목">
 					</div>
 					<div class="row">
 						<div class="col-3 mt-3">
@@ -299,26 +257,26 @@
 							</div>
 						</div>
 						<div class="col-9">
-				  			<textarea type="text" class="form-control form-control-sm" id="resultContent" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>
+				  			<textarea type="text" class="form-control form-control-sm" id="resultContent_1" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>
 						</div>
 					</div>
 					<div class="mb-3 row">
 					  <label for="resultScoreRange" class="col-2 col-form-label">결과 점수합 범위</label>
 					  <div class="col-1">
-					    <input type="text" class="form-control" id="scoreRangeStart" placeholder="이상">
+					    <input type="text" class="form-control" id="scoreRangeStart_1" placeholder="이상">
 					  </div>
 					  <div class="col-auto" style="font-size: 24px;">~</div>
 					  <div class="col-1">
-					    <input type="text" class="form-control" id="scoreRangeEnd" placeholder="이하">
+					    <input type="text" class="form-control" id="scoreRangeEnd_1" placeholder="이하">
 					  </div>
 					</div>
 					<div class="mb-3 row" style="text-align: center;">
 					  <label for="resultRelation" class="col-2 col-form-label">관계성</label>
 					  <div class="col-2">
-					    <input type="text" class="form-control" id="relation1" placeholder="관계1">
+					    <input type="text" class="form-control" id="relation1_1" placeholder="관계1">
 					  </div>
 					  <div class="col-2">
-					    <input type="text" class="form-control" id="relation2" placeholder="관계2">
+					    <input type="text" class="form-control" id="relation2_1" placeholder="관계2">
 					  </div>
 					</div>
 				</div>
@@ -326,7 +284,7 @@
 					<div class="float-start my-3"><h5>#2</h5></div>
 					<div style="clear:both;"></div>
 					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="resultTitle" placeholder="결과 제목">
+					  <input type="text" class="form-control form-control-sm" id="resultTitle_2" placeholder="결과 제목">
 					</div>
 					<div class="row">
 						<div class="col-3 mt-3">
@@ -340,26 +298,26 @@
 							</div>
 						</div>
 						<div class="col-9">
-				  			<textarea type="text" class="form-control form-control-sm" id="resultContent" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>
+				  			<textarea type="text" class="form-control form-control-sm" id="resultContent_2" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>
 						</div>
 					</div>
 					<div class="mb-3 row">
 					  <label for="resultScoreRange" class="col-2 col-form-label">결과 점수합 범위</label>
 					  <div class="col-1">
-					    <input type="text" class="form-control" id="scoreRangeStart" placeholder="이상">
+					    <input type="text" class="form-control" id="scoreRangeStart_2" placeholder="이상">
 					  </div>
 					  <div class="col-auto" style="font-size: 24px;">~</div>
 					  <div class="col-1">
-					    <input type="text" class="form-control" id="scoreRangeEnd" placeholder="이하">
+					    <input type="text" class="form-control" id="scoreRangeEnd_2" placeholder="이하">
 					  </div>
 					</div>
 					<div class="mb-3 row" style="text-align: center;">
 					  <label for="resultRelation" class="col-2 col-form-label">관계성</label>
 					  <div class="col-2">
-					    <input type="text" class="form-control" id="relation1" placeholder="관계1">
+					    <input type="text" class="form-control" id="relation1_2" placeholder="관계1">
 					  </div>
 					  <div class="col-2">
-					    <input type="text" class="form-control" id="relation2" placeholder="관계2">
+					    <input type="text" class="form-control" id="relation2_2" placeholder="관계2">
 					  </div>
 					</div>
 				</div>
@@ -367,7 +325,7 @@
 					<div class="float-start my-3"><h5>#3</h5></div>
 					<div style="clear:both;"></div>
 					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="resultTitle" placeholder="결과 제목">
+					  <input type="text" class="form-control form-control-sm" id="resultTitle_3" placeholder="결과 제목">
 					</div>
 					<div class="row">
 						<div class="col-3 mt-3">
@@ -381,26 +339,26 @@
 							</div>
 						</div>
 						<div class="col-9">
-				  			<textarea type="text" class="form-control form-control-sm" id="resultContent" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>
+				  			<textarea type="text" class="form-control form-control-sm" id="resultContent_3" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>
 						</div>
 					</div>
 					<div class="mb-3 row">
 					  <label for="resultScoreRange" class="col-2 col-form-label">결과 점수합 범위</label>
 					  <div class="col-1">
-					    <input type="text" class="form-control" id="scoreRangeStart" placeholder="이상">
+					    <input type="text" class="form-control" id="scoreRangeStart_3" placeholder="이상">
 					  </div>
 					  <div class="col-auto" style="font-size: 24px;">~</div>
 					  <div class="col-1">
-					    <input type="text" class="form-control" id="scoreRangeEnd" placeholder="이하">
+					    <input type="text" class="form-control" id="scoreRangeEnd_3" placeholder="이하">
 					  </div>
 					</div>
 					<div class="mb-3 row" style="text-align: center;">
 					  <label for="resultRelation" class="col-2 col-form-label">관계성</label>
 					  <div class="col-2">
-					    <input type="text" class="form-control" id="relation1" placeholder="관계1">
+					    <input type="text" class="form-control" id="relation1_3" placeholder="관계1">
 					  </div>
 					  <div class="col-2">
-					    <input type="text" class="form-control" id="relation2" placeholder="관계2">
+					    <input type="text" class="form-control" id="relation2_3" placeholder="관계2">
 					  </div>
 					</div>
 				</div>
@@ -592,6 +550,14 @@ function readURL8(input) {
 		var CContentGroup =[];
 		var CScoreGroup =[];
 		
+		var RGroup =[];
+		var RTitleGroup =[];
+		var RContentGroup =[];
+		var RScoreRangeStart =[];
+		var RScoreRangeEnd =[];
+		var RRelation1 =[];
+		var RRelation2 =[];
+		
 		for(var i=1; i<=num; i++){
 			QGroup.push(i);
 			QContentGroup.push($("#question_"+i+"").val());
@@ -607,10 +573,24 @@ function readURL8(input) {
 				CScoreGroup.push($("#choiceScore_"+i+"_"+j+"").val());
 			}
 		}
+		
+		for(var i =1; i<=3; i++){
+			RGroup.push(i);
+			RTitleGroup.push($("#resultTitle_"+i).val());
+			RContentGroup.push($("#resultContent_"+i).val());
+			RScoreRangeStart.push($("#scoreRangeStart_"+i).val());
+			RScoreRangeEnd.push($("#scoreRangeEnd_"+i).val());
+			RRelation1.push($("#relation1_"+i).val());
+			RRelation2.push($("#relation2_"+i).val());
+			
+		}
 //		alert("최종");
 //		alert(CGroup);
 //		alert(CContentGroup);
 //		alert(CScoreGroup);
+//		alert(RGroup);
+//		alert(RTitleGroup);
+//		alert(RContentGroup);
 		
 		$("#questionGroup").val(QGroup);
 		$("#questionContentGroup").val(QContentGroup);
@@ -621,13 +601,24 @@ function readURL8(input) {
 		$("#choiceContentGroup").val(CContentGroup);
 		$("#choiceScoreGroup").val(CScoreGroup);
 		
-		alert("dto에 넣은 값 확인");
-		alert($("#questionGroup").val());
-		alert($("#questionContentGroup").val());
-		alert("문제당 선택지 갯수: "+$("#choiceNumPerQuestion").val());
-		alert($("#choiceGroup").val());
-		alert($("#choiceContentGroup").val());
-		alert($("#choiceScoreGroup").val());
+		$("#resultNumGroup").val(RGroup);
+		$("#resultTitleGroup").val(RTitleGroup);
+		$("#resultContentGroup").val(RContentGroup);
+		$("#scoreRangeStartGroup").val(RScoreRangeStart);
+		$("#scoreRangeEndGroup").val(RScoreRangeEnd);
+		$("#relation1Group").val(RRelation1);
+		$("#relation2Group").val(RRelation2);
+		
+//		alert("dto에 넣은 값 확인");
+//		alert($("#questionGroup").val());
+//		alert($("#questionContentGroup").val());
+//		alert("문제당 선택지 갯수: "+$("#choiceNumPerQuestion").val());
+//		alert($("#choiceGroup").val());
+//		alert($("#choiceContentGroup").val());
+//		alert($("#choiceScoreGroup").val());
+//		alert($("#resultNumGroup").val());
+//		alert($("#resultTitleGroup").val());
+//		alert($("#resultContentGroup").val());
 		
 		form.attr("action",goUrlInst).submit();
 	}

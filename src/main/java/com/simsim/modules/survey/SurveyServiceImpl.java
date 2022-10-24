@@ -92,7 +92,7 @@ public class SurveyServiceImpl implements SurveyService {
 	public int insertChoice(Survey dto) throws Exception { return dao.insertChoice(dto);}
 
 	@Override
-	public int insertSurveyResult(Survey dto) throws Exception { return dao.insertSurveyResult(dto);}
+	public int insertResult(Survey dto) throws Exception { return dao.insertResult(dto);}
 
 	@Override
 	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) throws Exception {
@@ -142,6 +142,16 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public Survey selectCurrentRecord(SurveyVo vo) throws Exception {
 		return dao.selectCurrentRecord(vo);
+	}
+
+	@Override
+	public List<Survey> selectCommentList() throws Exception {
+		return dao.selectCommentList();
+	}
+
+	@Override
+	public List<Survey> selectContentRecordList() throws Exception {
+		return dao.selectContentRecordList();
 	}
 
 	

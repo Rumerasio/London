@@ -24,6 +24,7 @@ public class SurveyDao {
 	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentQuestion",vo);}
 	public List<Survey> selectSurveyContentChoice(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentChoice",vo);}
 	public List<Survey> selectResultList(SurveyVo vo) {return sqlSession.selectList(namespace+".selectResultList", vo);}
+	public List<Survey> selectCommentList() {return sqlSession.selectList(namespace+".selectCommentList","");}
 	
 	public int insertSurveyRecord(Survey dto) {return sqlSession.insert(namespace+".insertSurveyRecord", dto);}
 	public int getTotalScore(SurveyVo vo) {return sqlSession.selectOne(namespace+".getTotalScore",vo);}
@@ -43,11 +44,12 @@ public class SurveyDao {
 	public List<Survey> selectMyComment(Survey dto){return sqlSession.selectList(namespace+".selectMyComment", dto);}
 	
 	public List<Survey> selectUserRecord(Survey dto){return sqlSession.selectList(namespace+".selectUserRecord", dto );}
+	public List<Survey> selectContentRecordList() {return sqlSession.selectList(namespace+".selectContentRecordList", "");}
 	
 	public int insertSurveyName(Survey dto) { return sqlSession.insert(namespace+".insertSurveyName",dto);}
 	public int insertSurveyQuestion(Survey dto) { return sqlSession.insert(namespace+".insertSurveyQuestion",dto);}
 	public int insertChoice(Survey dto) { return sqlSession.insert(namespace+".insertChoice",dto);}
-	public int insertSurveyResult(Survey dto) { return sqlSession.insert(namespace+".insertSurveyResult",dto);}
+	public int insertResult(Survey dto) { return sqlSession.insert(namespace+".insertResult",dto);}
 	
 	
 }
