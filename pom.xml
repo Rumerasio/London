@@ -80,6 +80,14 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- fileupload s 2022.03.30 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- fileupload e 2022.03.30 -->
+		
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
