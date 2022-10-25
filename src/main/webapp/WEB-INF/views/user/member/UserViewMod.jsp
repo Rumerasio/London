@@ -131,12 +131,13 @@ sessSeq: <c:out value="${sessSeq }"/><br>
 				  </div>
 				  <div class="modal-footer">
 				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-				    <button type="button" id="btnQuit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#member_leave_alert">탈퇴</button>
+				    <button type="button" id="btnQuit" class="btn btn-danger" data-bs-dismiss="modal">탈퇴</button>
+				    <!-- <button type="button" id="btnQuit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#member_leave_alert">탈퇴</button> -->
 				  </div>
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" tabindex="-1" id="member_leave_alert">
+		<!-- <div class="modal fade" tabindex="-1" id="member_leave_alert">
 			<div class="modal-dialog">
 				<div class="modal-content">
 				  <div class="modal-header">
@@ -151,7 +152,7 @@ sessSeq: <c:out value="${sessSeq }"/><br>
 				  </div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 
@@ -200,6 +201,7 @@ sessSeq: <c:out value="${sessSeq }"/><br>
 					/* if(response.changePwd == "true") {
 						location.href = URL_CHANGE_PWD_FORM;
 					} else { */
+						alert("탈퇴되었습니다.");
 						form.attr("action", goUrlVele).submit();
 					/* } */
 				} else {
