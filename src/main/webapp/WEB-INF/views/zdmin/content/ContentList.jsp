@@ -84,7 +84,11 @@
 							<c:forEach items="${list}" var="list" varStatus="status">
 								<div class="col">
 								    <div class="card h-100">
-								      <a href="#"><img src="" class="card-img-top" alt="..."></a>
+								      <c:forEach items="${list2}" var="list2" varStatus="status">
+								      	<c:if test="${list2.type eq 2 && list2.pseq eq list.snSeq}">
+								      		<a href="#"><img src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" class="card-img-top" alt="..."></a>
+								      	</c:if>
+								      </c:forEach>
 								      <div class="card-body">
 								        <a href="#"><h6 class="card-title"><c:out value="${list.survey}"></c:out></h6></a>
 								      </div>

@@ -2,6 +2,8 @@ package com.simsim.modules.survey;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface SurveyService {
 
 	public List<Survey> selectList() throws Exception;
@@ -13,6 +15,7 @@ public interface SurveyService {
 	public List<Survey> selectResultList(SurveyVo vo) throws Exception;
 	public List<Survey> selectCommentList() throws Exception;
 	public List<Survey> selectContentRecordList() throws Exception;
+	public List<Survey> selectImgList() throws Exception;
 	
 	public int insertSurveyRecord(Survey dto) throws Exception;
 	public int getTotalScore(SurveyVo vo) throws Exception;
@@ -33,5 +36,7 @@ public interface SurveyService {
 	public int insertSurveyQuestion(Survey dto) throws Exception;
 	public int insertChoice(Survey dto) throws Exception;
 	public int insertResult(Survey dto) throws Exception;
+	
+	public void uploadFiles(MultipartFile[] multipartFiles, Survey dto, String tableName, int type, int maxNumber) throws Exception;
 	
 }

@@ -374,5 +374,21 @@
 	</insert>
 	<!-- 테스트 내용 작성 e -->
 	
+	<select id="selectImgList" resultMap="resultMapObj">
+	SELECT
+		seq
+		,pseq
+		,type
+		,sort
+		,path
+		,originalName
+		,uuidName
+		,ext
+		,size
+		,delNy
+	FROM Upload
+	WHERE 1=1
+		<if test="snSeq != null and !snSeq.equals('')">AND pseq=#{snSeq}</if>
+	</select>
 	
 </mapper>

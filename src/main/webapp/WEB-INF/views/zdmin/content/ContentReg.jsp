@@ -53,6 +53,24 @@
 		text-align: center;
 		font-size:12px;
 	}
+	.addScroll{
+		overflow-y:auto;
+		height: 200px;
+		background-color:#E9ECEF;
+		padding-top:5px; 
+		padding-left:5px;
+	}
+ 	
+	.input-file-button{
+		padding: 4px 25px;
+		background-color:#FF6600;
+		border-radius: 4px;
+		color: white;
+		cursor: pointer;
+	}
+	.img-thumbnail {
+		padding: 0px;
+	}
 </style>
 
 <body>
@@ -95,7 +113,7 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>컨텐츠 관리</b></h5>
 		<h6 style="color:gray;"><b>컨텐츠 등록</b></h6>
-		<form method="post" id="myForm" name="myForm" autocomplete="off">
+		<form method="post" id="myForm" name="myForm" autocomplete="off" enctype="multipart/form-data">
 			<div class="p-5 mb-5" style="background-color: white; position:relative;">
 				<div class="my-3 pt-3 float-start" id="contentMainDisplay"><h6 style="display: inline-block;"><b>컨텐츠 메인화면</b></h6></div>
 				<div class="form-check form-switch float-end my-3 pt-3" style="display: inline-block;">
@@ -116,7 +134,7 @@
 				  <textarea type="text" class="form-control form-control-sm" id="surveyExplain" name="surveyExplain" style="resize:none; height:6.25em;"></textarea>
 				</div>
 				<div class="my-3 pt-3" id="contentImageRegistration"><h6><b>컨텐츠 이미지 등록</b></h6></div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-4">
 						<div class="row justify-content-center">
 							<img class="img-thumbnail" alt="" id="preview0" style="width:157px; height:210px;">
@@ -147,29 +165,40 @@
 							<input type="file" onchange="readURL2(this);" id="input-file2" style="display:none;">
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="row">
-					<div class="col-4">
-						<div class="row justify-content-center">
-							<img class="img-thumbnail" alt="" id="preview3" style="width:315px; height:210px;">
+					<div class="col-5">
+						<c:set var="type" value="1"/>		<!-- #-> -->
+			        	<c:set var="name" value="uploadImgCard"/>		<!-- #-> -->
+			        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0" />
+			        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+			        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+						<div class="row justify-content-center" id="<c:out value="${name}"/>Preview">
+							<img class="img-thumbnail" alt="" style="width:315px; height:210px;">
 						</div>
 						<div class="row justify-content-center">
 							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>카드형(240 x 160)</h6>
-							<label class="btn btn-sm mb-4" id="input-file-button" for="input-file3" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" onchange="readURL3(this);" id="input-file3" style="display:none;">
+							<label class="btn btn-sm mb-4" id="input-file-button" for="uploadImgCard" style="width:100px; background-color:#525252">첨부파일</label>
+							<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>',<c:out value="${type }"/>, 1, 1, 0, 0, 1);">
 						</div>
 					</div>
-					<div class="col-8">
-						<div class="row justify-content-center">
-							<img class="img-thumbnail" alt="" id="preview4" style="width:400px; height:210px;">
+					<div class="col-7">
+						<c:set var="type" value="2"/>		<!-- #-> -->
+			        	<c:set var="name" value="uploadImgMain"/>		<!-- #-> -->
+			        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+			        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+			        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+						<div class="row justify-content-center" id="<c:out value="${name }"/>Preview">
+							<img class="img-thumbnail" alt="" style="width:400px; height:210px;">
 						</div>
 						<div class="row justify-content-center">
 							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>컨텐츠 메인 이미지(730 x *)</h6>
-							<label class="btn btn-sm mb-4" id="input-file-button" for="input-file4" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" onchange="readURL4(this);" id="input-file4" style="display:none;">
+							<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>" style="width:100px; background-color:#525252">첨부파일</label>
+							<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1);">
 						</div>
 					</div>
 				</div>
+				
 				<%@include file="ContentDto.jsp"%>		<!-- #-> -->
 				<!-- <input type="hidden" name="questionContentGroup" id="questionContentGroup" value="">
 				<input type="hidden" name="questionGroup" id="questionGroup" value="">
@@ -420,6 +449,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="/resources/zdmin/js/commonZdmin.js"></script>
 <script>
 function readURL0(input) {
 	if (input.files && input.files[0]) {
@@ -619,7 +649,9 @@ function readURL8(input) {
 //		alert($("#resultNumGroup").val());
 //		alert($("#resultTitleGroup").val());
 //		alert($("#resultContentGroup").val());
-		
+		alert($("#uploadImgCardMaxNumber").val());
+		alert($("#uploadImgCard").val());
+	
 		form.attr("action",goUrlInst).submit();
 	}
 	
@@ -732,6 +764,80 @@ function readURL8(input) {
 		$("#openNy").val(0);
 	}
 	
+	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+		
+//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//		CardImg: 1
+//		MainImg: 2
+//		QuestionImg : 3
+//		ResultImg : 4
+
+//		uiType: 1 => 이미지형
+
+		alert("업로드 작동시작");
+		var files = $("#" + objName +"")[0].files;
+		var filePreview = $("#" + objName +"Preview");
+		var numbering = [];
+		var maxNumber = 0;
+		alert(maxNumber+"2");
+		if(uiType == 1) {
+			var uploadedFilesCount = document.querySelectorAll("#" + objName + "Preview > img").length;
+			
+		}  else {
+			// by pass
+		}
+		alert(maxNumber+"3");
+		
+		$("#" + objName + "MaxNumber").val(maxNumber);
+
+		alert(maxNumber+"4");
+		alert($("#uploadImgCardMaxNumber")+"555");
+		var totalFileSize = 0;
+		var filesCount = files.length;
+		var filesArray = [];
+		
+		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+		
+		if(checkUploadedTotalFileNumber(files, allowedMaxTotalFileNumber, filesCount, uploadedFilesCount) == false) { return false; }
+		
+		for (var i=0; i<filesCount; i++) {
+			if(checkUploadedExt(files[i].name, seq, allowedExtdiv) == false) { return false; }
+			if(checkUploadedEachFileSize(files[i], seq, allowedEachFileSize) == false) { return false; }
+
+			totalFileSize += files[i].size;
+			
+			filesArray.push(files[i]);
+		}
+
+		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+		
+		if (uiType == 1) {
+			for (var i=0; i<filesArray.length; i++) {
+				var file = filesArray[i];
+
+				var picReader = new FileReader();
+			    picReader.addEventListener("load", addEventListenerCustom (objName, seq, i, file, filePreview, maxNumber));
+			    picReader.readAsDataURL(file);
+			}			
+		}  else {
+			return false;
+		}
+		alert("업로드 작동끝");
+		return false;
+	}
+	
+	addEventListenerCustom = function (objName, type, i, file, filePreview, maxNumber) { 
+		return function(event) {
+			var imageFile = event.target;
+
+			var divImage = "";
+			divImage += '<img class="img-thumbnail" src="'+ imageFile.result +'" alt="" style="width:315px; height:210px;">';
+			
+			filePreview.html(divImage);
+	    };
+	}
 </script>
 </body>
 </html>

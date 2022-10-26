@@ -59,7 +59,9 @@ public class SurveyController {
 	@RequestMapping(value="/content/contentList")
 	public String SurveyList(Model model) throws Exception{
 		List<Survey> list = service.selectList();
+		List<Survey> list2 = service.selectImgList();
 		model.addAttribute("list", list);
+		model.addAttribute("list2",list2);
 		
 		return "zdmin/content/ContentList";
 	}
@@ -79,10 +81,12 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/content/contentInst")
-	public String contentInst(@ModelAttribute("vo") SurveyVo vo,Survey dto, RedirectAttributes redirectAttributes) throws Exception {
-		
+	public String contentInst(SurveyVo vo,Survey dto, RedirectAttributes redirectAttributes) throws Exception {
+		System.out.println("aaaa");
 		service.insertSurveyName(dto);
+		System.out.println("bbbb");
 		dto.setSnSeq(dto.getSnSeq());
+		System.out.println("ccc");
 		System.out.println("dto.SnSeq:"+dto.getSnSeq());
 		int y=0;
 		int z=0;

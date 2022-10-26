@@ -1,6 +1,10 @@
 package com.simsim.modules.survey;
 
-public class Survey {
+import org.springframework.web.multipart.MultipartFile;
+
+import com.simsim.base.Base;
+
+public class Survey extends Base {
 	private String snSeq;
 	private String jsSurveyName_snSeq;
 	private String survey;
@@ -48,7 +52,6 @@ public class Survey {
 	private String scSeq;
 	private String nickname;
 	private String commentContent;
-	private String delNy;
 	
 	private String ssSeq;
 	private String[] ssQuestionGroup;
@@ -59,6 +62,26 @@ public class Survey {
 	private String seq;
 	private String jsMember_seq;
 	private String id;
+	
+	private MultipartFile[] uploadImgCard;
+	private Integer uploadImgCardMaxNumber;
+	private String[] uploadImgCardDeleteSeq;
+	private String[] uploadImgCardDeletePathFile;
+	
+	private MultipartFile[] uploadImgMain;
+	private Integer uploadImgMainMaxNumber;
+	private String[] uploadImgMainDeleteSeq;
+	private String[] uploadImgMainDeletePathFile;
+	
+	private MultipartFile[] uploadImgQuestion;
+	private Integer uploadImgQuestionMaxNumber;
+	private String[] uploadImgQuestionDeleteSeq;
+	private String[] uploadImgQuestionDeletePathFile;
+	
+	private MultipartFile[] uploadImgResult;
+	private Integer uploadImgResultMaxNumber;
+	private String[] uploadImgResultDeleteSeq;
+	private String[] uploadImgResultDeletePathFile;
 	
 	public String getSeq() {
 		return seq;
@@ -354,17 +377,107 @@ public class Survey {
 	public void setRelation2Group(Integer[] relation2Group) {
 		this.relation2Group = relation2Group;
 	}
-	public String getDelNy() {
-		return delNy;
-	}
-	public void setDelNy(String delNy) {
-		this.delNy = delNy;
-	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public MultipartFile[] getUploadImgCard() {
+		return uploadImgCard;
+	}
+	public void setUploadImgCard(MultipartFile[] uploadImgCard) {
+		this.uploadImgCard = uploadImgCard;
+	}
+	public Integer getUploadImgCardMaxNumber() {
+		return uploadImgCardMaxNumber;
+	}
+	public void setUploadImgCardMaxNumber(Integer uploadImgCardMaxNumber) {
+		this.uploadImgCardMaxNumber = uploadImgCardMaxNumber;
+	}
+	public String[] getUploadImgCardDeleteSeq() {
+		return uploadImgCardDeleteSeq;
+	}
+	public void setUploadImgCardDeleteSeq(String[] uploadImgCardDeleteSeq) {
+		this.uploadImgCardDeleteSeq = uploadImgCardDeleteSeq;
+	}
+	public String[] getUploadImgCardDeletePathFile() {
+		return uploadImgCardDeletePathFile;
+	}
+	public void setUploadImgCardDeletePathFile(String[] uploadImgCardDeletePathFile) {
+		this.uploadImgCardDeletePathFile = uploadImgCardDeletePathFile;
+	}
+	public MultipartFile[] getUploadImgMain() {
+		return uploadImgMain;
+	}
+	public void setUploadImgMain(MultipartFile[] uploadImgMain) {
+		this.uploadImgMain = uploadImgMain;
+	}
+	public Integer getUploadImgMainMaxNumber() {
+		return uploadImgMainMaxNumber;
+	}
+	public void setUploadImgMainMaxNumber(Integer uploadImgMainMaxNumber) {
+		this.uploadImgMainMaxNumber = uploadImgMainMaxNumber;
+	}
+	public String[] getUploadImgMainDeleteSeq() {
+		return uploadImgMainDeleteSeq;
+	}
+	public void setUploadImgMainDeleteSeq(String[] uploadImgMainDeleteSeq) {
+		this.uploadImgMainDeleteSeq = uploadImgMainDeleteSeq;
+	}
+	public String[] getUploadImgMainDeletePathFile() {
+		return uploadImgMainDeletePathFile;
+	}
+	public void setUploadImgMainDeletePathFile(String[] uploadImgMainDeletePathFile) {
+		this.uploadImgMainDeletePathFile = uploadImgMainDeletePathFile;
+	}
+	public MultipartFile[] getUploadImgQuestion() {
+		return uploadImgQuestion;
+	}
+	public void setUploadImgQuestion(MultipartFile[] uploadImgQuestion) {
+		this.uploadImgQuestion = uploadImgQuestion;
+	}
+	public Integer getUploadImgQuestionMaxNumber() {
+		return uploadImgQuestionMaxNumber;
+	}
+	public void setUploadImgQuestionMaxNumber(Integer uploadImgQuestionMaxNumber) {
+		this.uploadImgQuestionMaxNumber = uploadImgQuestionMaxNumber;
+	}
+	public String[] getUploadImgQuestionDeleteSeq() {
+		return uploadImgQuestionDeleteSeq;
+	}
+	public void setUploadImgQuestionDeleteSeq(String[] uploadImgQuestionDeleteSeq) {
+		this.uploadImgQuestionDeleteSeq = uploadImgQuestionDeleteSeq;
+	}
+	public String[] getUploadImgQuestionDeletePathFile() {
+		return uploadImgQuestionDeletePathFile;
+	}
+	public void setUploadImgQuestionDeletePathFile(String[] uploadImgQuestionDeletePathFile) {
+		this.uploadImgQuestionDeletePathFile = uploadImgQuestionDeletePathFile;
+	}
+	public MultipartFile[] getUploadImgResult() {
+		return uploadImgResult;
+	}
+	public void setUploadImgResult(MultipartFile[] uploadImgResult) {
+		this.uploadImgResult = uploadImgResult;
+	}
+	public Integer getUploadImgResultMaxNumber() {
+		return uploadImgResultMaxNumber;
+	}
+	public void setUploadImgResultMaxNumber(Integer uploadImgResultMaxNumber) {
+		this.uploadImgResultMaxNumber = uploadImgResultMaxNumber;
+	}
+	public String[] getUploadImgResultDeleteSeq() {
+		return uploadImgResultDeleteSeq;
+	}
+	public void setUploadImgResultDeleteSeq(String[] uploadImgResultDeleteSeq) {
+		this.uploadImgResultDeleteSeq = uploadImgResultDeleteSeq;
+	}
+	public String[] getUploadImgResultDeletePathFile() {
+		return uploadImgResultDeletePathFile;
+	}
+	public void setUploadImgResultDeletePathFile(String[] uploadImgResultDeletePathFile) {
+		this.uploadImgResultDeletePathFile = uploadImgResultDeletePathFile;
 	}
 	
 	
