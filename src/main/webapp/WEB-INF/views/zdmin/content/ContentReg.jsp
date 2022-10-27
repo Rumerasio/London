@@ -179,7 +179,7 @@
 						<div class="row justify-content-center">
 							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>카드형(240 x 160)</h6>
 							<label class="btn btn-sm mb-4" id="input-file-button" for="uploadImgCard" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>',<c:out value="${type }"/>, 1, 1, 0, 0, 1);">
+							<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>',<c:out value="${type }"/>, 1, 1, 0, 0, 1, 315, 210);">
 						</div>
 					</div>
 					<div class="col-7">
@@ -194,7 +194,7 @@
 						<div class="row justify-content-center">
 							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>컨텐츠 메인 이미지(730 x *)</h6>
 							<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1);">
+							<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 400, 210);">
 						</div>
 					</div>
 				</div>
@@ -254,12 +254,19 @@
 						<div class="mb-3 row">
 							<div class="col-12 mt-3">
 								<div class="row justify-content-center">
-									<div class="row justify-content-center">
-										<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
+									<c:set var="type" value="3"/>		<!-- #-> -->
+						        	<c:set var="name" value="uploadImgQuestion"/>		<!-- #-> -->
+						        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+						        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+						        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+									<div class="row justify-content-center" id="<c:out value="${name }"/>Preview">
+										<img class="img-thumbnail" alt="" style="width:400px; height:210px;">
 									</div>
-									<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-									<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-									<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
+									<div class="row justify-content-center">
+										<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>질문 이미지(730 x *)</h6>
+										<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>" style="width:100px; background-color:#525252">첨부파일</label>
+										<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 400, 210);">
+									</div>
 								</div>
 							</div>
 						</div>
@@ -450,19 +457,7 @@
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="/resources/zdmin/js/commonZdmin.js"></script>
-<script>
-function readURL0(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview0').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview0').src = "";
-	}
-}
+<!-- <script>
 function readURL1(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
@@ -475,91 +470,7 @@ function readURL1(input) {
 		document.getElementById('preview1').src = "";
 	}
 }
-function readURL2(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview2').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview2').src = "";
-	}
-}
-function readURL3(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview3').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview3').src = "";
-	}
-}
-function readURL4(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview4').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview4').src = "";
-	}
-}
-function readURL5(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview5').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview5').src = "";
-	}
-}
-function readURL6(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview6').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview6').src = "";
-	}
-}
-function readURL7(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview7').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview7').src = "";
-	}
-}
-function readURL8(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview8').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview8').src = "";
-	}
-}
-</script>
+</script> -->
 <script type="text/javascript">
 	var goUrlInst = "/content/contentInst";				/* #-> */
 
@@ -649,8 +560,8 @@ function readURL8(input) {
 //		alert($("#resultNumGroup").val());
 //		alert($("#resultTitleGroup").val());
 //		alert($("#resultContentGroup").val());
-		alert($("#uploadImgCardMaxNumber").val());
-		alert($("#uploadImgCard").val());
+//		alert($("#uploadImgCardMaxNumber").val());
+//		alert($("#uploadImgCard").val());
 	
 		form.attr("action",goUrlInst).submit();
 	}
@@ -764,7 +675,7 @@ function readURL8(input) {
 		$("#openNy").val(0);
 	}
 	
-	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType, width, length) {
 		
 //		objName 과 seq 는 jsp 내에서 유일 하여야 함.
 //		CardImg: 1
@@ -774,24 +685,19 @@ function readURL8(input) {
 
 //		uiType: 1 => 이미지형
 
-		alert("업로드 작동시작");
 		var files = $("#" + objName +"")[0].files;
 		var filePreview = $("#" + objName +"Preview");
 		var numbering = [];
 		var maxNumber = 0;
-		alert(maxNumber+"2");
 		if(uiType == 1) {
 			var uploadedFilesCount = document.querySelectorAll("#" + objName + "Preview > img").length;
 			
 		}  else {
 			// by pass
 		}
-		alert(maxNumber+"3");
 		
 		$("#" + objName + "MaxNumber").val(maxNumber);
 
-		alert(maxNumber+"4");
-		alert($("#uploadImgCardMaxNumber")+"555");
 		var totalFileSize = 0;
 		var filesCount = files.length;
 		var filesArray = [];
@@ -818,7 +724,7 @@ function readURL8(input) {
 				var file = filesArray[i];
 
 				var picReader = new FileReader();
-			    picReader.addEventListener("load", addEventListenerCustom (objName, seq, i, file, filePreview, maxNumber));
+			    picReader.addEventListener("load", addEventListenerCustom (objName, seq, i, file, filePreview, maxNumber, width, length));
 			    picReader.readAsDataURL(file);
 			}			
 		}  else {
@@ -828,12 +734,12 @@ function readURL8(input) {
 		return false;
 	}
 	
-	addEventListenerCustom = function (objName, type, i, file, filePreview, maxNumber) { 
+	addEventListenerCustom = function (objName, type, i, file, filePreview, maxNumber, width, length) { 
 		return function(event) {
 			var imageFile = event.target;
 
 			var divImage = "";
-			divImage += '<img class="img-thumbnail" src="'+ imageFile.result +'" alt="" style="width:315px; height:210px;">';
+			divImage += '<img class="img-thumbnail" src="'+ imageFile.result +'" alt="" style="width:'+width+'px; height:'+length+'px;">';
 			
 			filePreview.html(divImage);
 	    };
