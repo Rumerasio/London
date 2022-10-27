@@ -68,10 +68,10 @@
 		<!-- 메뉴단 e -->
 	</div>
 	<div class="col-10" style="white-space:nowrap;">
-		<h5 class="mt-3"><b>컨텐츠 관리</b></h5>
-		<h6 style="color:gray;"><b>컨텐츠 목록</b></h6>
+		<h5 class="mt-3"><b>테스트 관리</b></h5>
+		<h6 style="color:gray;"><b>테스트 관리</b></h6>
 		<div class="p-5" style="position:relative;">
-			<a href="contentReg"><button type="button" class="btn btn-sm" style="position:absolute; right:0px; top:-50px; width: 160px; background-color:#e6e6e6;">새 컨텐츠 등록하기</button></a>
+			<a href="contentReg"><button type="button" class="btn btn-sm" style="position:absolute; right:0px; top:-50px; width: 160px; background-color:#e6e6e6;">새 테스트 등록하기</button></a>
 			<div class="container mt-5">
 				<div class="row row-cols-3 g-4" style="width:1050px;">
 					<c:choose>
@@ -98,6 +98,9 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
+				<!-- pagination s -->
+				<%@include file="../../commoncode/pagination.jsp"%>
+				<!-- pagination e -->
 			</div>
 		</div>	
 	</div>
