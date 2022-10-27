@@ -211,13 +211,18 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	}
 
 	@Override
-	public List<Survey> selectContentRecordList() throws Exception {
-		return dao.selectContentRecordList();
+	public List<Survey> selectContentRecordList(SurveyVo vo) throws Exception {
+		return dao.selectContentRecordList(vo);
 	}
 
 	@Override
 	public List<Survey> selectImgList() throws Exception {
 		return dao.selectImgList();
+	}
+
+	@Override
+	public int selectContentRecordCount(SurveyVo vo) throws Exception {
+		return dao.selectContentRecordCount(vo);
 	}
 
 

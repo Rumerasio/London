@@ -73,8 +73,15 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/content/contentRecord")
-	public String contentRecord(Model model) throws Exception {
-		List<Survey> list = service.selectContentRecordList();
+	public String contentRecord(Model model, @ModelAttribute("vo") SurveyVo vo) throws Exception {
+		
+		vo.setShValue(vo.getShValue() == null ? "" : vo.getShValue());
+		
+		vo.setParamsPaging(service.selectContentRecordCount(vo));
+		System.out.println(vo.getRowNumToShow());
+		System.out.println(vo.getStartRnumForMysql());
+		
+		List<Survey> list = service.selectContentRecordList(vo);
 		model.addAttribute("list",list);
 		
 		return "zdmin/content/ContentRecord";

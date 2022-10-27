@@ -14,7 +14,10 @@ public interface SurveyService {
 	public List<Survey> selectSurveyContentChoice(SurveyVo vo) throws Exception;
 	public List<Survey> selectResultList(SurveyVo vo) throws Exception;
 	public List<Survey> selectCommentList() throws Exception;
-	public List<Survey> selectContentRecordList() throws Exception;
+	public List<Survey> selectContentRecordList(SurveyVo vo) throws Exception;
+	
+	public int selectContentRecordCount(SurveyVo vo) throws Exception;
+	
 	public List<Survey> selectImgList() throws Exception;
 	
 	public int insertSurveyRecord(Survey dto) throws Exception;

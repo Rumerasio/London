@@ -7,6 +7,19 @@
 <mapper namespace="com.simsim.modules.survey.SurveyMapper">
 
     <resultMap id="resultMapObj" type="com.simsim.modules.survey.Survey"></resultMap>
+    
+    <sql id="selectCommon">
+		FROM jsSurveyRecord a
+		WHERE 1=1
+			<choose>
+				<when test="shOption ==1">AND (SELECT nickname FROM jsMember c WHERE c.seq = a.jsMember_seq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==2">AND (SELECT id FROM jsMember c WHERE c.seq = a.jsMember_seq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==3">AND (SELECT survey FROM jsSurveyName b WHERE b.snSeq = a.jsSurveyName_snSeq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==4">AND (SELECT resultTitle From jsSurveyResult d WHERE d.srSeq = a.jsSurveyResult_srSeq) LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
+	
+	<!-- <when test="shOption ==1">AND codeGroupCode = #{shValue}</when> -->
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
@@ -68,18 +81,26 @@
 	order by scSeq DESC
 	</select>
 	
+	<select id="selectContentRecordCount" resultType="Integer">
+		SELECT
+			count(*)
+		<include refid="selectCommon"></include>
+	</select>
+	
 	<select id="selectContentRecordList" resultMap="resultMapObj">
-	SELECT
-		srcSeq
-		,(SELECT nickname FROM jsMember c WHERE c.seq = a.jsMember_seq) as nickname
-		,(SELECT id FROM jsMember c WHERE c.seq = a.jsMember_seq) as id
-		,(SELECT survey FROM jsSurveyName b WHERE b.snSeq = a.jsSurveyName_snSeq) as survey
-		,totalScore
-		,(SELECT resultTitle From jsSurveyResult d WHERE d.srSeq = a.jsSurveyResult_srSeq) as resultTitle
-		,datetime
-	FROM jsSurveyRecord a
-	WHERE 1=1
-	order by srcSeq DESC
+		<include refid="Base.selectListUpperForMysql"></include>
+			SELECT
+				srcSeq
+				,(SELECT nickname FROM jsMember c WHERE c.seq = a.jsMember_seq) as nickname
+				,(SELECT id FROM jsMember c WHERE c.seq = a.jsMember_seq) as id
+				,(SELECT survey FROM jsSurveyName b WHERE b.snSeq = a.jsSurveyName_snSeq) as survey
+				,totalScore
+				,(SELECT resultTitle From jsSurveyResult d WHERE d.srSeq = a.jsSurveyResult_srSeq) as resultTitle
+				,datetime
+			<include refid="selectCommon"></include>
+			order by srcSeq DESC
+			<include refid="Base.orderByLimitForMysql"></include>
+		<include refid="Base.selectListLowerForMysql"></include>
 	</select>
 	
 	<insert id="CommentInst">
