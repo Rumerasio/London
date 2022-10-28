@@ -284,12 +284,25 @@
 					<div class="row">
 						<div class="col-3 mt-3">
 							<div class="row justify-content-center">
+								<c:set var="type" value="4"/>		<!-- #-> -->
+					        	<c:set var="name" value="uploadImgResult"/>		<!-- #-> -->
+					        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+					        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+					        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+								<div class="row justify-content-center" id="<c:out value="${name }"/>Preview">
+									<img class="img-thumbnail" alt="" style="width:220px; height:170px;">
+								</div>
 								<div class="row justify-content-center">
+									<h6 class="my-3" style="text-align: center;">결과 이미지<br>(220 x 170)</h6>
+									<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>" style="width:100px; background-color:#525252">첨부파일</label>
+									<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 220, 170);">
+								</div>
+								<!-- <div class="row justify-content-center">
 									<img class="img-thumbnail" alt="" id="preview7" style="width:220px; height:170px;">
 								</div>
 								<h6 class="my-3" style="text-align: center;">결과 이미지<br>(200 x 170)</h6>
 								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file7" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL7(this);" id="input-file7" style="display:none;">
+								<input type="file" onchange="readURL7(this);" id="input-file7" style="display:none;"> -->
 							</div>
 						</div>
 						<div class="col-9">
@@ -561,7 +574,8 @@ function readURL1(input) {
 //		alert($("#resultTitleGroup").val());
 //		alert($("#resultContentGroup").val());
 //		alert($("#uploadImgCardMaxNumber").val());
-//		alert($("#uploadImgCard").val());
+		alert($("#uploadImgCard").val());
+		alert($("#uploadImgQuestion").val());
 	
 		form.attr("action",goUrlInst).submit();
 	}
@@ -631,14 +645,19 @@ function readURL1(input) {
 		divContentPage +='    </div>';
 		divContentPage +='    <div class="mb-3 row">';
 		divContentPage +='        <div class="col-12 mt-3">';
-		divContentPage +='            <div class="row justify-content-center">';
-		divContentPage +='                <div class="row justify-content-center">';
-		divContentPage +='                    <img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">';
-		divContentPage +='                </div>';
-		divContentPage +='                <h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>';
-		divContentPage +='                <label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>';
-		divContentPage +='                <input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">';
-		divContentPage +='            </div>';
+		divContentPage +='			<c:set var="type" value="3"/>';
+		divContentPage +='			<c:set var="name" value="uploadImgQuestion"/>';
+		divContentPage +='			<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>';
+		divContentPage +='			<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>';
+		divContentPage +='			<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>';
+		divContentPage +='			<div class="row justify-content-center" id="<c:out value="${name }"/>Preview">';
+		divContentPage +='    			<img class="img-thumbnail" alt="" style="width:400px; height:210px;">';
+		divContentPage +='			</div>';
+		divContentPage +='			<div class="row justify-content-center">';
+		divContentPage +=' 			   <h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>질문 이미지(730 x *)</h6>';
+		divContentPage +=' 			   <label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>" style="width:100px; background-color:#525252">첨부파일</label>';
+		divContentPage +='  			  <input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload(\'<c:out value="${name }"/>\', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 400, 210);">';
+		divContentPage +='			</div>';
 		divContentPage +='        </div>';
 		divContentPage +='    </div>';
 		divContentPage +='</div>';

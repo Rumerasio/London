@@ -77,11 +77,15 @@ public class Survey extends Base {
 	private Integer uploadImgQuestionMaxNumber;
 	private String[] uploadImgQuestionDeleteSeq;
 	private String[] uploadImgQuestionDeletePathFile;
+	private MultipartFile[] uploadImgQuestionGroup;
+	private Integer[] uploadImgQuestionMaxNumberGroup;
 	
 	private MultipartFile[] uploadImgResult;
 	private Integer uploadImgResultMaxNumber;
 	private String[] uploadImgResultDeleteSeq;
 	private String[] uploadImgResultDeletePathFile;
+	private MultipartFile[] uploadImgResultGroup;
+	private Integer[] uploadImgResultMaxNumberGroup;
 	
 	public String getSeq() {
 		return seq;
@@ -478,6 +482,30 @@ public class Survey extends Base {
 	}
 	public void setUploadImgResultDeletePathFile(String[] uploadImgResultDeletePathFile) {
 		this.uploadImgResultDeletePathFile = uploadImgResultDeletePathFile;
+	}
+	public MultipartFile[] getUploadImgQuestionGroup() {
+		return uploadImgQuestionGroup;
+	}
+	public void setUploadImgQuestionGroup(MultipartFile[] uploadImgQuestionGroup) {
+		this.uploadImgQuestionGroup = uploadImgQuestionGroup;
+	}
+	public Integer[] getUploadImgQuestionMaxNumberGroup() {
+		return uploadImgQuestionMaxNumberGroup;
+	}
+	public void setUploadImgQuestionMaxNumberGroup(Integer[] uploadImgQuestionMaxNumberGroup) {
+		this.uploadImgQuestionMaxNumberGroup = uploadImgQuestionMaxNumberGroup;
+	}
+	public MultipartFile[] getUploadImgResultGroup() {
+		return uploadImgResultGroup;
+	}
+	public void setUploadImgResultGroup(MultipartFile[] uploadImgResultGroup) {
+		this.uploadImgResultGroup = uploadImgResultGroup;
+	}
+	public Integer[] getUploadImgResultMaxNumberGroup() {
+		return uploadImgResultMaxNumberGroup;
+	}
+	public void setUploadImgResultMaxNumberGroup(Integer[] uploadImgResultMaxNumberGroup) {
+		this.uploadImgResultMaxNumberGroup = uploadImgResultMaxNumberGroup;
 	}
 	
 	

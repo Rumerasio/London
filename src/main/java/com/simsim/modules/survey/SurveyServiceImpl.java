@@ -142,18 +142,31 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 		
 		uploadFiles(dto.getUploadImgCard(), dto, "Upload", 1, dto.getUploadImgCardMaxNumber());
 		uploadFiles(dto.getUploadImgMain(), dto, "Upload", 2, dto.getUploadImgMainMaxNumber());
+		uploadFiles(dto.getUploadImgQuestion(), dto, "Upload", 3, dto.getUploadImgQuestionMaxNumber());
 		
 		return 1;
 	}
 
 	@Override
-	public int insertSurveyQuestion(Survey dto) throws Exception { return dao.insertSurveyQuestion(dto);}
+	public int insertSurveyQuestion(Survey dto) throws Exception { 
+		
+		dao.insertSurveyQuestion(dto);
+		
+		return 1;
+	}
 
 	@Override
 	public int insertChoice(Survey dto) throws Exception { return dao.insertChoice(dto);}
 
 	@Override
-	public int insertResult(Survey dto) throws Exception { return dao.insertResult(dto);}
+	public int insertResult(Survey dto) throws Exception {
+		
+		dao.insertResult(dto);
+		
+	//	uploadFiles(dto.getUploadImgResult(), dto, "Upload", 3, dto.getUploadImgResultMaxNumber());
+		
+		return 1;
+	}
 
 	@Override
 	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) throws Exception {
