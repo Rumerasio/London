@@ -1,6 +1,7 @@
-validationTest = function() {
-	alert("validationTest");
-}
+
+//validationTest = function() {
+//	alert("validationTest");
+//}
 
 
 function checkNull (objName, pattern, message) {
@@ -100,19 +101,19 @@ function checkSelectNull (objName, pattern, message) {
 }
 
 
-function checkRadio (objName, pattern, nullAllowedNy, message, regExp) {
-	var obj = document.getElementById(objName);
-	var objFeedback = document.getElementById(objName+"Feedback");
-	
-	// if(document.querySelector("input[name='gender']:checked") != null){
-	if(document.querySelector("input[name='gender']:checked") != null){
-		obj.classList.remove('is-invalid');
-		return true;
-	} else {
-		checkLogicExpression (obj, objFeedback, pattern, message);
-		return false;
-	}
-}
+//function checkRadio (objName, pattern, nullAllowedNy, message, regExp) {
+//	var obj = document.getElementById(objName);
+//	var objFeedback = document.getElementById(objName+"Feedback");
+//	
+//	// if(document.querySelector("input[name='gender']:checked") != null){
+//	if(document.querySelector("input[name='gender']:checked") != null){
+//		obj.classList.remove('is-invalid');
+//		return true;
+//	} else {
+//		checkLogicExpression (obj, objFeedback, pattern, message);
+//		return false;
+//	}
+//}
 
 
 function checkId (objName, pattern, nullAllowedNy, message) {
