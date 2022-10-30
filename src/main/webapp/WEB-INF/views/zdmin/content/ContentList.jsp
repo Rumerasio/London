@@ -85,7 +85,7 @@
 								<div class="col">
 								    <div class="card h-100">
 								      <c:forEach items="${list2}" var="list2" varStatus="status">
-								      	<c:if test="${list2.type eq 2 && list2.pseq eq list.snSeq}">
+								      	<c:if test="${list2.type eq 1 && list2.pseq eq list.snSeq}">
 								      		<a href="#"><img src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" class="card-img-top" alt="..."></a>
 								      	</c:if>
 								      </c:forEach>

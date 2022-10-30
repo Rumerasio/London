@@ -79,7 +79,12 @@
 <div class="container" id="total">
 	<div class="container" style="position: relative;top:-8px;">
 		<div class="clearfix" style="width: 1000px; line-height:3;">
-			<img alt="" src="/resources/images/lighthouse_mainbanner.jpg" style="width: 1000px; padding-bottom: 20px;">
+			<c:forEach items="${list2}" var="list2" varStatus="status">
+		    	<c:if test="${list2.type eq 2 && list2.pseq eq vo.snSeq}">
+		    		<a href="#"><img src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" alt="..." style="width:1000px; padding-bottom:20px;"></a>
+		    	</c:if>
+		    </c:forEach>
+			<!-- <img alt="" src="/resources/images/lighthouse_mainbanner.jpg" style="width: 1000px; padding-bottom: 20px;"> -->
 			<h2 style="display: inline-block"><b><c:out value="${item.survey }"/></b></h2>
 			<div class="float-md-end">
 				<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">

@@ -18,7 +18,7 @@
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@700&display=swap');
 	body {
-	background-color: rgba(0, 86, 102, 0.07);
+	/* background-color: rgba(0, 86, 102, 0.07); */
 	}
 	#topNav{
 		background-color:white;
@@ -58,7 +58,7 @@
 	</div>
 </nav>
 <div id="total">
-	<div style="width:100%; background-color:#162C43; position:relative; top: -8px; ">
+	<div style="width:100%; position:relative; top: -8px; ">
 		<c:choose>
 			<c:when test="${fn:length(list) eq 0}">
 				<div><p>결과내용이 없어요!</p></div>
@@ -68,11 +68,15 @@
 					<c:choose>
 						<c:when test="${list.srSeq eq item.srSeq}">
 							<div class="container pt-5" style="text-align: center;">
-								<img class="result_img" alt="..." src="../images/stars_test/Sagittarius.jpg" id="Sagittarius" style="width: 200px; margin-top:200px;">
+								<c:forEach items="${list2}" var="list2" varStatus="status">
+							    	<c:if test="${list2.type eq 4 && list2.pseq eq vo.snSeq && (list2.sort+1) eq list.resultNum}">
+							    		<img class="result_img" src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" alt="..." style="width: 200px; margin-top:200px;">
+							    	</c:if>
+							    </c:forEach>
 								<div class="mt-4 result_title" style="text-align: center;">
-									<h4 style="color:white; font-size: 22px; width: 220px; display: inline-block;"><b><c:out value="${list.resultTitle }"/></b></h4>
+									<h4 style="font-size: 22px; width: 220px; display: inline-block;"><b><c:out value="${list.resultTitle }"/></b></h4>
 								</div>
-								<div class="result_content mx-auto" style="width: 368px; color:white; text-align:left; font-size: 16px;">
+								<div class="result_content mx-auto" style="width: 368px; text-align:left; font-size: 16px;">
 									<div style="white-space:pre-line;"><c:out value="${list.resultContent }"/></div>
 									<%-- <div class="clearfix row" style="position: relative;">
 										<div class="col-6">

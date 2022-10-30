@@ -15,3 +15,9 @@
 <input type="hidden" name="scoreRangeEndGroup" id="scoreRangeEndGroup" value="">
 <input type="hidden" name="relation1Group" id="relation1Group" value=0>
 <input type="hidden" name="relation2Group" id="relation2Group" value=0>
+
+<input type="hidden" name="uploadImgQuestion" id="uploadImgQuestion">
+<input type="hidden" name="uploadImgQuestionMaxNumberGroup" id="uploadImgQuestionMaxNumberGroup" value=0>
+
+<input type="hidden" name="uploadImgResult" id="uploadImgResult">
+<input type="hidden" name="uploadImgResultMaxNumberGroup" id="uploadImgResultMaxNumberGroup" value=0>

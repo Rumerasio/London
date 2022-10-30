@@ -143,6 +143,7 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 		uploadFiles(dto.getUploadImgCard(), dto, "Upload", 1, dto.getUploadImgCardMaxNumber());
 		uploadFiles(dto.getUploadImgMain(), dto, "Upload", 2, dto.getUploadImgMainMaxNumber());
 		uploadFiles(dto.getUploadImgQuestion(), dto, "Upload", 3, dto.getUploadImgQuestionMaxNumber());
+		uploadFiles(dto.getUploadImgResult(), dto, "Upload", 4, dto.getUploadImgResultMaxNumber());
 		
 		return 1;
 	}
@@ -162,8 +163,6 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	public int insertResult(Survey dto) throws Exception {
 		
 		dao.insertResult(dto);
-		
-	//	uploadFiles(dto.getUploadImgResult(), dto, "Upload", 3, dto.getUploadImgResultMaxNumber());
 		
 		return 1;
 	}

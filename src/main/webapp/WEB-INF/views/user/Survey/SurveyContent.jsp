@@ -180,7 +180,11 @@
 	</div>
 	<!-- <button type="button" class="btn btn-secondary survey_back">이전으로</button> -->
 	<div class="container">
-		<img alt="" src="/resources/images/lighthouse_mainbanner.jpg" style="width: 1000px;">
+		<c:forEach items="${list3}" var="list3" varStatus="status">
+	    	<c:if test="${list3.type eq 2 && list3.pseq eq vo.snSeq}">
+	    		<a href="#"><img src="<c:out value="${list3.path }"/><c:out value="${list3.uuidName }"/>" alt="..." style="width:1000px; padding-bottom:20px;"></a>
+	    	</c:if>
+	    </c:forEach>
 	</div>
 </div>
 

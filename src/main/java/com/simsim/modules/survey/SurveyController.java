@@ -33,6 +33,8 @@ public class SurveyController {
 		
 		List<Survey> list = service.selectList();
 		model.addAttribute("list",list);
+		List<Survey> list2 = service.selectImgList();
+		model.addAttribute("list2",list2);
 		
 		return "user/main";
 	}
@@ -59,8 +61,9 @@ public class SurveyController {
 	@RequestMapping(value="/content/contentList")
 	public String SurveyList(Model model) throws Exception{
 		List<Survey> list = service.selectList();
-		List<Survey> list2 = service.selectImgList();
 		model.addAttribute("list", list);
+		
+		List<Survey> list2 = service.selectImgList();
 		model.addAttribute("list2",list2);
 		
 		return "zdmin/content/ContentList";
@@ -89,22 +92,16 @@ public class SurveyController {
 	
 	@RequestMapping(value="/content/contentInst")
 	public String contentInst(SurveyVo vo,Survey dto, RedirectAttributes redirectAttributes) throws Exception {
-		System.out.println("aaaa");
 		service.insertSurveyName(dto);
-		System.out.println("bbbb");
 		dto.setSnSeq(dto.getSnSeq());
-		System.out.println("ccc");
-		System.out.println("dto.SnSeq:"+dto.getSnSeq());
 		int y=0;
 		int z=0;
 		for(int i=0; i<dto.getQuestionGroup().length; i++) {
 			dto.setQuestion(dto.getQuestionGroup()[i]);
-			System.out.println("문제 question 값: "+dto.getQuestion());
 			dto.setQuestionContent(dto.getQuestionContentGroup()[i]);
 			service.insertSurveyQuestion(dto);
 			
 			dto.setSqSeq(dto.getSqSeq());
-			System.out.println("sqSeq 값: "+dto.getSqSeq());
 			z += dto.getChoiceNumPerQuestion()[i];
 			for(int j=y; j<z; j++) {
 				System.out.println("index 값: "+j);
@@ -163,8 +160,12 @@ public class SurveyController {
 		
 		vo.setSqSeq(vo.getSqSeq());
 		System.out.println(vo.getSqSeq());
+		
 		List<Survey> list2 = service.selectSurveyContentChoice(vo);
 		model.addAttribute("list2", list2);
+		
+		List<Survey> list3 = service.selectImgList();
+		model.addAttribute("list3",list3);
 		
 		return "user/Survey/SurveyContent";
 	}
@@ -200,6 +201,9 @@ public class SurveyController {
 		List<Survey> result = service.selectResultList(vo);
 		model.addAttribute("list", result);
 		
+		List<Survey> list2 = service.selectImgList();
+		model.addAttribute("list2",list2);
+		
 		return "user/Survey/SurveyResult";
 	}
 	
@@ -211,6 +215,9 @@ public class SurveyController {
 		
 		Survey result = service.selectOne(vo);
 		model.addAttribute("item", result);
+		
+		List<Survey> list2 = service.selectImgList();
+		model.addAttribute("list2",list2);
 		
 		List<Survey> result2 = service.selectSurveyCommentList(vo);
 		model.addAttribute("list", result2);
