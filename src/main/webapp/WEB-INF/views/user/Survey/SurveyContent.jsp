@@ -82,11 +82,9 @@
 </nav>
 <div class="container" id="total">
 	<div style="width:1000px; background-color: white; margin-left: 12px; position: relative;">
-		<div class="progress">
-		  <div class="progress-bar" role="progressbar" style="width: 25%; background-color:#a5d610;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-		</div>
 		<h6 class="pt-2" style="color:gray;"><c:out value="${item.survey }"/></h6><hr>
 		<form method="post" name="myForm">
+			<c:set var="total" value="${fn:length(list)}" ></c:set>
 			<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
 			<c:choose>
 				<c:when test="${empty sessSeq }">
@@ -109,12 +107,17 @@
 								<div class="container" id="content_page_<c:out value="${list.question}"/>">
 									<div>
 										<h5><c:out value="${list.questionContent }"/></h5>
+										<c:forEach items="${list3}" var="list3" varStatus="status">
+									    	<c:if test="${list3.type eq 3 && list3.pseq eq vo.snSeq && (list3.sort+1) eq list.question}">
+									    		<img src="<c:out value="${list3.path }"/><c:out value="${list3.uuidName }"/>" alt="..." style="width:730px; padding-bottom:20px;">
+									    	</c:if>
+									    </c:forEach>
 									</div>
 									<div class="row choice_box my-5	">
 										<c:forEach items="${list2}" var="list2" varStatus="status">
 											<c:choose>
 												<c:when test="${list2.sqSeq eq list.sqSeq }">
-													<div class="col-6 my-3">
+													<div class="col-4 offset-2 my-3">
 														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
 														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
 													</div>
@@ -122,6 +125,9 @@
 												<c:otherwise></c:otherwise>
 											</c:choose>
 										</c:forEach>
+									</div>
+									<div class="progress my-4">
+									  <div class="progress-bar" role="progressbar" style="width: calc( 100%/<c:out value="${total }"/>*<c:out value="${list.question}"/>); background-color:#a5d610;" aria-valuenow="calc(100/<c:out value="${total }"/>* <c:out value="${list.question}"/>)" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<a href="javascript:goSurvey(<c:out value="${vo.snSeq}"/>)"><button type="button" class="btn btn-secondary survey_back" id="btnBack_<c:out value="${list.question}"/>">이전으로</button></a>
@@ -130,12 +136,17 @@
 								<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
 									<div>
 										<h5><c:out value="${list.questionContent }"/></h5>
+										<c:forEach items="${list3}" var="list3" varStatus="status">
+									    	<c:if test="${list3.type eq 3 && list3.pseq eq vo.snSeq && (list3.sort+1) eq list.question}">
+									    		<img src="<c:out value="${list3.path }"/><c:out value="${list3.uuidName }"/>" alt="..." style="width:730px; padding-bottom:20px;">
+									    	</c:if>
+									    </c:forEach>
 									</div>
 									<div class="row choice_box my-5	">
 										<c:forEach items="${list2}" var="list2" varStatus="status">
 											<c:choose>
 												<c:when test="${list2.sqSeq eq list.sqSeq }">
-													<div class="col-6 my-3">
+													<div class="col-4 offset-2 my-3">
 														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="sendChoice(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
 														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
 													</div>
@@ -144,6 +155,9 @@
 											</c:choose>
 										</c:forEach>
 									</div>
+									<div class="progress my-4">
+									  <div class="progress-bar" role="progressbar" style="width: calc(100%/<c:out value="${total }"/>* <c:out value="${list.question}"/>); background-color:#a5d610;" aria-valuenow="calc(100/<c:out value="${total }"/>* <c:out value="${list.question}"/>)" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
 								</div>
 								<button type="button" class="btn btn-secondary survey_back visually-hidden" id="btnBack_<c:out value="${list.question}"/>" onclick="back(<c:out value="${list.question}"/>)">이전으로</button>
 							</c:when>
@@ -151,12 +165,17 @@
 								<div class="container visually-hidden" id="content_page_<c:out value="${list.question}"/>">
 									<div>
 										<h5><c:out value="${list.questionContent }"/></h5>
+										<c:forEach items="${list3}" var="list3" varStatus="status">
+									    	<c:if test="${list3.type eq 3 && list3.pseq eq vo.snSeq && (list3.sort+1) eq list.question}">
+									    		<img src="<c:out value="${list3.path }"/><c:out value="${list3.uuidName }"/>" alt="..." style="width:975px; padding-bottom:20px;">
+									    	</c:if>
+									    </c:forEach>
 									</div>
 									<div class="row choice_box my-5	">
 										<c:forEach items="${list2}" var="list2" varStatus="status">
 											<c:choose>
 												<c:when test="${list2.sqSeq eq list.sqSeq }">
-													<div class="col-6 my-3">
+													<div class="col-4 offset-2 my-3">
 														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
 														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
 													</div>
@@ -164,6 +183,9 @@
 												<c:otherwise></c:otherwise>
 											</c:choose>
 										</c:forEach>
+									</div>
+									<div class="progress my-4">
+									  <div class="progress-bar" role="progressbar" style="width: calc(100%/<c:out value="${total }"/>* <c:out value="${list.question}"/>); background-color:#a5d610;" aria-valuenow="calc(100/<c:out value="${total }"/>* <c:out value="${list.question}"/>)" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<button type="button" class="btn btn-secondary survey_back visually-hidden" id="btnBack_<c:out value="${list.question}"/>" onclick="back(<c:out value="${list.question}"/>)">이전으로</button>
@@ -182,7 +204,7 @@
 	<div class="container">
 		<c:forEach items="${list3}" var="list3" varStatus="status">
 	    	<c:if test="${list3.type eq 2 && list3.pseq eq vo.snSeq}">
-	    		<a href="#"><img src="<c:out value="${list3.path }"/><c:out value="${list3.uuidName }"/>" alt="..." style="width:1000px; padding-bottom:20px;"></a>
+	    		<img src="<c:out value="${list3.path }"/><c:out value="${list3.uuidName }"/>" alt="..." style="width:1000px; padding-bottom:20px;">
 	    	</c:if>
 	    </c:forEach>
 	</div>
@@ -193,6 +215,7 @@
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+
 	selectAndHide = function(keyValue) {
 		var num = keyValue;
 		document.getElementById("content_page_"+num).classList.add('visually-hidden');
