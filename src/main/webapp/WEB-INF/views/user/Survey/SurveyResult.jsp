@@ -18,7 +18,7 @@
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@700&display=swap');
 	body {
-	/* background-color: rgba(0, 86, 102, 0.07); */
+		background-color: rgba(0, 86, 102, 0.07);
 	}
 	#topNav{
 		background-color:white;

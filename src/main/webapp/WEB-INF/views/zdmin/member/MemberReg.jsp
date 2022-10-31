@@ -98,28 +98,27 @@
 			<!-- *Vo.jsp s -->
 			<%@include file="MemberVo.jsp"%>		<!-- #-> -->
 			<!-- *Vo.jsp e -->
-			<div class="p-5" style="background-color: white;">
-				<div class="row pt-4 py-2">
-					<!-- <div class="col-5">
+			<div class="p-5">
+				<!-- <div class="row pt-4 py-2">
+					<div class="col-5">
 						<div class="row justify-content-center">
 							<img class="img-thumbnail" alt="" id="preview" style="width:160px; height:144px;">
 						</div>
 						<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>대형배너(385 x 515)</h6>
 						<label class="btn btn-sm mb-4" id="input-file-button" for="input-file" style="width:100px; background-color:#525252">첨부파일</label>
 						<input type="file" id="input-file" style="display:none;">
-					</div> -->
+					</div>
 					<img style="width: 174px; height: 150px;" id="previewImage" src=" ">
 					<input style="display: block;" multiple="multiple" type="file" id="inputImage" onChange="test('inputImage',2,2,1,0,0,2);">
 					<div class="addScroll">
 						<div style="display: inline-block; height: 95px;">
-							<!-- <img src="/resources/images/antic.jpg" class="rounded" width= "85px" height="85px"> -->
+							<img src="/resources/images/antic.jpg" class="rounded" width= "85px" height="85px">
 							<ul id="ulFile2" class="list-group">
 							</ul>
-							<!-- <div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div> -->
+							<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>
 						</div>
 		 			</div>
-				</div>
-				<button type="button" class="btn btn-primary" id="go">확인</button>
+				</div> -->
 				<div class="row pt-4 py-2">
 					<label for="nickname" class="col-1 col-form-label">닉네임</label>
 				    <div class="col-4">
@@ -167,7 +166,7 @@
 				      <input type="text" class="form-control-plaintext" value="비밀번호가 일치합니다" style="font-size: 10px;">
 				    </div>
 				</div>
-				<div class="row mt-sm-4">
+				<!-- <div class="row mt-sm-4">
 			        <div class="col-sm-6 mt-3 mt-sm-0">
 			            <label for="ifmmUploadedImage" class="form-label input-file-button">이미지첨부</label>
 			 			<input class="form-control form-control-sm" id="ifmmUploadedImage" name="ifmmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
@@ -175,7 +174,7 @@
 			    </div>
 			    <h2>멀티파일 처리</h2>
 				<input style="display: block;" type="file" id="inputMultipleImage" multiple>
-				<div id="multipleContainer" style="width: 400px; height: 400px;" ></div>
+				<div id="multipleContainer" style="width: 400px; height: 400px;" ></div> -->
 				<div class="row mb-3">
 					<span class="col-2 offset-4"><button type="button" class="btn btn-sm" id="btnSave" name="btnSave" style="background-color:rgb(197, 59, 222); color:white;">계정생성</button></span>
 				</div>

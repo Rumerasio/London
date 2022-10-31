@@ -65,7 +65,7 @@
 			<!-- *Vo.jsp s -->
 			<%@include file="MemberVo.jsp"%>		<!-- #-> -->
 			<!-- *Vo.jsp e -->
-			<div class="p-5" style="background-color: white;">
+			<div class="p-5">
 				<div class="row pt-4 py-2">
 					<label for="nickname" class="col-1 col-form-label">닉네임</label>
 				    <div class="col-4">
@@ -116,7 +116,7 @@
 				    </div>
 				</div>
 				<div class="container mt-3" style="margin-left:0px; border:solid; border-width:2px; width: 500px;">
-					<div style="display:inline-block; position: relative; top:-12px; left:5px; background-color: white;">유저 기록 총괄</div>
+					<div style="display:inline-block; position: relative; top:-12px; left:5px; background-color:#EDF3F4;">유저 기록 총괄</div>
 					<div class="row mb-3">
 						<div class="col-auto">
 							댓글수
