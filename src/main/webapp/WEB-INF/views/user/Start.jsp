@@ -52,7 +52,7 @@
 		<a href="/">
 		  <img src="/resources/images/userPage.PNG" class="card-img" alt="userPage">
 		  <div class="card-img-overlay">
-		    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">Simsim 홈페이지</h2>
+		    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">사용자 홈페이지</h2>
 		  </div>
 		</a>
 	</div>
