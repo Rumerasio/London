@@ -57,27 +57,20 @@
 	</div>
 	<div class="col-10">
 		<div class="row">
-			<div class="col-3">
-				<div class="container col-10" style="background-color:#EAA7A1; color:white; height:320px; text-align: center;">
-					<div class="py-5">
-						<span style="font-size: 24px;"><b>오늘의 방문자수</b></span><br>
-						<span style="color:black; font-size: 80px;"><i class="fa-solid fa-eye"></i></span><br>
-						<span style="font-size: 20px;"><b>160회</b></span>
-					</div>
+			<div class="col-4">
+				<div class="container col-10" style="background-color:#99CAE9; height:320px; text-align: center;">
+					<a href="/content/contentList" style="color:white;">
+						<div class="py-5">
+							<span style="font-size: 24px;"><b>콘텐츠 수</b></span><br>
+							<span style="color:black; font-size: 80px;"><i class="fa-regular fa-clipboard"></i></span><br>
+							<span style="font-size: 20px;"><b>5개</b></span>
+						</div>
+					</a>
 				</div>
 			</div>
-			<div class="col-3"">
-				<div class="container col-10" style="background-color:#EABE95; color:white; height:320px; text-align: center;">
-					<div class="py-5">
-						<span style="font-size: 24px;"><b>오늘의 댓글수</b></span><br>
-						<span style="color:black; font-size: 80px;"><i class="fa-regular fa-comment"></i></span><br>
-						<span style="font-size: 20px;"><b>3개</b></span>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
+			<div class="col-4">
 				<div class="container col-10" style="background-color:#C8ADD8; color:white; height:320px; text-align: center;">
-					<a href="./ZdminMember.html" style="color:white;">
+					<a href="/member/memberList" style="color:white;">
 						<div class="py-5">
 							<span style="font-size: 24px;"><b>신규회원수</b></span><br>
 							<span style="color:black; font-size: 80px;"><i class="fa-regular fa-id-card"></i></span><br>
@@ -86,13 +79,13 @@
 					</a>
 				</div>
 			</div>
-			<div class="col-3">
-				<div class="container col-10" style="background-color:#99CAE9; height:320px; text-align: center;">
-					<a href="./ZdminContentList.html" style="color:white;">
+			<div class="col-4">
+				<div class="container col-10" style="background-color:#EABE95; color:white; height:320px; text-align: center;">
+					<a href="/member/memberComment" style="color:white;">
 						<div class="py-5">
-							<span style="font-size: 24px;"><b>콘텐츠 수</b></span><br>
-							<span style="color:black; font-size: 80px;"><i class="fa-regular fa-clipboard"></i></span><br>
-							<span style="font-size: 20px;"><b>5개</b></span>
+							<span style="font-size: 24px;"><b>오늘의 댓글수</b></span><br>
+							<span style="color:black; font-size: 80px;"><i class="fa-regular fa-comment"></i></span><br>
+							<span style="font-size: 20px;"><b>3개</b></span>
 						</div>
 					</a>
 				</div>
