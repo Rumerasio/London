@@ -42,8 +42,6 @@
 		<a class="navbar-brand" id="logo" href="/">Simsim</a>
 	</div>
 </nav>
-sessSeq: <c:out value="${sessSeq }"/><br>
-		sessId: <c:out value="${sessId }"/><br>
 <div class="container col-7">
 	<div style="text-align:center; position: relative;">
 		<button type="button" id="btnMypage" class="btn btn-sm" style="position:absolute; left:120px; width: 80px; background-color:#e6e6e6;">뒤로가기</button>

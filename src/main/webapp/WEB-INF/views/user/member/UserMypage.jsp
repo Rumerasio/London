@@ -43,8 +43,6 @@
 	</div>
 </nav>
 <div class="container mt-5">
-	sessSeq: <c:out value="${sessSeq }"/><br>
-		sessId: <c:out value="${sessId }"/><br>
 	<div style="text-align:center;">
 		<h2 style="font-family: sans-serif;"><b>MyPage</b></h2>
 		<div class="container" style="width: 300px; height: 300px; position: relative; top:150px;">
