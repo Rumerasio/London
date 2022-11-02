@@ -80,7 +80,8 @@
 			  <div class="invalid-feedback" id="passwordFeedback"></div>
 			</div>
 			<div class="col-7 mb-3">
-			  <input type="password" class="form-control" placeholder="비밀번호 확인">
+			  <input type="password" class="form-control" placeholder="비밀번호 확인" id="passwordCheck">
+			  <div class="invalid-feedback" id="passwordCheckFeedback"></div>
 			  <!-- <input type="text" class="form-control-plaintext" value="비밀번호가 일치합니다" style="font-size: 10px;"> -->
 			</div>
 		</div>
@@ -117,7 +118,8 @@
 		if(!checkSelectNull('gender',2 ,"성별을 선택해 주세요.")) return false;
 		if(!checkEmail('email',2,0,"이메일 주소를 입력해 주세요")) return false;
 		if(!checkId('id',2,0,"ID를 입력해 주세요")) return false;
-		if(!checkSelectNull('password',2 ,"패스워드를 설정해 주세요.")) return false;
+		if(!checkSelectNull('password',2 ,"비밀번호를 설정해 주세요.")) return false;
+		if(!checkSelectNull('passwordCheck',2 ,"비밀번호를 확인해 주세요.")) return false;
 		/* if(validationUpdt() == false) return false; */
 	}
 	
@@ -149,7 +151,14 @@
 		} 
 	});
 	$("#password").on("focusout", function(){
-		if(!checkSelectNull('password',2 ,"패스워드를 설정해 주세요.")) {
+		if(!checkSelectNull('password',2 ,"비밀번호를 설정해 주세요.")) {
+			return false;
+		} 
+	});
+	$("#passwordCheck").on("focusout", function(){
+		if(!checkSelectNull('password',2 ,"비밀번호를 확인해 주세요.")) {
+			document.getElementById("passwordFeedback").classList.remove('valid-feedback');
+			document.getElementById("passwordFeedback").classList.add('invalid-feedback');
 			return false;
 		} 
 	});
