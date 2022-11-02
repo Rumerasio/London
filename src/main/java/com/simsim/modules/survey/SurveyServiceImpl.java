@@ -65,8 +65,11 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	}
 	
 	@Override
-	public List<Survey> selectList() throws Exception {
-		List<Survey> list = dao.selectList();
+	public int getListNum(SurveyVo vo) throws Exception {return dao.getListNum(vo);}
+	
+	@Override
+	public List<Survey> selectList(SurveyVo vo) throws Exception {
+		List<Survey> list = dao.selectList(vo);
 		return list;
 	}
 
@@ -218,8 +221,8 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	}
 
 	@Override
-	public List<Survey> selectCommentList() throws Exception {
-		return dao.selectCommentList();
+	public List<Survey> selectCommentList(SurveyVo vo) throws Exception {
+		return dao.selectCommentList(vo);
 	}
 
 	@Override
@@ -235,6 +238,11 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	@Override
 	public int selectContentRecordCount(SurveyVo vo) throws Exception {
 		return dao.selectContentRecordCount(vo);
+	}
+
+	@Override
+	public int getCommentNum(SurveyVo vo) throws Exception {
+		return dao.getCommentNum(vo);
 	}
 
 

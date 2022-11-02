@@ -22,12 +22,29 @@
 	<!-- <when test="shOption ==1">AND codeGroupCode = #{shValue}</when> -->
 	
 	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+			SELECT
+				snSeq
+				,survey
+			    ,surveyPhrase
+			FROM jsSurveyName
+			WHERE 1=1
+				<choose>
+					<when test="shValue != null">AND survey LIKE CONCAT('%',#{shValue},'%')</when>
+				</choose>
+				order by snSeq DESC
+			<include refid="Base.orderByLimitForMysql"></include>
+		<include refid="Base.selectListLowerForMysql"></include>
+	</select>
+	
+	<select id="getListNum" resultType="Integer">
 		SELECT
-			snSeq
-			,survey
-		    ,surveyPhrase
+			COUNT(*)
 		FROM jsSurveyName
 		WHERE 1=1
+			<choose>
+				<when test="shValue != null">AND survey LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
 	</select>
 
 	<select id="selectOne" resultMap="resultMapObj">
@@ -67,19 +84,43 @@
 		AND delNy = 0
 	</select>
 	
+	<!-- 관리자 댓글관리 탭 S -->
 	<select id="selectCommentList" resultMap="resultMapObj">
-	SELECT
-		scSeq
-		,snSeq
-		,nickname
-		,seq
-		,commentContent
-		,datetime
-		,delNy
-	FROM jsSurveyComment
-	WHERE 1=1
-	order by scSeq DESC
+		<include refid="Base.selectListUpperForMysql"></include>
+			SELECT
+				scSeq
+				,snSeq
+				,nickname
+				,seq
+				,commentContent
+				,datetime
+				,delNy
+			FROM jsSurveyComment a
+			WHERE 1=1
+			<choose>
+				<when test="shOption ==1">AND (SELECT nickname FROM jsMember c WHERE c.seq = a.seq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==2">AND (SELECT id FROM jsMember c WHERE c.seq = a.seq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==3">AND (SELECT survey FROM jsSurveyName b WHERE b.snSeq = a.snSeq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==4">AND commentContent LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+			order by scSeq DESC
+			<include refid="Base.orderByLimitForMysql"></include>
+		<include refid="Base.selectListLowerForMysql"></include>
 	</select>
+	
+	<select id="getCommentNum" resultType="Integer">
+		SELECT 
+			COUNT(*)
+		FROM jsSurveyComment a
+		WHERE 1=1
+			<choose>
+				<when test="shOption ==1">AND (SELECT nickname FROM jsMember c WHERE c.seq = a.seq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==2">AND (SELECT id FROM jsMember c WHERE c.seq = a.seq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==3">AND (SELECT survey FROM jsSurveyName b WHERE b.snSeq = a.snSeq) LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption ==4">AND commentContent LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</select>
+	<!-- 관리자 댓글관리 탭 E -->
 	
 	<select id="selectContentRecordCount" resultType="Integer">
 		SELECT

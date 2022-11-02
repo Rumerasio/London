@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.simsim.common.constants.Constants;
 import com.simsim.modules.survey.Survey;
 import com.simsim.modules.survey.SurveyServiceImpl;
+import com.simsim.modules.survey.SurveyVo;
 
 @Controller
 @RequestMapping
@@ -101,10 +102,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/memberComment")
-	public String commentRecord(Model model,@ModelAttribute("vo") MemberVo vo) throws Exception {
-		List<Survey> list = service2.selectCommentList();
+	public String commentRecord(Model model,@ModelAttribute("vo") SurveyVo vo) throws Exception {
+		
+		vo.setParamsPaging(service2.getCommentNum(vo));
+		
+		List<Survey> list = service2.selectCommentList(vo);
 		model.addAttribute("list", list);
-		List<Survey> list2 = service2.selectList();
+		List<Survey> list2 = service2.selectList(vo);
 		model.addAttribute("list2",list2);
 		List<Member> list3 = service.getIdList();
 		model.addAttribute("list3", list3);

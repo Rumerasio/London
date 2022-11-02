@@ -70,39 +70,49 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>테스트 관리</b></h5>
 		<h6 style="color:gray;"><b>테스트 관리</b></h6>
-		<div class="p-5" style="position:relative;">
-			<a href="contentReg"><button type="button" class="btn btn-sm" style="position:absolute; right:0px; top:-50px; width: 160px; background-color:#e6e6e6;">새 테스트 등록하기</button></a>
-			<div class="container mt-5">
-				<div class="row row-cols-3 g-4" style="width:1050px;">
-					<c:choose>
-						<c:when test="${fn:length(list) eq 0}">
-							<div class="container">
-								<h2>There is no Survey!!!</h2>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${list}" var="list" varStatus="status">
-								<div class="col">
-								    <div class="card h-100">
-								      <c:forEach items="${list2}" var="list2" varStatus="status">
-								      	<c:if test="${list2.type eq 1 && list2.pseq eq list.snSeq}">
-								      		<a href="#"><img src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" class="card-img-top" alt="..."></a>
-								      	</c:if>
-								      </c:forEach>
-								      <div class="card-body">
-								        <a href="#"><h6 class="card-title"><c:out value="${list.survey}"></c:out></h6></a>
-								      </div>
-								    </div>
-								  </div>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
+		<form role="search" method="post" id="formList" name="formList" autocomplete="off">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+			<div class="col-4 d-flex my-3" id="search_box">
+			      <input class="form-control" type="search" placeholder="검색어" autocomplete="off" aria-label="Search" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
+			      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
+			      <button type="button" class="btn btn-outline-danger" id="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
+		    </div>
+		    <div class="float-start" style="text-align: center; font-size: 24px;">총:<c:out value="${vo.totalRows }"/></div>
+			<div class="p-5" style="position:relative;">
+				<a href="contentReg"><button type="button" class="btn btn-sm" style="position:absolute; right:0px; top:-50px; width: 160px; background-color:#e6e6e6;">새 테스트 등록하기</button></a>
+				<div class="container mt-5">
+					<div class="row row-cols-3 g-4" style="width:1050px;">
+						<c:choose>
+							<c:when test="${fn:length(list) eq 0}">
+								<div class="container">
+									<h2>There is no Survey!!!</h2>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="list" varStatus="status">
+									<div class="col">
+									    <div class="card h-100">
+									      <c:forEach items="${list2}" var="list2" varStatus="status">
+									      	<c:if test="${list2.type eq 1 && list2.pseq eq list.snSeq}">
+									      		<a href="#"><img src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" class="card-img-top" alt="..."></a>
+									      	</c:if>
+									      </c:forEach>
+									      <div class="card-body">
+									        <a href="#"><h6 class="card-title"><c:out value="${list.survey}"></c:out></h6></a>
+									      </div>
+									    </div>
+									  </div>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<!-- pagination s -->
+					<%@include file="../../commoncode/pagination.jsp"%>
+					<!-- pagination e -->
 				</div>
-				<!-- pagination s -->
-				<%@include file="../../commoncode/pagination.jsp"%>
-				<!-- pagination e -->
 			</div>
-		</div>	
+		</form>	
 	</div>
 </div>
 
@@ -110,5 +120,20 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	var goUrlList ="/content/contentList";
+	
+	var form = $("form[name=formList]");
+	
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+	
+	$("#btnReset").on("click",function(){
+		$(location).attr("href",goUrlList);
+	});
+</script>
 </body>
 </html>

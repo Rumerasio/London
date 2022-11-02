@@ -17,14 +17,16 @@ public class SurveyDao {
 	
 	private static String namespace = "com.simsim.modules.survey.SurveyMapper";
 	
-	public List<Survey> selectList(){
-		return sqlSession.selectList(namespace + ".selectList","");
+	public List<Survey> selectList(SurveyVo vo){
+		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
+	public int getListNum(SurveyVo vo) {return sqlSession.selectOne(namespace+".getListNum", vo);}
 	public List<Survey> selectSurveyCommentList(SurveyVo vo){return sqlSession.selectList(namespace+".selectSurveyCommentList",vo);}
 	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentQuestion",vo);}
 	public List<Survey> selectSurveyContentChoice(SurveyVo vo) {return sqlSession.selectList(namespace+".selectSurveyContentChoice",vo);}
 	public List<Survey> selectResultList(SurveyVo vo) {return sqlSession.selectList(namespace+".selectResultList", vo);}
-	public List<Survey> selectCommentList() {return sqlSession.selectList(namespace+".selectCommentList","");}
+	public List<Survey> selectCommentList(SurveyVo vo) {return sqlSession.selectList(namespace+".selectCommentList", vo);}
+	public int getCommentNum(SurveyVo vo) {return sqlSession.selectOne(namespace+".getCommentNum", vo);}
 	
 	public List<Survey> selectImgList() {return sqlSession.selectList(namespace+".selectImgList", "");}
 	

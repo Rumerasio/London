@@ -29,9 +29,9 @@ public class SurveyController {
 	
 	
 	@RequestMapping(value="/")
-	public String Survey(Model model) throws Exception {
+	public String Survey(Model model,SurveyVo vo) throws Exception {
 		
-		List<Survey> list = service.selectList();
+		List<Survey> list = service.selectList(vo);
 		model.addAttribute("list",list);
 		List<Survey> list2 = service.selectImgList();
 		model.addAttribute("list2",list2);
@@ -52,15 +52,18 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/content/contentViewMod")
-	public String contentViewMod(SurveyVo vo,Model model) throws Exception {
+	public String contentViewMod(@ModelAttribute("vo") SurveyVo vo,Model model) throws Exception {
 		Survey result = service.selectOne(vo);
 		model.addAttribute("item",result);
 		return "zdmin/content/ContentViewMod";
 	}
 
 	@RequestMapping(value="/content/contentList")
-	public String SurveyList(Model model) throws Exception{
-		List<Survey> list = service.selectList();
+	public String SurveyList(Model model,@ModelAttribute("vo") SurveyVo vo) throws Exception{
+		
+		vo.setParamsPaging(service.getListNum(vo));
+		
+		List<Survey> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		List<Survey> list2 = service.selectImgList();

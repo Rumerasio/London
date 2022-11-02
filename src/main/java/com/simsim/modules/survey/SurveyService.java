@@ -6,14 +6,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface SurveyService {
 
-	public List<Survey> selectList() throws Exception;
+	public List<Survey> selectList(SurveyVo vo) throws Exception;
+	public int getListNum(SurveyVo vo) throws Exception;
 	public List<Survey> selectUserRecord(Survey dto) throws Exception;
 	public List<Survey> selectMyComment(Survey dto) throws Exception;
 	public List<Survey> selectSurveyCommentList(SurveyVo vo) throws Exception;
 	public List<Survey> selectSurveyContentQuestion(SurveyVo vo) throws Exception;
 	public List<Survey> selectSurveyContentChoice(SurveyVo vo) throws Exception;
 	public List<Survey> selectResultList(SurveyVo vo) throws Exception;
-	public List<Survey> selectCommentList() throws Exception;
+	public List<Survey> selectCommentList(SurveyVo vo) throws Exception;
+	public int getCommentNum(SurveyVo vo) throws Exception;
+	
 	public List<Survey> selectContentRecordList(SurveyVo vo) throws Exception;
 	
 	public int selectContentRecordCount(SurveyVo vo) throws Exception;

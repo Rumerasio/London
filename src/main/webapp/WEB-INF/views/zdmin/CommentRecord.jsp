@@ -75,72 +75,114 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>회원관리</b></h5>
 		<h6 style="color:gray;"><b>회원 작성 댓글</b></h6>
-		<div class="row mb-3">
-	    	<div class="col-1" style="text-align: center; font-size: 24px;">Total: <c:out value="${vo.totalRows}"/></div>
-	    	<div class="col-1 offset-10">
-			    <select class="form-select">
-			    	<option selected value="1">5</option>
-			    	<option value="2">10</option>
-			    	<option value="3">15</option>
-			    </select>
-			</div>
-	    </div>
-		<div>
-			<table class="table table-striped mt-3">
-			  <tr>
-			  	<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>
-			  	<th style="width: 50px;">번호</th>
-			  	<th>닉네임</th>
-			  	<th>UserId</th>
-			  	<th>테스트이름</th>
-			  	<th>댓글내용</th>
-			  	<th>좋아요수</th>
-			  	<th>신고수</th>
-			  	<th>등록일시</th>
-			  	<th>삭제여부</th>
-			  </tr>
-			  <c:choose>
-			  	<c:when test="${fn:length(list) eq 0}">
-			  		<tr>
-			  			<td colspan="10"> There is no date</td>
-			  		</tr>
-			  	</c:when>
-			  	<c:otherwise>
-			  		<c:forEach items="${list}" var="list" varStatus="status">
-			  			<tr>
-						  	<td><input type="checkbox" class="form-check-input" name="Chk"></td>
-						  	<td><c:out value="${list.scSeq }"/></td>
-						  	<td><c:out value="${list.nickname }"/></td>
-						  	<td>
-						  		<c:forEach items="${list3}" var="list3" varStatus="status">
-						  			<c:choose>
-						  				<c:when test="${list.seq eq list3.seq}">
-								  			<c:out value="${list3.id }"/>
-								  		</c:when>
-								  		<c:otherwise></c:otherwise> 
-						  			</c:choose>
-						  		</c:forEach>
-						  	</td>
-						  	<td class="comment_SurveyName">
-						  		<c:forEach items="${list2}" var="list2" varStatus="status">
-						  			<c:choose>
-							  			<c:when test="${list.snSeq eq list2.snSeq}">
-								  			<c:out value="${list2.survey }"/>
-								  		</c:when>
-								  		<c:otherwise></c:otherwise>  
-							  		</c:choose>
-						  		</c:forEach>
-						  	</td>
-						  	<td class="comment_content"><c:out value="${list.commentContent }"/></td>
-						  	<td></td>
-						  	<td></td>
-						  	<td><c:out value="${list.datetime }"/></td>
-						  	<td><c:out value="${list.delNy }"/></td>
-						  </tr>
-			  		</c:forEach>
-			  	</c:otherwise>
-			  </c:choose>
-			</table>
+		<form role="search" method="post" id="formList" name="formList" autocomplete="off">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+			<input type="hidden" name="seq" id="seq" value="<c:out value="${vo.seq}"/>">
+			<div class="mb-3" id="search_tab">
+				<div class="my-2 row">
+					<div class="col-2">
+						<select class="form-select" id="shRegiMod" name="shRegiMod">
+							<option value="" selected>날짜검색</option>
+							<option value="0" >등록일</option>
+							<option value="1" >수정일</option>
+						</select>
+					</div>
+					<div class="col-3">
+						<input type="text" class="form-control" placeholder="시작일" autocomplete="off" id="dateStart">
+					</div>
+					<div class="col-3">
+						<input type="text" class="form-control" placeholder="종료일" autocomplete="off" id="dateEnd">
+					</div>
+				</div>
+				<br>
+				<div class="mb-5 row">
+					<div class="col-2">
+						<select class="form-select" id ="shOption" name="shOption">
+						  <option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+						  <option value="1"<c:if test="${vo.shOption eq 1 }">selected</c:if>>닉네임</option>
+						  <option value="2"<c:if test="${vo.shOption eq 2 }">selected</c:if>>ID</option>
+						  <option value="3"<c:if test="${vo.shOption eq 3 }">selected</c:if>>테스트 이름</option>
+						  <option value="4"<c:if test="${vo.shOption eq 4 }">selected</c:if>>내용</option>
+						</select>
+					</div>
+					<div class="col-4 d-flex" id="search_box">
+					      <input class="form-control" type="search" placeholder="검색어" autocomplete="off" aria-label="Search" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
+					      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
+					      <button type="button" class="btn btn-outline-danger" id="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
+				    </div>
+			    </div>
+		    </div>
+			<div class="row mb-3">
+		    	<div class="col-1" style="text-align: center; font-size: 24px;">Total: <c:out value="${vo.totalRows}"/></div>
+		    	<div class="col-1 offset-10">
+				    <select class="form-select">
+				    	<option selected value="1">5</option>
+				    	<option value="2">10</option>
+				    	<option value="3">15</option>
+				    </select>
+				</div>
+		    </div>
+			<div>
+				<table class="table table-striped mt-3">
+				  <tr>
+				  	<th><input type="checkbox" class="form-check-input" name="ChkA" id="ChkA"></th>
+				  	<th style="width: 50px;">번호</th>
+				  	<th>닉네임</th>
+				  	<th>UserId</th>
+				  	<th>테스트이름</th>
+				  	<th>내용</th>
+				  	<th>좋아요수</th>
+				  	<th>수정일시</th>
+				  	<th>등록일시</th>
+				  	<th>삭제여부</th>
+				  </tr>
+				  <c:choose>
+				  	<c:when test="${fn:length(list) eq 0}">
+				  		<tr>
+				  			<td colspan="10"> There is no date</td>
+				  		</tr>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<c:forEach items="${list}" var="list" varStatus="status">
+				  			<tr>
+							  	<td><input type="checkbox" class="form-check-input" name="Chk"></td>
+							  	<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
+							  	<td><c:out value="${list.nickname }"/></td>
+							  	<td>
+							  		<c:forEach items="${list3}" var="list3" varStatus="status">
+							  			<c:choose>
+							  				<c:when test="${list.seq eq list3.seq}">
+									  			<c:out value="${list3.id }"/>
+									  		</c:when>
+									  		<c:otherwise></c:otherwise> 
+							  			</c:choose>
+							  		</c:forEach>
+							  	</td>
+							  	<td class="comment_SurveyName">
+							  		<c:forEach items="${list2}" var="list2" varStatus="status">
+							  			<c:choose>
+								  			<c:when test="${list.snSeq eq list2.snSeq}">
+									  			<c:out value="${list2.survey }"/>
+									  		</c:when>
+									  		<c:otherwise></c:otherwise>  
+								  		</c:choose>
+							  		</c:forEach>
+							  	</td>
+							  	<td class="comment_content"><c:out value="${list.commentContent }"/></td>
+							  	<td></td>
+							  	<td></td>
+							  	<td><c:out value="${list.datetime }"/></td>
+							  	<td><c:out value="${list.delNy }"/></td>
+							  </tr>
+				  		</c:forEach>
+				  	</c:otherwise>
+				  </c:choose>
+				</table>
+				<!-- pagination s -->
+				<%@include file="../commoncode/pagination.jsp"%>
+				<!-- pagination e -->
+			</form>
 			 <div class="position-relative my-5">
 		    	<div class="position-absolute top-0">
 			    	<button type="button" class="btn btn-warning" title="삭제여부 삭제처리" data-bs-toggle="modal" data-bs-target="#state_delete_modal">삭제처리</button> <!-- <i class="fa-solid fa-trash-can"></i> -->
@@ -205,6 +247,22 @@
 			else $("#ChkA").prop("checked",true);
 		})
 	});
+</script>
+<script type="text/javascript">
+	var goUrlList ="/member/memberComment";
+	
+	var form = $("form[name=formList]");
+	
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+	
+	$("#btnReset").on("click",function(){
+		$(location).attr("href",goUrlList);
+	});
+	
+	
 </script>
 </body>
 </html>

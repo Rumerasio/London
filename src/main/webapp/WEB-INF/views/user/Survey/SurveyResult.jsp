@@ -12,7 +12,7 @@
 <head>
 	<meta charset="uTF-8">
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
-	<title>별자리 테스트 결과</title>
+	<title>심심 테스트</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <style type="text/css">
@@ -70,7 +70,7 @@
 							<div class="container pt-5" style="text-align: center;">
 								<c:forEach items="${list2}" var="list2" varStatus="status">
 							    	<c:if test="${list2.type eq 4 && list2.pseq eq vo.snSeq && (list2.sort+1) eq list.resultNum}">
-							    		<img class="result_img" src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" alt="..." style="width: 200px; margin-top:200px;">
+							    		<img class="result_img" src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" alt="..." style="width: 400px; margin-top:200px;">
 							    	</c:if>
 							    </c:forEach>
 								<div class="mt-4 result_title" style="text-align: center;">
