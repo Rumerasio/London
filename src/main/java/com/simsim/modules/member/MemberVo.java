@@ -16,6 +16,9 @@ public class MemberVo {
 	private String nickname;
 	private Integer lgResultNy;
 	
+	private String dob;
+	private String email;
+	
 	private String seq;
 	
 	private String snSeq;
@@ -174,6 +177,18 @@ public class MemberVo {
 	}
 	
 	
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getSnSeq() {
 		return snSeq;
 	}

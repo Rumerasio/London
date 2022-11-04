@@ -22,10 +22,15 @@ public class Member {
 	
 	private String codeNameKor;
 	private String registerDateTime;
-	private String modifyDateTime;
+	private String modifiedDateTime;
 	
 	private String survey;
 //	private String snSeq;
+	
+	// for kakoLogin
+	private String snsId;
+	private String token;
+	
 	//****************
 	
 	public String getSeq() {
@@ -131,10 +136,10 @@ public class Member {
 		this.registerDateTime = registerDateTime;
 	}
 	public String getModifyDateTime() {
-		return modifyDateTime;
+		return modifiedDateTime;
 	}
 	public void setModifyDateTime(String modifyDateTime) {
-		this.modifyDateTime = modifyDateTime;
+		this.modifiedDateTime = modifyDateTime;
 	}
 	public String getIdp() {
 		return idp;
@@ -154,5 +159,24 @@ public class Member {
 	public void setDobp(String dobp) {
 		this.dobp = dobp;
 	}
+	public String getModifiedDateTime() {
+		return modifiedDateTime;
+	}
+	public void setModifiedDateTime(String modifiedDateTime) {
+		this.modifiedDateTime = modifiedDateTime;
+	}
+	public String getSnsId() {
+		return snsId;
+	}
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 	
+
 }

@@ -205,7 +205,7 @@
 		    	<button type="button" class="btn btn-danger" title="데이터 삭제" data-bs-toggle="modal" data-bs-target="#data_delete_modal">데이터 삭제</button> <!-- <i class="fa-solid fa-skull"></i> -->
 	    	</div>
 	    	<div class="position-absolute end-0">
-		    	<button type="button" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button>
+		    	<button type="button" id="btnExcel" class="btn btn-success"><i class="fa-solid fa-file-excel"></i></button>
 		    	<button type="button" id="btnForm" class="btn btn-info"><i class="fa-solid fa-plus"></i></button>
 	    	</div>
 	    	<div class="modal" tabindex="-1" id="state_delete_modal">
@@ -293,6 +293,7 @@
 	var goUrlDele = "/member/codeGroupDele";				/* #-> */
 	var goUrlForm = "/member/memberForm";
 	var goUrlView = "/member/memberViewMod";
+	var excelUri = "/member/excelDownload";
 	
 	var seq = $("input:hidden[name=seq]");				/* #-> */
 	
@@ -314,6 +315,10 @@
 		$("input:hidden[name=thisPage]").val(thisPage);
 		form.attr("action", goUrlList).submit();
 	}
+	
+	$("#btnExcel").click(function() {
+		form.attr("action", excelUri).submit();
+	});
 	
 	$('#btnForm').on("click", function() {
 		goForm(0);                
