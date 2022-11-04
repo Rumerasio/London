@@ -28,19 +28,25 @@ public class MemberDao {
 	public int selectOneIdCheck(Member dto) {return sqlSession.selectOne(namespace+".selectOneIdCheck", dto);}
 	public int selectOneEmailCheck(Member dto) {return sqlSession.selectOne(namespace+".selectOneEmailCheck", dto);}
 	
-	public Member selectId(Member dto) {return sqlSession.selectOne(namespace+".selectId",dto);}
+	public Member selectId(MemberVo vo) {return sqlSession.selectOne(namespace+".selectId",vo);}
 	
-	public Member selectPassword(Member dto) {return sqlSession.selectOne(namespace+".selectPassword", dto);}
+	public Member selectPassword(MemberVo vo) {return sqlSession.selectOne(namespace+".selectPassword", vo);}
+	
+	public Member getNickname(MemberVo vo) {return sqlSession.selectOne(namespace+".getNickname", vo);}
 	
 	public int changePassword(Member dto) {return sqlSession.update(namespace+".changePassword", dto);}
 	
-	public Member selectOneId(Member dto) {return sqlSession.selectOne(namespace+".selectOneId", dto);}
+	public Member selectOneId(MemberVo vo) {return sqlSession.selectOne(namespace+".selectOneId", vo);}
 	
-	public Member selectOneLogin(Member dto) {return sqlSession.selectOne(namespace+".selectOneLogin",dto);}
+	public Member selectOneLogin(MemberVo vo) {return sqlSession.selectOne(namespace+".selectOneLogin",vo);}
 	
 	public int selectOneCount(MemberVo vo) {return sqlSession.selectOne(namespace+".selectOneCount", vo);}
 	
 	public int insert(Member dto) {return sqlSession.insert(namespace+".insert", dto);}
+	
+	public int kakaoInst(Member dto) {return sqlSession.insert(namespace+".kakaoInst", dto);}
+	
+	public Member snsLoginCheck(Member dto) {return sqlSession.selectOne(namespace+".snsLoginCheck", dto);}
 	
 	public int update(Member dto) {return sqlSession.update(namespace+".update", dto);}
 	

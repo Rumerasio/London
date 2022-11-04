@@ -4,8 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.simsim.common.constants.Constants;
+import com.simsim.modules.code.CodeServiceImpl;
 import com.simsim.modules.survey.Survey;
 import com.simsim.modules.survey.SurveyServiceImpl;
 import com.simsim.modules.survey.SurveyVo;
+import com.simsim.util.UtilDateTime;
 
 @Controller
 @RequestMapping
@@ -58,6 +68,106 @@ public class MemberController {
 		
 		return "zdmin/member/MemberViewMod";
 	}
+	
+	@RequestMapping("/member/excelDownload")
+    public void excelDownload(MemberVo vo, HttpServletResponse httpServletResponse) throws Exception {
+		
+		vo.setShdelNy(vo.getShdelNy() == null ? 0 : vo.getShdelNy());
+		vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());
+		vo.setShValue(vo.getShValue() == null ? "" : vo.getShValue());
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+
+		if (vo.getTotalRows() > 0) {
+			List<Member> list = service.selectList(vo);
+			
+//			Workbook workbook = new HSSFWorkbook();	// for xls
+	        Workbook workbook = new XSSFWorkbook();
+	        Sheet sheet = workbook.createSheet("Sheet1");
+	        CellStyle cellStyle = workbook.createCellStyle();        
+	        Row row = null;
+	        Cell cell = null;
+	        int rowNum = 0;
+			
+//	        each column width setting	        
+	        sheet.setColumnWidth(0, 2100);
+	        sheet.setColumnWidth(1, 3100);
+
+//	        Header
+	        String[] tableHeader = {"Seq", "아이디", "닉네임", "생일", "성별", "휴대전화번호", "이메일", "등록일", "수정일"};
+
+	        row = sheet.createRow(rowNum++);
+	        
+			for(int i=0; i<tableHeader.length; i++) {
+				cell = row.createCell(i);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+				cell.setCellValue(tableHeader[i]);
+			}
+
+//	        Body
+	        for (int i=0; i<list.size(); i++) {
+	            row = sheet.createRow(rowNum++);
+	            
+//	            String type: null 전달 되어도 ok
+//	            int, date type: null 시 오류 발생 하므로 null check
+//	            String type 이지만 정수형 데이터가 전체인 seq 의 경우 캐스팅	            
+	            
+	            cell = row.createCell(0);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(Integer.parseInt(list.get(i).getSeq()));
+	            
+	            cell = row.createCell(1);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getId());
+	        	
+	            cell = row.createCell(2);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getNickname());
+	        	
+	        	cell = row.createCell(3);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getDob());
+	        	
+	            cell = row.createCell(4);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	            if(list.get(i).getGender() != null) cell.setCellValue(CodeServiceImpl.selectOneCachedCode(list.get(i).getGender()));
+	            
+	            cell = row.createCell(5);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getPhoneNum());
+	            
+	            cell = row.createCell(6);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getEmail());
+	            
+	            cell = row.createCell(7);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getRegisterDateTime());
+	            
+	            cell = row.createCell(8);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getModifyDateTime());
+	        }
+
+	        httpServletResponse.setContentType("ms-vnd/excel");
+//	        httpServletResponse.setHeader("Content-Disposition", "attachment;filename=example.xls");	// for xls
+	        httpServletResponse.setHeader("Content-Disposition", "attachment;filename=example.xlsx");
+
+	        workbook.write(httpServletResponse.getOutputStream());
+	        workbook.close();
+		}
+    }
+	
 	
 	@RequestMapping(value="/member/memberContentRecord")
 	public String memberContentRecord() throws Exception{
@@ -126,13 +236,13 @@ public class MemberController {
 		//로그인 관련 S
 		@ResponseBody
 		@RequestMapping(value = "/loginProc")
-		public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
+		public Map<String, Object> loginProc(MemberVo vo, HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 
-			Member rtMember = service.selectOneId(dto);
+			Member rtMember = service.selectOneId(vo);
 
 			if (rtMember != null) {
-				Member rtMember2 = service.selectOneLogin(dto);
+				Member rtMember2 = service.selectOneLogin(vo);
 
 				if (rtMember2 != null) {
 					
@@ -159,20 +269,48 @@ public class MemberController {
 
 					returnMap.put("rt", "success");
 				} else {
-					dto.setSeq(rtMember.getSeq());
-					dto.setLgResultNy(0);
-//					service.insertLogLogin(dto);
-
+					vo.setSeq(rtMember.getSeq());
 					returnMap.put("rt", "fail");
 				}
 			} else {
-				dto.setLgResultNy(0);
-//				service.insertLogLogin(dto);
-
 				returnMap.put("rt", "fail");
 			}
 			return returnMap;
 		}
+		
+		@ResponseBody
+		@RequestMapping(value = "/kakaoLoginProc")
+		public Map<String, Object> kakaoLoginProc(Member dto, HttpSession httpSession) throws Exception {
+		    Map<String, Object> returnMap = new HashMap<String, Object>();
+			Member kakaoLogin = service.snsLoginCheck(dto);
+			System.out.println("ccc");
+			 System.out.println("test : " + dto.getToken());
+			
+			if (kakaoLogin == null) {
+				System.out.println("회원가입작동");
+				service.kakaoInst(dto);
+				
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+				// session(dto.getSeq(), dto.getId(), dto.getName(), dto.getEmail(), dto.getUser_div(), dto.getSnsImg(), dto.getSns_type(), httpSession);
+	            session(dto, httpSession); 
+				returnMap.put("rt", "success");
+			} else {
+				System.out.println("로그인작동");
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+				
+				// session(kakaoLogin.getSeq(), kakaoLogin.getId(), kakaoLogin.getName(), kakaoLogin.getEmail(), kakaoLogin.getUser_div(), kakaoLogin.getSnsImg(), kakaoLogin.getSns_type(), httpSession);
+				session(kakaoLogin, httpSession);
+				returnMap.put("rt", "success");
+			}
+			return returnMap;
+		}
+
+		 public void session(Member dto, HttpSession httpSession) {
+		     httpSession.setAttribute("sessSeq", dto.getSeq());    
+		     httpSession.setAttribute("sessId", dto.getId());
+		     httpSession.setAttribute("sessNickname", dto.getNickname());
+		     httpSession.setAttribute("sessEmail", dto.getEmail());
+		 }
 		
 		@ResponseBody
 		@RequestMapping(value = "/logoutProc")
@@ -247,9 +385,9 @@ public class MemberController {
 		
 		@ResponseBody
 		@RequestMapping(value="/findLoginInfo/findId")
-		public Map<String, Object> findId(Member dto) throws Exception {
+		public Map<String, Object> findId(MemberVo vo) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
-			Member result = service.selectId(dto);
+			Member result = service.selectId(vo);
 			
 			if (result == null) {
 				returnMap.put("rt", "fail");
@@ -263,9 +401,9 @@ public class MemberController {
 		
 		@ResponseBody
 		@RequestMapping(value="/findLoginInfo/findPassword")
-		public Map<String, Object> findPassword(Member dto, Model model) throws Exception {
+		public Map<String, Object> findPassword(Member dto,MemberVo vo, Model model) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
-			Member result = service.selectPassword(dto);
+			Member result = service.selectPassword(vo);
 			
 			if (result == null) {
 				returnMap.put("rt", "fail");

@@ -35,13 +35,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member selectId(Member dto) throws Exception {
-		return dao.selectId(dto);
+	public Member selectId(MemberVo vo) throws Exception {
+		return dao.selectId(vo);
 	}
 	
 	@Override
-	public Member selectPassword(Member dto) throws Exception {
-		return dao.selectPassword(dto);
+	public Member selectPassword(MemberVo vo) throws Exception {
+		return dao.selectPassword(vo);
 	}
 
 	@Override
@@ -74,15 +74,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member selectOneId(Member dto) throws Exception {
-		return dao.selectOneId(dto);
+	public Member selectOneId(MemberVo vo) throws Exception {
+		return dao.selectOneId(vo);
 	}
 
 	@Override
-	public Member selectOneLogin(Member dto) throws Exception {
-		dto.setPassword(UtilSecurity.encryptSha256(dto.getPassword()));
+	public Member selectOneLogin(MemberVo vo) throws Exception {
+		vo.setPassword(UtilSecurity.encryptSha256(vo.getPassword()));
 		
-		return dao.selectOneLogin(dto);
+		return dao.selectOneLogin(vo);
 	}
 
 	@Override
@@ -98,6 +98,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<Member> getIdList() throws Exception {
 		return dao.getIdList();
+	}
+
+	@Override
+	public int kakaoInst(Member dto) throws Exception {return dao.kakaoInst(dto);}
+
+	@Override
+	public Member snsLoginCheck(Member dto) throws Exception {return dao.snsLoginCheck(dto);}
+
+	@Override
+	public Member getNickname(MemberVo vo) throws Exception {return dao.getNickname(vo);
 	}
 
 }

@@ -46,7 +46,7 @@
 				,a.password
 				,a.delNy
 				,a.registerDateTime
-				,a.modifyDateTime
+				,a.modifiedDateTime
 			<include refid="selectCommon"></include>
 			order by a.seq DESC
 			<include refid="Base.orderByLimitForMysql" />
@@ -61,6 +61,14 @@
 			,delNy
 		FROM jsMember
 		WHERE 1=1
+	</select>
+	
+	<select id="getNickname" resultMap="resultMapObj">
+		SELECT
+			nickname
+		FROM jsMember
+		WHERE 1=1
+			AND seq=#{seq}
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
@@ -166,7 +174,6 @@
 			,id
 			,password
 			,delNy
-			,registerDateTime
 		)
 		VALUES(
 			#{nickname}
@@ -176,12 +183,41 @@
 			,#{id}
 			,#{password}
 			,0
-			,#{registerDateTime}
 		)
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<insert id="kakaoInst">
+		INSERT INTO jsMember(
+			nickname
+			,gender
+			,email
+			,delNy
+			,snsId
+		)
+		VALUES(
+			#{nickname}
+			,#{gender}
+			,#{email}
+			,0
+			,#{snsId}
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="snsLoginCheck" resultMap="resultMapObj">
+		SELECT
+			seq
+			,snsId
+		FROM jsMember
+		WHERE 1=1
+			AND email=#{email}
+			AND delNy=0
+	</select>
 	
 	<update id="update">
 		UPDATE jsMember
@@ -189,7 +225,6 @@
 		    nickname = #{nickname}
 		    ,dob = #{dob}
 		    ,gender = #{gender}
-		    ,email = #{email}
 		    ,id = #{id}
 		    ,delNy = #{delNy} 
 		WHERE
