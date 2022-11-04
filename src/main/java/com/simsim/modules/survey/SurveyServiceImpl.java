@@ -6,8 +6,6 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.simsim.base.BaseServiceImpl;
@@ -80,9 +78,8 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	}
 	
 	@Override
-	public List<Survey> selectMyComment(Survey dto) throws Exception {
-		List<Survey> list = dao.selectMyComment(dto);
-		return list;
+	public List<Survey> selectMyComment(SurveyVo vo) throws Exception {
+		return dao.selectMyComment(vo);
 	}
 	
 	@Override
@@ -244,6 +241,9 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	public int getCommentNum(SurveyVo vo) throws Exception {
 		return dao.getCommentNum(vo);
 	}
+
+	@Override
+	public int countMyComment(SurveyVo vo) throws Exception {return dao.countMyComment(vo);}
 
 
 }

@@ -60,41 +60,51 @@
 			<button type="button" id="btnMypage" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button>
 			<h3 class="my-5"style="font-family: sans-serif;"><b><i class="fa-regular fa-comment"></i> 내 댓글</b></h3>
 		</div>
-		<div style="text-align: right; position:relative;">
-			<label class="radio-design">
-				<input type="radio" name="cp_item" value="최신순" checked="checked"><span>최신순</span>
-			</label>
-			<label class="radio-design">
-				<input type="radio" name="cp_item" value="좋아요순"><span>좋아요순</span>
-			</label>
-		</div>
-		<c:choose>
-			<c:when test="${fn:length(list) eq 0 }">
-				<div style="text-align: center;">
-					작성한 댓글이 없습니다.
-				</div>
-			</c:when>
-		<c:otherwise>
-			<c:forEach items="${list}" var="list" varStatus="status">
-				<div class="container pt-1 my-3" style="background-color: white;">
-					<h6 class="my-1" style="font-size: 10px; display:inline-block;"><c:out value="${list.survey }"/></h6>
-					<div class="row py-2">
-						<div class="col-2">
-							<div class="row" style="text-align:center;"><h6 style="font-size: 16px;"><c:out value="${list.nickname }"/></h6></div>
-							<div class="row" style="text-align:center;"><h6 style="font-size: 12px;"><c:out value="${list.datetime }"/></h6></div> 
-						</div>
-						<div class="col-8">
-							<p style="font-size: 14px;"><c:out value="${list.commentContent }"/></p>
-						</div>
-						<div class="col-2">
-							<button type="button" class="btn btn-sm btn-primary float-end my-1" style="width: 80px;"><i class="fa-solid fa-thumbs-up"></i>12</button>
-							<button type="button" class="btn btn-sm btn-secondary float-end" style="width: 80px;">삭제</button>
+		<form method="post" id="formList" name="formList">
+			<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
+			<input type="hidden" name="seq" id="seq" value="<c:out value="${sessSeq }"/>">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+			<div class="col-1" style="text-align: center; font-size: 24px;">Total:<c:out value="${vo.totalRows }"/></div>
+			<div style="text-align: right; position:relative;">
+				<label class="radio-design">
+					<input type="radio" name="cp_item" value="최신순" checked="checked"><span>최신순</span>
+				</label>
+				<label class="radio-design">
+					<input type="radio" name="cp_item" value="좋아요순"><span>좋아요순</span>
+				</label>
+			</div>
+			<c:choose>
+				<c:when test="${fn:length(list) eq 0 }">
+					<div style="text-align: center;">
+						작성한 댓글이 없습니다.
+					</div>
+				</c:when>
+			<c:otherwise>
+				<c:forEach items="${list}" var="list" varStatus="status">
+					<div class="container pt-1 my-3" style="background-color: white;">
+						<a href="javascript:goSurvey(<c:out value="${list.snSeq }"/>)"><h6 class="my-1" style="font-size: 10px; display:inline-block;"><c:out value="${list.survey }"/></h6></a>
+						<div class="row py-2">
+							<div class="col-2">
+								<div class="row" style="text-align:center;"><h6 style="font-size: 16px;"><c:out value="${list.nickname }"/></h6></div>
+								<div class="row" style="text-align:center;"><h6 style="font-size: 12px;"><c:out value="${list.datetime }"/></h6></div> 
+							</div>
+							<div class="col-8">
+								<p style="font-size: 14px;"><c:out value="${list.commentContent }"/></p>
+							</div>
+							<div class="col-2">
+								<button type="button" class="btn btn-sm btn-primary float-end my-1" style="width: 80px;"><i class="fa-solid fa-thumbs-up"></i>12</button>
+								<button type="button" class="btn btn-sm btn-secondary float-end" style="width: 80px;">삭제</button>
+							</div>
 						</div>
 					</div>
-				</div>
-			</c:forEach>
-		</c:otherwise>
-		</c:choose>
+				</c:forEach>
+			</c:otherwise>
+			</c:choose>
+			<!-- pagination s -->
+			<%@include file="../../commoncode/pagination.jsp"%>
+			<!-- pagination e -->
+		</form>
 	</div>
 	<!-- <nav class="nav justify-content-center mt-4">
 	  <ul class="pagination pagination-sm">
@@ -140,10 +150,21 @@
 	
 
 	var goUrlMypage = "/myPage";
+	var goUrlSurvey = "/survey";
+	
+	var snSeq = $("input:hidden[name=snSeq]");
+	
+	var form = $("form[name=formList]");
 	
 	$("#btnMypage").on("click", function(){
 		$(location).attr("href",goUrlMypage);
 	});
+	
+	goSurvey = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	snSeq.val(keyValue);
+		form.attr("action", goUrlSurvey).submit();
+	}
 </script>
 </body>
 </html>

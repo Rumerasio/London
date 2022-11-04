@@ -43,6 +43,8 @@ public class SurveyVo {
 	private String ssQuestion;
 	private String ssChoosed;
 	
+	private Integer total;
+	
 	//search 
 	
 	private String ShRegiMod;
@@ -435,6 +437,14 @@ public class SurveyVo {
 
 	public void setShValue(String shValue) {
 		ShValue = shValue;
+	}
+	
+	public Integer getTotal() {
+		return total;
+	}
+
+	public void setTotal(Integer total) {
+		this.total = total;
 	}
 
 	public void setParamsPaging(int totalRows) {

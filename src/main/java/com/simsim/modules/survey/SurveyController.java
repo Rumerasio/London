@@ -14,12 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.simsim.modules.member.Member;
+import com.simsim.modules.member.MemberServiceImpl;
+import com.simsim.modules.member.MemberVo;
+
 @Controller
 @RequestMapping
 public class SurveyController {
 	
 	@Autowired
 	SurveyServiceImpl service;
+	
+	@Autowired
+	MemberServiceImpl service2;
 	
 	@RequestMapping(value="/start")
 	public String start() throws Exception{
@@ -29,8 +36,11 @@ public class SurveyController {
 	
 	
 	@RequestMapping(value="/")
-	public String Survey(Model model,SurveyVo vo) throws Exception {
-		
+	public String Survey(Model model,SurveyVo vo,MemberVo vo2, HttpSession httpSession) throws Exception {
+		String rtSeq = (String) httpSession.getAttribute("sessSeq");
+		vo2.setSeq(rtSeq);
+		Member result = service2.selectOne(vo2);
+		model.addAttribute("item", result);
 		List<Survey> list = service.selectList(vo);
 		model.addAttribute("list",list);
 		List<Survey> list2 = service.selectImgList();
@@ -143,10 +153,12 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/myPage/myComment")
-	public String myComment(Survey dto, Model model, HttpSession httpSession) throws Exception{
+	public String myComment(Survey dto, @ModelAttribute("vo") SurveyVo vo, Model model, HttpSession httpSession) throws Exception{
 		String rtSeq = (String) httpSession.getAttribute("sessSeq");
-		dto.setSeq(rtSeq);
-		List<Survey> list = service.selectMyComment(dto);
+		vo.setSeq(rtSeq);
+		vo.setParamsPaging(service.countMyComment(vo));
+		
+		List<Survey> list = service.selectMyComment(vo);
 		model.addAttribute("list",list);
 		
 		return "user/member/UserComment";
@@ -214,19 +226,24 @@ public class SurveyController {
 	//유저 인터페이스 E
 	
 	@RequestMapping(value="/survey")
-	public String survey(@ModelAttribute("vo") SurveyVo vo, Model model, HttpSession httpSession) throws Exception {
+	public String survey(@ModelAttribute("vo") SurveyVo vo, MemberVo vo2,Model model, HttpSession httpSession) throws Exception {
 		
-		Survey result = service.selectOne(vo);
-		model.addAttribute("item", result);
+		String rtSeq = (String) httpSession.getAttribute("sessSeq");
+		vo2.setSeq(rtSeq);
+		Member result = service2.selectOne(vo2);
+		model.addAttribute("item2", result);
+		
+		Survey result2 = service.selectOne(vo);
+		model.addAttribute("item", result2);
 		
 		List<Survey> list2 = service.selectImgList();
 		model.addAttribute("list2",list2);
 		
-		List<Survey> result2 = service.selectSurveyCommentList(vo);
-		model.addAttribute("list", result2);
+		List<Survey> result3 = service.selectSurveyCommentList(vo);
+		model.addAttribute("list", result3);
 		
-		int result3 = service.selectSurveyCommentCount(vo);
-		model.addAttribute("Num", result3);
+		int result4 = service.selectSurveyCommentCount(vo);
+		model.addAttribute("Num", result4);
 		
 		
 		return "user/Survey/Survey";
@@ -251,13 +268,14 @@ public class SurveyController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		service.CommentVele(dto);
 		
-		
-		int result3 = service.selectSurveyCommentCount(vo);
-		model.addAttribute("Num", result3);
+		vo.setSnSeq(dto.getSnSeq());
+		int result = service.selectSurveyCommentCount(vo);
+	//	model.addAttribute("Num", result);
+		returnMap.put("Num", result);
 		
 		vo.setScSeq(dto.getScSeq());
 		vo.setSeq(dto.getSeq());
-		vo.setSnSeq(dto.getSnSeq());
+		
 		returnMap.put("rt","success");
 		
 		return returnMap;

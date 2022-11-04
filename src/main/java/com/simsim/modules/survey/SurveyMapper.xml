@@ -82,6 +82,7 @@
 	WHERE 1=1 
 		AND snSeq = #{snSeq}
 		AND delNy = 0
+		order by scSeq DESC
 	</select>
 	
 	<!-- 관리자 댓글관리 탭 S -->
@@ -211,20 +212,37 @@
 		inner join jsMember b on b.seq = a.jsMember_seq 
 			AND b.seq = #{seq}
 	</select>
-	
-	<select id="selectMyComment" resultMap="resultMapObj">
+
+	<select id="countMyComment" resultType="Integer">
 		SELECT
-			a.scSeq,
-		    c.survey,
-		    a.nickname,
-		    a.commentContent,
-		    a.datetime
+			COUNT(*)
 		FROM jsSurveyComment a
 		inner join jsMember b on b.seq = a.snSeq
 		inner join jsSurveyName c on c.snSeq = a.snSeq
 		WHERE 1=1
 			AND a.seq =#{seq}
 			AND a.delNy = 0
+		order by scSeq DESC
+	</select>	
+	
+	<select id="selectMyComment" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+			SELECT
+				a.scSeq,
+				a.snSeq
+			    ,c.survey,
+			    a.nickname,
+			    a.commentContent,
+			    a.datetime
+			FROM jsSurveyComment a
+			inner join jsMember b on b.seq = a.snSeq
+			inner join jsSurveyName c on c.snSeq = a.snSeq
+			WHERE 1=1
+				AND a.seq =#{seq}
+				AND a.delNy = 0
+			order by scSeq DESC
+			<include refid="Base.orderByLimitForMysql"></include>
+		<include refid="Base.selectListLowerForMysql"></include>
 	</select>
 	
 	<select id="selectSurveyContentQuestion" resultMap="resultMapObj">
