@@ -12,6 +12,7 @@
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>개인정보 수정</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 <style type="text/css">
 	/* 폰트: Edu NSW ACT Foundation, sans-serif, Noto Sans KR */
@@ -58,7 +59,7 @@
 			<div class="row justify-content-center py-2">
 				<label for="dob" class="col-sm-2 col-form-label">생년월일</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="dob" name="dob" placeholder="ex)080101" value="<c:out value="${item.dob }"></c:out>">
+			      <input type="text" class="form-control" id="dob" name="dob" placeholder="생일을 선택해주세요" value="<c:out value="${item.dob }"></c:out>">
 			    </div>
 			</div>
 			<div class="row py-2">
@@ -74,7 +75,7 @@
 			<div class="row justify-content-center py-2">
 				<label for="email" class="col-sm-2 col-form-label">이메일</label>
 				<div class="col-6">
-			      <input type="text" class="form-control" id="email" name="email" placeholder="" value="<c:out value="${item.email }"></c:out>">
+			      <input type="text" class="form-control" disabled="disabled" id="email" name="email" placeholder="" value="<c:out value="${item.email }"></c:out>">
 			    </div>
 			    <!-- 
 			    <div class="col-3">
@@ -159,6 +160,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+	$( function() {
+		$( "#dob" ).datepicker({
+	    	changeYear: true,
+	    	changeMonth: true,
+	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+	    	yearRange:"1900:2023",
+	    	monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+	    	monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+			dateFormat: "yy-mm-dd"
+		});
+	} );
+</script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		var sessVal = '<%=(String)session.getAttribute("sessSeq")%>';

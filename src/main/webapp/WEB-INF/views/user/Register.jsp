@@ -12,6 +12,7 @@
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	<title>RegisterPage</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<script defer type="text/javascript" src="/resources/zdmin/js/validationZdmin.js"></script>
 </head>
 <style type="text/css">
@@ -98,6 +99,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+	$( function() {
+		$( "#dob" ).datepicker({
+	    	changeYear: true,
+	    	changeMonth: true,
+	    	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+	    	yearRange:"1900:2023",
+	    	monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+	    	monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+			dateFormat: "yymmdd"
+		});
+	} );
+</script>
 <script type="text/javascript">
 <!-- validation -->
 	var goUrlInst = "/userReg";		
@@ -114,7 +129,7 @@
 	
 	validationInst = function() {
 		if(!checkOnlyKoreanEnglishNumber('nickname',2,0,"닉네임을 입력해 주세요")) return false;
-		if(!checkOnlyNumber('dob',2,0,0,0,0,"생일을 입력해주세요")) return false;
+		if(!checkOnlyNumber('dob',2,0,0,0,0,"생일을 선택해주세요")) return false;
 		if(!checkSelectNull('gender',2 ,"성별을 선택해 주세요.")) return false;
 		if(!checkEmail('email',2,0,"이메일 주소를 입력해 주세요")) return false;
 		if(!checkId('id',2,0,"ID를 입력해 주세요")) return false;
@@ -130,11 +145,13 @@
 			return false;
 		} 
 	});
-	$("#dob").on("focusout", function(){
-		if(!checkOnlyNumber('dob',2,0,0,0,0, "생년월일을 양식에 맞게 입력해주세요. ex) 891114")) {
-			return false;
-		} 
-	});
+	
+//	$("#dob").on("focusout", function(){
+//		if(!checkOnlyNumber('dob',2,0,0,0,0, "생년월일을 양식에 맞게 입력해주세요. ex) 891114")) {
+//			return false;
+//		} 
+//	});
+	
 	$("#gender").on("focusout", function(){
 		if(!checkSelectNull('gender',2 ,"성별을 선택해 주세요.")) {
 			return false;
