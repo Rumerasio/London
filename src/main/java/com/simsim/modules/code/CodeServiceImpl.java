@@ -79,7 +79,7 @@ public class CodeServiceImpl implements CodeService{
 	public static String selectOneCachedCode(int code) throws Exception {
 		String rt = "";
 		for(Code codeRow : Code.cachedCodeArrayList) {
-			if (codeRow.getCodeGroup_seq().equals(Integer.toString(code))) {
+			if (codeRow.getCodeAnother().equals(Integer.toString(code))) {
 				rt = codeRow.getCodeNameKor();
 			} else {
 				// by pass
