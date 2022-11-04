@@ -283,8 +283,6 @@ public class MemberController {
 		public Map<String, Object> kakaoLoginProc(Member dto, HttpSession httpSession) throws Exception {
 		    Map<String, Object> returnMap = new HashMap<String, Object>();
 			Member kakaoLogin = service.snsLoginCheck(dto);
-			System.out.println("ccc");
-			 System.out.println("test : " + dto.getToken());
 			
 			if (kakaoLogin == null) {
 				System.out.println("회원가입작동");

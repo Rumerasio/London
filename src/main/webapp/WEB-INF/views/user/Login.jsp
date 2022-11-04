@@ -178,13 +178,11 @@
 					,url: "/kakaoLoginProc"
 					,data: {"nickname": $("input[name=nickname]").val(), "snsId": $("input[name=snsId]").val(), "email": $("input[name=email]").val(), "gender": $("input[name=gender]").val(), "token": $("input[name=token]").val()}
 					,success : function(response) {
-						alert("5");
-						alert($("input[name=token]").val());
 						if (response.rt == "fail") {
 							alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
 							return false;
 						} else {
-							alert("else");
+							alert("카카오톡 로그인이 완료되었습니다.");
 							window.location.href = "/";
 						}
 					},
