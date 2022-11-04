@@ -49,7 +49,7 @@ public class HomeController {
 			
 			System.out.println("asdfasdfasdf");
 			
-			String apiUrl = "https://thegoodnight.daegu.go.kr/ajax/api/total_accomm.html?mode=json";
+			String apiUrl = "https://thegoodnight.daegu.go.kr/ajax/api/total_accomm.html?mode=json&item_count=20";
 			
 			URL url = new URL(apiUrl);
 			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -85,32 +85,125 @@ public class HomeController {
 				System.out.println("[key]:" + key + ", [value]:" + value);
 			}
 			
-			List<Home> data = new ArrayList<Home>();
-			data = (List<Home>) map.get(data);
+//			Map<String, Object> header = new HashMap<String, Object>();
+//			header = (Map<String, Object>) map.get("header");
+			
+//			System.out.println("######## Header");
+//			for (String key : header.keySet()) {
+//				String value = String.valueOf(header.get(key));	// ok
+//				System.out.println("[key]:" + key + ", [value]:" + value);
+//			}
 			
 //			String aaa = (String) header.get("resultCode");
 			
 //			System.out.println("header.get(\"resultCode\"): " + header.get("resultCode"));
 //			System.out.println("header.get(\"resultMsg\"): " + header.get("resultMsg"));
 			
-	//		Map<String, Object> body = new HashMap<String, Object>();
-	//		body = (Map<String, Object>) map.get("body");
+//			Map<String, Object> body = new HashMap<String, Object>();
+//			body = (Map<String, Object>) map.get("body");
 			
-	//		List<Home> items = new ArrayList<Home>();
-	//		items = (List<Home>) body.get("items");
-	//		
-	//		
-	//		System.out.println("items.size(): " + items.size());
+			List<Home> data = new ArrayList<Home>();
+			data = (List<Home>) map.get("data");
+			
+			
+			System.out.println("data.size(): " + data.size());
 			
 //			for(Home item : items) {
 //				System.out.println(item.getMM());
 //			}
 			
-	//		model.addAllAttributes(header);
-	//		model.addAllAttributes(body);
-			model.addAllAttributes(data);
+//			model.addAllAttributes(header);
+			model.addAttribute("data",data);
 			
 			return "accomodationList";
+		}
+		
+		@RequestMapping(value = "/test/dnfMyCharactor")
+		public String dnfMyCharactor(Model model) throws Exception {
+			
+			System.out.println("asdfasdfasdf");
+			
+			String apiUrl = "https://api.neople.co.kr/df/servers/bakal/characters/00091d665bc6ddb5249b86b7daa32a39/status?apikey=HabDVPFcuXegFznsnEb77LSAiLm4cvr4";
+			
+			URL url = new URL(apiUrl);
+			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+			httpURLConnection.setRequestMethod("GET");
+			
+			BufferedReader bufferedReader;
+			if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
+				bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+			} else {
+				bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+			}
+			
+			StringBuilder stringBuilder = new StringBuilder();
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				System.out.println("line: " + line);
+				stringBuilder.append(line);
+			}
+
+			bufferedReader.close();
+			httpURLConnection.disconnect();
+
+			System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
+			
+//			json object + array string -> java map
+			
+	        ObjectMapper objectMapper = new ObjectMapper();
+	        Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
+	        
+	        System.out.println("######## Map");
+			for (String key : map.keySet()) {
+				String value = String.valueOf(map.get(key));	// ok
+				System.out.println("[key]:" + key + ", [value]:" + value);
+			}
+			System.out.println("aaaa");
+			Map<String, Object> buff = new HashMap<String, Object>();
+			buff = (Map<String, Object>) map.get("buff");
+			
+			System.out.println("######## buff");
+			for (String key : buff.keySet()) {
+				String value = String.valueOf(buff.get(key));	// ok
+				System.out.println("[key]:" + key + ", [value]:" + value);
+			}
+			
+//			String aaa = (String) header.get("resultCode");
+			
+//			System.out.println("header.get(\"resultCode\"): " + header.get("resultCode"));
+//			System.out.println("header.get(\"resultMsg\"): " + header.get("resultMsg"));
+			
+	//		Map<String, Object> status = new HashMap<String, Object>();
+	//		status = (Map<String, Object>) map.get("status");
+			
+			List<Home> status = new ArrayList<Home>();
+			status = (List<Home>) buff.get("status");
+			
+			
+			System.out.println("status.size(): " + status.size());
+			
+			Map<String, Object> status2 = new HashMap<String, Object>();
+			status2 = (Map<String, Object>) buff.get("status");
+			
+			System.out.println("######## status2");
+			for (String key : status2.keySet()) {
+				String value = String.valueOf(status2.get(key));	// ok
+				System.out.println("[key]:" + key + ", [value]:" + value);
+			}
+			
+			List<Home> status3 = new ArrayList<Home>();
+			status3 = (List<Home>) status2.get("status");
+			
+//			for(Home item : items) {
+//				System.out.println(item.getMM());
+//			}
+			
+//			model.addAllAttributes(header);
+			model.addAttribute("status",status);
+			model.addAttribute("status2",status2);
+			model.addAttribute("status3", status3);
+			
+			return "dnfMyCharactor";
 		}
 		
 		@RequestMapping(value = "/a", method = RequestMethod.GET)
