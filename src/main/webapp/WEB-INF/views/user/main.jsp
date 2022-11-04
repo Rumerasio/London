@@ -133,7 +133,7 @@
 					</c:when>
 					<c:otherwise>
 						<div id ="user_box">
-							<b><c:out value="${sessNickname }"/></b> 님<br>
+							<b><c:out value="${item.nickname }"/></b> 님<br>
 							<!-- <a href=""><i class="fa-solid fa-heart"></i></a> -->
 							<a id="btnMypage"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
 							<a id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
@@ -185,6 +185,7 @@
 				</div>
 			</div>
 		</form>
+		<!-- 소중한 주소를 통한 상세주소, 좌표 받아오기 -->
 		<%-- sessSeq: <c:out value="${sessSeq }"/><br>
 		sessId: <c:out value="${sessId }"/><br>
 		<div class="row justify-content-center py-2">

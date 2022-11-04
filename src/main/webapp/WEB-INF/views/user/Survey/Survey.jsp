@@ -99,7 +99,7 @@
 		</div>
 	</div>
 	<div id="comment_box">
-		<h6><b>댓글창(<c:out value="${Num}"/>)</b></h6	>
+		<h6><b>댓글창(<span id="commentNum"><c:out value="${Num}"/></span>)</b></h6>
 		<div class="p-4" style="background-color: rgb(224, 224, 224); width: 1000px;">
 			<form method="post" id="myForm" name="myForm" autocomplete="off">
 				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
@@ -113,7 +113,7 @@
 				</c:choose>
 				<div class="input-group row">
 					<div class="col-2">
-						<input type="text" class="form-control col-1 mt-3" placeholder="닉네임" id="nickname" name="nickname" value="<c:out value="${sessNickname }"/>">
+						<input type="text" class="form-control col-1 mt-3" placeholder="닉네임" id="nickname" name="nickname" value="<c:out value="${item2.nickname }"/>">
 					</div>
 					<div class="col-9">
 						<textarea class="form-control m-3" placeholder="내용을 입력해주세요" id="commentContent" name="commentContent" style="width:95%; height: 4.25em; border:none; resize: none; display: inline;"></textarea>
@@ -282,6 +282,7 @@
 	var goUrlUpdt = "/survey/commentUpdt";
 	var goUrlCont = "/survey/content";
 	
+	var snSeq = $("input:hidden[name=snSeq]");
 	var scSeq = $("input:hidden[name=scSeq]");
 	
 	var form = $("form[name=myForm]");
@@ -315,9 +316,12 @@
 			/* ,dataType:"json" */
 			,url: "/survey/commentVele"
 			/* ,data : $("#formLogin").serialize() */
-			,data : {"scSeq": keyValue }
+			,data : {"scSeq": keyValue, "snSeq" : $("#snSeq").val() }
 			,success: function(aa) {
 				document.getElementById("commentBox_"+num).remove();
+				document.getElementById("commentNum").text(aa.Num);
+			//	document.querySelector('#comment_box > h6').remove();
+			//	$("#comment_box").prepend('<h6><b>댓글창('+(<c:out value="${Num}"/>-1)+')</b></h6>');
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
