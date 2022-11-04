@@ -42,6 +42,7 @@
 			<exclude-mapping path="/start" />
 			<exclude-mapping path="/loginPage" />
 			<exclude-mapping path="/loginProc" />
+			<exclude-mapping path="/kakaoLoginProc" />
 			<exclude-mapping path="/register" />
 			<exclude-mapping path="/myPage/userVele" />
 			<exclude-mapping path="/userReg" />
