@@ -54,31 +54,39 @@
 		<button type="button" id="btnMypage" class="btn btn-sm" style="position:absolute; left:0px; width: 80px; background-color:#e6e6e6;">뒤로가기</button>
 		<h3 style="font-family: sans-serif;"><b><i class="fa-solid fa-clock-rotate-left"></i> 참여테스트 기록</b></h3>
 	</div>
-	<table class="table table-striped mt-5">
-	  <tr>
-	  	<th style="width: 50px;">번호</th>
-	  	<th>테스트 이름</th>
-	  	<th>결과</th>
-	  	<th>날짜</th>
-	  </tr>
-		<c:choose>
-			<c:when test="${fn:length(list) eq 0 }">
-				<tr>
-					<td colspan="4" style="text-align: center;">테스트 기록이 없습니다.</td>
-				</tr>
-			</c:when>
-		<c:otherwise>
-			<c:forEach items="${list}" var="list" varStatus="status">
-				<tr>
-					<td><c:out value="${list.srcSeq }"/></td>
-					<td><c:out value="${list.survey }"></c:out></td>
-					<td><c:out value="${list.resultTitle }"></c:out></td>
-					<td><c:out value="${list.datetime }"></c:out></td>
-				</tr>
-			</c:forEach>
-		</c:otherwise>
-		</c:choose>
-	</table>
+	<form method="post" name="formList">
+		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+		<table class="table table-striped mt-5">
+		  <tr>
+		  	<th style="width: 50px;">번호</th>
+		  	<th>테스트 이름</th>
+		  	<th>결과</th>
+		  	<th>날짜</th>
+		  </tr>
+			<c:choose>
+				<c:when test="${fn:length(list) eq 0 }">
+					<tr>
+						<td colspan="4" style="text-align: center;">테스트 기록이 없습니다.</td>
+					</tr>
+				</c:when>
+			<c:otherwise>
+				<c:forEach items="${list}" var="list" varStatus="status">
+					<tr>
+						<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
+						<%-- <td><c:out value="${list.srcSeq }"></c:out></td> --%>
+						<td><c:out value="${list.survey }"></c:out></td>
+						<td><c:out value="${list.resultTitle }"></c:out></td>
+						<td><c:out value="${list.datetime }"></c:out></td>
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+			</c:choose>
+		</table>
+		<!-- pagination s -->
+		<%@include file="../../commoncode/pagination.jsp"%>
+		<!-- pagination e -->
+	</form>
 	<!-- <nav class="nav justify-content-center mt-4">
 	  <ul class="pagination pagination-sm">
 	  	<li class="page-item">
@@ -122,10 +130,18 @@
 	});
 	
 	var goUrlMypage = "/myPage";
+	var goUrlList ="/myPage/surveyRecord";
+	
+	var form = $("form[name=formList]");
 	
 	$("#btnMypage").on("click", function(){
 		$(location).attr("href",goUrlMypage);
 	});
+	
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
 </script>
 </body>
 </html>

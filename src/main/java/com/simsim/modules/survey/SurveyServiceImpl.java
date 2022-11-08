@@ -72,8 +72,8 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	}
 
 	@Override
-	public List<Survey> selectUserRecord(Survey dto) throws Exception {
-		List<Survey> list = dao.selectUserRecord(dto);
+	public List<Survey> selectUserRecord(SurveyVo vo) throws Exception {
+		List<Survey> list = dao.selectUserRecord(vo);
 		return list;
 	}
 	
@@ -244,6 +244,10 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 
 	@Override
 	public int countMyComment(SurveyVo vo) throws Exception {return dao.countMyComment(vo);}
+
+	@Override
+	public int countUserRecord(SurveyVo vo) throws Exception {return dao.countUserRecord(vo);
+	}
 
 
 }

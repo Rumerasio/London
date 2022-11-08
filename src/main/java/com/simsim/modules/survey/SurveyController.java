@@ -142,11 +142,12 @@ public class SurveyController {
 	
 	//유저 인터페이스 S
 	@RequestMapping(value="/myPage/surveyRecord")
-	public String surveyRecord(Survey dto, Model model, HttpSession httpSession) throws Exception {
+	public String surveyRecord(@ModelAttribute("vo") SurveyVo vo , Model model, HttpSession httpSession) throws Exception {
 		String rtSeq = (String) httpSession.getAttribute("sessSeq");
-		dto.setSeq(rtSeq);
+		vo.setSeq(rtSeq);
+		vo.setParamsPaging(service.countUserRecord(vo));
 		
-		List<Survey> list = service.selectUserRecord(dto);
+		List<Survey> list = service.selectUserRecord(vo);
 		model.addAttribute("list",list);
 		
 		return "user/member/UserSurveyRecord";

@@ -186,6 +186,14 @@
 	</update>
 
 	<!-- 유저 인터페이스 s-->
+	<select id="countUserRecord" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM jsSurveyRecord a
+		inner join jsMember b on b.seq = a.jsMember_seq 
+			AND b.seq = #{seq}
+	</select>
+	
 	<select id="selectUserRecord" resultMap="resultMapObj">
 <!-- 		SELECT 
 		a.srcSeq,
@@ -200,17 +208,21 @@
 	]]>
 	inner join jsSurveyName d on d.snSeq = a.jsSurveyName_snSeq
 		AND b.seq = #{seq} -->
-		SELECT 
-			a.srcSeq
-		    ,(SELECT survey FROM jsSurveyName d WHERE d.snSeq = a.jsSurveyName_snSeq) as survey
-		    ,nickname
-		    <![CDATA[
-		    ,(SELECT resultTitle FROM jsSurveyResult c WHERE c.scoreRangeStart <= a.totalScore AND c.scoreRangeEnd >= a.totalScore AND a.jsSurveyName_snSeq = c.jsSurveyName_snSeq) as resultTitle
-		    ]]>
-		    ,a.datetime
-		FROM jsSurveyRecord a
-		inner join jsMember b on b.seq = a.jsMember_seq 
-			AND b.seq = #{seq}
+		<include refid="Base.selectListUpperForMysql"></include>
+			SELECT 
+				a.srcSeq
+			    ,(SELECT survey FROM jsSurveyName d WHERE d.snSeq = a.jsSurveyName_snSeq) as survey
+			    ,nickname
+			    <![CDATA[
+			    ,(SELECT resultTitle FROM jsSurveyResult c WHERE c.scoreRangeStart <= a.totalScore AND c.scoreRangeEnd >= a.totalScore AND a.jsSurveyName_snSeq = c.jsSurveyName_snSeq) as resultTitle
+			    ]]>
+			    ,a.datetime
+			FROM jsSurveyRecord a
+				inner join jsMember b on b.seq = a.jsMember_seq 
+				AND b.seq = #{seq}
+				order by srcSeq DESC
+			<include refid="Base.orderByLimitForMysql"></include>
+		<include refid="Base.selectListLowerForMysql"></include>
 	</select>
 
 	<select id="countMyComment" resultType="Integer">
