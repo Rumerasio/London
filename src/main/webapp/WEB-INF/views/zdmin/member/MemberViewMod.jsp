@@ -103,7 +103,7 @@
 				<div class="row py-2">
 					<label for="dd" class="col-1 col-form-label">가입일시</label>
 				    <div class="col-4">
-				      <input type="text" class="form-control-plaintext" readonly id="dd" name="dd" placeholder="" value="">
+				      <input type="text" class="form-control-plaintext" readonly id="registerDateTime" name="registerDateTime" placeholder="" value="<c:out value="${item.registerDateTime }"></c:out>">
 				    </div>
 				</div>
 				<div class="row py-2">

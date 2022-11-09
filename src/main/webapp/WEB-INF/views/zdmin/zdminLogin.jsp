@@ -49,24 +49,55 @@
 	<div class="pt-3">
 		<h5><b>관리자 로그인</b></h5>
 	</div>
-	<div class="row justify-content-center mt-3">
-		<div class="col-1 offset-1 px-1" style="font-size: 22px;"><i class="fa-solid fa-user"></i></div>
-		<div class="col-9 mb-3">
-		  <input type="text" class="form-control" placeholder="ID">
+	<form method="post" name="myForm">
+		<div class="row justify-content-center mt-3">
+			<div class="col-1 offset-1 px-1" style="font-size: 22px;"><i class="fa-solid fa-user"></i></div>
+			<div class="col-9 mb-3">
+			  <input type="text" class="form-control" id="id" name="id" placeholder="ID">
+			</div>
 		</div>
-	</div>
-	<div class="row justify-content-center">
-		<div class="col-1 offset-1 px-1" style="font-size: 22px;"><i class="fa-solid fa-key"></i></div>
-		<div class="col-9 mb-3">
-		  <input type="password" class="form-control" placeholder="Password">
+		<div class="row justify-content-center">
+			<div class="col-1 offset-1 px-1" style="font-size: 22px;"><i class="fa-solid fa-key"></i></div>
+			<div class="col-9 mb-3">
+			  <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+			</div>
 		</div>
-	</div>
+	</form>
 	<div class="pt-2 pb-4">
-		<a href="/zdminMain"><button type="button" class="btn btn-secondary" style="width: 60px; font-size: 11px;">로그인</button></a>
+		<button type="button" class="btn btn-secondary" id="btnZdminLogin" style="width: 60px; font-size: 11px;">로그인</button>
 	</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+	var goUrlMain = "/zdminMain"
+	
+	$("#btnZdminLogin").on("click",function(){
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "/zdminLoginProc"
+			,data : { "id" : $("#id").val(), "password" : $("#password").val()}
+			,success: function(response) {
+				if(response.rt == "idfail"){
+					alert("존재하지 않는 계정입니다.");
+				} else if(response.rt =="passwordfail"){
+					alert("비밀번호가 일치하지 않습니다.");
+				} else if(response.rt =="success"){
+					$(location).attr("href",goUrlMain);
+				} else {
+					alert("뭔데");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+</script>
 </body>
 </html>

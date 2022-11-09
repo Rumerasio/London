@@ -110,4 +110,15 @@ public class MemberServiceImpl implements MemberService {
 	public Member getNickname(MemberVo vo) throws Exception {return dao.getNickname(vo);
 	}
 
+	@Override
+	public Member selectAdminId(MemberVo vo) throws Exception {
+		return dao.selectAdminId(vo);
+	}
+
+	@Override
+	public Member selectAdminLogin(MemberVo vo) throws Exception {
+		vo.setPassword(UtilSecurity.encryptSha256(vo.getPassword()));
+		return dao.selectAdminLogin(vo);
+	}
+
 }

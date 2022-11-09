@@ -43,7 +43,6 @@
 				,a.emailInsert
 				,a.emailDomain
 				,a.id
-				,a.password
 				,a.delNy
 				,a.registerDateTime
 				,a.modifiedDateTime
@@ -79,7 +78,6 @@
 			,gender
 			,email
 			,id
-			,password
 			,delNy
 			,registerDateTime
 			,modifyDateTime
@@ -137,6 +135,17 @@
 			AND delNy=0
 	</select>
 	
+	<select id="selectAdminId" resultMap="resultMapObj">
+		SELECT
+			seq
+			,id
+		FROM jsMember
+		WHERE 1=1
+			AND id=#{id}
+			AND delNy=0
+			AND adminNy=1
+	</select>
+	
 	<select id="selectOneLogin" resultMap="resultMapObj">
 		SELECT
 			seq
@@ -147,6 +156,19 @@
 			AND id=#{id}
 			AND password = #{password}
 			AND delNy = 0
+	</select>
+	
+	<select id="selectAdminLogin" resultMap="resultMapObj">
+		SELECT
+			seq
+			,id
+			,nickname
+		FROM jsMember
+			WHERE 1=1
+			AND id=#{id}
+			AND password =#{password}
+			AND delNy=0
+			AND adminNy=1
 	</select>
 	
 	<select id="selectOneIdCheck" resultType="Integer">

@@ -15,6 +15,7 @@ public class MemberVo {
 	private String password;
 	private String nickname;
 	private Integer lgResultNy;
+	private Integer adminNy;
 	
 	private String dob;
 	private String email;
@@ -43,8 +44,15 @@ public class MemberVo {
 	
 	//**************
 	
+	
 	public Integer getShdelNy() {
 		return ShdelNy;
+	}
+	public Integer getAdminNy() {
+		return adminNy;
+	}
+	public void setAdminNy(Integer adminNy) {
+		this.adminNy = adminNy;
 	}
 	public String getNickname() {
 		return nickname;

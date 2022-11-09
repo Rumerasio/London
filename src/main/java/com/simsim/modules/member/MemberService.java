@@ -23,6 +23,8 @@ public interface MemberService {
 	public int update(Member dto) throws Exception;
 	public int velete(Member dto) throws Exception;
 	public int delete(MemberVo vo) throws Exception;
+	public Member selectAdminId(MemberVo vo) throws Exception;
+	public Member selectAdminLogin(MemberVo vo) throws Exception;
 	
 	
 	

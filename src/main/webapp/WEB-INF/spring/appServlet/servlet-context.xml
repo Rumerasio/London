@@ -41,6 +41,7 @@
 			<exclude-mapping path="/" />
 			<exclude-mapping path="/start" />
 			<exclude-mapping path="/loginPage" />
+			<exclude-mapping path="/zdminLoginProc" />
 			<exclude-mapping path="/loginProc" />
 			<exclude-mapping path="/kakaoLoginProc" />
 			<exclude-mapping path="/register" />
@@ -50,12 +51,7 @@
 			<exclude-mapping path="/checkEmail" />
 			<exclude-mapping path="/findLoginInfo/**" />
 			<exclude-mapping path="/survey/**" />
-			<exclude-mapping path="/zdminMain" />
 			<exclude-mapping path="/zdminLogin" />
-			<exclude-mapping path="/content/**" />
-			<exclude-mapping path="/member/**" />
-			<exclude-mapping path="/codeGroup/**" />
-			<exclude-mapping path="/code/**" />
 			<beans:bean id="checkLoginSessionInterception" class="com.simsim.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	

@@ -54,4 +54,7 @@ public class MemberDao {
 	
 	public int delete(MemberVo vo) {return sqlSession.delete(namespace+".delete", vo);}
 	
+	public Member selectAdminId(MemberVo vo) {return sqlSession.selectOne(namespace+".selectAdminId", vo);}
+	public Member selectAdminLogin(MemberVo vo) {return sqlSession.selectOne(namespace+".selectAdminLogin", vo);}
+	
 }

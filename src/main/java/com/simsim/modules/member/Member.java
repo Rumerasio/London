@@ -15,6 +15,7 @@ public class Member {
 	private String password;
 	private Integer delNy;
 	private Integer lgResultNy;
+	private Integer adminNy;
 	
 	private String idp;
 	private String emailp;
@@ -176,6 +177,12 @@ public class Member {
 	}
 	public void setToken(String token) {
 		this.token = token;
+	}
+	public Integer getAdminNy() {
+		return adminNy;
+	}
+	public void setAdminNy(Integer adminNy) {
+		this.adminNy = adminNy;
 	}
 	
 

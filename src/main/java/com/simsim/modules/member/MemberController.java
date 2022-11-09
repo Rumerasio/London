@@ -27,7 +27,6 @@ import com.simsim.modules.code.CodeServiceImpl;
 import com.simsim.modules.survey.Survey;
 import com.simsim.modules.survey.SurveyServiceImpl;
 import com.simsim.modules.survey.SurveyVo;
-import com.simsim.util.UtilDateTime;
 
 @Controller
 @RequestMapping
@@ -224,6 +223,37 @@ public class MemberController {
 		model.addAttribute("list3", list3);
 		
 		return "zdmin/CommentRecord";
+	}
+		
+	@RequestMapping(value="/zdminLogin")
+	public String zdminLogin(HttpSession httpSession) throws Exception{
+		httpSession.invalidate();
+	//	String rtSeq = (String) httpSession.getAttribute("sessSeq");
+	//	vo.setSeq(rtSeq);
+		
+		return "zdmin/zdminLogin";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/zdminLoginProc")
+	public Map<String, Object> zdminLoginProc(@ModelAttribute("vo") MemberVo vo, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Member rtMember = service.selectAdminId(vo);
+		if(rtMember != null) {
+			Member rtMember2 = service.selectAdminLogin(vo);
+			if(rtMember2 != null) {
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeq", rtMember2.getSeq());
+				
+				returnMap.put("rt", "success");
+			} else {
+				returnMap.put("rt", "passwordfail");
+			} 
+		} else {
+			returnMap.put("rt", "idfail");
+		}
+		
+		return returnMap;
 	}
 	
 	// 사용자 사용부분
