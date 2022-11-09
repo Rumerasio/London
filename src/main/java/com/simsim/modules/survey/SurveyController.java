@@ -50,15 +50,12 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/zdminMain")
-	public String zdminMain() throws Exception{
-		
+	public String zdminMain(MemberVo vo, Model model, HttpSession httpSession) throws Exception{
+		String rtSeq = (String) httpSession.getAttribute("sessSeq");
+		vo.setSeq(rtSeq);
+		Member result = service2.selectOne(vo);
+		model.addAttribute("item", result);
 		return "zdmin/zdminMain";
-	}
-	
-	@RequestMapping(value="/zdminLogin")
-	public String zdminLogin() throws Exception{
-		
-		return "zdmin/zdminLogin";
 	}
 	
 	@RequestMapping(value="/content/contentViewMod")
@@ -270,8 +267,28 @@ public class SurveyController {
 		service.CommentVele(dto);
 		
 		vo.setSnSeq(dto.getSnSeq());
+		
+		List<Survey> list = service.selectSurveyCommentList(vo);
+		model.addAttribute("list", list);
+		
+		vo.setScSeq(dto.getScSeq());
+		vo.setSeq(dto.getSeq());
+		
+		returnMap.put("rt","success");
+		
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/survey/commentUpdt")
+	public Map<String, Object> commentUpdt(@ModelAttribute("vo") SurveyVo vo,Survey dto,Model model,RedirectAttributes redirectAttributes) throws Exception {
+		
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		service.CommentUpdt(dto);
+		
+		vo.setSnSeq(dto.getSnSeq());
+		
 		int result = service.selectSurveyCommentCount(vo);
-	//	model.addAttribute("Num", result);
 		returnMap.put("Num", result);
 		
 		vo.setScSeq(dto.getScSeq());

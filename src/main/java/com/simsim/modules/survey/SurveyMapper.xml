@@ -168,11 +168,7 @@
 	<update id="CommentUpdt">
 		UPDATE jsSurveyComment
 		SET
-			seq = #{seq}
-			,snSeq = #{snSeq}
-			,nickname =#{nickname}
-			,commentContent =#{commentContent}
-			,delNy =#{delNy}
+			commentContent =#{commentContent}
 		WHERE 1=1
 			AND scSeq = #{scSeq}
 	</update>

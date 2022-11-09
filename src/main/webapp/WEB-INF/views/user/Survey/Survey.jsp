@@ -50,13 +50,14 @@
 		height: 70px;
 		background-color: rgb(190, 190, 190);
 	}
-	.like_btn, .report_btn, #btnToVele {
+	.like_btn, .report_btn, #btnToVele, #btnCancel {
 		color:white;
 		font-size: 12px;
 		width: 70px;
 		height:33px;
 	}
 	.modify_btn {
+		background-color:#fbceb1;
 		color:white;
 		font-size: 11px;
 		width: 70px;
@@ -100,7 +101,7 @@
 	</div>
 	<div id="comment_box">
 		<h6><b>댓글창(<span id="commentNum"><c:out value="${Num}"/></span>)</b></h6>
-		<div class="p-4" style="background-color: rgb(224, 224, 224); width: 1000px;">
+		<div class="p-4 mb-5" style="background-color: rgb(224, 224, 224); width: 1000px;">
 			<form method="post" id="myForm" name="myForm" autocomplete="off">
 				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
 				<c:choose>
@@ -142,7 +143,7 @@
 												<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.commentContent }"/>">
 											</div>
 											<div class="col-1">
-												<button type="button" class="btn modify_btn">수정하기</button>
+												<%-- <button type="button" class="btn modify_btn" onclick="modActive(<c:out value="${list.scSeq}"/>)">수정하기</button> --%>
 												<button type="button" class="btn btn-secondary" data-bs-toggle="modal" id="btnToVele" data-bs-target="#Velete_check_<c:out value="${list.scSeq}"/>">삭제</button>
 												<div class="modal" tabindex="-1" id="Velete_check_<c:out value="${list.scSeq}"/>">
 												  <div class="modal-dialog">
@@ -161,6 +162,19 @@
 												    </div>
 												  </div>
 												</div>
+											</div>
+										</div>
+										<div class="input-group row mt-3 visually-hidden" id="commentModBox_<c:out value="${list.scSeq}"/>" style="background-color:white">
+											<div class="col-2" style="align-content: center;">
+												<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.nickname }"/>" style="text-align: center;">
+												<input type="text" readonly class="form-control-plaintext" id="" value="<c:out value="${list.datetime }"/>" style="font-size: 10px; text-align: center;">
+											</div>
+											<div class="col-9">
+												<input type="text" class="form-control-plaintext" id="commentContentUpdt_<c:out value="${list.scSeq}"/>" value="<c:out value="${list.commentContent }"/>" style="">
+											</div>
+											<div class="col-1">
+												<button type="button" class="btn modify_btn" onclick="updtComment(<c:out value="${list.scSeq}"/>)" style="background-color:#fdad5c">수정</button>
+												<button type="button" class="btn btn-secondary" id="btnCancel" onclick="modInactive(<c:out value="${list.scSeq}"/>)">취소</button>
 											</div>
 										</div>
 								</c:when>
@@ -307,6 +321,45 @@
 //	    	scSeq.val(keyValue);
 //	 }
 
+	$("#btnModActive").on("click",function(){
+		
+	});
+	
+	modActive = function(keyValue) {
+		var num = keyValue;
+		$("#commentBox_"+num+"").addClass('visually-hidden');
+		$("#commentModBox_"+num+"").removeClass('visually-hidden');
+	}
+	
+	modInactive = function(keyValue) {
+		var num = keyValue;
+		$("#commentModBox_"+num+"").addClass('visually-hidden');
+		$("#commentBox_"+num+"").removeClass('visually-hidden');
+	}
+	updtComment = function(keyValue) {
+		var num =keyValue;
+		alert($("#commentContentUpdt_"+num+"").val());
+		$("#commentContent").val($("#commentContentUpdt_"+num+"").val());
+		alert($("#commentContent").val());
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/survey/commentUpdt"
+			/* ,data : $("#formLogin").serialize() */
+			,data : {"scSeq": keyValue, "snSeq" : $("#snSeq").val(), "commentContent": $("#commentContent") }
+			,success: function(response) {
+				$("#commentModBox_"+num+"").addClass('visually-hidden');
+				$("#commentBox_"+num+"").removeClass('visually-hidden');
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+		$("#commentContent").val(null);
+	}
+
 	veleComment = function(keyValue) {
 		var num = keyValue;
 		$.ajax({
@@ -317,11 +370,9 @@
 			,url: "/survey/commentVele"
 			/* ,data : $("#formLogin").serialize() */
 			,data : {"scSeq": keyValue, "snSeq" : $("#snSeq").val() }
-			,success: function(aa) {
+			,success: function(response) {
 				document.getElementById("commentBox_"+num).remove();
-				document.getElementById("commentNum").text(aa.Num);
-			//	document.querySelector('#comment_box > h6').remove();
-			//	$("#comment_box").prepend('<h6><b>댓글창('+(<c:out value="${Num}"/>-1)+')</b></h6>');
+				$("#commentNum").text(response.Num);
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
