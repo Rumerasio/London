@@ -127,6 +127,9 @@
 		SELECT
 			count(*)
 		<include refid="selectCommon"></include>
+		<!-- <choose>
+			<when test="shRegiMod ==0">AND datetime <![CDATA[>= "#{shdateStart}" AND datetime <=]]> "#{shdateEnd}"</when>
+		</choose> -->
 	</select>
 	
 	<select id="selectContentRecordList" resultMap="resultMapObj">
@@ -140,6 +143,14 @@
 				,(SELECT resultTitle From jsSurveyResult d WHERE d.srSeq = a.jsSurveyResult_srSeq) as resultTitle
 				,datetime
 			<include refid="selectCommon"></include>
+			<!-- <choose>
+				<when test="shRegiMod ==0">
+					<![CDATA[
+					AND datetime >= "#{shdateStart}"
+					AND datetime <= "#{shdateEnd}"
+					]]>
+				</when>
+			</choose> -->
 			order by srcSeq DESC
 			<include refid="Base.orderByLimitForMysql"></include>
 		<include refid="Base.selectListLowerForMysql"></include>
@@ -477,6 +488,21 @@
 	FROM Upload
 	WHERE 1=1
 		<if test="snSeq != null and !snSeq.equals('')">AND pseq=#{snSeq}</if>
+	</select>
+	
+	<select id="getSurveyNum" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM jsSurveyName
+		WHERE 1=1
+	</select>
+	
+	<select id="getTodayNewMember" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM jsMember
+		WHERE 1=1
+			AND registerDateTime >= curdate()
 	</select>
 	
 </mapper>

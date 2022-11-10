@@ -50,11 +50,9 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/zdminMain")
-	public String zdminMain(MemberVo vo, Model model, HttpSession httpSession) throws Exception{
+	public String zdminMain(MemberVo vo,SurveyVo vo2,HttpSession httpSession) throws Exception{
 		String rtSeq = (String) httpSession.getAttribute("sessSeq");
 		vo.setSeq(rtSeq);
-		Member result = service2.selectOne(vo);
-		model.addAttribute("item", result);
 		return "zdmin/zdminMain";
 	}
 	
