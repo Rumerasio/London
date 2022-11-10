@@ -227,7 +227,10 @@ public class MemberController {
 		
 	@RequestMapping(value="/zdminLogin")
 	public String zdminLogin(HttpSession httpSession) throws Exception{
-		httpSession.invalidate();
+		httpSession.removeAttribute("sessSeq");
+		httpSession.removeAttribute("sessId");
+		httpSession.removeAttribute("sessNickname");
+		httpSession.setAttribute("sessAdmin", "1");
 	//	String rtSeq = (String) httpSession.getAttribute("sessSeq");
 	//	vo.setSeq(rtSeq);
 		
@@ -244,6 +247,7 @@ public class MemberController {
 			if(rtMember2 != null) {
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessSeq", rtMember2.getSeq());
+				httpSession.setAttribute("sessNickname", rtMember2.getNickname());
 				
 				returnMap.put("rt", "success");
 			} else {
@@ -480,10 +484,11 @@ public class MemberController {
 		}
 		
 		@RequestMapping(value="/myPage/userUpdt")
-		public String userUpdt(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception{
-			
+		public String userUpdt(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes, HttpSession httpSession) throws Exception{
+			String rtSeq = (String) httpSession.getAttribute("sessSeq");
+			dto.setSeq(rtSeq);
 			service.update(dto);
-			
+			httpSession.setAttribute("sessNickname", dto.getNickname());
 			redirectAttributes.addFlashAttribute("vo", vo);
 			
 			System.out.println(dto.getSeq());

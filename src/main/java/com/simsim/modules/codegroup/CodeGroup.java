@@ -21,6 +21,8 @@ public class CodeGroup {
 	private String registerDateTime;
 	private String modifyDateTime;
 	
+	private String nickname;
+	
 	private Integer count;
 	
 	public Integer getCount() {
@@ -139,4 +141,11 @@ public class CodeGroup {
 	public void setIntType3(Integer intType3) {
 		this.intType3 = intType3;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
 }

@@ -50,11 +50,17 @@
 		height: 70px;
 		background-color: rgb(190, 190, 190);
 	}
-	.like_btn, .report_btn, #btnToVele, #btnCancel {
+	.like_btn, .report_btn, #btnCancel {
 		color:white;
 		font-size: 12px;
 		width: 70px;
 		height:33px;
+	}
+	#btnToVele{
+		color:white;
+		font-size: 12px;
+		width: 70px;
+		height:66px;
 	}
 	.modify_btn {
 		background-color:#fbceb1;

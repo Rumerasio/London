@@ -41,18 +41,18 @@
 	</div> -->
 <div class="table mx-auto row">
 	<div class="card text-bg col-4 offset-1 position-relative">
-		<a href="/zdminLogin">
-		  <img src="/resources/images/adminPage.PNG" class="card-img" alt="adminPage">
-		  <div class="card-img-overlay">
-		    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">관리자 페이지</h2>
-		  </div>
-		</a>
-	</div>
-	<div class="card text-bg col-4 offset-2 position-relative">
 		<a href="/">
 		  <img src="/resources/images/userPage.PNG" class="card-img" alt="userPage">
 		  <div class="card-img-overlay">
 		    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">사용자 홈페이지</h2>
+		  </div>
+		</a>
+	</div>
+	<div class="card text-bg col-4 offset-2 position-relative">
+		<a href="/zdminLogin">
+		  <img src="/resources/images/adminPage.PNG" class="card-img" alt="adminPage">
+		  <div class="card-img-overlay">
+		    <h2 class="card-title text-center position-absolute bottom-0" style="left: 30px;">관리자 페이지</h2>
 		  </div>
 		</a>
 	</div>

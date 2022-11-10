@@ -93,7 +93,7 @@
 			<div class="row justify-content-center py-2">
 				<label for="id" class="col-sm-2 col-form-label">아이디</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" readonly id="id" name="id" placeholder="" value="<c:out value="${item.id }"></c:out>">
+			      <input type="text" class="form-control" disabled="disabled" id="id" name="id" placeholder="" value="<c:out value="${item.id }"></c:out>">
 			    </div>
 			</div>
 			<div class="row justify-content-center py-2">

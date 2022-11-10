@@ -137,7 +137,7 @@
 							0
 						</div>
 						<div class="col-auto" style="font-size:14px; font-family: Edu NSW ACT Foundation;">
-							<a href="./ZdminMemberContent.html"><b>컨텐츠 기록</b></a>
+							<a href="#"><b>컨텐츠 기록</b></a>
 						</div>
 					</div>
 				</div>

@@ -12,10 +12,15 @@ public class CheckLoginSessionInterception extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		if (request.getSession().getAttribute("sessSeq") != null ) {
-			// by pass
+			//pass
 		} else {
-			response.sendRedirect("/loginPage");
-            return false;
+			if(request.getSession().getAttribute("sessAdmin") == "1" ) {
+				response.sendRedirect("/zdminLogin");
+				return false;
+			} else {
+				response.sendRedirect("/loginPage");
+	            return false;
+			}
 		}
 		System.out.println("CheckLoginSessionInterception running");
 		

@@ -247,7 +247,6 @@
 		    nickname = #{nickname}
 		    ,dob = #{dob}
 		    ,gender = #{gender}
-		    ,id = #{id}
 		    ,delNy = #{delNy} 
 		WHERE
 			seq = #{seq}

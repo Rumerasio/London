@@ -25,6 +25,8 @@ public class Code {
 	private String registerDateTime;
 	private String modifyDateTime;
 	
+	private String nickname;
+	
 	//********************
 	public String getSeq() {
 		return seq;
@@ -146,6 +148,14 @@ public class Code {
 	public void setIntType3(Integer intType3) {
 		this.intType3 = intType3;
 	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	//********************
 //	for cache
 	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();

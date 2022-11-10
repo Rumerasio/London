@@ -133,7 +133,7 @@
 					</c:when>
 					<c:otherwise>
 						<div id ="user_box">
-							<b><c:out value="${item.nickname }"/></b> 님<br>
+							<b><c:out value="${sessNickname }"/></b> 님<br>
 							<!-- <a href=""><i class="fa-solid fa-heart"></i></a> -->
 							<a id="btnMypage"><i class="fa-solid fa-clipboard-user mx-1"></i></a>
 							<a id="btnLogOut"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i></a>
