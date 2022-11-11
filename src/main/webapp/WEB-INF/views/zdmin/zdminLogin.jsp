@@ -36,11 +36,7 @@
 </style>
 
 <body>
-<nav class="navbar">
-	<div class="container-fluid" id="topNav">
-		<a class="navbar-brand" id="logo" href="zdmin/zdminLogin" style="display: inline-block;">S</a>
-	</div>
-</nav>
+<%@include file="Logo.jsp" %>
 <div class="container" style="text-align: center;">
 	<h4 style="position: relative; bottom: 50px;">관리자 페이지</h4>
 </div>
@@ -53,13 +49,13 @@
 		<div class="row justify-content-center mt-3">
 			<div class="col-1 offset-1 px-1" style="font-size: 22px;"><i class="fa-solid fa-user"></i></div>
 			<div class="col-9 mb-3">
-			  <input type="text" class="form-control" id="id" name="id" placeholder="ID" value="escaida15">
+			  <input type="text" class="form-control" id="id" name="id" placeholder="ID" value="">
 			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-1 offset-1 px-1" style="font-size: 22px;"><i class="fa-solid fa-key"></i></div>
 			<div class="col-9 mb-3">
-			  <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="1q2w3e4r">
+			  <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
 			</div>
 		</div>
 	</form>
