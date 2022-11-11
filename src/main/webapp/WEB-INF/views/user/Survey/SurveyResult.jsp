@@ -263,13 +263,13 @@
 			</div>
 		</div> -->
 		<div class="result_End_Part mt-5" style="color: white; text-align: center;">
-			<h6><b>친구에게 결과 공유하기</b></h6>
+			<h6><b>친구에게 테스트 공유하기</b></h6>
 			<div class="row my-3" style="width: 368px; margin: auto; font-size: 40px;">
 				<div class="col-2 offset-3">
 					<i class="fa-solid fa-share-nodes"></i>
 				</div>
 				<div class="col-2">
-					<i class="fa-brands fa-twitter"></i>
+					<button type="button" onclick="shareKakao(<c:out value="${vo.snSeq}"/>)"><i class="fa-brands fa-twitter"></i></button>
 				</div>
 				<div class="col-2">
 					<i class="fa-brands fa-facebook-f"></i>
@@ -277,6 +277,8 @@
 			</div>
 			<form method="post" name="formVo">
 				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
+				<input type="hidden" name="survey" id="survey" value="<c:out value="${item2.survey }"/>">
+				<input type="hidden" name="surveyExplain" id="surveyExplain" value="<c:out value="${item2.surveyExplain }"/>">
 				<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
 				<div class="row">
 					<div class="col-2 offset-4">
@@ -307,6 +309,43 @@
 		snSeq.val(keyValue);
 		formVo.attr("action", goUrlSurvey).submit();
 	}
+</script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript">
+	var survey = $("#survey").val();
+	var surveyExplain = $("#surveyExplain").val();
+	//init 체크
+	if (!Kakao.isInitialized()) {
+	  Kakao.init('983700957186f54b5dea5b9569f37c10');
+	}
+	var shareKakao = function(keyValue) {
+	    // 메시지 공유 함수
+		Kakao.Link.sendDefault({
+		    objectType: 'feed',
+		    content: {
+		      title: survey,
+		      description: surveyExplain,
+		      imageUrl:
+		        '/resources/uploaded/survey/2022/10/31/ee60ee13-7e81-47ad-b3ab-9074a752f530.jpg',
+		      imageWidth: 1200,
+		      imageHeight: 630,
+		      link: {
+		        mobileWebUrl: 'http://localhost:8080/survey',
+		        androidExecutionParams: 'test',
+		      },
+		    },
+		    buttons: [
+		      {
+		        title: '테스트 하러가기',
+		        link: {
+		          mobileWebUrl: 'http://localhost:8080/survey?snSeq='+keyValue+'',
+		          webUrl: 'http://localhost:8080/survey?snSeq='+keyValue+'',
+		        },
+		      },
+		    ],
+		});
+	};
+
 </script>
 </body>
 </html>

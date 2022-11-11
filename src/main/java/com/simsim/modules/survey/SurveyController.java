@@ -215,6 +215,9 @@ public class SurveyController {
 		List<Survey> list2 = service.selectImgList();
 		model.addAttribute("list2",list2);
 		
+		Survey result3 = service.selectOne(vo);
+		model.addAttribute("item2", result3);
+		
 		return "user/Survey/SurveyResult";
 	}
 	
