@@ -49,6 +49,9 @@
 	li {
 		margin: 10px;
 	}
+	#kakaoShareBtn:hover{
+		cursor: pointer;
+	}
 </style>
 
 <body>
@@ -262,14 +265,17 @@
 				</div>
 			</div>
 		</div> -->
-		<div class="result_End_Part mt-5" style="color: white; text-align: center;">
+		<div class="result_End_Part mt-5" style="text-align: center;">
 			<h6><b>친구에게 테스트 공유하기</b></h6>
 			<div class="row my-3" style="width: 368px; margin: auto; font-size: 40px;">
 				<div class="col-2 offset-3">
 					<i class="fa-solid fa-share-nodes"></i>
 				</div>
 				<div class="col-2">
-					<button type="button" onclick="shareKakao(<c:out value="${vo.snSeq}"/>)"><i class="fa-brands fa-twitter"></i></button>
+					<span id="kakaoShareBtn" onclick="shareKakao(<c:out value="${vo.snSeq}"/>)">
+						<img alt=".." src="/resources/images/kakaotalk_sharing_btn_small.png">
+						<!-- <i class="fa-brands fa-twitter"></i> -->
+					</span>
 				</div>
 				<div class="col-2">
 					<i class="fa-brands fa-facebook-f"></i>
