@@ -497,12 +497,12 @@
 		WHERE 1=1
 	</select>
 	
-	<select id="getTodayNewMember" resultType="Integer">
-		SELECT
+	<select id="getTodayNewComment" resultType="Integer">
+		SELECT 
 			COUNT(*)
-		FROM jsMember
+		FROM jsSurveyComment
 		WHERE 1=1
-			AND registerDateTime >= curdate()
+			AND datetime >= curdate()
 	</select>
 	
 </mapper>

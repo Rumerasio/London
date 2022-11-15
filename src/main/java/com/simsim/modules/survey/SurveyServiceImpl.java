@@ -249,5 +249,11 @@ public class SurveyServiceImpl extends BaseServiceImpl implements SurveyService 
 	public int countUserRecord(SurveyVo vo) throws Exception {return dao.countUserRecord(vo);
 	}
 
+	@Override
+	public int getSurveyNum(SurveyVo vo) throws Exception {	return dao.getSurveyNum(vo);}
+
+	@Override
+	public int getTodayNewComment(SurveyVo vo) throws Exception {return dao.getTodayNewComment(vo);}
+
 
 }

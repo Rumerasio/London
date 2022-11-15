@@ -18,6 +18,8 @@ public interface SurveyService {
 	public List<Survey> selectResultList(SurveyVo vo) throws Exception;
 	public List<Survey> selectCommentList(SurveyVo vo) throws Exception;
 	public int getCommentNum(SurveyVo vo) throws Exception;
+	public int getSurveyNum(SurveyVo vo) throws Exception;
+	public int getTodayNewComment(SurveyVo vo) throws Exception;
 	
 	public List<Survey> selectContentRecordList(SurveyVo vo) throws Exception;
 	

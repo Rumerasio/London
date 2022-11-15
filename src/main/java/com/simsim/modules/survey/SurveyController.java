@@ -50,9 +50,18 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value="/zdminMain")
-	public String zdminMain(MemberVo vo,SurveyVo vo2,HttpSession httpSession) throws Exception{
+	public String zdminMain(MemberVo vo,SurveyVo vo2,HttpSession httpSession, Model model) throws Exception{
 		String rtSeq = (String) httpSession.getAttribute("sessSeq");
 		vo.setSeq(rtSeq);
+		int result1 = service.getSurveyNum(vo2);
+		int result2 = service.getTodayNewComment(vo2);
+		int result3 = service2.getTodayNewMember(vo);
+		System.out.println("------");
+		System.out.println(result3);
+		model.addAttribute("num", result1);
+		model.addAttribute("newCmt", result2);
+		model.addAttribute("newMbr", result3);
+		
 		return "zdmin/zdminMain";
 	}
 	
@@ -229,6 +238,8 @@ public class SurveyController {
 		
 		String rtSeq = (String) httpSession.getAttribute("sessSeq");
 		vo2.setSeq(rtSeq);
+		vo.setSnSeq(vo.getSnSeq());
+		
 		Member result = service2.selectOne(vo2);
 		model.addAttribute("item2", result);
 		
@@ -252,10 +263,10 @@ public class SurveyController {
 	public String commentInst(@ModelAttribute("vo") SurveyVo vo,Survey dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.CommentInst(dto);
 		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
 		vo.setSeq(dto.getSeq());
 		vo.setSnSeq(dto.getSnSeq());
-		
-		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		return "redirect:/survey";
 	}
@@ -268,6 +279,9 @@ public class SurveyController {
 		service.CommentVele(dto);
 		
 		vo.setSnSeq(dto.getSnSeq());
+		
+		int result = service.selectSurveyCommentCount(vo);
+		returnMap.put("Num", result);
 		
 		List<Survey> list = service.selectSurveyCommentList(vo);
 		model.addAttribute("list", list);

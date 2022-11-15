@@ -63,7 +63,7 @@
 						<div class="py-5">
 							<span style="font-size: 24px;"><b>콘텐츠 수</b></span><br>
 							<span style="color:black; font-size: 80px;"><i class="fa-regular fa-clipboard"></i></span><br>
-							<span style="font-size: 20px;"><b>5개</b></span>
+							<span style="font-size: 20px;"><b><c:out value="${num}"/>개</b></span>
 						</div>
 					</a>
 				</div>
@@ -74,7 +74,7 @@
 						<div class="py-5">
 							<span style="font-size: 24px;"><b>신규회원수</b></span><br>
 							<span style="color:black; font-size: 80px;"><i class="fa-regular fa-id-card"></i></span><br>
-							<span style="font-size: 20px;"><b>1명</b></span>
+							<span style="font-size: 20px;"><b><c:out value="${newMbr}"/>명</b></span>
 						</div>
 					</a>
 				</div>
@@ -85,7 +85,7 @@
 						<div class="py-5">
 							<span style="font-size: 24px;"><b>오늘의 댓글수</b></span><br>
 							<span style="color:black; font-size: 80px;"><i class="fa-regular fa-comment"></i></span><br>
-							<span style="font-size: 20px;"><b>3개</b></span>
+							<span style="font-size: 20px;"><b><c:out value="${newCmt}"/>개</b></span>
 						</div>
 					</a>
 				</div>

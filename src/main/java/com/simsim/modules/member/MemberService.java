@@ -25,6 +25,7 @@ public interface MemberService {
 	public int delete(MemberVo vo) throws Exception;
 	public Member selectAdminId(MemberVo vo) throws Exception;
 	public Member selectAdminLogin(MemberVo vo) throws Exception;
+	public int getTodayNewMember(MemberVo vo) throws Exception;
 	
 	
 	

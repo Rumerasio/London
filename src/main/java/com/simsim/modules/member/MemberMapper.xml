@@ -263,5 +263,13 @@
 	<delete id="delete">
 		DELETE FROM jsMember WHERE seq = #{seq}
 	</delete>
+	
+	<select id="getTodayNewMember" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM jsMember
+		WHERE 1=1
+			AND registerDateTime >= curdate()
+	</select>
 
 </mapper>

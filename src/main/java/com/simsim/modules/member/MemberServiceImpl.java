@@ -121,4 +121,8 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectAdminLogin(vo);
 	}
 
+	@Override
+	public int getTodayNewMember(MemberVo vo) throws Exception {return dao.getTodayNewMember(vo);
+	}
+
 }
