@@ -45,7 +45,7 @@ public class MemberDao {
 	public int insert(Member dto) {return sqlSession.insert(namespace+".insert", dto);}
 	
 	public int kakaoInst(Member dto) {return sqlSession.insert(namespace+".kakaoInst", dto);}
-	
+	public int naverInst(Member dto) {return sqlSession.insert(namespace+".naverInst", dto);}
 	public Member snsLoginCheck(Member dto) {return sqlSession.selectOne(namespace+".snsLoginCheck", dto);}
 	
 	public int update(Member dto) {return sqlSession.update(namespace+".update", dto);}

@@ -44,6 +44,7 @@
 			<exclude-mapping path="/zdminLoginProc" />
 			<exclude-mapping path="/loginProc" />
 			<exclude-mapping path="/kakaoLoginProc" />
+			<exclude-mapping path="/naverLoginProc" />
 			<exclude-mapping path="/register" />
 			<exclude-mapping path="/myPage/userVele" />
 			<exclude-mapping path="/userReg" />

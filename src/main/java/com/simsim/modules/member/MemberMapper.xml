@@ -231,14 +231,38 @@
 		</selectKey>
 	</insert>
 	
+	<insert id="naverInst">
+		INSERT INTO jsMember(
+			nickname
+			,gender
+			,email
+			,dob
+			,delNy
+			,snsId
+		)
+		VALUES(
+			#{nickname}
+			,#{gender}
+			,#{email}
+			,#{dob}
+			,0
+			,#{snsId}
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
 	<select id="snsLoginCheck" resultMap="resultMapObj">
 		SELECT
 			seq
+			,nickname
 			,snsId
 		FROM jsMember
 		WHERE 1=1
 			AND email=#{email}
 			AND delNy=0
+			AND snsId=#{snsId}
 	</select>
 	
 	<update id="update">

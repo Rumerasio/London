@@ -125,4 +125,8 @@ public class MemberServiceImpl implements MemberService {
 	public int getTodayNewMember(MemberVo vo) throws Exception {return dao.getTodayNewMember(vo);
 	}
 
+	@Override
+	public int naverInst(Member dto) throws Exception {return dao.naverInst(dto);
+	}
+
 }

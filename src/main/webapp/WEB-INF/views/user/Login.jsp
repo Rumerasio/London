@@ -70,6 +70,12 @@
 		<div class="row justify-content-center pb-5 mb-2">
 			<span><button type="button" id="btnKakaoLogin" name="btnKakaoLogin" class="btn" style="background-color:#FCE51E; color:black; width:320px;">카카오톡으로 로그인</button></span>
 		</div>
+		<div class="row justify-content-center pb-5 mb-2">
+			<span><button type="button" id="btnNaverLogin" name="btnNaverLogin" class="btn" style="background-color:green; color:black; width:320px;">네이버로 로그인</button></span>
+		</div>
+		 <div>
+	      <div id="naverIdLogin"></div>
+	    </div>
 		<!-- <div class="row justify-content-center mb-2">
 			<span><input type="button" class="btn" value="Facebook으로 로그인" style="background-color:#1877F2; color:white; width:320px;"></span>
 		</div>
@@ -201,6 +207,82 @@
 		      },
 		    })
 	});
+</script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script type="text/javascript">
+	$("#btnNaverLogin").on("click", function() {
+		
+			
+		
+		/* var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "7ONlz7Bim5hRaiHfpGsf",
+				callbackUrl: "http://localhost:8080/loginPage",
+				isPopup: false,
+				callbackHandle: true
+			}
+		); */
+			var naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId: "7ONlz7Bim5hRaiHfpGsf",
+					callbackUrl: "http://localhost:8080/loginPage",
+					isPopup: true,
+					callbackHandle: true
+				}
+			);
+		
+			naverLogin.init();
+			
+			naverLogin.getLoginStatus(function (status) {
+   				if (status) {
+   					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+   					setLoginStatus();
+   				} else {
+   					window.open(naverLogin.authorize(),"_blank","width=500, height=500");
+   					setLoginStatus();
+   				}   				
+   					console.log(naverLogin.user);
+   			});
+			
+// 			window.addEventListener('load', function () {
+//				naverLogin.getLoginStatus(function (status) {
+//					if (status) {
+//						/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+//						setLoginStatus();
+//					}
+//				});
+//			});
+ 			
+			function setLoginStatus() {
+				
+				if (naverLogin.user.gender == 'M'){
+					$("input[name=gender]").val(101);
+				} else {
+					$("input[name=gender]").val(102);
+				} 
+				
+				$.ajax({
+					async: true
+					,cache: false
+					,type:"POST"
+					,url: "/naverLoginProc"
+					,data: {"nickname": naverLogin.user.nickname, "snsId": "네이버로그인", "email": naverLogin.user.email, "gender": $("input[name=gender]").val(), "dob": naverLogin.user.birthyear+"-"+naverLogin.user.birthday}
+					,success : function(response) {
+						if (response.rt == "fail") {
+							alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+							return false;
+						} else {
+							alert("네이버 로그인이 완료되었습니다.");
+							window.location.href = "/";
+						}
+					},
+					error : function(jqXHR, status, error) {
+						alert("알 수 없는 에러 [ " + error + " ]");
+					}
+				});
+			}
+	});
+/* naver login test e */
 </script>
 </body>
 </html>

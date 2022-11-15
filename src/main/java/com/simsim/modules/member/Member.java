@@ -16,6 +16,7 @@ public class Member {
 	private Integer delNy;
 	private Integer lgResultNy;
 	private Integer adminNy;
+	private Integer snsType;
 	
 	private String idp;
 	private String emailp;
@@ -183,6 +184,12 @@ public class Member {
 	}
 	public void setAdminNy(Integer adminNy) {
 		this.adminNy = adminNy;
+	}
+	public Integer getSnsType() {
+		return snsType;
+	}
+	public void setSnsType(Integer snsType) {
+		this.snsType = snsType;
 	}
 	
 

@@ -19,6 +19,7 @@ public interface MemberService {
 	public Member selectOneLogin(MemberVo vo) throws Exception;
 	public int insert(Member dto) throws Exception;
 	public int kakaoInst(Member dto) throws Exception;
+	public int naverInst(Member dto) throws Exception;
 	public Member snsLoginCheck(Member dto) throws Exception;
 	public int update(Member dto) throws Exception;
 	public int velete(Member dto) throws Exception;
