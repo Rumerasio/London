@@ -32,7 +32,6 @@
 				<choose>
 					<when test="shValue != null">AND survey LIKE CONCAT('%',#{shValue},'%')</when>
 				</choose>
-				order by snSeq DESC
 			<include refid="Base.orderByLimitForMysql"></include>
 		<include refid="Base.selectListLowerForMysql"></include>
 	</select>

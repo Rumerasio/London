@@ -117,7 +117,7 @@
 										<c:forEach items="${list2}" var="list2" varStatus="status">
 											<c:choose>
 												<c:when test="${list2.sqSeq eq list.sqSeq }">
-													<div class="col-4 offset-2 my-3">
+													<div class="col-3 offset-2 my-3">
 														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
 														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
 													</div>

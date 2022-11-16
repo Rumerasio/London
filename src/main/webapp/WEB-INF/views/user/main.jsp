@@ -105,20 +105,20 @@
 							</a> 
 						</li> 
 						<li class="main_top_item mti_3"> 
-							<div class="thumb" style="background-image:url('/resources/images/watermelon.jpg')"></div> 
-							<a href="javascript:goSurvey(4)" title="여행지 테스트"> 
+							<div class="thumb" style="background-image:url('/resources/images/simpleSeries/couple.png')"></div> 
+							<a href="javascript:goSurvey(28)" title="."> 
 								<p> 
-									<span class="subject font-serif">여행지 테스트</span> 
-									<span class="description">올 여름 어디로 여행을 갈까!?</span> 
+									<span class="subject font-serif">간단한 심리 테스트 시리즈</span> 
+									<span class="description">생각한 우선순위를 기억하세요!</span> 
 								</p> 
 							</a> 
 						</li> 
 						<li class="main_top_item mti_4">
-						<div class="thumb" style="background-image:url('/resources/images/ai.jpg')"></div> 
-						<a href="javascript:goSurvey(2)" title=""> 
+						<div class="thumb" style="background-image:url('/resources/images/desert.png')"></div> 
+						<a href="javascript:goSurvey(1)" title=""> 
 							<p> 
-								<span class="subject font-serif">나는 뇌를 얼마나 쓰고 있을까?</span> 
-								<span class="description">퀴즈로 알아보는 뇌사용률!</span> 
+								<span class="subject font-serif">당신이 사막을 건너기 위한 준비물</span> 
+								<span class="description">바싹마른 사막을 건너야한다!</span> 
 							</p> 
 						</a> 
 						</li>

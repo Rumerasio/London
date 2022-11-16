@@ -73,7 +73,7 @@
 							<div class="container pt-5" style="text-align: center;">
 								<c:forEach items="${list2}" var="list2" varStatus="status">
 							    	<c:if test="${list2.type eq 4 && list2.pseq eq vo.snSeq && (list2.sort+1) eq list.resultNum}">
-							    		<img class="result_img" src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" alt="..." style="width: 400px; margin-top:200px;">
+							    		<img class="result_img" src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" alt="..." style="margin-top:200px;">
 							    	</c:if>
 							    </c:forEach>
 								<div class="mt-4 result_title" style="text-align: center;">
