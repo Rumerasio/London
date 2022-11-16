@@ -238,7 +238,7 @@
    					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
    					setLoginStatus();
    				} else {
-   					window.open(naverLogin.authorize(),"_blank","width=500, height=500");
+   					naverLogin.authorize();
    					setLoginStatus();
    				}   				
    					console.log(naverLogin.user);
