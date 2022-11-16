@@ -68,10 +68,8 @@
 		<input type="hidden" name="dob"/>
 		<input type="hidden" name="token"/>
 		<div class="row justify-content-center pb-5 mb-2">
-			<span><button type="button" id="btnKakaoLogin" name="btnKakaoLogin" class="btn" style="background-color:#FCE51E; color:black; width:320px;">카카오톡으로 로그인</button></span>
-		</div>
-		<div class="row justify-content-center pb-5 mb-2">
-			<span><button type="button" id="btnNaverLogin" name="btnNaverLogin" class="btn" style="background-color:green; color:black; width:320px;">네이버로 로그인</button></span>
+			<span><button type="button" id="btnKakaoLogin" name="btnKakaoLogin" class="btn py-1" style="background-color:#FCE51E; color:black; width:320px;">카카오톡으로 로그인</button></span>
+			<span><button type="button" id="btnNaverLogin" name="btnNaverLogin" class="btn py-1" style="background-color:#19CE60; color:white; width:320px;">네이버로 로그인</button></span>
 		</div>
 		 <div>
 	      <div id="naverIdLogin"></div>
