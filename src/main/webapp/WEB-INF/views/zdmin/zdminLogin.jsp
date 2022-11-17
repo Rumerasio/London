@@ -49,13 +49,13 @@
 		<div class="row justify-content-center mt-3">
 			<div class="col-1 offset-1 px-1" style="font-size: 22px;"><i class="fa-solid fa-user"></i></div>
 			<div class="col-9 mb-3">
-			  <input type="text" class="form-control" id="id" name="id" placeholder="ID" value="">
+			  <input type="text" class="form-control" id="id" name="id" placeholder="ID" value="leejong">
 			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-1 offset-1 px-1" style="font-size: 22px;"><i class="fa-solid fa-key"></i></div>
 			<div class="col-9 mb-3">
-			  <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="">
+			  <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="l22j0ng">
 			</div>
 		</div>
 	</form>
