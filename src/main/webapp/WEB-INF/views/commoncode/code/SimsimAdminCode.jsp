@@ -152,7 +152,10 @@
 				    			<td><c:out value="${list.codeAnother }"/></td>
 				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameKor }"/> - <c:out value="${list.codeNameKor }"/></a></td>
 				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameEng }"/> - <c:out value="${list.codeNameEng }"/></a></td>
-				    			<td><c:out value="${list.useNy }"/></td>
+				    			<td>
+							  		<c:if test="${list.useNy eq 0 }">N</c:if>
+							  		<c:if test="${list.useNy eq 1 }">Y</c:if>
+							  	</td>
 				    			<td><c:out value="${list.turn }"/></td>
 				    			<td>2018.05.07 11:25:30</td>
 				    			<td>2021.07.02 16:30:58</td>

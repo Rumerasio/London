@@ -145,7 +145,10 @@
 				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameKor }"/></a></td>
 				    			<td><a href="javascript:goView(<c:out value="${list.seq }"/>)"><c:out value="${list.codeGroupNameEng }"/></a></td>
 				    			<td><c:out value="${list.codeNum }"/></td>
-				    			<td><c:out value="${list.delNy }"/></td>
+				    			<td>
+							  		<c:if test="${list.delNy eq 0 }">N</c:if>
+							  		<c:if test="${list.delNy eq 1 }">Y</c:if>
+							  	</td>
 				    			<td>2018.05.07 11:25:30</td>
 				    			<td>2021.07.02 16:30:58</td>
 				    		</tr>

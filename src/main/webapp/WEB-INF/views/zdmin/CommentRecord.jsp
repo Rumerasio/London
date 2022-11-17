@@ -173,7 +173,10 @@
 							  	<td></td>
 							  	<td></td>
 							  	<td><c:out value="${list.datetime }"/></td>
-							  	<td><c:out value="${list.delNy }"/></td>
+							  	<td>
+							  		<c:if test="${list.delNy eq 0 }">N</c:if>
+							  		<c:if test="${list.delNy eq 1 }">Y</c:if>
+							  	</td>
 							  </tr>
 				  		</c:forEach>
 				  	</c:otherwise>
