@@ -103,7 +103,7 @@
 				<c:otherwise>
 					<c:forEach items="${list}" var="list" varStatus="status">
 						<c:choose>
-							<c:when test="${list.question eq 1}">
+							<c:when test="${list.question eq 1} and ${status.last}">
 								<div class="container" id="content_page_<c:out value="${list.question}"/>">
 									<div>
 										<h5><c:out value="${list.questionContent }"/></h5>
@@ -119,6 +119,35 @@
 												<c:when test="${list2.sqSeq eq list.sqSeq }">
 													<div class="col-3 offset-2 my-3">
 														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="selectAndHide(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
+														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
+													</div>
+												</c:when>
+												<c:otherwise></c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
+									<div class="progress my-4">
+									  <div class="progress-bar" role="progressbar" style="width: calc( 100%/<c:out value="${total }"/>*<c:out value="${list.question}"/>); background-color:#a5d610;" aria-valuenow="calc(100/<c:out value="${total }"/>* <c:out value="${list.question}"/>)" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<a href="javascript:goSurvey(<c:out value="${vo.snSeq}"/>)"><button type="button" class="btn btn-secondary survey_back" id="btnBack_<c:out value="${list.question}"/>">이전으로</button></a>
+							</c:when>
+							<c:when test="${list.question eq 1}">
+								<div class="container" id="content_page_<c:out value="${list.question}"/>">
+									<div>
+										<h5><c:out value="${list.questionContent }"/></h5>
+										<c:forEach items="${list3}" var="list3" varStatus="status">
+									    	<c:if test="${list3.type eq 3 && list3.pseq eq vo.snSeq && (list3.sort+1) eq list.question}">
+									    		<img src="<c:out value="${list3.path }"/><c:out value="${list3.uuidName }"/>" alt="..." style="width:730px; padding-bottom:20px;">
+									    	</c:if>
+									    </c:forEach>
+									</div>
+									<div class="row choice_box my-5	">
+										<c:forEach items="${list2}" var="list2" varStatus="status">
+											<c:choose>
+												<c:when test="${list2.sqSeq eq list.sqSeq }">
+													<div class="col-4 offset-2 my-3">
+														<input type="radio" class="btn-check" value="<c:out value="${list2.choice}"/>" name="btn_<c:out value="${list.question}"/>" id="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>" onclick="sendChoice(<c:out value="${list.question}"/>)" value="<c:out value="${list2.choice}"/>">
 														<label class="btn btn-outline-secondary" style="width:226px; font-size: 13px;" for="btn_<c:out value="${list.question}"/>_<c:out value="${list2.choice}"/>"><c:out value="${list2.choiceContent }"/></label>
 													</div>
 												</c:when>
