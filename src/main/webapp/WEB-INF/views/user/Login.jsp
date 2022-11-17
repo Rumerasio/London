@@ -211,7 +211,7 @@
 
 	var naverLogin = new naver.LoginWithNaverId(
 		{
-			clientId: "7ONlz7Bim5hRaiHfpGsf",
+			clientId: "TzBvAuvAxjfvnDVNta6l",
 			callbackUrl: "http://localhost:8080/loginPage",
 			isPopup: true,
 			callbackHandle: true
