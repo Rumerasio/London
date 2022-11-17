@@ -49,7 +49,7 @@
 	li {
 		margin: 10px;
 	}
-	#kakaoShareBtn:hover{
+	#kakaoShareBtn:hover, #copyBtn:hover{
 		cursor: pointer;
 	}
 </style>
@@ -269,7 +269,7 @@
 			<h6><b>친구에게 테스트 공유하기</b></h6>
 			<div class="row my-3" style="width: 368px; margin: auto; font-size: 40px;">
 				<div class="col-2 offset-3">
-					<i onclick="copyUrl(<c:out value="${vo.snSeq}"/>)" class="fa-solid fa-share-nodes"></i>
+					<i id="copyBtn" onclick="copyUrl(<c:out value="${vo.snSeq}"/>)" class="fa-solid fa-share-nodes"></i>
 				</div>
 				<div class="col-2">
 					<span id="kakaoShareBtn" onclick="shareKakao(<c:out value="${vo.snSeq}"/>)">
@@ -277,9 +277,9 @@
 						<!-- <i class="fa-brands fa-twitter"></i> -->
 					</span>
 				</div>
-				<div class="col-2">
+				<!-- <div class="col-2">
 					<i class="fa-brands fa-facebook-f"></i>
-				</div>
+				</div> -->
 			</div>
 			<form method="post" name="formVo">
 				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
@@ -321,6 +321,7 @@
 		var textarea = document.createElement("textarea");
 		document.body.appendChild(textarea);
 		url = "http://localhost:8080/survey?snSeq="+keyValue+"";
+//		url = "http://3.34.138.48/survey?snSeq="+keyValue+"";
 		textarea.value=url;
 		textarea.select();
 		document.execCommand("copy");
