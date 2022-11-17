@@ -269,7 +269,7 @@
 			<h6><b>친구에게 테스트 공유하기</b></h6>
 			<div class="row my-3" style="width: 368px; margin: auto; font-size: 40px;">
 				<div class="col-2 offset-3">
-					<i class="fa-solid fa-share-nodes"></i>
+					<i onclick="copyUrl(<c:out value="${vo.snSeq}"/>)" class="fa-solid fa-share-nodes"></i>
 				</div>
 				<div class="col-2">
 					<span id="kakaoShareBtn" onclick="shareKakao(<c:out value="${vo.snSeq}"/>)">
@@ -315,6 +315,20 @@
 		snSeq.val(keyValue);
 		formVo.attr("action", goUrlSurvey).submit();
 	}
+	
+	copyUrl = function(keyValue) {
+		var url ="";
+		var textarea = document.createElement("textarea");
+		document.body.appendChild(textarea);
+		url = "http://localhost:8080/survey?snSeq="+keyValue+"";
+		textarea.value=url;
+		textarea.select();
+		document.execCommand("copy");
+		document.body.removeChild(textarea);
+		alert("url이 복사되었습니다.");
+		
+	}
+	
 </script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
@@ -336,16 +350,24 @@
 		      imageWidth: 1200,
 		      imageHeight: 630,
 		      link: {
+		    	// 테스트 환경
 		        mobileWebUrl: 'http://localhost:8080/survey',
 		        androidExecutionParams: 'test',
+		      //실제 환경
+//		        mobileWebUrl: 'http://3.34.138.48/survey',
+//		        androidExecutionParams: 'test',
 		      },
 		    },
 		    buttons: [
 		      {
 		        title: '테스트 하러가기',
 		        link: {
+		        // 테스트 환경
 		          mobileWebUrl: 'http://localhost:8080/survey?snSeq='+keyValue+'',
 		          webUrl: 'http://localhost:8080/survey?snSeq='+keyValue+'',
+		        //실제 환경		  
+//		          mobileWebUrl: 'http://3.34.138.48/survey?snSeq='+keyValue+'',
+//		          webUrl: 'http://3.34.138.48/survey?snSeq='+keyValue+'',
 		        },
 		      },
 		    ],
