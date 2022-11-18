@@ -95,543 +95,247 @@
 	<div class="col-10" style="white-space:nowrap;">
 		<h5 class="mt-3"><b>컨텐츠 관리</b></h5>
 		<h6 style="color:gray;"><b>컨텐츠 등록</b></h6>
-		<form method="post", id="myForm" name="myForm">
+		<h1>작업중</h1>
+		<form method="post" id="myForm" name="myForm" autocomplete="off" enctype="multipart/form-data">
 			<div class="p-5 mb-5" style="background-color: white; position:relative;">
 				<div class="my-3 pt-3 float-start" id="contentMainDisplay"><h6 style="display: inline-block;"><b>컨텐츠 메인화면</b></h6></div>
 				<div class="form-check form-switch float-end my-3 pt-3" style="display: inline-block;">
-				  <input class="form-check-input" type="checkbox" role="switch" id="multichoiceNy">
-				  <label class="form-check-label" for="multichoiceNy">컨텐츠 공개</label>
+				  <input class="form-check-input" type="checkbox" role="switch" name="openNy" id="openNy">
+				  <label class="form-check-label" for="openNy">컨텐츠 공개</label>
 				</div>
 				<div style="clear:both;"></div>
 				<div class="mb-3">
-				  <label for="contentTitleInput" class="form-label">컨텐츠 제목</label>
-				  <input type="text" class="form-control form-control-sm" id="survey" name="survey" value="<c:out value="${item. }"></c:out>">
+				  <label for="survey" class="form-label">컨텐츠 제목</label>
+				  <input type="text" class="form-control form-control-sm" id="survey" name="survey" value="<c:out value="${item.survey }"/>">
 				</div>
 				<div class="mb-3">
-				  <label for="contentLittleTitleInput" class="form-label">컨텐츠 소제목</label>
-				  <input type="text" class="form-control form-control-sm" id="surveyPhrase" name="surveyPhrase" value="나는 무슨 별자리일까?">
+				  <label for="surveyPhrase" class="form-label">컨텐츠 소제목</label>
+				  <input type="text" class="form-control form-control-sm" id="surveyPhrase" name="surveyPhrase" value="<c:out value="${item.surveyPhrase }"/>">
 				</div>
 				<div class="mb-3">
-				  <label for="contentIntroduceInput" class="form-label">컨텐츠 설명</label>
-				  <textarea type="text" class="form-control form-control-sm" id="surveyExplain" name="surveyExplain" style="resize:none; height:6.25em;">도시에선 보기 힘든 밤하늘의 아름다운 별!
-	나를 뜻하는 별자리가 무엇일지 궁금하지 않으세요?</textarea>
+				  <label for="surveyExplain" class="form-label">컨텐츠 설명</label>
+				  <textarea type="text" class="form-control form-control-sm" id="surveyExplain" name="surveyExplain" style="resize:none; height:6.25em;"><c:out value="${item.surveyExplain }"/></textarea>
 				</div>
 				<div class="my-3 pt-3" id="contentImageRegistration"><h6><b>컨텐츠 이미지 등록</b></h6></div>
 				<div class="row">
-					<div class="col-4">
-						<div class="row justify-content-center">
-							<img class="img-thumbnail" alt="" id="preview0" style="width:157px; height:210px;">
-						</div>
-						<div class="row justify-content-center">
-							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>대형배너(385 x 515)</h6>
-							<label class="btn btn-sm mb-4" id="input-file-button" for="input-file0" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" onchange="readURL0(this);" id="input-file0" style="display:none;">
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="row justify-content-center">
-							<img class="img-thumbnail" alt="" id="preview1" style="width:290px; height:210px;">
-						</div>
-						<div class="row justify-content-center">
-							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>중형배너(420 x 305)</h6>
-							<label class="btn btn-sm mb-4" id="input-file-button" for="input-file1" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" onchange="readURL1(this);" id="input-file1" style="display:none;">
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="row justify-content-center">
-							<img class="img-thumbnail" alt="" id="preview2" style="width:210px; height:210px;">
-						</div>
-						<div class="row justify-content-center">
-							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>소형배너(210 x 210)</h6>
-							<label class="btn btn-sm mb-4" id="input-file-button" for="input-file2" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" onchange="readURL2(this);" id="input-file2" style="display:none;">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-4">
-						<div class="row justify-content-center">
-							<img class="img-thumbnail" alt="" id="preview3" style="width:315px; height:210px;">
+					<div class="col-5">
+						<c:set var="type" value="1"/>		<!-- #-> -->
+			        	<c:set var="name" value="uploadImgCard"/>		<!-- #-> -->
+			        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0" />
+			        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+			        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+						<div class="row justify-content-center" id="<c:out value="${name}"/>Preview">
+							<img class="img-thumbnail" alt="" src="
+							<c:forEach items="${imgList}" var="imgList" varStatus="status">
+								<c:choose>
+	        						<c:when test="${imgList.type eq type}">
+										<c:out value="${imgList.path }"/><c:out value="${imgList.uuidName }"/>
+									</c:when>
+	        					</c:choose>
+        					</c:forEach>
+							" style="width:315px; height:210px;">
 						</div>
 						<div class="row justify-content-center">
 							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>카드형(240 x 160)</h6>
-							<label class="btn btn-sm mb-4" id="input-file-button" for="input-file3" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" onchange="readURL3(this);" id="input-file3" style="display:none;">
+								<label class="btn btn-sm mb-4" id="input-file-button" for="uploadImgCard" style="width:100px; background-color:#525252">첨부파일</label>
+								<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>',<c:out value="${type }"/>, 1, 1, 0, 0, 1, 315, 210, 0);">
 						</div>
 					</div>
-					<div class="col-8">
-						<div class="row justify-content-center">
-							<img class="img-thumbnail" alt="" id="preview4" style="width:400px; height:210px;">
+					<div class="col-7">
+						<c:set var="type" value="2"/>		<!-- #-> -->
+			        	<c:set var="name" value="uploadImgMain"/>		<!-- #-> -->
+			        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+			        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+			        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+						<div class="row justify-content-center" id="<c:out value="${name }"/>Preview">
+							<img class="img-thumbnail" alt="" src="
+							<c:forEach items="${imgList}" var="imgList" varStatus="status">
+								<c:choose>
+	        						<c:when test="${imgList.type eq type}">
+										<c:out value="${imgList.path }"/><c:out value="${imgList.uuidName }"/>
+									</c:when>
+	        					</c:choose>
+        					</c:forEach>
+							" style="width:400px; height:210px;">
 						</div>
 						<div class="row justify-content-center">
 							<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>컨텐츠 메인 이미지(730 x *)</h6>
-							<label class="btn btn-sm mb-4" id="input-file-button" for="input-file4" style="width:100px; background-color:#525252">첨부파일</label>
-							<input type="file" onchange="readURL4(this);" id="input-file4" style="display:none;">
+							<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>" style="width:100px; background-color:#525252">첨부파일</label>
+							<input type="file" multiple="multiple" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 400, 210, 0);">
 						</div>
 					</div>
 				</div>
 				
-				<div class="my-3 pt-3" id="contentPageRegistration"><h6><b>컨텐츠 페이지 작성</b></h6></div>
-				<div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 1</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="questionContent" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="choice2" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choice2score" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 2</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="choice2" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choice2score" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 3</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="choice2" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choice2score" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 4</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="choice2" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choice2score" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>Page 5</h5></div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" name="questionContent" placeholder="질문">
-					</div>
-					<div class="my-3 row">
-						<h6 class="col-2"><b>선택지</b></h6>
-						<div class="form-check form-switch col-2">
-						  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy">
-						  <label class="form-check-label" for="multiChoiceNy">중복 선택</label>
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지1 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지2 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지3 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지4 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id=choiceContent name="choiceContent" placeholder="선택지5 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choiceScore" placeholder="배점">
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<div class="col-10">
-							<input type="text" class="form-control form-control-sm" id="choice2" placeholder="선택지6 내용">
-						</div>
-						<div class="col-1">
-							<input type="text" class="form-control form-control-sm col-1" id="choice2score" placeholder="배점">
-						</div>
-						<div class="col-12 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview5" style="width:400px; height:210px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">질문 이미지<br>(730 x *)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file5" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL5(this);" id="input-file5" style="display:none;">
-							</div>
-						</div>
-					</div>
-				</div>
+				<%@include file="ContentDto.jsp"%>		<!-- #-> -->
 				
-				<div class="my-3 pt-3" id="contentResultRegistration"><h6><b>결과 페이지 작성</b></h6></div>
-				<div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
+				<div id="contentTotal">
+					<div class="my-3 pt-3 mr-2" id="contentPageRegistration" style="display:inline-block; ;"><h6 style="display: inline;"><b>컨텐츠 페이지 작성</b></h6></div>
+					<button type="button" class="btn btn-success btn-sm" id="btnPageAdd" onclick="PageAdd('questionForm')" style="border:none;"><i class="fa-solid fa-plus"></i></button>
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<c:choose>
+							<c:when test="${list.question eq 1 }">
+									<div class="container" id="questionForm_<c:out value="${list.question }"/>" name="questionForm" style="margin-left:0px; margin-bottom:20px; border:solid; border-width:2px; width:100%;">
+										<div class="float-start my-3" style="display: inline-block;"><h5 style="display: inline-block;">Page <c:out value="${list.question }"/></h5></div>
+										<!-- <button type="button" id="QuestionFormDel_1" onclick="PageDel(1)" class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button> -->
+										<div style="clear:both;"></div>
+										<div class="mb-3">
+										  <input type="text" class="form-control form-control-sm" id="question_<c:out value="${list.question }"/>" name="" placeholder="질문" value="<c:out value="${list.questionContent }"/>">
+										</div>
+										<div class="my-3 row">
+											<h6 class="col-1"><b>선택지</b></h6>
+											<button type="button" class="btn btn-success btn-sm" id="btnPageAdd" onclick="ChoiceAdd(<c:out value="${list.question }"/>)" style="border:none; width: 30px;"><i class="fa-solid fa-plus"></i></button>
+											<div class="form-check form-switch col-2 mx-5 px-5">
+											  <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy_<c:out value="${list.question }"/>">
+											  <label class="form-check-label" for="multiChoiceNy_<c:out value="${list.question }"/>">중복 선택</label>
+											</div>
+										</div>
+										<c:forEach items="${list2}" var="list2" varStatus="status">
+											<c:choose>
+												<c:when test="${list.sqSeq eq list2.jsSurveyQuestion_sqSeq}">
+													<c:choose>
+														<c:when test="${list2.choice eq 1}">
+															<div class="mb-3 row" id="choiceForm_<c:out value="${list.question }"/>_1">
+																<div class="col-10">
+																	<input type="text" class="form-control form-control-sm" id="choice_<c:out value="${list.question }"/>_1" name="choice_<c:out value="${list.question }"/>" placeholder="선택지1 내용" value="<c:out value="${list2.choiceContent }"/>">
+																</div>
+																<div class="col-1">
+																	<input type="text" class="form-control form-control-sm col-1" id="choiceScore_<c:out value="${list.question }"/>_1" name="choiceScore_<c:out value="${list.question }"/>" placeholder="배점" value="<c:out value="${list2.choiceScore }"/>">
+																</div>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="mb-3 row" id="choiceForm_<c:out value="${list.question }"/>_2">
+																<div class="col-10">
+																	<input type="text" class="form-control form-control-sm" id="choice_<c:out value="${list.question }"/>_2" name="choice_<c:out value="${list.question }"/>" placeholder="선택지2 내용" value="<c:out value="${list2.choiceContent }"/>">
+																</div>
+																<div class="col-1">
+																	<input type="text" class="form-control form-control-sm col-1" id="choiceScore_<c:out value="${list.question }"/>_2" name="choiceScore_<c:out value="${list.question }"/>" placeholder="배점" value="<c:out value="${list2.choiceScore }"/>">
+																</div>
+																<button type="button" id="ChoiceFormDel_<c:out value="${list.question }"/>_2" onclick="ChoiceDel(<c:out value="${list.question }"/>,2)" class="btn btn-danger btn-sm mx-3" style="border:none; width: 30px;"><i class="fa-solid fa-minus"></i></button>
+															</div>
+														</c:otherwise>
+													</c:choose>
+												</c:when>
+												<c:otherwise></c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<div class="mb-3 row">
+											<div class="col-12 mt-3">
+												<div class="row justify-content-center">
+													<c:set var="type" value="3"/>		<!-- #-> -->
+										        	<c:set var="name" value="uploadImgQuestion"/>		<!-- #-> -->
+										        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber_1" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+										        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq_1" name="<c:out value="${name }"/>DeleteSeq"/>
+										        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile_1" name="<c:out value="${name }"/>DeletePathFile"/>
+										        	
+								        				<div class="row justify-content-center" id="<c:out value="${name }"/>Preview_1">
+															<img class="img-thumbnail" alt="" src="
+															<c:forEach items="${imgList}" var="imgList" varStatus="status">
+																<c:choose>
+									        						<c:when test="${imgList.type eq type && imgList.sort+1 eq list.question}">
+																		<c:out value="${imgList.path }"/><c:out value="${imgList.uuidName }"/>
+																	</c:when>
+									        					</c:choose>
+								        					</c:forEach>
+															" style="width:400px; height:210px;">
+														</div>
+														<div class="row justify-content-center">
+															<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>질문 이미지(730 x *)</h6>
+															<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>_1" style="width:100px; background-color:#525252">첨부파일</label>
+															<input type="file" multiple="multiple" id="<c:out value="${name }"/>_1" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 400, 210, 1);">
+														</div>
+								        			<%-- <c:when test="${imgList.type eq type}">
+								        				<div class="row justify-content-center" id="<c:out value="${name }"/>Preview_1">
+															<img class="img-thumbnail" alt="" src="<c:out value="${imgList.path }"/><c:out value="${imgList.uuidName }"/>" style="width:400px; height:210px;">
+														</div>
+														<div class="row justify-content-center">
+															<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>질문 이미지(730 x *)</h6>
+															<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>_1" style="width:100px; background-color:#525252">첨부파일</label>
+															<input type="file" multiple="multiple" id="<c:out value="${name }"/>_1" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 400, 210, 1);">
+														</div>
+								        			</c:when> --%>
+								        			<%-- <c:when test="${imgList.type eq type && imgList.sort+1 eq list.question eq null}">
+								        				<div class="row justify-content-center" id="<c:out value="${name }"/>Preview_1">
+															<img class="img-thumbnail" alt="" style="width:400px; height:210px;">
+														</div>
+														<div class="row justify-content-center">
+															<h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>질문 이미지(730 x *)</h6>
+															<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>_1" style="width:100px; background-color:#525252">첨부파일</label>
+															<input type="file" multiple="multiple" id="<c:out value="${name }"/>_1" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 400, 210, 1);">
+														</div>
+								        			</c:when> --%>
+												</div>
+											</div>
+										</div>
+									</div>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</div>
+				<!-- 임시 E -->
+				
+				<div class="my-3 pt-3" id="contentResultRegistration" style="display: inline-block;"><h6 style="font-size: 20px;"><b>결과 페이지 작성</b></h6></div>
+				<button type="button" class="btn btn-success btn-sm" id="btnResultAdd" onclick="ResultAdd()" style="border:none;"><i class="fa-solid fa-plus"></i></button>
+				<div class="container mb-5" id="resultForm_1" name="resultForm" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
 					<div class="float-start my-3"><h5>#1</h5></div>
-					<div class="float-end my-3">
-						<button class="btn btn-light btn-sm" style="border:none;"><i class="fa-solid fa-plus"></i></button>
-						<button class="btn btn-secondary btn-sm" style="border:none;"><i class="fa-solid fa-minus"></i></button>
-					</div>
 					<div style="clear:both;"></div>
 					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" placeholder="결과 제목" value="열정적으로 늘 새로운 가능성을 찾는 궁수자리">
+					  <input type="text" class="form-control form-control-sm" id="resultTitle_1" placeholder="결과 제목">
 					</div>
 					<div class="row">
 						<div class="col-3 mt-3">
 							<div class="row justify-content-center">
+								<c:set var="type" value="4"/>		<!-- #-> -->
+					        	<c:set var="name" value="uploadImgResult"/>		<!-- #-> -->
+					        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber_1" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+					        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq_1" name="<c:out value="${name }"/>DeleteSeq"/>
+					        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile_1" name="<c:out value="${name }"/>DeletePathFile"/>
+								<div class="row justify-content-center" id="<c:out value="${name }"/>Preview_1">
+									<img class="img-thumbnail" alt="" style="width:220px; height:170px;">
+								</div>
 								<div class="row justify-content-center">
+									<h6 class="my-3" style="text-align: center;">결과 이미지<br>(220 x 170)</h6>
+									<label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>_1" style="width:100px; background-color:#525252">첨부파일</label>
+									<input type="file" multiple="multiple" id="<c:out value="${name }"/>_1" name="<c:out value="${name }"/>" style="display:none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 220, 170, 1);">
+								</div>
+								<!-- <div class="row justify-content-center">
 									<img class="img-thumbnail" alt="" id="preview7" style="width:220px; height:170px;">
 								</div>
 								<h6 class="my-3" style="text-align: center;">결과 이미지<br>(200 x 170)</h6>
 								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file7" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL7(this);" id="input-file7" style="display:none;">
+								<input type="file" onchange="readURL7(this);" id="input-file7" style="display:none;"> -->
 							</div>
 						</div>
 						<div class="col-9">
-				  			<textarea type="text" class="form-control form-control-sm" id="contentIntroduceInput" placeholder="내용을 입력해주세요" style="resize:none; height:20em;">뭐든지 하고자 하는 일이 있을때는 자유롭고 싶어해요.
-	늘 새로운 가능성을 열어두면서 새롭게 시도하는걸 즐기기도 한답니다.
-	그때그대의 일시적인 즐거움 보다는 다른 사람들과 깊은 관계를 맺으면서 행복을 느껴요.
-	그래서인지 항상 활발하고 활기가 넘치며 새로운 모임이나 술자리에서도 분위기 메이커를 담당하고 있어요.
-	어쩔때는 관종 같아보이지만 은근히 내향적이며 조금 과한 독립심을 품고 있어요.
-	반복적인 일상, 틀에 박힌걸 무지 싫어해요.
-	그래서 계획적인 약속은 싫어하고, 즉흥적인 약속을 좋아해요.
-	내가 생각지도 못한 충동구매를 즐기곤해요.
-	안정적이고 안전한 삶을 추구하기 보다는 창의적인 삶을 추구하기 때문에
-	잘 질려하고 권태로움을 잘 느끼기도 한답니다.</textarea>
+				  			<textarea type="text" class="form-control form-control-sm" id="resultContent_1" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>
 						</div>
 					</div>
 					<div class="mb-3 row">
 					  <label for="resultScoreRange" class="col-2 col-form-label">결과 점수합 범위</label>
 					  <div class="col-1">
-					    <input type="text" class="form-control" id="resultScoreRange" placeholder="이상" value="3">
+					    <input type="text" class="form-control" id="scoreRangeStart_1" placeholder="이상">
 					  </div>
 					  <div class="col-auto" style="font-size: 24px;">~</div>
 					  <div class="col-1">
-					    <input type="text" class="form-control" id="resultScoreRange" placeholder="이하" value="7">
+					    <input type="text" class="form-control" id="scoreRangeEnd_1" placeholder="이하">
+					  </div>
+					</div>
+					<div class="mb-3 row" style="text-align: center;">
+					  <label for="resultRelation" class="col-2 col-form-label">관계성</label>
+					  <div class="col-2">
+					    <input type="text" class="form-control" id="relation1_1" placeholder="관계1">
+					  </div>
+					  <div class="col-2">
+					    <input type="text" class="form-control" id="relation2_1" placeholder="관계2">
 					  </div>
 					</div>
 				</div>
-				<div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
-					<div class="float-start my-3"><h5>#2</h5></div>
-					<div class="float-end my-3">
-						<button class="btn btn-light btn-sm" style="border:none;"><i class="fa-solid fa-plus"></i></button>
-						<button class="btn btn-light btn-sm" style="border:none;"><i class="fa-solid fa-minus"></i></button>
-					</div>
-					<div style="clear:both;"></div>
-					<div class="mb-3">
-					  <input type="text" class="form-control form-control-sm" id="contentTitleInput" placeholder="결과 제목" value="어떤 사람인지 파악하기 힘든 독특하고 복잡한 염소자리">
-					</div>
-					<div class="row">
-						<div class="col-3 mt-3">
-							<div class="row justify-content-center">
-								<div class="row justify-content-center">
-									<img class="img-thumbnail" alt="" id="preview8" style="width:220px; height:170px;">
-								</div>
-								<h6 class="my-3" style="text-align: center;">결과 이미지<br>(200 x 170)</h6>
-								<label class="btn btn-sm mb-4" id="input-file-button" for="input-file8" style="width:100px; background-color:#525252">첨부파일</label>
-								<input type="file" onchange="readURL8(this);" id="input-file8" style="display:none;">
-							</div>
-						</div>
-						<div class="col-9">
-				  			<textarea type="text" class="form-control form-control-sm" id="contentIntroduceInput" placeholder="내용을 입력해주세요" style="resize:none; height:20em;">공감능력이 매우 뛰어나고 동정심이 너무나도 많아서 내가 피곤하더라도 남들을 배려해주는게 속편해요.
-	이사람은 내사람이다! 하는 순간 너무너무 잘해준답니다.
-	내성적이고 조용해서 겉으로는 차가워 보인다는 말을 무지 많이 듣지만
-	친해지도 나면 이런 애였어? 라며 따뜻한 사람이라고 다들 말해요.
-	어딜가나 눈에 띄는 리더 타입은 아니지만 조용하게 자신의 영향력을 미치는 타입이랍니다.
-	조용히 다니는데 가끔은 조금 튀고싶어하기도해요.
-	계획세우는걸 너무나도 좋아해요. 뭐든지 할 일이 있으면 계획부터!
-	상상력이 너무 풍부해서 내가 생각하는걸 오나벽하게 공감해 줄 사람은 이세상에 없다고 생각해요.
-	그래서 감정이 앞설땐 혼자 생각할 시간이 필요하답니다.
-	평소에 내성적인 타입이라 무리 지어 놀기보다는 내 마음이 아주 잘 맞는 친구랑 단둘이 노는게 더 편하다고 생각해요!
-	새로운 일이나 새로운 사람들을 만나는걸 기피하는 편이예요.
-	다른 사람에게 거절당하거나 상처받는걸 민감해해서
-	새롭게 친해지고 싶은 사람이 생겨도 상대방이 먼저 다가와주길 원한답니다.
-	생각이 많아서 타인으로 부터 지속적인 지적과 비판을 받는다면 자신감을 쉽게 상실하고 무너지는 타입입니다.</textarea>
-						</div>
-					</div>
-					<div class="mb-3 row">
-					  <label for="resultScoreRange" class="col-2 col-form-label">결과 점수합 범위</label>
-					  <div class="col-1">
-					    <input type="text" class="form-control" id="resultScoreRange" placeholder="이상" value="8">
-					  </div>
-					  <div class="col-auto" style="font-size: 24px;">~</div>
-					  <div class="col-1">
-					    <input type="text" class="form-control" id="resultScoreRange" placeholder="이하" value="15">
-					  </div>
-					</div>
-				</div>
-				<a href="./ZdminContentList.html"><input type="button" class="float-end btn btn-dark btn-sm" id="contentRegisterFinishButton" value="컨텐츠 수정 완료"></a>
-			</div>
+				<button type="button" class="float-end btn btn-dark btn-sm" id="btnSave" onclick="surveyReg();" > 컨텐츠 작성완료</button>
+			</div>	
 		</form>
+		<a href="./ZdminContentList.html"><input type="button" class="float-end btn btn-dark btn-sm" id="contentRegisterFinishButton" value="컨텐츠 수정 완료"></a>
 	</div>
 </div>
 
@@ -640,115 +344,388 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/bf82a9a80d.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script>
-function readURL0(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview0').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview0').src = "";
+<script src="/resources/zdmin/js/commonZdmin.js"></script>
+<script type="text/javascript">
+	var goUrlInst = "/content/contentInst";				/* #-> */
+
+	var form = $("form[name=myForm]");
+	
+	
+	surveyReg = function() {
+		var div = $("div[name=questionForm]");
+		var num = div.length;
+		
+		var divR = $("div[name=resultForm]");
+		var num3 = divR.length;
+		
+		var QContentGroup =[];
+		var QGroup =[];
+		
+		var CNPQ =[];
+		
+		var CGroup =[];
+		var CContentGroup =[];
+		var CScoreGroup =[];
+		
+		var RGroup =[];
+		var RTitleGroup =[];
+		var RContentGroup =[];
+		var RScoreRangeStart =[];
+		var RScoreRangeEnd =[];
+		var RRelation1 =[];
+		var RRelation2 =[];
+		
+		var uploadImgQuestionGroup = [];
+		var uploadImgQuestionMaxNumberGroup =[];
+		var uploadImgResultGroup = [];
+		var uploadImgResultMaxNumberGroup = [];
+		
+		for(var i=1; i<=num; i++){
+			QGroup.push(i);
+			QContentGroup.push($("#question_"+i+"").val());
+			
+			uploadImgQuestionGroup.push($("#uploadImgQuestion_"+i).val());
+			uploadImgQuestionMaxNumberGroup.push(1);
+			
+			var cho = $("input[type=text][name=choice_"+i+"]");
+			var num2 = cho.length;
+//			alert(i+"번 문제의 선택지 갯수:"+num2);
+			CNPQ.push(num2);
+			
+			for(var j=1; j<=num2; j++){
+				CGroup.push(j);
+				CContentGroup.push($("#choice_"+i+"_"+j+"").val());
+				CScoreGroup.push($("#choiceScore_"+i+"_"+j+"").val());
+			}
+		}
+		
+		for(var i =1; i<=num3; i++){
+			RGroup.push(i);
+			RTitleGroup.push($("#resultTitle_"+i).val());
+			RContentGroup.push($("#resultContent_"+i).val());
+			RScoreRangeStart.push($("#scoreRangeStart_"+i).val());
+			RScoreRangeEnd.push($("#scoreRangeEnd_"+i).val());
+			RRelation1.push($("#relation1_"+i).val());
+			RRelation2.push($("#relation2_"+i).val());
+			
+			uploadImgResultGroup.push($("#uploadImgResult_"+i).val());
+			uploadImgResultMaxNumberGroup.push(1);
+			
+		}
+//		alert("최종");
+//		alert(CGroup);
+//		alert(CContentGroup);
+//		alert(CScoreGroup);
+//		alert(RGroup);
+//		alert(RTitleGroup);
+//		alert(RContentGroup);
+		
+		$("#questionGroup").val(QGroup);
+		$("#questionContentGroup").val(QContentGroup);
+		
+		$("#choiceNumPerQuestion").val(CNPQ);
+		
+		$("#choiceGroup").val(CGroup);
+		$("#choiceContentGroup").val(CContentGroup);
+		$("#choiceScoreGroup").val(CScoreGroup);
+		
+		$("#resultNumGroup").val(RGroup);
+		$("#resultTitleGroup").val(RTitleGroup);
+		$("#resultContentGroup").val(RContentGroup);
+		$("#scoreRangeStartGroup").val(RScoreRangeStart);
+		$("#scoreRangeEndGroup").val(RScoreRangeEnd);
+		$("#relation1Group").val(RRelation1);
+		$("#relation2Group").val(RRelation2);
+		
+		$("#uploadImgQuestion").val(uploadImgQuestionGroup);
+		$("#uploadImgQuestionMaxNumberGroup").val(uploadImgQuestionMaxNumberGroup);
+		
+		$("#uploadImgResult").val(uploadImgResultGroup);
+		$("#uploadImgResultMaxNumberGroup").val(uploadImgResultMaxNumberGroup);
+		
+//		alert("dto에 넣은 값 확인");
+//		alert($("#questionGroup").val());
+//		alert($("#questionContentGroup").val());
+//		alert("문제당 선택지 갯수: "+$("#choiceNumPerQuestion").val());
+//		alert($("#choiceGroup").val());
+//		alert($("#choiceContentGroup").val());
+//		alert($("#choiceScoreGroup").val());
+//		alert($("#resultNumGroup").val());
+//		alert($("#resultTitleGroup").val());
+//		alert($("#resultContentGroup").val());
+//		alert($("#uploadImgCardMaxNumber").val());
+//		alert($("#uploadImgCard").val());
+//		alert($("#uploadImgQuestion").val());
+//		alert("이미지 이름으로 가져온 배열: "+$("input[name=uploadImgQuestion]").val());
+//		alert("dto 값: "+$("#uploadImgQuestion").val());
+//		alert(uploadImgQuestionMaxNumberGroup);
+		
+		form.attr("action",goUrlInst).submit();
 	}
-}
-function readURL1(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview1').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview1').src = "";
+	
+//	$("#btnSave").on("click",function(){
+//		form.attr("action",goUrlInst).submit();
+//	});
+	 
+//	$("#btnPageAdd").on("click",function(){
+//		const newDiv = document.createElement('div');
+//		var test = document.getElementById('contentPage');
+//		
+//		const newText = test.cloneNode(true);
+//		
+//		newDiv.appendChild(newText);
+//		document.body.appendChild(newDiv);
+//		/* var test1 = test.cloneNode(true); */
+//		
+//		/* test1.insertAfter("#contentPageRegistration"); */
+//	});
+
+	PageDel = function(keyValue) {
+		var num = keyValue;
+		document.getElementById("questionForm_"+num).remove();
 	}
-}
-function readURL2(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview2').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview2').src = "";
+	
+	PageAdd = function() {
+		
+//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//		contentPage: 1
+		
+		var div = $("div[name=questionForm]");
+		var num = div.length+1;
+		
+		var divContentPage ="";
+		divContentPage +='<div class="container" id="questionForm_'+num+'" name="questionForm" style="margin-left:0px; margin-bottom:20px; border:solid; border-width:2px; width:100%;">';
+		divContentPage +='    <div class="float-start my-3" style="display: inline-block;"><h5 style="display: inline-block;">Page '+num+'</h5></div>';
+		divContentPage +='    <button type="button" id="QuestionFormDel_'+num+'" onclick="PageDel('+num+')" class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button>';
+		divContentPage +='    <div style="clear:both;"></div>';
+		divContentPage +='    <div class="mb-3">';
+		divContentPage +='        <input type="text" class="form-control form-control-sm" id="question_'+num+'" name="" placeholder="질문">';
+		divContentPage +='    </div>';
+		divContentPage +='    <div class="my-3 row">';
+		divContentPage +='        <h6 class="col-1"><b>선택지</b></h6>';
+		divContentPage +='        <button type="button" class="btn btn-success btn-sm" id="btnPageAdd" onclick="ChoiceAdd('+num+')" style="border:none; width: 30px;"><i class="fa-solid fa-plus"></i></button>';
+		divContentPage +='        <div class="form-check form-switch col-2 mx-5 px-5">';
+		divContentPage +='            <input class="form-check-input" type="checkbox" role="switch" id="multiChoiceNy_'+num+'">';
+		divContentPage +='            <label class="form-check-label" for="multiChoiceNy_'+num+'">중복 선택</label>';
+		divContentPage +='        </div>';
+		divContentPage +='    </div>';
+		divContentPage +='    <div class="mb-3 row"  id="choiceForm_'+num+'_1">';
+		divContentPage +='        <div class="col-10">';
+		divContentPage +='            <input type="text" class="form-control form-control-sm" id="choice_'+num+'_1" name="choice_'+num+'" placeholder="선택지1 내용">';
+		divContentPage +='        </div>';
+		divContentPage +='        <div class="col-1">';
+		divContentPage +='            <input type="text" class="form-control form-control-sm col-1" id="choiceScore_'+num+'_1" name="choiceScore_'+num+'" placeholder="배점">';
+		divContentPage +='        </div>';
+		divContentPage +='    </div>';
+		divContentPage +='    <div class="mb-3 row"  id="choiceForm_'+num+'_2">';
+		divContentPage +='        <div class="col-10">';
+		divContentPage +='            <input type="text" class="form-control form-control-sm" id="choice_'+num+'_2" name="choice_'+num+'" placeholder="선택지2 내용">';
+		divContentPage +='        </div>';
+		divContentPage +='        <div class="col-1">';
+		divContentPage +='            <input type="text" class="form-control form-control-sm col-1" id="choiceScore_'+num+'_2" name="choiceScore_'+num+'" placeholder="배점">';
+		divContentPage +='        </div>';
+		divContentPage +='        <button type="button" id="ChoiceFormDel_'+num+'_2" onclick="ChoiceDel('+num+',2)" class="btn btn-danger btn-sm mx-3" style="border:none; width: 30px;"><i class="fa-solid fa-minus"></i></button>';
+		divContentPage +='    </div>';
+		divContentPage +='    <div class="mb-3 row">';
+		divContentPage +='        <div class="col-12 mt-3">';
+		divContentPage +='			<c:set var="type" value="3"/>';
+		divContentPage +='			<c:set var="name" value="uploadImgQuestion"/>';
+		divContentPage +='			<input type="hidden" id="<c:out value="${name }"/>MaxNumber_'+num+'" name="<c:out value="${name }"/>MaxNumber" value="0"/>';
+		divContentPage +='			<input type="hidden" id="<c:out value="${name }"/>DeleteSeq_'+num+'" name="<c:out value="${name }"/>DeleteSeq"/>';
+		divContentPage +='			<input type="hidden" id="<c:out value="${name }"/>DeletePathFile_'+num+'" name="<c:out value="${name }"/>DeletePathFile"/>';
+		divContentPage +='			<div class="row justify-content-center" id="<c:out value="${name }"/>Preview_'+num+'">';
+		divContentPage +='    			<img class="img-thumbnail" alt="" style="width:400px; height:210px;">';
+		divContentPage +='			</div>';
+		divContentPage +='			<div class="row justify-content-center">';
+		divContentPage +=' 			   <h6 class="my-3" style="text-align: center;">컨텐츠 이미지<br>질문 이미지(730 x *)</h6>';
+		divContentPage +=' 			   <label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>_'+num+'" style="width:100px; background-color:#525252">첨부파일</label>';
+		divContentPage +='  			  <input type="file" multiple="multiple" id="<c:out value="${name }"/>_'+num+'" name="<c:out value="${name }"/>" style="display:none;" onChange="upload(\'<c:out value="${name }"/>\', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 400, 210, '+num+');">';
+		divContentPage +='			</div>';
+		divContentPage +='        </div>';
+		divContentPage +='    </div>';
+		divContentPage +='</div>';
+		$("#questionForm_"+(num-1)+"").after(divContentPage);
 	}
-}
-function readURL3(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview3').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
+	
+	ChoiceAdd = function(keyValue) {
+		var div = $("input[type=text][name=choice_"+keyValue+"]");
+		var num = div.length+1;
+		if(num >=7) {
+			alert("선택지는 6개 까지만 가능합니다.");
+		} else {
+			var divChoice ="";
+			divChoice +='<div class="mb-3 row" id="choiceForm_'+keyValue+'_'+num+'">';
+			divChoice +='    <div class="col-10">';
+			divChoice +='        <input type="text" class="form-control form-control-sm" id="choice_'+keyValue+'_'+num+'" name="choice_'+keyValue+'" placeholder="선택지'+num+' 내용">';
+			divChoice +='    </div>';
+			divChoice +='    <div class="col-1">';
+			divChoice +='        <input type="text" class="form-control form-control-sm col-1" id="choiceScore_'+keyValue+'_'+num+'" name="choiceScore_'+keyValue+'" placeholder="배점">';
+			divChoice +='    </div>';
+			divChoice +='    <button type="button" id="ChoiceFormDel_'+keyValue+'_'+num+'" onclick="ChoiceDel('+keyValue+','+num+')" class="btn btn-danger btn-sm mx-3" style="border:none; width: 30px;"><i class="fa-solid fa-minus"></i></button>';
+			divChoice +='</div>';
+			$("#choiceForm_"+keyValue+"_"+(num-1)+"").after(divChoice);
+		}
 	} 
-	else {
-		document.getElementById('preview3').src = "";
+	
+	ChoiceDel = function(keyValue,choiceNum) {
+		document.getElementById("choiceForm_"+keyValue+"_"+choiceNum).remove();
 	}
-}
-function readURL4(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview4').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview4').src = "";
+	
+	if($("#openNy").is(":checked")){
+		$("#openNy").val(1);
+	} else {
+		$("#openNy").val(0);
 	}
-}
-function readURL5(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview5').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview5').src = "";
+	
+	ResultAdd = function() {
+		var div = $("div[name=resultForm]");
+		var num = div.length+1;
+		
+		var divResultPage="";
+		
+		divResultPage +='<div class="container mb-5" id="resultForm_'+num+'" name="resultForm" style="margin-left:0px; border:solid; border-width:2px; width:100%;">';
+		divResultPage +='    <div class="float-start my-3"><h5>#'+num+'</h5></div>';
+		divResultPage +='    <button type="button" id="resultFormDel_'+num+'" onclick="ResultDel('+num+')" class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button>';
+		divResultPage +='    <div style="clear:both;"></div>';
+		divResultPage +='    <div class="mb-3">';
+		divResultPage +='        <input type="text" class="form-control form-control-sm" id="resultTitle_'+num+'" placeholder="결과 제목">';
+		divResultPage +='    </div>';
+		divResultPage +='    <div class="row">';
+		divResultPage +='        <div class="col-3 mt-3">';
+		divResultPage +='            <div class="row justify-content-center">';
+		divResultPage +='                <c:set var="type" value="4"/>		<!-- #-> -->';
+		divResultPage +='                <c:set var="name" value="uploadImgResult"/>		<!-- #-> -->';
+		divResultPage +='                <input type="hidden" id="<c:out value="${name }"/>MaxNumber_'+num+'" name="<c:out value="${name }"/>MaxNumber" value="0"/>';
+		divResultPage +='                <input type="hidden" id="<c:out value="${name }"/>DeleteSeq_'+num+'" name="<c:out value="${name }"/>DeleteSeq"/>';
+		divResultPage +='                <input type="hidden" id="<c:out value="${name }"/>DeletePathFile_'+num+'" name="<c:out value="${name }"/>DeletePathFile"/>';
+		divResultPage +='                <div class="row justify-content-center" id="<c:out value="${name }"/>Preview_'+num+'">';
+		divResultPage +='                    <img class="img-thumbnail" alt="" style="width:220px; height:170px;">';
+		divResultPage +='                </div>';
+		divResultPage +='                <div class="row justify-content-center">';
+		divResultPage +='                    <h6 class="my-3" style="text-align: center;">결과 이미지<br>(220 x 170)</h6>';
+		divResultPage +='                    <label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>_'+num+'" style="width:100px; background-color:#525252">첨부파일</label>';
+		divResultPage +='                    <input type="file" multiple="multiple" id="<c:out value="${name }"/>_'+num+'" name="<c:out value="${name }"/>" style="display:none;" onChange="upload(\'<c:out value="${name }"/>\', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 220, 170, '+num+');">';
+		divResultPage +='                </div>';
+		divResultPage +='            </div>';
+		divResultPage +='        </div>';
+		divResultPage +='        <div class="col-9">';
+		divResultPage +='            <textarea type="text" class="form-control form-control-sm" id="resultContent_'+num+'" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>';
+		divResultPage +='        </div>';
+		divResultPage +='    </div>';
+		divResultPage +='    <div class="mb-3 row">';
+		divResultPage +='        <label for="resultScoreRange" class="col-2 col-form-label">결과 점수합 범위</label>';
+		divResultPage +='        <div class="col-1">';
+		divResultPage +='        <input type="text" class="form-control" id="scoreRangeStart_'+num+'" placeholder="이상">';
+		divResultPage +='        </div>';
+		divResultPage +='        <div class="col-auto" style="font-size: 24px;">~</div>';
+		divResultPage +='        <div class="col-1">';
+		divResultPage +='        <input type="text" class="form-control" id="scoreRangeEnd_'+num+'" placeholder="이하">';
+		divResultPage +='        </div>';
+		divResultPage +='    </div>';
+		divResultPage +='    <div class="mb-3 row" style="text-align: center;">';
+		divResultPage +='        <label for="resultRelation" class="col-2 col-form-label">관계성</label>';
+		divResultPage +='        <div class="col-2">';
+		divResultPage +='        <input type="text" class="form-control" id="relation1_'+num+'" placeholder="관계1">';
+		divResultPage +='        </div>';
+		divResultPage +='        <div class="col-2">';
+		divResultPage +='        <input type="text" class="form-control" id="relation2_'+num+'" placeholder="관계2">';
+		divResultPage +='        </div>';
+		divResultPage +='    </div>';
+		divResultPage +='</div>';
+		
+		$("#resultForm_"+(num-1)+"").after(divResultPage);
 	}
-}
-function readURL6(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview6').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview6').src = "";
+	
+	ResultDel = function(keyValue) {
+		var num = keyValue;
+		document.getElementById("resultForm_"+num).remove();
 	}
-}
-function readURL7(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview7').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview7').src = "";
+	
+	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType, width, length, idNum) {
+		
+//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//		CardImg: 1
+//		MainImg: 2
+//		QuestionImg : 3
+//		ResultImg : 4
+
+//		uiType: 1 => 이미지형
+
+//		var files = $("#" + objName +"")[0].files;
+//		var filePreview = $("#" + objName +"Preview");
+		if (idNum == 0) {
+			var files = $("#" + objName +"")[0].files;
+			var filePreview = $("#" + objName +"Preview");	
+		} else {
+			var files = $("#" + objName +"_"+idNum+"")[0].files;
+			var filePreview = $("#" + objName +"Preview_"+idNum);
+		}
+		var numbering = [];
+		var maxNumber = 0;
+		if(idNum ==0) {
+			if(uiType == 1) {
+				var uploadedFilesCount = document.querySelectorAll("#" + objName + "Preview > img").length;
+				
+			}  else {
+				// by pass
+			}
+		} else {
+			if(uiType == 1) {
+				var uploadedFilesCount = document.querySelectorAll("#" + objName + "Preview_"+idNum+" > img").length;
+				
+			}  else {
+				// by pass
+			}
+		}
+		
+		
+		$("#" + objName + "MaxNumber").val(maxNumber);
+
+		var totalFileSize = 0;
+		var filesCount = files.length;
+		var filesArray = [];
+		
+		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+		
+		if(checkUploadedTotalFileNumber(files, allowedMaxTotalFileNumber, filesCount, uploadedFilesCount) == false) { return false; }
+		
+		for (var i=0; i<filesCount; i++) {
+			if(checkUploadedExt(files[i].name, seq, allowedExtdiv) == false) { return false; }
+			if(checkUploadedEachFileSize(files[i], seq, allowedEachFileSize) == false) { return false; }
+
+			totalFileSize += files[i].size;
+			
+			filesArray.push(files[i]);
+		}
+
+		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+		
+		if (uiType == 1) {
+			for (var i=0; i<filesArray.length; i++) {
+				var file = filesArray[i];
+
+				var picReader = new FileReader();
+			    picReader.addEventListener("load", addEventListenerCustom (objName, seq, i, file, filePreview, maxNumber, width, length, idNum));
+			    picReader.readAsDataURL(file);
+			}			
+		}  else {
+			return false;
+		}
+		return false;
 	}
-}
-function readURL8(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			document.getElementById('preview8').src = e.target.result;
-		};
-		reader.readAsDataURL(input.files[0]);
-	} 
-	else {
-		document.getElementById('preview8').src = "";
+	
+	addEventListenerCustom = function (objName, type, i, file, filePreview, maxNumber, width, length, idNum) { 
+		return function(event) {
+			var imageFile = event.target;
+
+			var divImage = "";
+			divImage += '<img class="img-thumbnail" src="'+ imageFile.result +'" alt="" style="width:'+width+'px; height:'+length+'px;">';
+			
+			filePreview.html(divImage);
+	    };
 	}
-}
 </script>
 </body>
 </html>

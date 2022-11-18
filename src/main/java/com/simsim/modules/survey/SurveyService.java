@@ -25,7 +25,7 @@ public interface SurveyService {
 	
 	public int selectContentRecordCount(SurveyVo vo) throws Exception;
 	
-	public List<Survey> selectImgList() throws Exception;
+	public List<Survey> selectImgList(SurveyVo vo) throws Exception;
 	
 	public int insertSurveyRecord(Survey dto) throws Exception;
 	public int getTotalScore(SurveyVo vo) throws Exception;
@@ -39,6 +39,10 @@ public interface SurveyService {
 	public int CommentVele(Survey dto) throws Exception;
 	public int CommentUpdt(Survey dto) throws Exception;
 	public Survey selectOne(SurveyVo vo) throws Exception;
+	public List<Survey> getQuestionListForSurvey(SurveyVo vo) throws Exception;
+	public List<Survey> getChoiceListForSurvey(SurveyVo vo) throws Exception;
+	public List<Survey> getResultListForSurvey(SurveyVo vo) throws Exception;
+	
 	public Survey selectCurrentRecord(SurveyVo vo) throws Exception;
 	
 //	public int insert (Survey dto) throws Exception;

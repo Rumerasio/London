@@ -13,6 +13,7 @@ public class Survey extends Base {
 	private Integer openNy;
 	
 	private String sqSeq;
+	private String jsSurveyQuestion_sqSeq;
 	private String question; //질문 번호
 	private String questionContent; //질문 내용
 	private String[] questionGroup;
@@ -492,6 +493,12 @@ public class Survey extends Base {
 	}
 	public void setUploadImgResultMaxNumberGroup(Integer[] uploadImgResultMaxNumberGroup) {
 		this.uploadImgResultMaxNumberGroup = uploadImgResultMaxNumberGroup;
+	}
+	public String getJsSurveyQuestion_sqSeq() {
+		return jsSurveyQuestion_sqSeq;
+	}
+	public void setJsSurveyQuestion_sqSeq(String jsSurveyQuestion_sqSeq) {
+		this.jsSurveyQuestion_sqSeq = jsSurveyQuestion_sqSeq;
 	}
 	
 	

@@ -73,6 +73,7 @@
 		<form role="search" method="post" id="formList" name="formList" autocomplete="off">
 			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+			<input type="hidden" name="snSeq" id="snSeq" value="">
 			<div class="col-4 d-flex my-3" id="search_box">
 			      <input class="form-control" type="search" placeholder="검색어" autocomplete="off" aria-label="Search" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" style="margin-right: 5px;">
 			      <button class="btn btn-outline-primary" type="submit" style="width: 140px;">검색</button> &nbsp;
@@ -95,11 +96,13 @@
 									    <div class="card h-100">
 									      <c:forEach items="${list2}" var="list2" varStatus="status">
 									      	<c:if test="${list2.type eq 1 && list2.pseq eq list.snSeq}">
-									      		<a href="#"><img src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" class="card-img-top" alt="..."></a>
+									      		<a href="javascript:goView(<c:out value="${list.snSeq }"/>)">
+									      			<img src="<c:out value="${list2.path }"/><c:out value="${list2.uuidName }"/>" class="card-img-top" alt="...">
+									      		</a>
 									      	</c:if>
 									      </c:forEach>
 									      <div class="card-body">
-									        <a href="#"><h6 class="card-title"><c:out value="${list.survey}"></c:out></h6></a>
+									        <a href="javascript:goView(<c:out value="${list.snSeq }"/>)"><h6 class="card-title"><c:out value="${list.survey}"></c:out></h6></a>
 									      </div>
 									    </div>
 									  </div>
@@ -123,12 +126,21 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	var goUrlList ="/content/contentList";
+	var goUrlView ="/content/contentViewMod"
 	
 	var form = $("form[name=formList]");
+	
+	var snSeq = $("input:hidden[name=snSeq]");
 	
 	goList = function(thisPage) {
 		$("input:hidden[name=thisPage]").val(thisPage);
 		form.attr("action", goUrlList).submit();
+	}
+	
+	goView = function(keyValue) {
+    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	snSeq.val(keyValue);
+		form.attr("action", goUrlView).submit();
 	}
 	
 	$("#btnReset").on("click",function(){

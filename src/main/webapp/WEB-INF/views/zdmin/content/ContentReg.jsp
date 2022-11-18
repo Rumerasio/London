@@ -274,8 +274,9 @@
 				</div>
 				<!-- 임시 E -->
 				
-				<div class="my-3 pt-3" id="contentResultRegistration"><h6><b>결과 페이지 작성</b></h6></div>
-				<div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
+				<div class="my-3 pt-3" id="contentResultRegistration" style="display: inline-block;"><h6 style="font-size: 20px;"><b>결과 페이지 작성</b></h6></div>
+				<button type="button" class="btn btn-success btn-sm" id="btnResultAdd" onclick="ResultAdd()" style="border:none;"><i class="fa-solid fa-plus"></i></button>
+				<div class="container mb-5" id="resultForm_1" name="resultForm" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
 					<div class="float-start my-3"><h5>#1</h5></div>
 					<div style="clear:both;"></div>
 					<div class="mb-3">
@@ -329,7 +330,7 @@
 					  </div>
 					</div>
 				</div>
-				<div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
+				<%-- <div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
 					<div class="float-start my-3"><h5>#2</h5></div>
 					<div style="clear:both;"></div>
 					<div class="mb-3">
@@ -424,7 +425,7 @@
 					    <input type="text" class="form-control" id="relation2_3" placeholder="관계2">
 					  </div>
 					</div>
-				</div>
+				</div> --%>
 				<!-- 
 				<div class="container my-5" style="margin-left:0px; border:solid; border-width:2px; width:100%;">
 					<div class="float-start my-3"><h5>#2</h5></div>
@@ -508,6 +509,9 @@ function readURL1(input) {
 		var div = $("div[name=questionForm]");
 		var num = div.length;
 		
+		var divR = $("div[name=resultForm]");
+		var num3 = divR.length;
+		
 		var QContentGroup =[];
 		var QGroup =[];
 		
@@ -549,7 +553,7 @@ function readURL1(input) {
 			}
 		}
 		
-		for(var i =1; i<=3; i++){
+		for(var i =1; i<=num3; i++){
 			RGroup.push(i);
 			RTitleGroup.push($("#resultTitle_"+i).val());
 			RContentGroup.push($("#resultContent_"+i).val());
@@ -725,6 +729,70 @@ function readURL1(input) {
 		$("#openNy").val(1);
 	} else {
 		$("#openNy").val(0);
+	}
+	
+	ResultAdd = function() {
+		var div = $("div[name=resultForm]");
+		var num = div.length+1;
+		
+		var divResultPage="";
+		
+		divResultPage +='<div class="container mb-5" id="resultForm_'+num+'" name="resultForm" style="margin-left:0px; border:solid; border-width:2px; width:100%;">';
+		divResultPage +='    <div class="float-start my-3"><h5>#'+num+'</h5></div>';
+		divResultPage +='    <button type="button" id="resultFormDel_'+num+'" onclick="ResultDel('+num+')" class="btn btn-danger btn-sm my-3 mx-3" style="border:none;"><i class="fa-solid fa-minus"></i></button>';
+		divResultPage +='    <div style="clear:both;"></div>';
+		divResultPage +='    <div class="mb-3">';
+		divResultPage +='        <input type="text" class="form-control form-control-sm" id="resultTitle_'+num+'" placeholder="결과 제목">';
+		divResultPage +='    </div>';
+		divResultPage +='    <div class="row">';
+		divResultPage +='        <div class="col-3 mt-3">';
+		divResultPage +='            <div class="row justify-content-center">';
+		divResultPage +='                <c:set var="type" value="4"/>		<!-- #-> -->';
+		divResultPage +='                <c:set var="name" value="uploadImgResult"/>		<!-- #-> -->';
+		divResultPage +='                <input type="hidden" id="<c:out value="${name }"/>MaxNumber_'+num+'" name="<c:out value="${name }"/>MaxNumber" value="0"/>';
+		divResultPage +='                <input type="hidden" id="<c:out value="${name }"/>DeleteSeq_'+num+'" name="<c:out value="${name }"/>DeleteSeq"/>';
+		divResultPage +='                <input type="hidden" id="<c:out value="${name }"/>DeletePathFile_'+num+'" name="<c:out value="${name }"/>DeletePathFile"/>';
+		divResultPage +='                <div class="row justify-content-center" id="<c:out value="${name }"/>Preview_'+num+'">';
+		divResultPage +='                    <img class="img-thumbnail" alt="" style="width:220px; height:170px;">';
+		divResultPage +='                </div>';
+		divResultPage +='                <div class="row justify-content-center">';
+		divResultPage +='                    <h6 class="my-3" style="text-align: center;">결과 이미지<br>(220 x 170)</h6>';
+		divResultPage +='                    <label class="btn btn-sm mb-4" id="input-file-button" for="<c:out value="${name }"/>_'+num+'" style="width:100px; background-color:#525252">첨부파일</label>';
+		divResultPage +='                    <input type="file" multiple="multiple" id="<c:out value="${name }"/>_'+num+'" name="<c:out value="${name }"/>" style="display:none;" onChange="upload(\'<c:out value="${name }"/>\', <c:out value="${type }"/>, 1, 1, 0, 0, 1, 220, 170, '+num+');">';
+		divResultPage +='                </div>';
+		divResultPage +='            </div>';
+		divResultPage +='        </div>';
+		divResultPage +='        <div class="col-9">';
+		divResultPage +='            <textarea type="text" class="form-control form-control-sm" id="resultContent_'+num+'" placeholder="내용을 입력해주세요" style="resize:none; height:20em;"></textarea>';
+		divResultPage +='        </div>';
+		divResultPage +='    </div>';
+		divResultPage +='    <div class="mb-3 row">';
+		divResultPage +='        <label for="resultScoreRange" class="col-2 col-form-label">결과 점수합 범위</label>';
+		divResultPage +='        <div class="col-1">';
+		divResultPage +='        <input type="text" class="form-control" id="scoreRangeStart_'+num+'" placeholder="이상">';
+		divResultPage +='        </div>';
+		divResultPage +='        <div class="col-auto" style="font-size: 24px;">~</div>';
+		divResultPage +='        <div class="col-1">';
+		divResultPage +='        <input type="text" class="form-control" id="scoreRangeEnd_'+num+'" placeholder="이하">';
+		divResultPage +='        </div>';
+		divResultPage +='    </div>';
+		divResultPage +='    <div class="mb-3 row" style="text-align: center;">';
+		divResultPage +='        <label for="resultRelation" class="col-2 col-form-label">관계성</label>';
+		divResultPage +='        <div class="col-2">';
+		divResultPage +='        <input type="text" class="form-control" id="relation1_'+num+'" placeholder="관계1">';
+		divResultPage +='        </div>';
+		divResultPage +='        <div class="col-2">';
+		divResultPage +='        <input type="text" class="form-control" id="relation2_'+num+'" placeholder="관계2">';
+		divResultPage +='        </div>';
+		divResultPage +='    </div>';
+		divResultPage +='</div>';
+		
+		$("#resultForm_"+(num-1)+"").after(divResultPage);
+	}
+	
+	ResultDel = function(keyValue) {
+		var num = keyValue;
+		document.getElementById("resultForm_"+num).remove();
 	}
 	
 	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType, width, length, idNum) {

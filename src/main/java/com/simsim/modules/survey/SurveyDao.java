@@ -28,7 +28,7 @@ public class SurveyDao {
 	public List<Survey> selectCommentList(SurveyVo vo) {return sqlSession.selectList(namespace+".selectCommentList", vo);}
 	public int getCommentNum(SurveyVo vo) {return sqlSession.selectOne(namespace+".getCommentNum", vo);}
 	
-	public List<Survey> selectImgList() {return sqlSession.selectList(namespace+".selectImgList", "");}
+	public List<Survey> selectImgList(SurveyVo vo) {return sqlSession.selectList(namespace+".selectImgList", vo);}
 	
 	public int insertSurveyRecord(Survey dto) {return sqlSession.insert(namespace+".insertSurveyRecord", dto);}
 	public int getTotalScore(SurveyVo vo) {return sqlSession.selectOne(namespace+".getTotalScore",vo);}
@@ -41,9 +41,10 @@ public class SurveyDao {
 	public int CommentInst(Survey dto) {return sqlSession.insert(namespace+".CommentInst", dto);}
 	public int CommentVele(Survey dto) {return sqlSession.update(namespace+".CommentVele", dto);}
 	public int CommentUpdt(Survey dto) {return sqlSession.update(namespace+".CommentUpdt", dto);}
-	public Survey selectOne(SurveyVo vo){
-		return sqlSession.selectOne(namespace + ".selectOne", vo);
-	}
+	public Survey selectOne(SurveyVo vo){return sqlSession.selectOne(namespace + ".selectOne", vo);}
+	public List<Survey> getQuestionListForSurvey(SurveyVo vo) {return sqlSession.selectList(namespace+".getQuestionListForSurvey", vo);}
+	public List<Survey> getChoiceListForSurvey(SurveyVo vo) {return sqlSession.selectList(namespace+".getChoiceListForSurvey", vo);}
+	public List<Survey> getResultListForSurvey(SurveyVo vo) {return sqlSession.selectList(namespace+".getResultListForSurvey", vo);}
 	public int getSurveyNum(SurveyVo vo) {return sqlSession.selectOne(namespace+".getSurveyNum", vo);}
 	public int getTodayNewComment(SurveyVo vo) {return sqlSession.selectOne(namespace+".getTodayNewComment", vo);}
 	public Survey selectCurrentRecord(SurveyVo vo) {return sqlSession.selectOne(namespace+".selectCurrentRecord", vo);}

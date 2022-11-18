@@ -48,7 +48,8 @@
 
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			a.survey
+			a.snSeq
+			,a.survey
 			,a.surveyPhrase
 			,a.surveyExplain
 		   <!--  b.question,
@@ -471,6 +472,53 @@
 		</selectKey>
 	</insert>
 	<!-- 테스트 내용 작성 e -->
+	
+	<!-- 테스트 내용 ViewMod S -->
+	<!-- 테스트 제목은 기존 sql 활용 -->
+	
+	<select id="getQuestionListForSurvey" resultMap="resultMapObj">
+		SELECT
+			sqSeq
+			,jsSurveyName_snSeq as snSeq
+			,question
+			,questionContent
+		FROM jsSurveyQuestion
+		WHERE 1=1
+			AND jsSurveyName_snSeq=#{snSeq}
+	</select>
+	
+	<select id="getChoiceListForSurvey" resultMap="resultMapObj">
+		SELECT
+		    a.snSeq
+		    ,c.sqcSeq
+			,c.jsSurveyQuestion_sqSeq
+			,c.choice
+			,c.choiceContent
+			,c.choiceScore
+		FROM jsSurveyName a
+		inner join jsSurveyQuestion b on b.jsSurveyName_snSeq = a.snSeq
+		inner join jsQuestionChoice c on c.jsSurveyQuestion_sqSeq = b.sqSeq
+		WHERE 1=1
+			AND jsSurveyName_snSeq=#{snSeq}
+	</select>
+	
+	<select id="getResultListForSurvey" resultMap="resultMapObj">
+		SELECT
+			jsSurveyName_snSeq as snSeq
+			,srSeq
+			,resultNum
+			,resultTitle
+			,resultContent
+			,scoreRangeStart
+			,scoreRangeEnd
+			,relation1
+			,relation2
+		FROM jsSurveyResult
+		WHERE 1=1
+			AND jsSurveyName_snSeq=#{snSeq}
+	</select>
+	
+	<!-- 테스트 내용 ViewMod E -->
 	
 	<select id="selectImgList" resultMap="resultMapObj">
 	SELECT

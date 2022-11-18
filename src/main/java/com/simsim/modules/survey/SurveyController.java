@@ -43,7 +43,7 @@ public class SurveyController {
 		model.addAttribute("item", result);
 		List<Survey> list = service.selectList(vo);
 		model.addAttribute("list",list);
-		List<Survey> list2 = service.selectImgList();
+		List<Survey> list2 = service.selectImgList(vo);
 		model.addAttribute("list2",list2);
 		
 		return "user/main";
@@ -69,6 +69,15 @@ public class SurveyController {
 	public String contentViewMod(@ModelAttribute("vo") SurveyVo vo,Model model) throws Exception {
 		Survey result = service.selectOne(vo);
 		model.addAttribute("item",result);
+		List<Survey> result2= service.getQuestionListForSurvey(vo);
+		model.addAttribute("list", result2);
+		List<Survey> result3= service.getChoiceListForSurvey(vo);
+		model.addAttribute("list2", result3);
+		List<Survey> result4= service.getResultListForSurvey(vo);
+		model.addAttribute("list3", result4);
+		List<Survey> result5 = service.selectImgList(vo);
+		model.addAttribute("imgList",result5);
+		
 		return "zdmin/content/ContentViewMod";
 	}
 
@@ -80,7 +89,7 @@ public class SurveyController {
 		List<Survey> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
-		List<Survey> list2 = service.selectImgList();
+		List<Survey> list2 = service.selectImgList(vo);
 		model.addAttribute("list2",list2);
 		
 		return "zdmin/content/ContentList";
@@ -130,7 +139,7 @@ public class SurveyController {
 			y +=dto.getChoiceNumPerQuestion()[i];
 		}
 		
-		for(int i =0;i<3;i++) {
+		for(int i =0;i<dto.getResultNumGroup().length;i++) {
 			dto.setResultNum(dto.getResultNumGroup()[i]);
 			dto.setResultTitle(dto.getResultTitleGroup()[i]);
 			dto.setResultContent(dto.getResultContentGroup()[i]);
@@ -184,7 +193,7 @@ public class SurveyController {
 		List<Survey> list2 = service.selectSurveyContentChoice(vo);
 		model.addAttribute("list2", list2);
 		
-		List<Survey> list3 = service.selectImgList();
+		List<Survey> list3 = service.selectImgList(vo);
 		model.addAttribute("list3",list3);
 		
 		return "user/Survey/SurveyContent";
@@ -221,7 +230,7 @@ public class SurveyController {
 		List<Survey> result = service.selectResultList(vo);
 		model.addAttribute("list", result);
 		
-		List<Survey> list2 = service.selectImgList();
+		List<Survey> list2 = service.selectImgList(vo);
 		model.addAttribute("list2",list2);
 		
 		Survey result3 = service.selectOne(vo);
@@ -246,7 +255,7 @@ public class SurveyController {
 		Survey result2 = service.selectOne(vo);
 		model.addAttribute("item", result2);
 		
-		List<Survey> list2 = service.selectImgList();
+		List<Survey> list2 = service.selectImgList(vo);
 		model.addAttribute("list2",list2);
 		
 		List<Survey> result3 = service.selectSurveyCommentList(vo);
