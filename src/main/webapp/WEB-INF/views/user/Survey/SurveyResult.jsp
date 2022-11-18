@@ -5,7 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
-<% pageContext.setAttribute("replaceChar", "\n"); %>
+<%-- <% pageContext.setAttribute("replaceChar", "\n"); %> --%>
+<% pageContext.setAttribute("br", "\n"); %>
 
 <!DOCTYPE HTML>
 <html>
@@ -80,7 +81,10 @@
 									<h4 style="font-size: 22px; width: 220px; display: inline-block;"><b><c:out value="${list.resultTitle }"/></b></h4>
 								</div>
 								<div class="result_content mx-auto" style="width: 368px; text-align:left; font-size: 16px;">
-									<div style="white-space:pre-line;"><c:out value="${list.resultContent }"/></div>
+									<div style="white-space:pre-line;">
+										<p><c:out value="${fn:replace(list.resultContent, br, '<br/>')}" escapeXml = "false"/></p>
+										<%-- <c:out value="${list.resultContent }"/> --%>
+									</div>
 									<%-- <div class="clearfix row" style="position: relative;">
 										<div class="col-6">
 											<a class="nav-link" href="#Capricornus"><img class="result_img float-start" alt="..." src="../images/stars_test/Capricornus.jpg" style="width: 180px;"></a>
