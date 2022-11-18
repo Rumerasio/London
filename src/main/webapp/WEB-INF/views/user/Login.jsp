@@ -213,6 +213,8 @@
 		{
 			clientId: "TzBvAuvAxjfvnDVNta6l",
 			callbackUrl: "http://localhost:8080/loginPage",
+//			clientId: "7ONlz7Bim5hRaiHfpGsf",
+//			callbackUrl: "http://3.34.138.48/loginPage",
 			isPopup: true,
 			callbackHandle: true
 		}
