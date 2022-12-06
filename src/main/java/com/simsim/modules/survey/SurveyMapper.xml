@@ -52,15 +52,19 @@
 			,a.survey
 			,a.surveyPhrase
 			,a.surveyExplain
+			,b.path
+    		,b.uuidName
 		   <!--  b.question,
 		    b.questionContent,
 		    c.choice,
 		    c.choiceContent -->
 		FROM jsSurveyName a
+		inner join Upload b on b.pseq = a.snSeq
 		<!-- inner join jsSurveyQuestion b on b.jsSurveyName_snSeq = a.snSeq
 		inner join jsQuestionChoice c on b.sqSeq = c.jsSurveyQuestion_sqSeq -->
 		WHERE 1=1
 			AND a.snSeq=#{snSeq}
+			AND b.type =1
 	</select>
 	
 	<select id="selectSurveyCommentCount" resultType="Integer">

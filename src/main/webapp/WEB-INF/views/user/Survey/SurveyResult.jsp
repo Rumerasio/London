@@ -289,6 +289,8 @@
 				<input type="hidden" name="snSeq" id="snSeq" value="<c:out value="${vo.snSeq}"/>">
 				<input type="hidden" name="survey" id="survey" value="<c:out value="${item2.survey }"/>">
 				<input type="hidden" name="surveyExplain" id="surveyExplain" value="<c:out value="${item2.surveyExplain }"/>">
+				<input type="hidden" name="path" id="path" value="<c:out value="${item2.path }"/>">
+				<input type="hidden" name="uuidName" id="uuidName" value="<c:out value="${item2.uuidName }"/>">
 				<input type="hidden" name="Seq" id="Seq" value="<c:out value="${sessSeq }"/>">
 				<div class="row">
 					<div class="col-2 offset-4">
@@ -339,10 +341,28 @@
 <script type="text/javascript">
 	var survey = $("#survey").val();
 	var surveyExplain = $("#surveyExplain").val();
+	var imgUrl = $("#path").val()+$("#uuidName").val();
+	var path = $("#path").val();
+	var uuidName = $("#uuidName").val();
 	//init 체크
 	if (!Kakao.isInitialized()) {
 	  Kakao.init('983700957186f54b5dea5b9569f37c10');
 	}
+	/* 
+	var shareKakao = function() {
+	    // 메시지 공유 함수
+	  Kakao.Link.sendScrap({
+	    requestUrl: 'http://localhost:8080/', // 페이지 url
+	    templateId: 85733, // 메시지템플릿 번호
+	    templateArgs: {
+	      THUMB: imgUrl, // 썸네일 주소 ${THUMB}
+	      TITLE: survey, // 제목 텍스트 ${TITLE}
+	      DESC: surveyExplain, // 설명 텍스트 ${DESC}
+	    },
+	  });
+	};
+	 */
+
 	var shareKakao = function(keyValue) {
 	    // 메시지 공유 함수
 		Kakao.Link.sendDefault({
@@ -350,8 +370,7 @@
 		    content: {
 		      title: survey,
 		      description: surveyExplain,
-		      imageUrl:
-		        '/resources/uploaded/survey/2022/10/31/ee60ee13-7e81-47ad-b3ab-9074a752f530.jpg',
+		      imageUrl: 'https://i.ibb.co/j8sgzpQ/couple-Main.png',
 		      imageWidth: 1200,
 		      imageHeight: 630,
 		      link: {
